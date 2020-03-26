@@ -1,0 +1,15 @@
+%%mocodo
+:::::
+PARTIE: id, numéro, texte_JSON, dateDebut, heureDebut, statut, scoreJ1, scoreJ2, dureeJeu, #pseudo joueur1->JOUEUR->pseudo, #pseudo joueur2->JOUEUR->pseudo, id.1, pseudo1, pseudo2
+:::
+
+
+:
+ÊTREAMISAVEC: #pseudo joueur->JOUEUR->pseudo, _#pseudo->JOUEUR->pseudo, pseudo2
+:
+JOUEUR: pseudo, e-mail, login, mdp, avatar, statut, nb_partie, score, rôle
+:
+MESSAGES: idMes, émetteur, receveur, contenuMes, dateMes, heureMes, #pseudo->JOUEUR->pseudo, #pseudo.1->JOUEUR->pseudo, lu
+:
+INVITATION: idInv, émetteur, receveur, contenuInv, dateInv, heureInv, #pseudo->JOUEUR->pseudo, lu, #pseudo.1->JOUEUR->pseudo
+:

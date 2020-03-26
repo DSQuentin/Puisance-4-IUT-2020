@@ -1,0 +1,11 @@
+PARTICIPER,11 PARTIE, 0N> [joueur1] JOUEUR, 0N> [joueur2] JOUEUR: id,pseudo1,pseudo2
+PARTIE:id,numéro,texte_JSON,dateDebut,heureDebut,statut,scoreJ1,scoreJ2,dureeJeu
+
+ÊTREAMISAVEC,0N> [joueur] JOUEUR,0N JOUEUR:pseudo2
+JOUEUR:pseudo,e-mail,login,mdp,avatar,statut,nb_partie,score,rôle
+EMETTRE,1N JOUEUR,11 MESSAGES
+RECEVOIR,1N JOUEUR,11 MESSAGES:lu
+MESSAGES:idMes,émetteur,receveur,contenuMes,dateMes,heureMes
+INVITATION:idInv,émetteur,receveur,contenuInv,dateInv,heureInv
+EMETTREInv,1N JOUEUR,11 INVITATION
+RECEVOIRInv,1N JOUEUR,11 INVITATION:lu

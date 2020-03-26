@@ -1,0 +1,200 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="1500" height="1500" view_box="0 0 1500 1500"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Wed, 25 Mar 2020 03:59:29</desc>
+
+<rect id="frame" x="0" y="0" width="1500" height="1500" fill="#f7f7f7" stroke="none" stroke-width="0"/>
+
+<!-- Association PARTICIPER -->
+<line x1="513" y1="102" x2="186" y2="102" stroke="#e08214" stroke-width="2"/>
+<text x="446" y="119.0" fill="#542788" font-family="Verdana" font-size="12">1,1</text>
+<path d="M186 288 C 143.333333333 209.333333333 143.333333333 147.333333333 186 102" fill="none" stroke="#e08214" stroke-width="2"/>
+<text x="160.0" y="187" fill="#542788" font-family="Verdana" font-size="12" onmouseover="show(evt,'joueur1')" onmouseout="hide(evt)" style="cursor: pointer;">0,N</text>
+<path d="M 154.557213306 194.989756174 L 147.531791301 183.559819795 L 153.858304605 187.020344237 L 159.485909207 182.511456742 Z" fill="#e08214" stroke-width="0"/>
+<path d="M186 288 C 228.666666667 209.333333333 228.666666667 147.333333333 186 102" fill="none" stroke="#e08214" stroke-width="2"/>
+<text x="190.0" y="187" fill="#542788" font-family="Verdana" font-size="12" onmouseover="show(evt,'joueur2')" onmouseout="hide(evt)" style="cursor: pointer;">0,N</text>
+<path d="M 217.442786694 194.989756174 L 212.514090793 182.511456742 L 218.141695395 187.020344237 L 224.468208699 183.559819795 Z" fill="#e08214" stroke-width="0"/>
+<g id="association-PARTICIPER">
+	<path d="M 216 60 a 14 14 90 0 1 14 14 V 85 h -88 V 74 a 14 14 90 0 1 14 -14" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+	<path d="M 230 85.0 v 45 a 14 14 90 0 1 -14 14 H 156 a 14 14 90 0 1 -14 -14 V 85.0 H 88" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+	<rect x="142" y="60" width="88" height="84" fill="none" rx="14" stroke="#e08214" stroke-width="2"/>
+	<line x1="142" y1="85" x2="230" y2="85" stroke="#e08214" stroke-width="1"/>
+	<text x="149" y="77.7" fill="#000000" font-family="Verdana" font-size="12">PARTICIPER</text>
+	<text x="149" y="102.8" fill="#000000" font-family="Verdana" font-size="12">id</text>
+	<text x="149" y="119.8" fill="#000000" font-family="Verdana" font-size="12">pseudo1</text>
+	<text x="149" y="136.8" fill="#000000" font-family="Verdana" font-size="12">pseudo2</text>
+</g>
+
+<!-- Association RECEVOIRInv -->
+<line x1="186" y1="288" x2="400" y2="400" stroke="#e08214" stroke-width="2"/>
+<text x="226" y="302.402702051" fill="#542788" font-family="Verdana" font-size="12">1,N</text>
+<line x1="500" y1="288" x2="400" y2="400" stroke="#e08214" stroke-width="2"/>
+<text x="431" y="334.665872299" fill="#542788" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-RECEVOIRInv">
+	<path d="M 435 375 a 14 14 90 0 1 14 14 V 400 h -98 V 389 a 14 14 90 0 1 14 -14" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+	<path d="M 449 400.0 v 11 a 14 14 90 0 1 -14 14 H 365 a 14 14 90 0 1 -14 -14 V 400.0 H 98" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+	<rect x="351" y="375" width="98" height="50" fill="none" rx="14" stroke="#e08214" stroke-width="2"/>
+	<line x1="351" y1="400" x2="449" y2="400" stroke="#e08214" stroke-width="1"/>
+	<text x="358" y="392.7" fill="#000000" font-family="Verdana" font-size="12">RECEVOIRInv</text>
+	<text x="358" y="417.8" fill="#000000" font-family="Verdana" font-size="12">lu</text>
+</g>
+
+<!-- Association EMETTREInv -->
+<line x1="186" y1="288" x2="350" y2="200" stroke="#e08214" stroke-width="2"/>
+<text x="226" y="282.03590246" fill="#542788" font-family="Verdana" font-size="12">1,N</text>
+<line x1="500" y1="288" x2="350" y2="200" stroke="#e08214" stroke-width="2"/>
+<text x="431" y="275.223217625" fill="#542788" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-EMETTREInv">
+	<path d="M 382 175 a 14 14 90 0 1 14 14 V 200 h -92 V 189 a 14 14 90 0 1 14 -14" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+	<path d="M 396 200.0 v 11 a 14 14 90 0 1 -14 14 H 318 a 14 14 90 0 1 -14 -14 V 200.0 H 92" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+	<rect x="304" y="175" width="92" height="50" fill="none" rx="14" stroke="#e08214" stroke-width="2"/>
+	<line x1="304" y1="200" x2="396" y2="200" stroke="#e08214" stroke-width="1"/>
+	<text x="311" y="192.7" fill="#000000" font-family="Verdana" font-size="12">EMETTREInv</text>
+</g>
+
+<!-- Association EMETTRE -->
+<line x1="186" y1="288" x2="100" y2="400" stroke="#e08214" stroke-width="2"/>
+<text x="124" y="331.350453436" fill="#542788" font-family="Verdana" font-size="12">1,N</text>
+<line x1="186" y1="550" x2="100" y2="400" stroke="#e08214" stroke-width="2"/>
+<text x="147.559637935" y="474" fill="#542788" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-EMETTRE">
+	<path d="M 122 375 a 14 14 90 0 1 14 14 V 400 h -72 V 389 a 14 14 90 0 1 14 -14" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+	<path d="M 136 400.0 v 11 a 14 14 90 0 1 -14 14 H 78 a 14 14 90 0 1 -14 -14 V 400.0 H 72" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+	<rect x="64" y="375" width="72" height="50" fill="none" rx="14" stroke="#e08214" stroke-width="2"/>
+	<line x1="64" y1="400" x2="136" y2="400" stroke="#e08214" stroke-width="1"/>
+	<text x="71" y="392.7" fill="#000000" font-family="Verdana" font-size="12">EMETTRE</text>
+</g>
+
+<!-- Association ÊTREAMISAVEC -->
+<path d="M186 288 C 158.666666667 321.333333333 118.0 321.333333333 64 288" fill="none" stroke="#e08214" stroke-width="2"/>
+<text x="124" y="303.0" fill="#542788" font-family="Verdana" font-size="12" onmouseover="show(evt,'joueur')" onmouseout="hide(evt)" style="cursor: pointer;">0,N</text>
+<path d="M 151.006554693 311.112395033 L 140.799778197 319.819961487 L 143.24092284 313.03462341 L 137.916435632 308.171513709 Z" fill="#e08214" stroke-width="0"/>
+<path d="M186 288 C 158.666666667 254.666666667 118.0 254.666666667 64 288" fill="none" stroke="#e08214" stroke-width="2"/>
+<text x="124" y="282.0" fill="#542788" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-ÊTREAMISAVEC">
+	<path d="M 105 263 a 14 14 90 0 1 14 14 V 288 h -110 V 277 a 14 14 90 0 1 14 -14" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+	<path d="M 119 288.0 v 11 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 288.0 H 110" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+	<rect x="9" y="263" width="110" height="50" fill="none" rx="14" stroke="#e08214" stroke-width="2"/>
+	<line x1="9" y1="288" x2="119" y2="288" stroke="#e08214" stroke-width="1"/>
+	<text x="16" y="280.7" fill="#000000" font-family="Verdana" font-size="12">ÊTREAMISAVEC</text>
+	<text x="16" y="305.8" fill="#000000" font-family="Verdana" font-size="12">pseudo2</text>
+</g>
+
+<!-- Association RECEVOIR -->
+<line x1="186" y1="288" x2="300" y2="400" stroke="#e08214" stroke-width="2"/>
+<text x="226" y="321.368473651" fill="#542788" font-family="Verdana" font-size="12">1,N</text>
+<line x1="186" y1="550" x2="300" y2="400" stroke="#e08214" stroke-width="2"/>
+<text x="233" y="506.016961195" fill="#542788" font-family="Verdana" font-size="12">1,1</text>
+<g id="association-RECEVOIR">
+	<path d="M 325 375 a 14 14 90 0 1 14 14 V 400 h -78 V 389 a 14 14 90 0 1 14 -14" fill="#fdb863" stroke="#fdb863" stroke-width="0"/>
+	<path d="M 339 400.0 v 11 a 14 14 90 0 1 -14 14 H 275 a 14 14 90 0 1 -14 -14 V 400.0 H 78" fill="#fee0b6" stroke="#fee0b6" stroke-width="0"/>
+	<rect x="261" y="375" width="78" height="50" fill="none" rx="14" stroke="#e08214" stroke-width="2"/>
+	<line x1="261" y1="400" x2="339" y2="400" stroke="#e08214" stroke-width="1"/>
+	<text x="268" y="392.7" fill="#000000" font-family="Verdana" font-size="12">RECEVOIR</text>
+	<text x="268" y="417.8" fill="#000000" font-family="Verdana" font-size="12">lu</text>
+</g>
+
+<!-- Entity MESSAGES -->
+<g id="entity-MESSAGES">
+	<g id="frame-MESSAGES">
+		<rect x="144" y="482" width="84" height="25" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+		<rect x="144" y="507.0" width="84" height="111" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+		<rect x="144" y="482" width="84" height="136" fill="none" stroke="#8073ac" stroke-width="2"/>
+		<line x1="144" y1="507" x2="228" y2="507" stroke="#8073ac" stroke-width="1"/>
+	</g>
+	<text x="152" y="499.7" fill="#000000" font-family="Verdana" font-size="12">MESSAGES</text>
+	<text x="149" y="524.7" fill="#000000" font-family="Verdana" font-size="12">idMes</text>
+	<line x1="149" y1="527" x2="184" y2="527" stroke="#000000" stroke-width="1"/>
+	<text x="149" y="541.7" fill="#000000" font-family="Verdana" font-size="12">émetteur</text>
+	<text x="149" y="558.8" fill="#000000" font-family="Verdana" font-size="12">receveur</text>
+	<text x="149" y="575.8" fill="#000000" font-family="Verdana" font-size="12">contenuMes</text>
+	<text x="149" y="592.8" fill="#000000" font-family="Verdana" font-size="12">dateMes</text>
+	<text x="149" y="609.8" fill="#000000" font-family="Verdana" font-size="12">heureMes</text>
+</g>
+
+<!-- Entity INVITATION -->
+<g id="entity-INVITATION">
+	<g id="frame-INVITATION">
+		<rect x="457" y="220" width="86" height="25" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+		<rect x="457" y="245.0" width="86" height="111" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+		<rect x="457" y="220" width="86" height="136" fill="none" stroke="#8073ac" stroke-width="2"/>
+		<line x1="457" y1="245" x2="543" y2="245" stroke="#8073ac" stroke-width="1"/>
+	</g>
+	<text x="462" y="237.7" fill="#000000" font-family="Verdana" font-size="12">INVITATION</text>
+	<text x="462" y="262.7" fill="#000000" font-family="Verdana" font-size="12">idInv</text>
+	<line x1="462" y1="265" x2="494" y2="265" stroke="#000000" stroke-width="1"/>
+	<text x="462" y="279.7" fill="#000000" font-family="Verdana" font-size="12">émetteur</text>
+	<text x="462" y="296.8" fill="#000000" font-family="Verdana" font-size="12">receveur</text>
+	<text x="462" y="313.8" fill="#000000" font-family="Verdana" font-size="12">contenuInv</text>
+	<text x="462" y="330.8" fill="#000000" font-family="Verdana" font-size="12">dateInv</text>
+	<text x="462" y="347.8" fill="#000000" font-family="Verdana" font-size="12">heureInv</text>
+</g>
+
+<!-- Entity JOUEUR -->
+<g id="entity-JOUEUR">
+	<g id="frame-JOUEUR">
+		<rect x="151" y="195" width="70" height="25" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+		<rect x="151" y="220.0" width="70" height="161" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+		<rect x="151" y="195" width="70" height="186" fill="none" stroke="#8073ac" stroke-width="2"/>
+		<line x1="151" y1="220" x2="221" y2="220" stroke="#8073ac" stroke-width="1"/>
+	</g>
+	<text x="161" y="212.7" fill="#000000" font-family="Verdana" font-size="12">JOUEUR</text>
+	<text x="156" y="237.7" fill="#000000" font-family="Verdana" font-size="12">pseudo</text>
+	<line x1="156" y1="240" x2="200" y2="240" stroke="#000000" stroke-width="1"/>
+	<text x="156" y="254.7" fill="#000000" font-family="Verdana" font-size="12">e-mail</text>
+	<text x="156" y="271.7" fill="#000000" font-family="Verdana" font-size="12">login</text>
+	<text x="156" y="288.8" fill="#000000" font-family="Verdana" font-size="12">mdp</text>
+	<text x="156" y="305.8" fill="#000000" font-family="Verdana" font-size="12">avatar</text>
+	<text x="156" y="322.8" fill="#000000" font-family="Verdana" font-size="12">statut</text>
+	<text x="156" y="339.8" fill="#000000" font-family="Verdana" font-size="12">nb_partie</text>
+	<text x="156" y="356.8" fill="#000000" font-family="Verdana" font-size="12">score</text>
+	<text x="156" y="373.8" fill="#000000" font-family="Verdana" font-size="12">rôle</text>
+</g>
+
+<!-- Entity PARTIE -->
+<g id="entity-PARTIE">
+	<g id="frame-PARTIE">
+		<rect x="472" y="9" width="82" height="25" fill="#b2abd2" stroke="#b2abd2" stroke-width="0"/>
+		<rect x="472" y="34.0" width="82" height="161" fill="#d8daeb" stroke="#d8daeb" stroke-width="0"/>
+		<rect x="472" y="9" width="82" height="186" fill="none" stroke="#8073ac" stroke-width="2"/>
+		<line x1="472" y1="34" x2="554" y2="34" stroke="#8073ac" stroke-width="1"/>
+	</g>
+	<text x="490" y="26.7" fill="#000000" font-family="Verdana" font-size="12">PARTIE</text>
+	<text x="477" y="51.7" fill="#000000" font-family="Verdana" font-size="12">id</text>
+	<line x1="477" y1="54" x2="489" y2="54" stroke="#000000" stroke-width="1"/>
+	<text x="477" y="68.7" fill="#000000" font-family="Verdana" font-size="12">numéro</text>
+	<text x="477" y="85.7" fill="#000000" font-family="Verdana" font-size="12">texte_JSON</text>
+	<text x="477" y="102.8" fill="#000000" font-family="Verdana" font-size="12">dateDebut</text>
+	<text x="477" y="119.8" fill="#000000" font-family="Verdana" font-size="12">heureDebut</text>
+	<text x="477" y="136.8" fill="#000000" font-family="Verdana" font-size="12">statut</text>
+	<text x="477" y="153.8" fill="#000000" font-family="Verdana" font-size="12">scoreJ1</text>
+	<text x="477" y="170.8" fill="#000000" font-family="Verdana" font-size="12">scoreJ2</text>
+	<text x="477" y="187.8" fill="#000000" font-family="Verdana" font-size="12">dureeJeu</text>
+</g>
+
+<!-- Annotations -->
+<script type="text/ecmascript">
+<![CDATA[
+	function show(evt, text) {
+		var pos = (evt.target.getAttribute("y") < 1455) ? "bottom" : "top"
+		var annotation = document.getElementById(pos + "_annotation_JwhgCbq4")
+		annotation.textContent = text
+		annotation.setAttributeNS(null, "visibility", "visible");
+		document.getElementById(pos + "_overlay_JwhgCbq4").setAttributeNS(null, "visibility", "visible");
+	}
+	function hide(evt) {
+		document.getElementById("top_annotation_JwhgCbq4").setAttributeNS(null, "visibility", "hidden");
+		document.getElementById("top_overlay_JwhgCbq4").setAttributeNS(null, "visibility", "hidden");
+		document.getElementById("bottom_annotation_JwhgCbq4").setAttributeNS(null, "visibility", "hidden");
+		document.getElementById("bottom_overlay_JwhgCbq4").setAttributeNS(null, "visibility", "hidden");
+	}
+]]>
+</script>
+<rect id="top_overlay_JwhgCbq4" x="0" y="0" width="1500" height="40" fill="#b35806" stroke-width="0" opacity="0.9" visibility="hidden"/>
+<text id="top_annotation_JwhgCbq4" text-anchor="middle" x="750.0" y="24" fill="#f7f7f7" font-family="Verdana" font-size="14" visibility="hidden"></text>
+<rect id="bottom_overlay_JwhgCbq4" x="0" y="1460" width="1500" height="40" fill="#b35806" stroke-width="0" opacity="0.9" visibility="hidden"/>
+<text id="bottom_annotation_JwhgCbq4" text-anchor="middle" x="750.0" y="1484" fill="#f7f7f7" font-family="Verdana" font-size="14" visibility="hidden"></text>
+</svg>
