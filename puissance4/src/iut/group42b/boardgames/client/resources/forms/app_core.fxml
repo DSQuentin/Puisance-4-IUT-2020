@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Arc?>
+<VBox prefHeight="900.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="579.0" prefWidth="802.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Pane layoutX="-86.0" layoutY="9.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                      minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="50.0"
+                      AnchorPane.leftAnchor="-200.0" AnchorPane.topAnchor="50.0">
+                    <children>
+                        <Arc layoutY="458.0" length="180.0" radiusX="400.0" radiusY="480.0" startAngle="-90.0"
+                             stroke="TRANSPARENT" strokeType="INSIDE" type="ROUND">
+                            <fill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#2d879f"/>
+                                        <Stop color="#2d879f" offset="0.007662835249042145"/>
+                                        <Stop color="#48c7ab" offset="1.0"/>
+                                    </stops>
+                                </LinearGradient>
+                            </fill>
+                        </Arc>
+                    </children>
+                </Pane>
+                <StackPane id="app-core-container" layoutX="136.0" layoutY="24.0" prefHeight="340.0" prefWidth="522.0"
+                           AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-16.0"
+                           AnchorPane.topAnchor="24.0"/>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
