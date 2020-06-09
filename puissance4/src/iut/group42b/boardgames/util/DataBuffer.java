@@ -1,9 +1,12 @@
 package iut.group42b.boardgames.util;
 
+import iut.group42b.boardgames.network.rw.IReadableObject;
+import iut.group42b.boardgames.network.rw.IWritableObject;
+
 import java.io.PrintStream;
-import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class DataBuffer {
 
@@ -117,6 +120,29 @@ public class DataBuffer {
 				+ ((((long) readByte()) << 0) & 0x00000000000000FFl);
 	}
 
+	public void writeList(List<? extends IWritableObject> list) {
+		writeInt(list.size());
+
+		for (IWritableObject object : list) {
+			object.write(this);
+		}
+	}
+
+	public <T extends IReadableObject> List<T> readList(Supplier<T> instanceCreator) {
+		List<T> list = new ArrayList<>();
+
+		int listSize = readInt();
+		for (int i = 0; i < listSize; i++) {
+			T instance = instanceCreator.get();
+
+			instance.read(this);
+
+			list.add(instance);
+		}
+
+		return list;
+	}
+
 	public void rewind() {
 		index = 0;
 	}
@@ -139,6 +165,10 @@ public class DataBuffer {
 
 	public void write(String str) {
 		writeString(str);
+	}
+
+	public void write(List<? extends IWritableObject> list) {
+		writeList(list);
 	}
 
 	public void dump(PrintStream printStream) {
@@ -176,4 +206,5 @@ public class DataBuffer {
 		index = 0;
 		bytes.clear();
 	}
+
 }

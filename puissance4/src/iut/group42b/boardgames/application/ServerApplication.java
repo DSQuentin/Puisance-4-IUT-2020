@@ -1,9 +1,9 @@
 package iut.group42b.boardgames.application;
 
 import iut.group42b.boardgames.Bootstrap;
+import iut.group42b.boardgames.server.database.impl.MariaConnection;
 import iut.group42b.boardgames.server.manager.DatabaseInterface;
 import iut.group42b.boardgames.server.network.NetworkServer;
-import iut.group42b.boardgames.server.database.impl.MariaConnection;
 import iut.group42b.boardgames.util.Logger;
 
 public class ServerApplication {

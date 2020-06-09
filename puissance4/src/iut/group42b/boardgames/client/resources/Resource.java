@@ -1,6 +1,7 @@
 package iut.group42b.boardgames.client.resources;
 
 import iut.group42b.boardgames.util.Logger;
+import javafx.scene.image.Image;
 
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -35,6 +36,11 @@ public class Resource {
 		return ResourceBundle.getBundle(baseName, locale, new URLClassLoader(
 				new java.net.URL[]{Resource.class.getResource("./bundles/").toURI().toURL()}
 		));
+	}
+
+	public static Image loadImage(String name) {
+		LOGGER.verbose("Loading image : %s ", name);
+		return new Image(Resource.class.getResourceAsStream("images/" + name));
 	}
 
 }

@@ -46,7 +46,7 @@ public class LoginController implements IController, INetworkHandler {
 	}
 
 	@Override
-	public void attachVue(IView view) {
+	public void attachView(IView view) {
 		if (!(view instanceof LoginView)) {
 			throw new IllegalArgumentException();
 		}

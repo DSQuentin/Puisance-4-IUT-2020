@@ -37,7 +37,6 @@ public class LoginView extends AbstractView {
 		this.registerText = (Hyperlink) findById("login-text-to-register");
 
 
-
 		if (forcedEmail != null) {
 			emailTextField.setText(forcedEmail);
 		}

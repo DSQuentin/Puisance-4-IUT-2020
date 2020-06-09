@@ -16,7 +16,7 @@ public class MonopolyGame implements IGame {
 
 	@Override
 	public String getName() {
-		return "Chess";
+		return "Monopoly";
 	}
 
 	@Override
@@ -27,6 +27,11 @@ public class MonopolyGame implements IGame {
 	@Override
 	public GameAvailability getAvailability() {
 		return GameAvailability.NOT_PLAYABLE;
+	}
+
+	@Override
+	public String picturePath() {
+		return "monopoly.png";
 	}
 
 }

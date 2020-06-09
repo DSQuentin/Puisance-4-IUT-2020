@@ -9,14 +9,10 @@ import iut.group42b.boardgames.game.impl.connect4.Connect4Game;
 import iut.group42b.boardgames.game.impl.monopoly.MonopolyGame;
 import iut.group42b.boardgames.game.impl.werewolf.WereWolfGame;
 import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
-import iut.group42b.boardgames.client.i18n.impl.I18nMessage;
 import iut.group42b.boardgames.network.packet.PacketRegistry;
-import iut.group42b.boardgames.client.resources.Resource;
 import iut.group42b.boardgames.util.Logger;
 import iut.group42b.boardgames.util.cli.Option;
 import iut.group42b.boardgames.util.cli.OptionParser;
-
-import java.util.ResourceBundle;
 
 public class Bootstrap {
 

@@ -29,4 +29,9 @@ public class CheckerGame implements IGame {
 		return GameAvailability.MAINTENANCE;
 	}
 
+	@Override
+	public String picturePath() {
+		return "checker.png";
+	}
+
 }

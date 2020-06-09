@@ -1,11 +1,7 @@
 package iut.group42b.boardgames.network.packet;
 
-import iut.group42b.boardgames.util.DataBuffer;
+import iut.group42b.boardgames.network.rw.IWritableReadableObject;
 
-public interface IPacket {
-
-	public void write(DataBuffer buffer);
-
-	public void read(DataBuffer buffer);
+public interface IPacket extends IWritableReadableObject {
 
 }

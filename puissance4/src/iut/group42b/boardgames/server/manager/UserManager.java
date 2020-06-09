@@ -91,7 +91,7 @@ public class UserManager implements INetworkHandler {
 			preparedStatement.setString(1, registerPacket.getUsername());
 			preparedStatement.setString(2, registerPacket.getEmail());
 			preparedStatement.setString(3, registerPacket.getPassword());
-			preparedStatement.setString(4,"https://imgur.com/download/ljrctP0"); //default image link
+			preparedStatement.setString(4, "https://imgur.com/download/ljrctP0"); //default image link
 
 			preparedStatement.execute();
 

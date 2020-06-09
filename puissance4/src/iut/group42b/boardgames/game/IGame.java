@@ -8,8 +8,11 @@ public interface IGame {
 
 	public String getName();
 
+
 	public List<String> getTags();
 
 	public GameAvailability getAvailability();
+
+	public String picturePath();
 
 }

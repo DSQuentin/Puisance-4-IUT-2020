@@ -29,4 +29,10 @@ public class Connect4Game implements IGame {
 		return GameAvailability.PLAYABLE;
 	}
 
+	@Override
+	public String picturePath() {
+		return "connect4cover.png";
+	}
+
+
 }

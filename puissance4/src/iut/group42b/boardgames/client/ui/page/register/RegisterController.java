@@ -5,13 +5,13 @@ import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
+import iut.group42b.boardgames.client.ui.page.login.LoginView;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.UserAuthentificationErrorPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.UserAuthentificationSuccessPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.UserRegisterPacket;
-import iut.group42b.boardgames.client.ui.page.login.LoginView;
 import iut.group42b.boardgames.util.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -57,7 +57,7 @@ public class RegisterController implements IController, INetworkHandler {
 	}
 
 	@Override
-	public void attachVue(IView vue) {
+	public void attachView(IView vue) {
 		if (!(vue instanceof RegisterView)) {
 			throw new IllegalArgumentException();
 		}

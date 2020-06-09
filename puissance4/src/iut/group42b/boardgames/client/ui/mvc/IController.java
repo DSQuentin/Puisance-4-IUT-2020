@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 
 public interface IController extends EventHandler<ActionEvent> {
 
-	public void attachVue(IView vue);
+	public void attachView(IView view);
 
 	public void onMount();
 

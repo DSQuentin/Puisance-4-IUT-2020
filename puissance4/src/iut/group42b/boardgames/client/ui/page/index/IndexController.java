@@ -3,11 +3,10 @@ package iut.group42b.boardgames.client.ui.page.index;
 import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
-import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.login.LoginView;
 import iut.group42b.boardgames.client.ui.page.register.RegisterView;
 import javafx.event.ActionEvent;
-import sun.security.x509.InvalidityDateExtension;
+
 
 public class IndexController implements IController {
 
@@ -24,7 +23,7 @@ public class IndexController implements IController {
 	}
 
 	@Override
-	public void attachVue(IView view) {
+	public void attachView(IView view) {
 		if (!(view instanceof IndexView)) {
 			throw new IllegalArgumentException();
 		}

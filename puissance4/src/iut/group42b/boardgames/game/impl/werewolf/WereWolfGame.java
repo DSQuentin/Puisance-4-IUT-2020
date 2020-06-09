@@ -29,4 +29,9 @@ public class WereWolfGame implements IGame {
 		return GameAvailability.NOT_PLAYABLE;
 	}
 
+	@Override
+	public String picturePath() {
+		return "werewolf.png";
+	}
+
 }

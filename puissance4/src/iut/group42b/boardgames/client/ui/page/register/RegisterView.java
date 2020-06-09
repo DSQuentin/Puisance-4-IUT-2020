@@ -1,7 +1,7 @@
 package iut.group42b.boardgames.client.ui.page.register;
 
-import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
+import iut.group42b.boardgames.client.ui.mvc.IController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;

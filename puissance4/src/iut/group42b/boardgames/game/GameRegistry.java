@@ -2,6 +2,7 @@ package iut.group42b.boardgames.game;
 
 import iut.group42b.boardgames.util.Logger;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +35,10 @@ public class GameRegistry {
 
 	public static GameRegistry get() {
 		return INSTANCE;
+	}
+
+	public Collection<IGame> all() {
+		return games.keySet();
 	}
 
 }

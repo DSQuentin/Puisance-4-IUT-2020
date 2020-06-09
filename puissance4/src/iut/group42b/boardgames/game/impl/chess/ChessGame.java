@@ -29,4 +29,9 @@ public class ChessGame implements IGame {
 		return GameAvailability.NOT_PLAYABLE;
 	}
 
+	@Override
+	public String picturePath() {
+		return "chess.png";
+	}
+
 }
