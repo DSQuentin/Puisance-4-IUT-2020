@@ -5,9 +5,11 @@ import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.index.IndexView;
 import iut.group42b.boardgames.client.ui.page.login.LoginView;
+import iut.group42b.boardgames.game.impl.connect4.ui.Connect4UIView;
 import iut.group42b.boardgames.util.Logger;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class UserInterface {
@@ -33,6 +35,7 @@ public class UserInterface {
 		return INSTANCE;
 	}
 
+	/* Setting up first page  */
 	public void initialize(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
 
@@ -41,7 +44,7 @@ public class UserInterface {
 		} else {
 			set(new IndexView());
 		}
-		// set(new HomeView());
+		// set(new Connect4UIView());
 	}
 
 	public void set(IView view) {
@@ -54,7 +57,7 @@ public class UserInterface {
 			currentView = view;
 			currentController = view.createController();
 
-			LOGGER.verbose("Set vue to: %s", view.getClass().getCanonicalName());
+			LOGGER.verbose("Set view to: %s", view.getClass().getCanonicalName());
 
 			if (currentController != null) {
 				currentController.onMount();
@@ -67,6 +70,27 @@ public class UserInterface {
 			} else {
 				scene.setRoot(view.getRoot());
 			}
+		});
+	}
+
+	public void openDialog(IView view) {
+		Platform.runLater(() -> {
+			IController controller = view.createController();
+
+			LOGGER.verbose("Opening dialog to: %s", view.getClass().getCanonicalName());
+
+			if (controller != null) {
+				controller.onMount();
+				controller.attachView(view);
+			}
+
+			Stage dialog = new Stage();
+
+			dialog.setScene(new Scene(view.getRoot()));
+
+			dialog.initOwner(stage);
+			dialog.initModality(Modality.APPLICATION_MODAL);
+			dialog.showAndWait();
 		});
 	}
 

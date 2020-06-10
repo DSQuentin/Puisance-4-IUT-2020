@@ -5,6 +5,7 @@ import iut.group42b.boardgames.util.DataBuffer;
 
 public class PlayerJoinPacket implements IPacket {
 
+	// TODO ici le packet de join
 	/* Variables */
 	private long playerId;
 	private long gameId;

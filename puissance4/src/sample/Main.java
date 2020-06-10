@@ -2,7 +2,10 @@ package sample;
 
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
+import iut.group42b.boardgames.client.i18n.Messages;
+import iut.group42b.boardgames.client.i18n.impl.I18nMessage;
 import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.packet.PacketRegistry;
@@ -12,10 +15,13 @@ import iut.group42b.boardgames.network.packet.impl.auth.UserLoginPacket;
 import iut.group42b.boardgames.client.resources.Resource;
 import iut.group42b.boardgames.util.Logger;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -39,7 +45,7 @@ public class Main extends Application {
     // java -jar app.jar --client --email='hello@world.fr' --password='thisismypass'
 
     public static void main(String[] args) throws SQLException {
-        PacketRegistry.get().register(PlayerJoinPacket.class);
+        //PacketRegistry.get().register(PlayerJoinPacket.class);
 
         // java -jar app.jar -log=INFO,VERSBOSE
 
@@ -91,7 +97,7 @@ public class Main extends Application {
         System.out.println(buffer.readString());
         System.out.println(buffer.readLong());*/
 
-        try {
+       /* try {
             Socket socket = new Socket("127.0.0.1", 1234);
 
             Thread.sleep(200L);
@@ -116,24 +122,33 @@ public class Main extends Application {
             //IPacket packet = NetworkServer.readPacket(socket);
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
 
  // TODO demanger pour le matchmaching
-        //launch(args);
+        launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent parent = FXMLLoader.load(Resource.loadForm("app_core.fxml"));
+        ResourceBundle resourceBundle = Resource.loadResourceBundle("strings");
+        I18nMessage.setGlobalResourceBundle(resourceBundle);
 
-        Pane pane = (Pane) parent.lookup("#app-core-container");
-        pane.getChildren().add(FXMLLoader.load(getClass().getResource("../iut/group42b/boardgames/client/resources/forms/app_part_login.fxml")));
+        Parent parent = FXMLLoader.load(Resource.loadForm("index.fxml"), resourceBundle);
+        Parent parent2 = FXMLLoader.load(Resource.loadForm("waiting-player.fxml"), resourceBundle);
 
         Scene scene = new Scene(parent);
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        Platform.runLater(() -> {
+           Stage dialog = new Stage();
+           dialog.setScene(new Scene(parent2));
+
+            dialog.initOwner(primaryStage);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.showAndWait();
+        });
 
     }
 

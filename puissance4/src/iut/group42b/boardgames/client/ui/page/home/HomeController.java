@@ -5,6 +5,7 @@ import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.list.game.GameListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
+import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.client.ui.page.user.settings.UserSettingsView;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
@@ -27,6 +28,10 @@ public class HomeController implements IController, INetworkHandler {
 
 	@Override
 	public void handle(ActionEvent event) {
+		if (event.getSource() == view.getLogoutButton()) {
+			UserInterface.get().set(new LogoutView());
+		}
+
 	}
 
 	@Override
@@ -42,6 +47,7 @@ public class HomeController implements IController, INetworkHandler {
 
 		gameListViewCellController = new GameListViewCellController();
 
+		this.view.getLogoutButton().setOnAction(this);
 		this.view.getGamesListView().setItems(gameObservableList);
 		this.view.getGamesListView().setCellFactory(gameListViewCellController.cellFactory());
 		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(),true));
