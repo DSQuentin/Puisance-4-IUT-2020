@@ -30,7 +30,7 @@ public class ServerApplication {
             }
         }*/
 
-		DatabaseInterface.get().initialize(new MariaConnection("localhost", "p4", "root", "password"));
+		DatabaseInterface.get().initialize(new MariaConnection("46.105.92.223", "db42b", "groupe42b", "20@info!iuto42b"));
 
 		NetworkServer server = new NetworkServer((int) Bootstrap.PORT_OPTION.getValue());
 		server.listen();

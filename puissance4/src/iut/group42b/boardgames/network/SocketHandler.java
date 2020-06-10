@@ -3,6 +3,7 @@ package iut.group42b.boardgames.network;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.PacketRegistry;
+import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.util.DataBuffer;
 import iut.group42b.boardgames.util.Logger;
 
@@ -22,6 +23,7 @@ public class SocketHandler implements Runnable {
 	private final Socket socket;
 	private final Queue<IPacket> packetQueue; // paquet en attentes
 	private final List<INetworkHandler> handlers;
+	private UserProfile userProfile;
 
 	/* Constructor */
 	public SocketHandler(Socket socket) {
@@ -127,5 +129,14 @@ public class SocketHandler implements Runnable {
 	public void newThread() {
 		new Thread(this).start();
 	}
+
+	public void setProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
 
 }

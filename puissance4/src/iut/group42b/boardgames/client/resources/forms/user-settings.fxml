@@ -7,7 +7,8 @@
 <?import javafx.scene.text.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
             prefWidth="900.0"
-            style="-fx-background-image: url('file:/C:/Users/thego/Desktop/fxtest/shape.png'); -fx-background-repeat: no-repeat; -fx-background-position: left; -fx-background-size: contain; -fx-background-color: #DADFE6;"
+            stylesheets="@../css/shapes.css"
+            style="bg"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane id="auth-container-frame" layoutX="25.0" layoutY="25.0" style="-fx-background-color: gray;"
@@ -39,7 +40,7 @@
                                         </Text>
                                     </children>
                                 </TextFlow>
-                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="80.0" layoutY="95.0"
+                                <ImageView id="usersettings-imageview-profile" fitHeight="150.0" fitWidth="200.0" layoutX="80.0" layoutY="95.0"
                                            pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="80.0"
                                            AnchorPane.rightAnchor="72.46427917480469">
                                     <image>

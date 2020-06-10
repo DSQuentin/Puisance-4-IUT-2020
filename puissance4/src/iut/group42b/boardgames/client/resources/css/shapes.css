@@ -1,0 +1,8 @@
+.bg {
+	-fx-background-image: url('../images/shape.png'); 
+	-fx-background-repeat: no-repeat;
+	-fx-background-position: left;
+	-fx-background-size: contain;
+	-fx-background-color: #DADFE6;
+}
+

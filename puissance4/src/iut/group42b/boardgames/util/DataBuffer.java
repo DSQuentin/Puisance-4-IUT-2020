@@ -20,21 +20,33 @@ public class DataBuffer {
 		this.bytes = new ArrayList<>();
 	}
 
+	public boolean readBoolean() {
+		return readByte() != 0;
+	}
+
+	public DataBuffer writeBoolean(boolean b) {
+		return writeByte(b ? (byte) 1 : (byte) 0);
+	}
+
 	public byte readByte() {
 		return bytes.get(index++);
 	}
 
-	public void writeByte(byte b) {
+	public DataBuffer writeByte(byte b) {
 		bytes.add(b);
+
+		return this;
 	}
 
-	public void writeBytes(byte[] array) {
+	public DataBuffer writeBytes(byte[] array) {
 		for (byte b : array) {
 			bytes.add(b);
 		}
+
+		return this;
 	}
 
-	public void writeString(String s) {
+	public DataBuffer writeString(String s) {
 		byte[] stringBytes;
 
 		try {
@@ -48,6 +60,8 @@ public class DataBuffer {
 		}
 
 		writeByte((byte) 0);
+
+		return this;
 	}
 
 	public String readString() {
@@ -67,11 +81,13 @@ public class DataBuffer {
 	}
 
 	// AAAAAAAA BBBBBBB CCCCCCC DDDDDDD |
-	public void writeInt(int i) {
+	public DataBuffer writeInt(int i) {
 		bytes.add((byte) (i >> 24 & 0xFF));
 		bytes.add((byte) (i >> 16 & 0xFF));
 		bytes.add((byte) (i >> 8 & 0xFF));
 		bytes.add((byte) (i >> 0 & 0xFF));
+
+		return this;
 	}
 
 	public int readInt() {
@@ -82,9 +98,11 @@ public class DataBuffer {
 	}
 
 	// AAAAAAAA BBBBBBB CCCCCCC DDDDDDD |
-	public void writeShort(short s) {
+	public DataBuffer writeShort(short s) {
 		bytes.add((byte) (s >> 8 & 0xFF));
 		bytes.add((byte) (s >> 0 & 0xFF));
+
+		return this;
 	}
 
 	public short readShort() {
@@ -98,7 +116,7 @@ public class DataBuffer {
 	 *
 	 * @param l
 	 */
-	public void writeLong(long l) {
+	public DataBuffer writeLong(long l) {
 		bytes.add((byte) (l >> 56 & 0xFF));
 		bytes.add((byte) (l >> 48 & 0xFF));
 		bytes.add((byte) (l >> 40 & 0xFF));
@@ -107,6 +125,8 @@ public class DataBuffer {
 		bytes.add((byte) (l >> 16 & 0xFF));
 		bytes.add((byte) (l >> 8 & 0xFF));
 		bytes.add((byte) (l >> 0 & 0xFF));
+
+		return this;
 	}
 
 	public long readLong() {
@@ -120,12 +140,14 @@ public class DataBuffer {
 				+ ((((long) readByte()) << 0) & 0x00000000000000FFl);
 	}
 
-	public void writeList(List<? extends IWritableObject> list) {
+	public DataBuffer writeList(List<? extends IWritableObject> list) {
 		writeInt(list.size());
 
 		for (IWritableObject object : list) {
 			object.write(this);
 		}
+
+		return this;
 	}
 
 	public <T extends IReadableObject> List<T> readList(Supplier<T> instanceCreator) {
@@ -147,28 +169,32 @@ public class DataBuffer {
 		index = 0;
 	}
 
-	public void write(byte b) {
-		writeByte(b);
+	public DataBuffer write(boolean b) {
+		return writeBoolean(b);
 	}
 
-	public void write(short s) {
-		writeShort(s);
+	public DataBuffer write(byte b) {
+		return writeByte(b);
 	}
 
-	public void write(int i) {
-		writeInt(i);
+	public DataBuffer write(short s) {
+		return writeShort(s);
 	}
 
-	public void write(long l) {
-		writeLong(l);
+	public DataBuffer write(int i) {
+		return writeInt(i);
 	}
 
-	public void write(String str) {
-		writeString(str);
+	public DataBuffer write(long l) {
+		return writeLong(l);
 	}
 
-	public void write(List<? extends IWritableObject> list) {
-		writeList(list);
+	public DataBuffer write(String str) {
+		return writeString(str);
+	}
+
+	public DataBuffer write(List<? extends IWritableObject> list) {
+		return writeList(list);
 	}
 
 	public void dump(PrintStream printStream) {

@@ -3,7 +3,6 @@ package iut.group42b.boardgames.client.manager;
 import iut.group42b.boardgames.Bootstrap;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
-import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.index.IndexView;
 import iut.group42b.boardgames.client.ui.page.login.LoginView;
 import iut.group42b.boardgames.util.Logger;
@@ -42,7 +41,7 @@ public class UserInterface {
 		} else {
 			set(new IndexView());
 		}
-		set(new HomeView());
+		// set(new HomeView());
 	}
 
 	public void set(IView view) {

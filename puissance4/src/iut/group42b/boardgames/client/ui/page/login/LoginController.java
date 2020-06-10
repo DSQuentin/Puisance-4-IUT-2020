@@ -55,7 +55,6 @@ public class LoginController implements IController, INetworkHandler {
 
 		this.view.getSubmitButton().setOnAction(this);
 		this.view.getRegisterHyperlink().setOnAction(this);
-
 	}
 
 	@Override
@@ -85,6 +84,10 @@ public class LoginController implements IController, INetworkHandler {
 				alert.showAndWait();
 			});
 		} else if (packet instanceof UserAuthentificationSuccessPacket) {
+			UserAuthentificationSuccessPacket sucessPacket = (UserAuthentificationSuccessPacket) packet;
+
+			handler.setProfile(sucessPacket.getUserProfile());
+
 			UserInterface.get().set(new HomeView());
 		}
 	}

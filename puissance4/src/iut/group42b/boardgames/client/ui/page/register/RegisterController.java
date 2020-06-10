@@ -57,12 +57,12 @@ public class RegisterController implements IController, INetworkHandler {
 	}
 
 	@Override
-	public void attachView(IView vue) {
-		if (!(vue instanceof RegisterView)) {
+	public void attachView(IView view) {
+		if (!(view instanceof RegisterView)) {
 			throw new IllegalArgumentException();
 		}
 
-		this.registerVue = (RegisterView) vue;
+		this.registerVue = (RegisterView) view;
 
 		registerVue.getSubmitButton().setOnAction(this);
 		registerVue.getToLoginHyperlink().setOnAction(this);
@@ -95,6 +95,8 @@ public class RegisterController implements IController, INetworkHandler {
 				alert.showAndWait();
 			});
 		} else if (packet instanceof UserAuthentificationSuccessPacket) {
+			handler.setProfile(null);
+
 			UserInterface.get().set(new LoginView(lastEmail, lastPassword));
 		}
 	}

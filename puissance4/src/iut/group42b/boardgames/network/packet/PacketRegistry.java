@@ -2,10 +2,7 @@ package iut.group42b.boardgames.network.packet;
 
 import iut.group42b.boardgames.network.packet.impl.PingPacket;
 import iut.group42b.boardgames.network.packet.impl.PongPacket;
-import iut.group42b.boardgames.network.packet.impl.auth.UserAuthentificationErrorPacket;
-import iut.group42b.boardgames.network.packet.impl.auth.UserAuthentificationSuccessPacket;
-import iut.group42b.boardgames.network.packet.impl.auth.UserLoginPacket;
-import iut.group42b.boardgames.network.packet.impl.auth.UserRegisterPacket;
+import iut.group42b.boardgames.network.packet.impl.auth.*;
 import iut.group42b.boardgames.util.Logger;
 
 import java.util.HashMap;
@@ -45,6 +42,10 @@ public class PacketRegistry {
 		register(UserRegisterPacket.class);
 		register(UserAuthentificationSuccessPacket.class);
 		register(UserAuthentificationErrorPacket.class);
+
+		/* User Settings */
+		register(UserSettingsChangePacket.class);
+		register(UserSettingsChangedPacket.class);
 	}
 
 	public int register(Class<? extends IPacket> clazz) {
