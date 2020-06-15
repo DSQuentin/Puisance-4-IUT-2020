@@ -5,6 +5,7 @@ import iut.group42b.boardgames.client.i18n.impl.I18nMessage;
 import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.resources.Resource;
+import iut.group42b.boardgames.client.ui.page.profile.other.OtherView;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.util.Logger;
 import javafx.application.Application;
@@ -37,7 +38,7 @@ public class ClientApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Socket socket = new Socket((String) Bootstrap.IP_OPTION.getValue(), (int) Bootstrap.PORT_OPTION.getValue());
+		Socket socket = new Socket((String) Bootstrap.IP_OPTION.getValue(), (int) Integer.parseInt(Bootstrap.PORT_OPTION.getValue().toString()));
 		SocketHandler socketHandler = new SocketHandler(socket);
 
 		socketHandler.newThread();

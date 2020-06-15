@@ -33,5 +33,4 @@ public abstract class ResizableCanvas extends Canvas {
 	public double prefHeight(double width) {
 		return getHeight();
 	}
-
 }

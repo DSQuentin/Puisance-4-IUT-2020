@@ -17,10 +17,10 @@ public class Resource {
 	/* Logger */
 	private static final Logger LOGGER = new Logger(Resource.class);
 
-	public static final URL loadForm(String name) throws Exception {
+	public static URL loadForm(String name) throws Exception {
 		LOGGER.verbose("Loading form: %s", name);
 
-		return Resource.class.getResource("./forms/" + name);
+		return Resource.class.getResource("forms/" + name);
 	}
 
 	public static final ResourceBundle loadResourceBundle(String baseName) throws Exception {
@@ -33,9 +33,10 @@ public class Resource {
 	public static final ResourceBundle loadResourceBundle(String baseName, Locale locale) throws Exception {
 		LOGGER.verbose("Loading resource bundle: %s (%s)", baseName, locale);
 
-		return ResourceBundle.getBundle(baseName, locale, new URLClassLoader(
+		/*return ResourceBundle.getBundle(baseName, locale, new URLClassLoader(
 				new java.net.URL[]{Resource.class.getResource("./bundles/").toURI().toURL()}
-		));
+		));*/
+		return ResourceBundle.getBundle(Resource.class.getPackage().getName() + ".bundles." + baseName, locale);
 	}
 
 	public static Image loadImage(String name) {

@@ -11,5 +11,12 @@ public class Messages {
 	public static final IMessage ENUM_USER_AUTH_ERROR = new I18nEnumMessage("user-auth.error");
 	public static final IMessage GAME_AVAILABILIY_STATE = new I18nEnumMessage("game.availability");
 
+	public static final IMessage GAME_NUMBER_OF_TOKENS = new I18nMessage("game.tokens");
+	public static final IMessage GAME_NUMBER_OF_TOKENS_OPPONENTS = new I18nMessage("game.tokens.remaining.opponent");
+
+	public static final IMessage UI_CONNECT4_TURN = new I18nMessage("ui.connect4.turn");
+	public static final IMessage UI_ALERT_TITLE_SURRENDER = new I18nMessage("ui.alert.surrender.title");
+	public static final IMessage UI_ALERT_CONTEXT_SURRENDER = new I18nMessage("ui.alert.surrender.context");
+	public static final IMessage UI_ALERT_HEADER_SURRENDER = new I18nMessage("ui.alert.surrender.header");
 
 }

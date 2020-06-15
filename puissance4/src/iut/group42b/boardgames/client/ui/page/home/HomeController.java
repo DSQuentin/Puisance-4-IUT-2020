@@ -6,12 +6,15 @@ import iut.group42b.boardgames.client.ui.list.game.GameListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
-import iut.group42b.boardgames.client.ui.page.user.settings.UserSettingsView;
+import iut.group42b.boardgames.client.ui.page.profile.other.OtherView;
+import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
+import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
+import iut.group42b.boardgames.util.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +22,9 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
 public class HomeController implements IController, INetworkHandler {
+
+	/* Logger */
+	private final static Logger LOGGER = new Logger(HomeController.class);
 
 	/* Controllers */
 	private GameListViewCellController gameListViewCellController;
@@ -31,7 +37,6 @@ public class HomeController implements IController, INetworkHandler {
 		if (event.getSource() == view.getLogoutButton()) {
 			UserInterface.get().set(new LogoutView());
 		}
-
 	}
 
 	@Override
@@ -53,7 +58,7 @@ public class HomeController implements IController, INetworkHandler {
 		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(),true));
 
 		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			UserInterface.get().set(new UserSettingsView());
+			UserInterface.get().set(new OtherView());
 		});
 
 	}
@@ -70,8 +75,17 @@ public class HomeController implements IController, INetworkHandler {
 
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
+		if (packet instanceof PlayerJoinPacket) {
+			PlayerJoinPacket joinPacket = (PlayerJoinPacket) packet;
 
+			IGame game = GameRegistry.get().getById(joinPacket.getGameId());
+			if (game == null) {
+				LOGGER.warning("Unknown game ID: " +joinPacket.getGameId() );
+				return;
+			}
+
+			UserInterface.get().set(game.createClientView());
+		}
 	}
 
 }
-

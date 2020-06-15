@@ -12,12 +12,18 @@ public enum Connect4Side {
 		this.letter = letter;
 	}
 
-	// .........
-	// .XO......
-	// .XXO.....
-	// .XXO.....
-	// .XOO.....
+	public char getLetter() {
+		return letter;
+	}
 
-	// de
+	public static Connect4Side fromLetter(char letter) {
+		for(Connect4Side side : values()) {
+			if (side.getLetter() == letter) {
+				return side;
+			}
+		}
+
+		throw new IllegalArgumentException("no connect 4 side for letter: " + letter);
+	}
 
 }

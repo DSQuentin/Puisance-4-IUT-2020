@@ -1,18 +1,31 @@
 package iut.group42b.boardgames.game.impl.connect4;
 
+import iut.group42b.boardgames.game.IGameArena;
 import iut.group42b.boardgames.game.IGameHandler;
-import iut.group42b.boardgames.game.impl.connect4.packet.Connect4BasePacket;
+import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GameInfoPacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GridUpdatePacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4PutTokenPacket;
+import iut.group42b.boardgames.game.impl.connect4.packet.IConnect4Packet;
 import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
+import iut.group42b.boardgames.game.packet.PlayerLoosePacket;
+import iut.group42b.boardgames.game.packet.PlayerSurrenderPacket;
+import iut.group42b.boardgames.game.packet.PlayerWinPacket;
 import iut.group42b.boardgames.game.player.Player;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.PacketRegistry;
+import iut.group42b.boardgames.network.packet.impl.connection.ConnectionLostPacket;
+import iut.group42b.boardgames.server.manager.DatabaseInterface;
+import iut.group42b.boardgames.server.manager.GameManager;
 import iut.group42b.boardgames.util.Logger;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -33,82 +46,150 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
-		if (packet instanceof Connect4BasePacket) {
-			Connect4BasePacket basePacket = (Connect4BasePacket) packet;
-
-			Connect4GameArena arena = runningArena.getOrDefault(basePacket.getArenaIdentifier(), null);
+		if (packet instanceof ConnectionLostPacket || packet instanceof PlayerSurrenderPacket) {
+			Connect4GameArena arena = (Connect4GameArena) GameManager.get().findArena(handler);
 			if (arena == null) {
 				return;
 			}
 
-			if (basePacket instanceof Connect4PutTokenPacket) {
-				Connect4PutTokenPacket putTokenPacket = (Connect4PutTokenPacket) basePacket;
+			if (arena.isPlaying()) {
+				arena.setState(Connect4GameArena.State.SURRENDER);
+				stopArena(arena);
+			}
+		} else if (packet instanceof IConnect4Packet) {
+			Connect4GameArena arena = (Connect4GameArena) GameManager.get().findArena(handler);
+			if (arena == null) {
+				LOGGER.warning("Packet received, but no arena found.");
+				return;
+			}
 
-				Connect4Side side = putTokenPacket.getSide();
-				if (arena.getSideToPlay() != side) {
-					return;
-				}
+			if (arena.isPlaying()) {
+				LOGGER.warning("Packet received, but arena is not playing.");
+				return;
+			}
 
-				arena.putTokenAt(side, putTokenPacket.getX(), putTokenPacket.getY());
+			if (packet instanceof Connect4PutTokenPacket) {
+				synchronized (arena) {
+					Connect4PutTokenPacket putTokenPacket = (Connect4PutTokenPacket) packet;
 
-				boolean oneHasWin = false;
-				if (arena.checkWin(Connect4Side.RED)) {
-					oneHasWin = true;
+					Connect4Side side = putTokenPacket.getSide();
+					if (arena.getSideToPlay() != side) {
+						return;
+					}
 
-					// TODO Send win packet as RED
-				} else if (arena.checkWin(Connect4Side.YELLOW)) {
-					oneHasWin = true;
+					arena.putTokenAt(arena.getSideToPlay(), putTokenPacket.getX(), putTokenPacket.getY());
+					storeArena(arena);
 
-					// TODO Send win packet as YELLOW
-				}
+					boolean oneHasWin = false;
+					if (arena.checkWin(Connect4Side.RED)) {
+						oneHasWin = true;
 
-				if (oneHasWin) {
-					stopArena(arena);
+						arena.getRedPlayer().getSocketHandler().queue(new PlayerWinPacket());
+						arena.getYellowPlayer().getSocketHandler().queue(new PlayerLoosePacket());
+					} else if (arena.checkWin(Connect4Side.YELLOW)) {
+						oneHasWin = true;
 
-					// TODO Send
-				} else {
-					arena.inverseSide();
-					// TODO Send grid update
+						arena.getRedPlayer().getSocketHandler().queue(new PlayerLoosePacket());
+						arena.getYellowPlayer().getSocketHandler().queue(new PlayerWinPacket());
+					}
+
+					if (oneHasWin) {
+						arena.setState(Connect4GameArena.State.DONE);
+
+						stopArena(arena);
+
+						// TODO Send
+					} else {
+						arena.inverseSide();
+						// TODO Send grid update
+					}
+
+					arena.broadcast(new Connect4GridUpdatePacket(arena.getGrid(), arena.getSideToPlay()));
 				}
 			}
 		}
+	}
 
-		if (packet instanceof PlayerJoinPacket) {
-			PlayerJoinPacket joinPacket = (PlayerJoinPacket) packet;
+	public void startArena(Connect4GameArena arena, Player redPlayer, Player yellowPlayer) {
+		int arenaId = arenaIdIncrement.getAndIncrement();
 
-			LOGGER.verbose("Player with id %s join a power 4 game with id %s!", joinPacket.getPlayerId(), joinPacket.getGameId());
+		runningArena.put(arenaId, arena);
+
+		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("INSERT INTO `played_games` (`game_state`, `id_user_1`, `id_user_2`) VALUES (?, ?, ?);", Statement.RETURN_GENERATED_KEYS)) {
+			statement.setString(1, arena.toJSONGameState());
+			statement.setInt(2, redPlayer.getSocketHandler().getUserProfile().getId());
+			statement.setInt(3, yellowPlayer.getSocketHandler().getUserProfile().getId());
+
+			int affectedRows = statement.executeUpdate();
+
+			if (affectedRows == 0) {
+				throw new SQLException("failed to insert");
+			}
+
+			try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+				if (!generatedKeys.next()) {
+					throw new SQLException("no id obtained");
+				}
+
+				int id = generatedKeys.getInt(1);
+
+				arena.setDatabaseId(id);
+				LOGGER.info("Starting arena with database ID: %s", id);
+			}
+		} catch (SQLException exception) {
+			throw new RuntimeException("failed to start arena (in database)", exception);
+		}
+	}
+
+	public void storeArena(Connect4GameArena arena) {
+		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("UPDATE `played_games` SET `game_state` = ?, `score_1` = ?, `score_2` = ? WHERE `id` = ?;")) {
+			statement.setString(1, arena.toJSONGameState());
+			statement.setInt(2, arena.getScoreRed());
+			statement.setInt(3, arena.getScoreYellow());
+			statement.setInt(4, arena.getDatabaseId());
+
+			if (statement.executeUpdate() == 0) {
+				throw new SQLException("failed to update arena with ID: " + arena.getDatabaseId());
+			}
+		} catch (SQLException exception) {
+			throw new RuntimeException("failed to store arena (in database)", exception);
 		}
 	}
 
 	public void stopArena(Connect4GameArena arena) {
-		arena.end();
-
 		// TODO Send arena stop
 
+		if (Connect4GameArena.State.PLAYING.equals(arena.getState())) {
+			throw new IllegalStateException("stopping arena that have a playing state");
+		}
+
 		storeArena(arena);
-	}
 
-	public void startArena(Player redPlayer, Player yellowPlayer) {
-		int arenaId = arenaIdIncrement.getAndIncrement();
-		Connect4GameArena arena = new Connect4GameArena(redPlayer, yellowPlayer);
+		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("UPDATE `played_games` SET `end_at` = NOW(), `state_number` = ? WHERE `id` = ?;")) {
+			statement.setInt(1, arena.getState().getStateCode());
+			statement.setInt(2, arena.getDatabaseId());
 
-		runningArena.put(arenaId, arena);
-
-		arena.start();
-
-		// TODO Send arena start
-	}
-
-	public void storeArena(Connect4GameArena arena) {
-		// stockage dans base de données
-
-		// INSERT INTO x(
+			if (statement.executeUpdate() == 0) {
+				throw new SQLException("failed to update arena with ID: " + arena.getDatabaseId());
+			}
+		} catch (SQLException exception) {
+			throw new RuntimeException("failed to stop arena (in database)", exception);
+		}
 	}
 
 	@Override
 	public void registerPackets() {
+		PacketRegistry.get().register(Connect4GameInfoPacket.class);
 		PacketRegistry.get().register(Connect4PutTokenPacket.class);
 		PacketRegistry.get().register(Connect4GridUpdatePacket.class);
+	}
+
+	@Override
+	public IGameArena createArena(List<Player> players) {
+		Player redPlayer = players.get(0);
+		Player yellowPlayer = players.get(1);
+
+		return new Connect4GameArena(redPlayer, yellowPlayer);
 	}
 
 }

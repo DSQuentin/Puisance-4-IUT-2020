@@ -1,6 +1,7 @@
 package iut.group42b.boardgames.client.ui.list.game;
 
 import iut.group42b.boardgames.client.i18n.Messages;
+import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.resources.Resource;
 import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
@@ -8,7 +9,9 @@ import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
 import iut.group42b.boardgames.client.ui.page.home.WaitingView;
 import iut.group42b.boardgames.client.ui.page.index.IndexView;
 import iut.group42b.boardgames.game.GameAvailability;
+import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
+import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingJoinPacket;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,6 +31,7 @@ public class GameListViewCellController implements IListViewCellController<IGame
 
 	@Override
 	public void handle(ActionEvent event) {
+		; // Unused
 	}
 
 	@Override
@@ -37,9 +41,9 @@ public class GameListViewCellController implements IListViewCellController<IGame
 		cellView.getActionButton().setOnAction((event) -> {
 			IGame game = (IGame) ((Parent) event.getSource()).getUserData();
 
-			System.out.println(game);
-			handle(event);
+			// openning the waiting box
 			UserInterface.get().openDialog(new WaitingView(game));
+			NetworkInterface.get().getSocketHandler().queue(new MatchmakingJoinPacket(GameRegistry.get().getIdFor(game)));
 		});
 	}
 

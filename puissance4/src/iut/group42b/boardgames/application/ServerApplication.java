@@ -6,6 +6,11 @@ import iut.group42b.boardgames.server.manager.DatabaseInterface;
 import iut.group42b.boardgames.server.network.NetworkServer;
 import iut.group42b.boardgames.util.Logger;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class ServerApplication {
 
 	/* Logger */
@@ -32,7 +37,7 @@ public class ServerApplication {
 
 		DatabaseInterface.get().initialize(new MariaConnection("46.105.92.223", "db42b", "groupe42b", "20@info!iuto42b"));
 
-		NetworkServer server = new NetworkServer((int) Bootstrap.PORT_OPTION.getValue());
+		NetworkServer server = new NetworkServer((int) Integer.parseInt(Bootstrap.PORT_OPTION.getValue().toString()));
 		server.listen();
 	}
 

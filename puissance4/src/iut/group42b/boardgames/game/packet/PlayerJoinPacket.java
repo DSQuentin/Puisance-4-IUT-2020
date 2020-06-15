@@ -5,47 +5,38 @@ import iut.group42b.boardgames.util.DataBuffer;
 
 public class PlayerJoinPacket implements IPacket {
 
-	// TODO ici le packet de join
 	/* Variables */
-	private long playerId;
-	private long gameId;
+	private int gameId;
 
 	/* Constructor */
 	public PlayerJoinPacket() {
-		this(0, 0);
+		this(0);
 	}
 
 	/* Constructor */
-	public PlayerJoinPacket(long playerId, long gameId) {
-		this.playerId = playerId;
+	public PlayerJoinPacket(int gameId) {
 		this.gameId = gameId;
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(playerId);
 		buffer.write(gameId);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		playerId = buffer.readLong();
-		gameId = buffer.readLong();
+		gameId = buffer.readInt();
 	}
 
-	public long getPlayerId() {
-		return playerId;
-	}
-
-	public long getGameId() {
+	public int getGameId() {
 		return gameId;
 	}
 
 	@Override
 	public String toString() {
 		return "PlayerJoinPacket{" +
-				"playerId=" + playerId +
-				", gameId=" + gameId +
+				"gameId=" + gameId +
 				'}';
 	}
+
 }

@@ -14,13 +14,13 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="connect4-imageview-user-profile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/avatar.png" />
                            </image>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of tokens remaining :14" />
+                        <Text id="connect4-username" strokeType="OUTSIDE" strokeWidth="0.0" text="You" />
+                        <Text  id="connect4-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocken blabla" />
                      </children>
                   </VBox>
                </children>
@@ -33,7 +33,7 @@
                      <children>
                         <VBox>
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time : 3.52 minutes" textAlignment="CENTER">
+                              <Text id="connect4-timer" strokeType="OUTSIDE" strokeWidth="0.0" text="Time : 3.52 minutes" textAlignment="CENTER">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -45,7 +45,7 @@
                         </VBox>
                         <VBox alignment="CENTER">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Eva’s turn" textAlignment="CENTER">
+                              <Text id="connect4-who-turn" strokeType="OUTSIDE" strokeWidth="0.0" text="Eva’s turn" textAlignment="CENTER">
                                  <font>
                                     <Font size="36.0" />
                                  </font>
@@ -53,7 +53,7 @@
                                     <Insets top="20.0" />
                                  </VBox.margin>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Select an arrow to play" textAlignment="CENTER">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.connect4.help" textAlignment="CENTER">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -62,7 +62,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: #B23838;" text="Surrender" textFill="WHITE">
+                              <Button id="connect4-button-surrender" mnemonicParsing="false" style="-fx-background-color: #B23838;" text="%ui.connect4.button.surrender" textFill="WHITE">
                                  <font>
                                     <Font name="Noto Sans Bold" size="13.0" />
                                  </font>
@@ -91,13 +91,13 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView id="connect4-imageview-opponent-profile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/avatar.png" />
                            </image>
                         </ImageView>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of tokens remaining :14" />
+                        <Text id="connect4-opponent-name" strokeType="OUTSIDE" strokeWidth="0.0" text="You" />
+                        <Text id="connect4-opponent-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of tokens remaining :14" />
                      </children>
                   </VBox>
                </children>

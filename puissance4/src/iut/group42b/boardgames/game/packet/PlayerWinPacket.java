@@ -1,0 +1,23 @@
+package iut.group42b.boardgames.game.packet;
+
+import iut.group42b.boardgames.network.packet.IPacket;
+import iut.group42b.boardgames.util.DataBuffer;
+
+public class PlayerWinPacket implements IPacket {
+
+	/* Constructor */
+	public PlayerWinPacket() {
+
+	}
+
+	@Override
+	public void read(DataBuffer buffer) {
+
+	}
+
+	@Override
+	public void write(DataBuffer buffer) {
+
+	}
+
+}

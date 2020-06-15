@@ -32,6 +32,10 @@ public class UserProfile implements IWritableReadableObject {
 		this.creationDate = creationDate;
 	}
 
+	public static UserProfile random() {
+		return new UserProfile(-1, "Random", "random@rand.om", "https://i.imgur.com/U8ekCQP.jpg", true, true, false, "Yesterday");
+	}
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.write(id);

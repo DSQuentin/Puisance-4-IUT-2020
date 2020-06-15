@@ -1,8 +1,11 @@
 package iut.group42b.boardgames.network.packet;
 
+import iut.group42b.boardgames.Bootstrap;
 import iut.group42b.boardgames.network.packet.impl.PingPacket;
 import iut.group42b.boardgames.network.packet.impl.PongPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
+import iut.group42b.boardgames.network.packet.impl.connection.ConnectionLostPacket;
+import iut.group42b.boardgames.network.packet.impl.connection.HeartbeatPacket;
 import iut.group42b.boardgames.util.Logger;
 
 import java.util.HashMap;
@@ -33,6 +36,10 @@ public class PacketRegistry {
 	}
 
 	private void registerDefaults() {
+		/* Line */
+		register(HeartbeatPacket.class);
+		register(ConnectionLostPacket.class);
+
 		/* Ping - Pong */
 		register(PingPacket.class);
 		register(PongPacket.class);
@@ -54,7 +61,7 @@ public class PacketRegistry {
 
 			packetClassMap.put(id, clazz);
 			reversePacketClassMap.put(clazz, id);
-			LOGGER.debug("Registered packet ID %s with class: %s", id, clazz.getCanonicalName());
+			LOGGER.debug("Registered packet ID %s with class: <app>%s", id, clazz.getCanonicalName().substring(Bootstrap.class.getPackage().getName().length()));
 
 			return id;
 		}

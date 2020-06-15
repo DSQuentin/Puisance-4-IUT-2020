@@ -9,6 +9,7 @@ import iut.group42b.boardgames.game.impl.connect4.ui.Connect4UIView;
 import iut.group42b.boardgames.util.Logger;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Dialog;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,6 +26,7 @@ public class UserInterface {
 	private Scene scene;
 	private IView currentView;
 	private IController currentController;
+	private Stage currentDialog;
 
 	/* Constructor */
 	private UserInterface() {
@@ -44,7 +46,7 @@ public class UserInterface {
 		} else {
 			set(new IndexView());
 		}
-		// set(new Connect4UIView());
+		//set(new Connect4UIView());
 	}
 
 	public void set(IView view) {
@@ -73,7 +75,11 @@ public class UserInterface {
 		});
 	}
 
+	/*
+	 * Open a dialog window
+	 */
 	public void openDialog(IView view) {
+		// run dialog in a new thread
 		Platform.runLater(() -> {
 			IController controller = view.createController();
 
@@ -84,14 +90,22 @@ public class UserInterface {
 				controller.attachView(view);
 			}
 
-			Stage dialog = new Stage();
+			this.currentDialog = new Stage();
 
-			dialog.setScene(new Scene(view.getRoot()));
+			this.currentDialog.setScene(new Scene(view.getRoot()));
 
-			dialog.initOwner(stage);
-			dialog.initModality(Modality.APPLICATION_MODAL);
-			dialog.showAndWait();
+			this.currentDialog.initOwner(stage);
+			this.currentDialog.initModality(Modality.APPLICATION_MODAL);
+			this.currentDialog.showAndWait();
+
+			System.out.println("Closed dialog");
+			if (controller != null) {
+				controller.onUnmount();
+			}
 		});
 	}
 
+	public Stage getCurrentDialog() {
+		return currentDialog;
+	}
 }

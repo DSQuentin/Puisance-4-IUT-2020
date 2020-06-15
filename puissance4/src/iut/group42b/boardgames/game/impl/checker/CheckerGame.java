@@ -1,5 +1,6 @@
 package iut.group42b.boardgames.game.impl.checker;
 
+import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.game.GameAvailability;
 import iut.group42b.boardgames.game.IGame;
 import iut.group42b.boardgames.game.IGameHandler;
@@ -32,6 +33,16 @@ public class CheckerGame implements IGame {
 	@Override
 	public String picturePath() {
 		return "checker.png";
+	}
+
+	@Override
+	public int getRequiredPlayer() {
+		return 2;
+	}
+
+	@Override
+	public IView createClientView() {
+		return null;
 	}
 
 }

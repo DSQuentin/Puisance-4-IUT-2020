@@ -2,6 +2,7 @@ package iut.group42b.boardgames.client.ui.mvc;
 
 import iut.group42b.boardgames.client.i18n.impl.I18nMessage;
 import iut.group42b.boardgames.client.resources.Resource;
+import iut.group42b.boardgames.util.Debug;
 import iut.group42b.boardgames.util.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,6 +20,7 @@ public abstract class AbstractView implements IView {
 
 		try {
 			this.root = FXMLLoader.load(Resource.loadForm(getViewPath()), I18nMessage.getGlobalResourceBundle());
+			Debug.dump(root);
 		} catch (Exception exception) {
 			throw new RuntimeException(exception);
 		}
