@@ -30,8 +30,8 @@ public class WaitingController implements IController, INetworkHandler {
 		NetworkInterface.get().getSocketHandler().queue(new MatchmakingLeavePacket());
 
 		// I close the waiting dialog
-		Stage waitingDialog = UserInterface.get().getCurrentDialog();
-		waitingDialog.close();
+
+		UserInterface.get().closeCurrentDialog();
 	}
 
 	@Override

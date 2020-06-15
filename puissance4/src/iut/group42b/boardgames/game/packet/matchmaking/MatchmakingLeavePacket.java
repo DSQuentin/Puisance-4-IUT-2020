@@ -19,5 +19,5 @@ public class MatchmakingLeavePacket implements IPacket {
 	public void read(DataBuffer buffer) {
 
 	}
-	
+
 }

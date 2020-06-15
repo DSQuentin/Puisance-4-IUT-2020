@@ -6,18 +6,18 @@ import java.util.List;
 
 public interface IGame {
 
-	public IGameHandler createHandler();
+	IGameHandler createHandler();
 
-	public String getName();
+	String getName();
 
-	public List<String> getTags();
+	List<String> getTags();
 
-	public GameAvailability getAvailability();
+	GameAvailability getAvailability();
 
-	public String picturePath();
+	String picturePath();
 
-	public int getRequiredPlayer();
+	int getRequiredPlayer();
 
-	public IView createClientView();
+	IView createClientView();
 
 }

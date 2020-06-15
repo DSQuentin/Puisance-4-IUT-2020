@@ -1,130 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/search-friends.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" stylesheets="@../css/search-friends.css" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E9EBEE;"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="0.0">
             <top>
                 <VBox BorderPane.alignment="CENTER">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: #365186;" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0"
+                              style="-fx-background-color: #365186;" VBox.vgrow="ALWAYS">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                     <children>
-                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/logo.png" />
+                                                <Image url="@../images/logo.png"/>
                                             </image>
                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </HBox.margin>
                                         </ImageView>
-                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Online board Games" textAlignment="CENTER">
+                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Online board Games" textAlignment="CENTER">
                                             <font>
-                                                <Font name="System Bold" size="24.0" />
+                                                <Font name="System Bold" size="24.0"/>
                                             </font>
                                             <HBox.margin>
-                                                <Insets right="100.0" />
+                                                <Insets right="100.0"/>
                                             </HBox.margin>
                                         </Text>
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                     <children>
-                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #38B295; -fx-opacity: 0;" text="ADMIN" textFill="WHITE">
+                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                                style="-fx-background-color: #38B295; -fx-opacity: 0;" text="ADMIN"
+                                                textFill="WHITE">
                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>
                                             <font>
-                                                <Font size="14.0" />
+                                                <Font size="14.0"/>
                                             </font>
                                         </Button>
-                                        <Button id="home-button-tologout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #38B295;" text="LOG OUT" textFill="WHITE">
+                                        <Button id="home-button-tologout" alignment="CENTER" contentDisplay="CENTER"
+                                                mnemonicParsing="false" style="-fx-background-color: #38B295;"
+                                                text="LOG OUT" textFill="WHITE">
                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>
                                             <font>
-                                                <Font size="14.0" />
+                                                <Font size="14.0"/>
                                             </font>
                                         </Button>
                                     </children>
                                     <HBox.margin>
-                                        <Insets left="200.0" />
+                                        <Insets left="200.0"/>
                                     </HBox.margin>
                                 </HBox>
-                                <ImageView id="home-imageview-profile" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView id="home-imageview-profile" fitHeight="40.0" fitWidth="40.0"
+                                           pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/avatar.png" />
+                                        <Image url="@../images/avatar.png"/>
                                     </image>
                                     <HBox.margin>
-                                        <Insets bottom="5.0" top="5.0" />
+                                        <Insets bottom="5.0" top="5.0"/>
                                     </HBox.margin>
                                 </ImageView>
-                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-                            <children>
-                                <TextField prefWidth="590.0" promptText="Search your games..." />
                             </children>
                         </HBox>
                     </children>
                 </VBox>
             </top>
-            <left>
-                <Pane BorderPane.alignment="CENTER">
-                    <children>
-                        <AnchorPane prefWidth="100.0" />
-                    </children>
-                </Pane>
-            </left>
-            <right>
-                <AnchorPane BorderPane.alignment="CENTER">
-                    <BorderPane.margin>
-                        <Insets />
-                    </BorderPane.margin>
-               <children>
-                  <AnchorPane prefWidth="100.0" />
-               </children>
-                </AnchorPane>
-            </right>
             <bottom>
                 <AnchorPane prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="40.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button id="home-social-button" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: white;">
-                           <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/social-icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children></HBox>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="40.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
                     </children>
                 </AnchorPane>
             </bottom>
-         <center>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
-               <children>
-                  <ListView id="home-listview-games" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-         </center>
+            <center>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                            BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox layoutX="20.0" layoutY="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+                              AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
+                            <children>
+                                <ListView id="home-listview-games" style="-fx-background-color: white;"
+                                          VBox.vgrow="ALWAYS"/>
+                                <HBox alignment="CENTER_RIGHT" spacing="5.0" style="-fx-background-color: white;">
+                                    <children>
+                                        <TextField id="home-textfield-message-input" promptText="Enter you message here"
+                                                   HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Button id="home-button-send-message" mnemonicParsing="false" prefHeight="50.0"
+                                                prefWidth="50.0" style="-fx-background-color: #0077B5;"
+                                                HBox.hgrow="ALWAYS">
+                                            <graphic>
+                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/send.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets top="5.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button id="home-button-fight" mnemonicParsing="false" prefHeight="50.0"
+                                                prefWidth="50.0" style="-fx-background-color: #0077B5;"
+                                                HBox.hgrow="ALWAYS">
+                                            <graphic>
+                                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true"
+                                                           preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../images/challenge-white.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets right="5.0" top="5.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </center>
+            <left>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                              AnchorPane.topAnchor="0.0">
+                            <children>
+                                <ListView id="home-list-view-friend" prefHeight="200.0" prefWidth="200.0"
+                                          VBox.vgrow="ALWAYS"/>
+                                <HBox alignment="CENTER" spacing="5.0" style="-fx-background-color: white;">
+                                    <children>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/search.png"/>
+                                            </image>
+                                        </ImageView>
+                                        <TextField id="home-textfield-search-friend" promptText="Search a friend">
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0"/>
+                                            </HBox.margin>
+                                        </TextField>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </left>
         </BorderPane>
     </children>
 </AnchorPane>

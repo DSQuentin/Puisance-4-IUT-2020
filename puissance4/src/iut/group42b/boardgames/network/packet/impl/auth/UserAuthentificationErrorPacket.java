@@ -56,7 +56,7 @@ public class UserAuthentificationErrorPacket implements IPacket {
 		PASSWORD_TOO_WEAK,
 		FIELD_EMPTY,
 		BAD_EMAIL_OR_PASSWORD,
-		SERVER_ERROR;
+		SERVER_ERROR
 
 	}
 

@@ -8,13 +8,13 @@ import javafx.util.Callback;
 
 public interface IListViewCellController<T> extends EventHandler<ActionEvent> {
 
-	public void attachView(AbstractViewCell<T> view);
+	void attachView(AbstractViewCell<T> view);
 
-	public void updateItem(AbstractViewCell<T> cellView, T item);
+	void updateItem(AbstractViewCell<T> cellView, T item);
 
-	public AbstractViewCell<T> createView();
+	AbstractViewCell<T> createView();
 
-	public default Callback<ListView<T>, ListCell<T>> cellFactory() {
+	default Callback<ListView<T>, ListCell<T>> cellFactory() {
 		return (listView) -> {
 			AbstractViewCell<T> cell = createView();
 

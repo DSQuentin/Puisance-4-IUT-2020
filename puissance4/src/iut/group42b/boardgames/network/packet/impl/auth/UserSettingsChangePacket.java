@@ -1,6 +1,5 @@
 package iut.group42b.boardgames.network.packet.impl.auth;
 
-import iut.group42b.boardgames.application.ServerApplication;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.util.DataBuffer;
 import iut.group42b.boardgames.util.Logger;
@@ -65,7 +64,7 @@ public class UserSettingsChangePacket implements IPacket {
 	public void read(DataBuffer buffer) {
 		this.numberOfUpdatedField = buffer.readInt();
 
-		for (int i = 0; i < numberOfUpdatedField ; i++) {
+		for (int i = 0; i < numberOfUpdatedField; i++) {
 			int type = buffer.readInt();
 			String value = buffer.readString();
 

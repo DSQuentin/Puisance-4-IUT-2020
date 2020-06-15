@@ -10,10 +10,10 @@ import javafx.scene.image.ImageView;
 public class GameListViewCellView extends AbstractViewCell<IGame> {
 
 	/* UI */
-	private Button actionButton;
-	private Label tagsLabel;
-	private Label gameTitleLabel;
-	private ImageView coverImageView;
+	private final Button actionButton;
+	private final Label tagsLabel;
+	private final Label gameTitleLabel;
+	private final ImageView coverImageView;
 
 	/* Constructor */
 	protected GameListViewCellView(IListViewCellController<IGame> partController) {

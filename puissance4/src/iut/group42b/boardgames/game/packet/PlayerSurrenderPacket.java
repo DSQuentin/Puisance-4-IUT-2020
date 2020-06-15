@@ -4,4 +4,5 @@ import iut.group42b.boardgames.network.packet.IEmptyPacket;
 
 public class PlayerSurrenderPacket implements IEmptyPacket {
 
+
 }

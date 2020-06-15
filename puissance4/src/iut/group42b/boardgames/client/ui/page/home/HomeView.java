@@ -14,6 +14,7 @@ public class HomeView extends AbstractView {
 	private final ListView<IGame> gamesListView;
 	private final ImageView profileImageView;
 	private final Button logoutButton;
+	private final Button toSocialButton;
 
 
 	/* Constructor */
@@ -23,6 +24,7 @@ public class HomeView extends AbstractView {
 		this.gamesListView = (ListView) findById("home-listview-games");
 		this.profileImageView = (ImageView) findById("home-imageview-profile");
 		this.logoutButton = (Button) findById("home-button-tologout");
+		this.toSocialButton = (Button) findById("home-social-button");
 
 
 	}
@@ -47,5 +49,9 @@ public class HomeView extends AbstractView {
 
 	public Button getLogoutButton() {
 		return logoutButton;
+	}
+
+	public Button getToSocialButton() {
+		return toSocialButton;
 	}
 }

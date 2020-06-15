@@ -4,10 +4,10 @@ import javafx.scene.Parent;
 
 public interface IView {
 
-	public String getViewPath();
+	String getViewPath();
 
-	public Parent getRoot();
+	Parent getRoot();
 
-	public IController createController();
+	IController createController();
 
 }

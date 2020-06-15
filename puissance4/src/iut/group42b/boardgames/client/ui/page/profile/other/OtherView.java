@@ -3,110 +3,89 @@ package iut.group42b.boardgames.client.ui.page.profile.other;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import jdk.internal.org.objectweb.asm.tree.FieldInsnNode;
-
-import javax.print.attribute.standard.MediaSize;
 
 public class OtherView extends AbstractView {
-    private final ImageView logo;
-    private final ImageView ownAvatar;
-    private final ImageView avatar;
-    private final Text gamesPlayed;
-    private final Text username;
-    private final Text friends;
-    private final Text wins;
-    private final Button addFriend;
-    private final Text averageTime;
-    private final Text maxScore;
-    private final TextField msgInput;
-    private final Button sendMsg;
-    //private final ImageView sendIcon;
-    private final Button logout;
+	private final ImageView logoImageView;
+	private final ImageView ownAvatarImageView;
+	private final ImageView avatarImageView;
+	private final Text gamesPlayedText;
+	private final Text usernameText;
+	private final Text friendsText;
+	private final Text winsText;
+	private final Button addFriendButton;
+	private final Text averageTimeText;
+	private final Text maxScoreText;
+	private final Button logoutButton;
 
-    public OtherView() {
-        super();
-        this.logo = (ImageView) findById("other-profile-imageview-logo");
-        this.avatar = (ImageView) findById("other-profile-imageview-avatar");
-        this.gamesPlayed = (Text) findById("other-profile-text-games-played");
-        this.username = (Text) findById("other-profile-text-username");
-        this.friends = (Text) findById("other-profile-text-friends");
-        this.wins = (Text) findById("other-profile-text-wins");
-        this.addFriend = (Button) findById("other-profile-button-add-friend");
-        this.averageTime = (Text) findById("other-profile-text-average-time-per-game");
-        this.maxScore = (Text) findById("other-profile-text-max-score");
-        this.msgInput = (TextField) findById("other-profile-textfield-message-input");
-        this.sendMsg = (Button) findById("other-profile-send-message");
-        //this.sendIcon = (ImageView) findById("other-profile-send-icon");
-        this.logout = (Button) findById("other-button-logout");
-        this.ownAvatar = (ImageView) findById("profile-picture");
-    }
+	public OtherView() {
+		super();
+		this.logoImageView = (ImageView) findById("other-profile-imageview-logo");
+		this.avatarImageView = (ImageView) findById("other-profile-imageview-avatar");
+		this.gamesPlayedText = (Text) findById("other-profile-text-games-played");
+		this.usernameText = (Text) findById("other-profile-text-username");
+		this.friendsText = (Text) findById("other-profile-text-friends");
+		this.winsText = (Text) findById("other-profile-text-wins");
+		this.addFriendButton = (Button) findById("other-profile-button-add-friend");
+		this.averageTimeText = (Text) findById("other-profile-text-average-time-per-game");
+		this.maxScoreText = (Text) findById("other-profile-text-max-score");
+		this.logoutButton = (Button) findById("other-button-logout");
+		this.ownAvatarImageView = (ImageView) findById("profile-picture");
+	}
 
-    @Override
-    public String getViewPath() {
-        return "other-profile.fxml";
-    }
+	@Override
+	public String getViewPath() {
+		return "other-profile.fxml";
+	}
 
-    public ImageView getLogo() {
-        return logo;
-    }
+	public ImageView getLogoImageView() {
+		return logoImageView;
+	}
 
-    public ImageView getAvatar() {
-        return avatar;
-    }
+	public ImageView getAvatarImageView() {
+		return avatarImageView;
+	}
 
-    public Text getGamesPlayed() {
-        return gamesPlayed;
-    }
+	public Text getGamesPlayedText() {
+		return gamesPlayedText;
+	}
 
-    public Text getUsername() {
-        return username;
-    }
+	public Text getUsernameText() {
+		return usernameText;
+	}
 
-    public Text getFriends() {
-        return friends;
-    }
+	public Text getFriendsText() {
+		return friendsText;
+	}
 
-    public Text getWins() {
-        return wins;
-    }
+	public Text getWinsText() {
+		return winsText;
+	}
 
-    public Button getAddFriend() {
-        return addFriend;
-    }
+	public Button getAddFriendButton() {
+		return addFriendButton;
+	}
 
-    public Text getAverageTime() {
-        return averageTime;
-    }
+	public Text getAverageTimeText() {
+		return averageTimeText;
+	}
 
-    public Text getMaxScore() {
-        return maxScore;
-    }
+	public Text getMaxScoreText() {
+		return maxScoreText;
+	}
 
-    public TextField getMsgInput() {
-        return msgInput;
-    }
 
-    public Button getSendMsg() {
-        return sendMsg;
-    }
+	public Button getLogoutButton() {
+		return logoutButton;
+	}
 
-    /*public ImageView getSendIcon() {
-        return sendIcon;
-    }*/
+	public ImageView getOwnAvatarImageView() {
+		return ownAvatarImageView;
+	}
 
-    public Button getLogout() {
-        return logout;
-    }
-
-    public ImageView getOwnAvatar() {
-        return ownAvatar;
-    }
-
-    @Override
-    public IController createController() {
-        return new OtherController();
-    }
+	@Override
+	public IController createController() {
+		return new OtherController();
+	}
 }

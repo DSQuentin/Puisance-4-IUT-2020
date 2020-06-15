@@ -1,108 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane layoutX="-14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <ImageView id="connect4-imageview-user-profile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/avatar.png" />
-                           </image>
-                        </ImageView>
-                        <Text id="connect4-username" strokeType="OUTSIDE" strokeWidth="0.0" text="You" />
-                        <Text  id="connect4-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocken blabla" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </left>
-         <top>
-            <AnchorPane BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" spacing="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <VBox>
-                           <children>
-                              <Text id="connect4-timer" strokeType="OUTSIDE" strokeWidth="0.0" text="Time : 3.52 minutes" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </Text>
-                           </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <BorderPane layoutX="-14.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <ImageView id="connect4-imageview-user-profile" fitHeight="120.0" fitWidth="120.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/avatar.png"/>
+                                    </image>
+                                </ImageView>
+                                <Text id="connect4-username" strokeType="OUTSIDE" strokeWidth="0.0" text="You"/>
+                                <Text id="connect4-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="Tocken blabla"/>
+                            </children>
                         </VBox>
-                        <VBox alignment="CENTER">
-                           <children>
-                              <Text id="connect4-who-turn" strokeType="OUTSIDE" strokeWidth="0.0" text="Eva’s turn" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.connect4.help" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
+                    </children>
+                </HBox>
+            </left>
+            <top>
+                <AnchorPane BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" spacing="200.0" AnchorPane.bottomAnchor="0.0"
+                              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <VBox>
+                                    <children>
+                                        <Text id="connect4-timer" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Time : 3.52 minutes" textAlignment="CENTER">
+                                            <font>
+                                                <Font size="18.0"/>
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets top="20.0"/>
+                                            </VBox.margin>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER">
+                                    <children>
+                                        <Text id="connect4-who-turn" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Eva’s turn" textAlignment="CENTER">
+                                            <font>
+                                                <Font size="36.0"/>
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets top="20.0"/>
+                                            </VBox.margin>
+                                        </Text>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.connect4.help"
+                                              textAlignment="CENTER">
+                                            <font>
+                                                <Font size="18.0"/>
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                                <VBox>
+                                    <children>
+                                        <Button id="connect4-button-surrender" mnemonicParsing="false"
+                                                style="-fx-background-color: #B23838;"
+                                                text="%ui.connect4.button.surrender" textFill="WHITE">
+                                            <font>
+                                                <Font name="Noto Sans Bold" size="13.0"/>
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets top="20.0"/>
+                                            </VBox.margin>
+                                        </Button>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+            </top>
+            <bottom>
+                <AnchorPane prefHeight="40.0" style="-fx-background-color: #8A6356;" BorderPane.alignment="CENTER"/>
+            </bottom>
+            <center>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                            style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+                    <children>
+                        <StackPane id="connect4-stackpane-container" AnchorPane.bottomAnchor="0.0"
+                                   AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                    </children>
+                </AnchorPane>
+            </center>
+            <right>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <ImageView id="connect4-imageview-opponent-profile" fitHeight="120.0" fitWidth="120.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/avatar.png"/>
+                                    </image>
+                                </ImageView>
+                                <Text id="connect4-opponent-name" strokeType="OUTSIDE" strokeWidth="0.0" text="You"/>
+                                <Text id="connect4-opponent-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="Number of tokens remaining :14"/>
+                            </children>
                         </VBox>
-                        <VBox>
-                           <children>
-                              <Button id="connect4-button-surrender" mnemonicParsing="false" style="-fx-background-color: #B23838;" text="%ui.connect4.button.surrender" textFill="WHITE">
-                                 <font>
-                                    <Font name="Noto Sans Bold" size="13.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="20.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-         </top>
-         <bottom>
-            <AnchorPane prefHeight="40.0" style="-fx-background-color: #8A6356;" BorderPane.alignment="CENTER" />
-         </bottom>
-         <center>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
-               <children>
-                  <StackPane id="connect4-stackpane-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children></AnchorPane>
-         </center>
-         <right>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox alignment="CENTER" spacing="10.0">
-                     <children>
-                        <ImageView id="connect4-imageview-opponent-profile" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/avatar.png" />
-                           </image>
-                        </ImageView>
-                        <Text id="connect4-opponent-name" strokeType="OUTSIDE" strokeWidth="0.0" text="You" />
-                        <Text id="connect4-opponent-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of tokens remaining :14" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </right>
-      </BorderPane>
-   </children>
+                    </children>
+                </HBox>
+            </right>
+        </BorderPane>
+    </children>
 </AnchorPane>

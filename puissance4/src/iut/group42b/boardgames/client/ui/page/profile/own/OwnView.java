@@ -8,87 +8,87 @@ import javafx.scene.text.Text;
 
 public class OwnView extends AbstractView {
 
-    private ImageView logo;
-    private Button toLogOutButton;
-    private ImageView profileImageView;
-    private ImageView profileImageOnProfile;
-    private Text numberGamesPlayed;
-    private Text usernameText;
-    private Text numberFriends;
-    private Text numberWin;
-    private Button toParametersButton;
-    private Text time;
-    private Text score;
+	private final ImageView logoImageView;
+	private final Button toLogOutButton;
+	private final Button toSettingsButton;
+	private final ImageView profileImageView;
+	private final ImageView profileImageOnProfile;
+	private final Text numberGamesPlayedText;
+	private final Text usernameText;
+	private final Text numberFriendsText;
+	private final Text numberWinText;
+	private final Text timeText;
+	private final Text scoreText;
 
 
+	public OwnView() {
+		super();
+		this.logoImageView = (ImageView) findById("logo");
+		this.toLogOutButton = (Button) findById("logout");
+		this.profileImageView = (ImageView) findById("profile-picture");
+		this.profileImageOnProfile = (ImageView) findById("own-avatar");
+		this.numberGamesPlayedText = (Text) findById("number-game-played");
+		this.usernameText = (Text) findById("username");
+		this.numberFriendsText = (Text) findById("number-friends");
+		this.numberWinText = (Text) findById("number-win");
+		this.timeText = (Text) findById("time");
+		this.scoreText = (Text) findById("score");
+		this.toSettingsButton = (Button) findById("own-profile-button-goto-settings");
 
-    public OwnView() {
-        super();
-        this.logo = (ImageView) findById("logo");
-        this.toLogOutButton = (Button) findById("logout");
-        this.profileImageView = (ImageView) findById("profile-picture");
-        this.profileImageOnProfile = (ImageView) findById("own-avatar");
-        this.numberGamesPlayed = (Text) findById("number-game-played");
-        this.usernameText = (Text) findById("username");
-        this.numberFriends = (Text) findById("number-friends");
-        this.numberWin = (Text) findById("number-win");
-        this.toParametersButton = (Button) findById("toparameters-button");
-        this.time = (Text) findById("time");
-        this.score = (Text) findById("score");
+	}
 
-    }
 
-    @Override
-    public String getViewPath() {
-        return "own-profile.fxml";
-    }
+	public Button getToLogOutButton() {
+		return toLogOutButton;
+	}
 
-    public Button getToLogOutButton() {
-        return toLogOutButton;
-    }
+	public ImageView getProfileImageView() {
+		return profileImageView;
+	}
 
-    public ImageView getProfileImageView() {
-        return profileImageView;
-    }
+	public Text getUsernameText() {
+		return usernameText;
+	}
 
-    public Text getUsernameText() {
-        return usernameText;
-    }
+	public ImageView getLogoImageView() {
+		return logoImageView;
+	}
 
-    public Button getToParametersButton() {
-        return toParametersButton;
-    }
+	public ImageView getProfileImageOnProfile() {
+		return profileImageOnProfile;
+	}
 
-    public ImageView getLogo() {
-        return logo;
-    }
+	public Text getNumberGamesPlayedText() {
+		return numberGamesPlayedText;
+	}
 
-    public ImageView getProfileImageOnProfile() {
-        return profileImageOnProfile;
-    }
+	public Text getNumberFriendsText() {
+		return numberFriendsText;
+	}
 
-    public Text getNumberGamesPlayed() {
-        return numberGamesPlayed;
-    }
+	public Text getNumberWinText() {
+		return numberWinText;
+	}
 
-    public Text getNumberFriends() {
-        return numberFriends;
-    }
+	public Text getTimeText() {
+		return timeText;
+	}
 
-    public Text getNumberWin() {
-        return numberWin;
-    }
+	public Text getScoreText() {
+		return scoreText;
+	}
 
-    public Text getTime() {
-        return time;
-    }
+	public Button getToSettingsButton() {
+		return toSettingsButton;
+	}
 
-    public Text getScore() {
-        return score;
-    }
+	@Override
+	public String getViewPath() {
+		return "own-profile.fxml";
+	}
 
-    @Override
-    public IController createController() {
-        return new OwnController();
-    }
+	@Override
+	public IController createController() {
+		return new OwnController();
+	}
 }

@@ -1,7 +1,6 @@
 package iut.group42b.boardgames.game.impl.connect4.packet;
 
 import iut.group42b.boardgames.game.impl.connect4.Connect4Side;
-import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.util.DataBuffer;
 
 public class Connect4PutTokenPacket implements IConnect4Packet {

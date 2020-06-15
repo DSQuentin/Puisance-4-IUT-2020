@@ -11,9 +11,9 @@ import javafx.scene.control.ListCell;
 public abstract class AbstractViewCell<T> extends ListCell<T> {
 
 	/* Variables */
-	private Logger logger;
-	private Parent root;
-	private IListViewCellController<T> partController;
+	private final Logger logger;
+	private final Parent root;
+	private final IListViewCellController<T> partController;
 	private T currentItem;
 
 	/* Constructor */

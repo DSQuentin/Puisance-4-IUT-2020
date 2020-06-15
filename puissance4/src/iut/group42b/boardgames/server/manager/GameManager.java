@@ -1,18 +1,15 @@
 package iut.group42b.boardgames.server.manager;
 
-import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
 import iut.group42b.boardgames.game.IGameArena;
 import iut.group42b.boardgames.game.IGameHandler;
 import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
-import iut.group42b.boardgames.game.packet.PlayerSurrenderPacket;
 import iut.group42b.boardgames.game.player.Player;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.util.Logger;
-import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +71,8 @@ public class GameManager implements INetworkHandler {
 		new Thread(() -> {
 			try {
 				Thread.sleep(5000); // TODO Use more packet to sync the two clients
-			} catch (Exception exception) { }
+			} catch (Exception exception) {
+			}
 
 			arena.start(gameHandler);
 		}).start();

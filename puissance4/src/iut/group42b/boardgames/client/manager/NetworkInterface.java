@@ -16,7 +16,6 @@ public class NetworkInterface {
 
 	/* Constructor */
 	private NetworkInterface() {
-		;
 	}
 
 	public void initialize(SocketHandler socketHandler) throws Exception {

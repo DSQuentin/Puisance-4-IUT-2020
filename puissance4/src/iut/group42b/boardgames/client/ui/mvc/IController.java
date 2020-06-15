@@ -5,10 +5,10 @@ import javafx.event.EventHandler;
 
 public interface IController extends EventHandler<ActionEvent> {
 
-	public void attachView(IView view);
+	void attachView(IView view);
 
-	public void onMount();
+	void onMount();
 
-	public void onUnmount();
+	void onUnmount();
 
 }

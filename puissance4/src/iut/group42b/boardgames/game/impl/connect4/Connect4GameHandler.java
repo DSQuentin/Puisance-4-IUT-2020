@@ -6,7 +6,6 @@ import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GameInfoPacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GridUpdatePacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4PutTokenPacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.IConnect4Packet;
-import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
 import iut.group42b.boardgames.game.packet.PlayerLoosePacket;
 import iut.group42b.boardgames.game.packet.PlayerSurrenderPacket;
 import iut.group42b.boardgames.game.packet.PlayerWinPacket;

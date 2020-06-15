@@ -4,7 +4,6 @@ import iut.group42b.boardgames.util.Logger;
 import javafx.scene.image.Image;
 
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 

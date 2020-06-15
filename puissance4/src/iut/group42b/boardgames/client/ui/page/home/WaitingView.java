@@ -11,8 +11,8 @@ public class WaitingView extends AbstractView {
 
 	/* UI */
 
-	private Button cancelButton;
-	private ImageView logoGameImageView;
+	private final Button cancelButton;
+	private final ImageView logoGameImageView;
 	// private Text textButton;
 
 	/* Variables */

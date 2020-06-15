@@ -6,7 +6,6 @@ import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
-import iut.group42b.boardgames.game.impl.connect4.Connect4Game;
 import iut.group42b.boardgames.game.impl.connect4.Connect4Side;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GameInfoPacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GridUpdatePacket;
@@ -21,7 +20,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-
 
 import java.util.Optional;
 
@@ -45,7 +43,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 		this.canvas = new Connect4GridCanvas();
 
 		UserProfile currentUserProfile = NetworkInterface.get().getSocketHandler().getUserProfile();
-		this.view.getUserImageView().setImage(new Image(currentUserProfile.getImageUrl(),true));
+		this.view.getUserImageView().setImage(new Image(currentUserProfile.getImageUrl(), true));
 		this.view.getUsernameText().setText(currentUserProfile.getUsername());
 		this.view.getUserTockensRemainingText().setText(Messages.GAME_NUMBER_OF_TOKENS.use(0));
 		this.view.getSurrenderButton().setOnAction(this);
@@ -132,7 +130,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 			alert.setContentText(Messages.UI_ALERT_CONTEXT_SURRENDER.use());
 
 			Optional<ButtonType> result = alert.showAndWait();
-			if (result.isPresent() && result.get() == ButtonType.OK){
+			if (result.isPresent() && result.get() == ButtonType.OK) {
 				NetworkInterface.get().getSocketHandler().queue(new PlayerSurrenderPacket());
 				UserInterface.get().set(new HomeView());
 			} else {

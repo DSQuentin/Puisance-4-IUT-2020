@@ -89,7 +89,6 @@ public class SocketHandler implements Runnable {
 			try {
 				Thread.sleep(20L);
 			} catch (Exception exception) {
-				;
 			}
 		}
 

@@ -2,8 +2,6 @@ package iut.group42b.boardgames.game.player;
 
 import iut.group42b.boardgames.network.SocketHandler;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Player {
 
 	/* Variables */

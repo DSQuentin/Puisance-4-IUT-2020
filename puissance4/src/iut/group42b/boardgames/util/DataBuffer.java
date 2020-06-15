@@ -4,6 +4,7 @@ import iut.group42b.boardgames.network.rw.IReadableObject;
 import iut.group42b.boardgames.network.rw.IWritableObject;
 
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -12,7 +13,7 @@ public class DataBuffer {
 
 	/* Variables */
 	private int index;
-	private List<Byte> bytes;
+	private final List<Byte> bytes;
 
 	/* Constructor */
 	public DataBuffer() {
@@ -50,7 +51,7 @@ public class DataBuffer {
 		byte[] stringBytes;
 
 		try {
-			stringBytes = s.getBytes("US-ASCII");
+			stringBytes = s.getBytes(StandardCharsets.US_ASCII);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 

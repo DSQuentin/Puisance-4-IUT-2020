@@ -25,7 +25,6 @@ public class PingPacket implements IPacket {
 
 	@Override
 	public void read(DataBuffer buffer) {
-		;
 	}
 
 	public long getMillis() {

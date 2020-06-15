@@ -16,7 +16,6 @@ public class DatabaseInterface {
 
 	/* Constructor */
 	private DatabaseInterface() {
-		;
 	}
 
 	public void initialize(AbstractDatabaseConnection connection) throws Exception {

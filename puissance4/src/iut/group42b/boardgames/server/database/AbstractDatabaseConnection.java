@@ -9,7 +9,6 @@ public abstract class AbstractDatabaseConnection {
 
 	/* Constructor */
 	protected AbstractDatabaseConnection() {
-		;
 	}
 
 	public boolean connect() throws Exception {

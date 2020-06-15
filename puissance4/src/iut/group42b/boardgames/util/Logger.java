@@ -64,7 +64,7 @@ public class Logger {
 		private boolean enabled;
 
 		/* Constructor */
-		private Level(int bashColorCode) {
+		Level(int bashColorCode) {
 			this.bashColorCode = bashColorCode;
 			this.enabled = true;
 		}

@@ -1,6 +1,5 @@
 package iut.group42b.boardgames.server.manager;
 
-import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
 import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingJoinPacket;
@@ -9,9 +8,11 @@ import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.util.Logger;
-import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class MatchmakingManager implements INetworkHandler {
 

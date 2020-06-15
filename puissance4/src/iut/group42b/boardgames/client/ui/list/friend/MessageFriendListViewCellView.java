@@ -2,7 +2,6 @@ package iut.group42b.boardgames.client.ui.list.friend;
 
 import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
 import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
-import iut.group42b.boardgames.game.IGame;
 import iut.group42b.boardgames.social.model.UserProfile;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,10 +10,10 @@ import javafx.scene.image.ImageView;
 public class MessageFriendListViewCellView extends AbstractViewCell<UserProfile> {
 
 	/* UI */
-	private Button actionButton;
-	private Label tagsLabel;
-	private Label gameTitleLabel;
-	private ImageView coverImageView;
+	private final Button actionButton;
+	private final Label tagsLabel;
+	private final Label gameTitleLabel;
+	private final ImageView coverImageView;
 
 	/* Constructor */
 	protected MessageFriendListViewCellView(IListViewCellController<UserProfile> partController) {

@@ -6,13 +6,7 @@ import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GameInfoPacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GridUpdatePacket;
 import iut.group42b.boardgames.game.player.Player;
 import iut.group42b.boardgames.network.packet.IPacket;
-import iut.group42b.boardgames.server.manager.DatabaseInterface;
-import iut.group42b.boardgames.social.model.UserProfile;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Connect4GameArena implements IGameArena {
@@ -24,10 +18,10 @@ public class Connect4GameArena implements IGameArena {
 	public int scoreRed, scoreYellow;
 	private long startedAt, endAt;
 	private State state;
-	private Player redPlayer;
-	private Player yellowPlayer;
+	private final Player redPlayer;
+	private final Player yellowPlayer;
 	private Connect4Side sideToPlay;
-	private Connect4Side[][] grid;
+	private final Connect4Side[][] grid;
 	private int databaseId;
 
 	/* Constructor */
@@ -72,8 +66,8 @@ public class Connect4GameArena implements IGameArena {
 		}
 
 		/* Vertical check. */
-		for (int i = 0; i < GRID_HEIGHT- 3; i++) {
-			for (int j = 0; j <  GRID_WIDTH; j++) {
+		for (int i = 0; i < GRID_HEIGHT - 3; i++) {
+			for (int j = 0; j < GRID_WIDTH; j++) {
 				if (grid[i][j] == side && grid[i + 1][j] == side && grid[i + 2][j] == side && grid[i + 3][j] == side) {
 					return true;
 				}
@@ -239,14 +233,16 @@ public class Connect4GameArena implements IGameArena {
 		SURRENDER(-2);
 
 		/* Variables */
-		private int stateCode;
+		private final int stateCode;
 
 		/* Constants */
-		private State(int stateCode) {
+		State(int stateCode) {
 			this.stateCode = stateCode;
 		}
 
-		/** @return State code in the database. */
+		/**
+		 * @return State code in the database.
+		 */
 		public int getStateCode() {
 			return stateCode;
 		}

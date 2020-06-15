@@ -4,6 +4,6 @@ import iut.group42b.boardgames.util.DataBuffer;
 
 public interface IWritableObject {
 
-	public void write(DataBuffer buffer);
+	void write(DataBuffer buffer);
 
 }

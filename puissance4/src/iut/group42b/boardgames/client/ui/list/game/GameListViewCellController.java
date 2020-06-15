@@ -7,22 +7,14 @@ import iut.group42b.boardgames.client.resources.Resource;
 import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
 import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
 import iut.group42b.boardgames.client.ui.page.home.WaitingView;
-import iut.group42b.boardgames.client.ui.page.index.IndexView;
 import iut.group42b.boardgames.game.GameAvailability;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
 import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingJoinPacket;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-
-import static iut.group42b.boardgames.game.GameAvailability.*;
+import static iut.group42b.boardgames.game.GameAvailability.PLAYABLE;
 
 public class GameListViewCellController implements IListViewCellController<IGame> {
 
@@ -31,7 +23,7 @@ public class GameListViewCellController implements IListViewCellController<IGame
 
 	@Override
 	public void handle(ActionEvent event) {
-		; // Unused
+		// Unused
 	}
 
 	@Override
@@ -60,7 +52,6 @@ public class GameListViewCellController implements IListViewCellController<IGame
 		gameCellView.getCoverImageView().setPreserveRatio(true);
 
 
-
 		GameAvailability gameState = item.getAvailability();
 
 		gameCellView.getActionButton().setText(Messages.GAME_AVAILABILIY_STATE.use(gameState));
@@ -78,7 +69,6 @@ public class GameListViewCellController implements IListViewCellController<IGame
 	public AbstractViewCell<IGame> createView() {
 		return new GameListViewCellView(this);
 	}
-
 
 
 }

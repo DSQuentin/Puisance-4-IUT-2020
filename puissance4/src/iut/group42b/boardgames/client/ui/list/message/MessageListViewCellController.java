@@ -23,7 +23,7 @@ public class MessageListViewCellController implements IListViewCellController<IG
 
 	@Override
 	public void handle(ActionEvent event) {
-		; // Unused
+		// Unused
 	}
 
 	@Override
@@ -52,7 +52,6 @@ public class MessageListViewCellController implements IListViewCellController<IG
 		gameCellView.getCoverImageView().setPreserveRatio(true);
 
 
-
 		GameAvailability gameState = item.getAvailability();
 
 		gameCellView.getActionButton().setText(Messages.GAME_AVAILABILIY_STATE.use(gameState));
@@ -70,7 +69,6 @@ public class MessageListViewCellController implements IListViewCellController<IG
 	public AbstractViewCell<IGame> createView() {
 		return new MessageListViewCellView(this);
 	}
-
 
 
 }

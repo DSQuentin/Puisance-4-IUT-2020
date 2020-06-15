@@ -2,7 +2,6 @@ package iut.group42b.boardgames.client.ui.page.user.settings;
 
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
@@ -12,7 +11,7 @@ public class UserSettingsView extends AbstractView {
 	private ImageView profileImageView;
 	private Text emailText;
 	private Text usernameText;
-	private Text creationDateText;
+	private final Text creationDateText;
 
 
 	public UserSettingsView() {

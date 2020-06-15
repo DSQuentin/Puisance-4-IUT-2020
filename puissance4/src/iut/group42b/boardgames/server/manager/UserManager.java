@@ -9,8 +9,6 @@ import iut.group42b.boardgames.util.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.function.BiFunction;
 
 public class UserManager implements INetworkHandler {
 
@@ -27,7 +25,6 @@ public class UserManager implements INetworkHandler {
 
 	/* Constructor */
 	private UserManager() {
-		;
 	}
 
 	public static UserManager get() {
@@ -109,7 +106,7 @@ public class UserManager implements INetworkHandler {
 			imageUrlChanged = changeUserInfo(userProfile, "image_url", changePacket.getImageUrl());
 		}
 
-		return new int[] { usernameChanged, emailChanged, passwordChanged, imageUrlChanged };
+		return new int[]{usernameChanged, emailChanged, passwordChanged, imageUrlChanged};
 	}
 
 	private boolean login(UserLoginPacket loginPacket) {

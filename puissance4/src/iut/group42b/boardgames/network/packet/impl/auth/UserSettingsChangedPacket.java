@@ -12,7 +12,7 @@ public class UserSettingsChangedPacket implements IPacket {
 	private int emailChanged;
 	private int passwordChanged;
 	private int imageUrlChange;
-	private UserProfile newUserProfile;
+	private final UserProfile newUserProfile;
 
 	/* Constructor */
 	public UserSettingsChangedPacket() {

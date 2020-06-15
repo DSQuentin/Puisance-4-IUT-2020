@@ -8,8 +8,7 @@ public class Utils {
 	public static void slientClose(Closeable closeable) {
 		try {
 			closeable.close();
-		} catch(IOException ignored) {
-			;
+		} catch (IOException ignored) {
 		}
 	}
 

@@ -6,8 +6,8 @@ import iut.group42b.boardgames.client.ui.list.game.GameListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
-import iut.group42b.boardgames.client.ui.page.profile.other.OtherView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
+import iut.group42b.boardgames.client.ui.page.social.SocialView;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
 import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
@@ -36,6 +36,8 @@ public class HomeController implements IController, INetworkHandler {
 	public void handle(ActionEvent event) {
 		if (event.getSource() == view.getLogoutButton()) {
 			UserInterface.get().set(new LogoutView());
+		} else if (event.getSource() == view.getToSocialButton()) {
+			UserInterface.get().set(new SocialView());
 		}
 	}
 
@@ -53,12 +55,13 @@ public class HomeController implements IController, INetworkHandler {
 		gameListViewCellController = new GameListViewCellController();
 
 		this.view.getLogoutButton().setOnAction(this);
+		this.view.getToSocialButton().setOnAction(this);
 		this.view.getGamesListView().setItems(gameObservableList);
 		this.view.getGamesListView().setCellFactory(gameListViewCellController.cellFactory());
-		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(),true));
+		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
 
 		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			UserInterface.get().set(new OtherView());
+			UserInterface.get().set(new OwnView());
 		});
 
 	}
@@ -80,7 +83,7 @@ public class HomeController implements IController, INetworkHandler {
 
 			IGame game = GameRegistry.get().getById(joinPacket.getGameId());
 			if (game == null) {
-				LOGGER.warning("Unknown game ID: " +joinPacket.getGameId() );
+				LOGGER.warning("Unknown game ID: " + joinPacket.getGameId());
 				return;
 			}
 

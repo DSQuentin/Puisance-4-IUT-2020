@@ -58,7 +58,7 @@ public class Connect4GridCanvas extends ResizableCanvas {
 		super();
 
 		this.grid = createGrid();
-		this.collisionsBox  = new HashMap<>();
+		this.collisionsBox = new HashMap<>();
 
 		addEventHandler(MouseEvent.MOUSE_MOVED, this::onMouseEvent);
 		addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMouseEvent);
@@ -165,11 +165,10 @@ public class Connect4GridCanvas extends ResizableCanvas {
 	}
 
 
-
 	public Connect4Side[][] createGrid() {
 		Connect4Side x = Connect4Side.NONE;
 
-		return new Connect4Side[][] {
+		return new Connect4Side[][]{
 				{x, x, x, x, x, x, x},
 				{x, x, x, x, x, x, x},
 				{x, x, x, x, x, x, x},
@@ -193,9 +192,9 @@ public class Connect4GridCanvas extends ResizableCanvas {
 		this.tokenClickCallback = tokenClickCallback;
 	}
 
-	public static interface OnTokenClick {
+	public interface OnTokenClick {
 
-		public void onClick(Connect4GridCanvas canvas, int x, int y);
+		void onClick(Connect4GridCanvas canvas, int x, int y);
 
 	}
 

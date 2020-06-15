@@ -8,7 +8,7 @@ public enum Connect4Side {
 
 	private final char letter;
 
-	private Connect4Side(char letter) {
+	Connect4Side(char letter) {
 		this.letter = letter;
 	}
 
@@ -17,7 +17,7 @@ public enum Connect4Side {
 	}
 
 	public static Connect4Side fromLetter(char letter) {
-		for(Connect4Side side : values()) {
+		for (Connect4Side side : values()) {
 			if (side.getLetter() == letter) {
 				return side;
 			}

@@ -7,7 +7,7 @@ public class PlayerLoosePacket implements IPacket {
 
 	/* Constructor */
 	public PlayerLoosePacket() {
-		
+
 	}
 
 	@Override

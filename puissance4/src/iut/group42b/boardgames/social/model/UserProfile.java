@@ -17,7 +17,7 @@ public class UserProfile implements IWritableReadableObject {
 
 	/* Constructor */
 	public UserProfile() {
-		this(0, null, null, null, false, false, false,null);
+		this(0, null, null, null, false, false, false, null);
 	}
 
 	/* Constructor */

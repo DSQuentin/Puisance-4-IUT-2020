@@ -5,11 +5,9 @@ import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.index.IndexView;
 import iut.group42b.boardgames.client.ui.page.login.LoginView;
-import iut.group42b.boardgames.game.impl.connect4.ui.Connect4UIView;
 import iut.group42b.boardgames.util.Logger;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Dialog;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -30,7 +28,6 @@ public class UserInterface {
 
 	/* Constructor */
 	private UserInterface() {
-		;
 	}
 
 	public static UserInterface get() {
@@ -103,6 +100,10 @@ public class UserInterface {
 				controller.onUnmount();
 			}
 		});
+	}
+
+	public void closeCurrentDialog(){
+		this.currentDialog.close();
 	}
 
 	public Stage getCurrentDialog() {

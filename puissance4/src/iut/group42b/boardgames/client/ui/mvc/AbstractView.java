@@ -11,8 +11,8 @@ import javafx.scene.Parent;
 public abstract class AbstractView implements IView {
 
 	/* Variables */
-	private Logger logger;
-	private Parent root;
+	private final Logger logger;
+	private final Parent root;
 
 	/* Constructor */
 	protected AbstractView() {

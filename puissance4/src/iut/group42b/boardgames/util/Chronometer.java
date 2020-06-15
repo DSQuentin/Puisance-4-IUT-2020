@@ -46,9 +46,9 @@ public class Chronometer extends Thread {
 		return String.format("%s:%02d:%02d", duration.toHours(), duration.toMinutes() % 60, (duration.toMillis() / 1000) % 60 % 60);
 	}
 
-	public static interface ChronometerListener {
+	public interface ChronometerListener {
 
-		public void onChronometerSecond(String text);
+		void onChronometerSecond(String text);
 
 	}
 }

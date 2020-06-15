@@ -4,6 +4,6 @@ import iut.group42b.boardgames.util.DataBuffer;
 
 public interface IReadableObject {
 
-	public void read(DataBuffer buffer);
+	void read(DataBuffer buffer);
 
 }

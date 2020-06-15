@@ -40,7 +40,8 @@
                                         </Text>
                                     </children>
                                 </TextFlow>
-                                <ImageView id="usersettings-imageview-profile" fitHeight="150.0" fitWidth="200.0" layoutX="80.0" layoutY="95.0"
+                                <ImageView id="usersettings-imageview-profile" fitHeight="150.0" fitWidth="200.0"
+                                           layoutX="80.0" layoutY="95.0"
                                            pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="80.0"
                                            AnchorPane.rightAnchor="72.46427917480469">
                                     <image>
