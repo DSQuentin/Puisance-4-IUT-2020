@@ -7,7 +7,9 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<?import iut.group42b.boardgames.client.ui.component.circularprogressbar.RingProgressIndicator?>
+<AnchorPane minHeight="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/circleprogress.css"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <BorderPane layoutY="246.0" style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -193,11 +195,11 @@
                                                         </HBox>
                                                         <HBox alignment="CENTER">
                                                             <children>
-                                                                <Circle id="win-circle" fill="#ff1f1f" radius="42.0" stroke="BLACK" strokeType="INSIDE">
+                                                                <AnchorPane id="win-circle">
                                                                     <HBox.margin>
                                                                         <Insets bottom="5.0" left="5.0" right="5.0" />
                                                                     </HBox.margin>
-                                                                </Circle>
+                                                                </AnchorPane>
                                                             </children>
                                                         </HBox>
                                                     </children>
@@ -222,11 +224,11 @@
                                                         </HBox>
                                                         <HBox alignment="CENTER" spacing="5.0">
                                                             <children>
-                                                                <Circle id="defeat-circle" fill="DODGERBLUE" radius="42.0" stroke="BLACK" strokeType="INSIDE">
+                                                                <AnchorPane id="defeat-circle">
                                                                     <HBox.margin>
                                                                         <Insets bottom="5.0" left="5.0" right="5.0" />
                                                                     </HBox.margin>
-                                                                </Circle>
+                                                                </AnchorPane>
                                                             </children>
                                                         </HBox>
                                                     </children>

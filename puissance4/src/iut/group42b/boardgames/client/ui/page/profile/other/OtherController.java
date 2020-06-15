@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
+import java.util.Random;
+
 
 public class OtherController implements IController, INetworkHandler {
 
@@ -42,6 +44,14 @@ public class OtherController implements IController, INetworkHandler {
 		this.view.getLogoImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new HomeView());
 		});
+
+		Random rand=new Random();
+
+		this.view.getWinCircle().setRingWidth(10);
+		this.view.getDefeatCircle().setRingWidth(10);
+
+		this.view.getWinCircle().setProgress((rand.nextInt(100-0)+1));
+		this.view.getDefeatCircle().setProgress((rand.nextInt(100-0)+1));
 	}
 
 	@Override

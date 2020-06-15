@@ -1,9 +1,12 @@
 package iut.group42b.boardgames.client.ui.page.profile.own;
 
+import iut.group42b.boardgames.client.ui.component.circularprogressbar.RingProgressIndicator;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
 public class OwnView extends AbstractView {
@@ -19,6 +22,8 @@ public class OwnView extends AbstractView {
 	private final Text numberWinText;
 	private final Text timeText;
 	private final Text scoreText;
+	private final AnchorPane winCircle;
+	private final AnchorPane defeatCircle;
 
 
 	public OwnView() {
@@ -34,9 +39,37 @@ public class OwnView extends AbstractView {
 		this.timeText = (Text) findById("time");
 		this.scoreText = (Text) findById("score");
 		this.toSettingsButton = (Button) findById("own-profile-button-goto-settings");
-
+		this.winCircle = (AnchorPane) findById("win-circle");
+		this.defeatCircle = (AnchorPane) findById("defeat-circle");
+		this.winCircle.getChildren().add(new RingProgressIndicator());
+		this.defeatCircle.getChildren().add(new RingProgressIndicator());
 	}
 
+	public AnchorPane getWinCircleAnchor() {
+		return winCircle;
+	}
+
+	public RingProgressIndicator getWinCircle(){
+		for (Node n : this.getWinCircleAnchor().getChildren()){
+			if (n instanceof RingProgressIndicator){
+				return (RingProgressIndicator) n;
+			}
+		}
+		return new RingProgressIndicator();
+	}
+
+	public AnchorPane getDefeatCircleAnchor() {
+		return defeatCircle;
+	}
+
+	public RingProgressIndicator getDefeatCircle(){
+		for (Node n : this.getDefeatCircleAnchor().getChildren()){
+			if (n instanceof RingProgressIndicator){
+				return (RingProgressIndicator) n;
+			}
+		}
+		return new RingProgressIndicator();
+	}
 
 	public Button getToLogOutButton() {
 		return toLogOutButton;

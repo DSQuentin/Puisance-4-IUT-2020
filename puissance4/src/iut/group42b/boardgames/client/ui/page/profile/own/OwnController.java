@@ -2,6 +2,7 @@ package iut.group42b.boardgames.client.ui.page.profile.own;
 
 import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
+import iut.group42b.boardgames.client.ui.component.circularprogressbar.RingProgressIndicator;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
@@ -9,8 +10,11 @@ import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.client.ui.page.user.settings.UserSettingsView;
 import iut.group42b.boardgames.social.model.UserProfile;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+
+import java.util.Random;
 
 public class OwnController implements IController {
 
@@ -50,6 +54,14 @@ public class OwnController implements IController {
 		this.view.getToSettingsButton().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			System.out.println("Button triggered dfsdfdsfsdfdsf");
 		});
+
+		Random rand=new Random();
+
+		this.view.getWinCircle().setRingWidth(10);
+		this.view.getDefeatCircle().setRingWidth(10);
+
+		this.view.getWinCircle().setProgress((rand.nextInt(100-0)+1));
+		this.view.getDefeatCircle().setProgress((rand.nextInt(100-0)+1));
 	}
 
 	@Override
