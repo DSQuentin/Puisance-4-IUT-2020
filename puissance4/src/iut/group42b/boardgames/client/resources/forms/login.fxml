@@ -7,80 +7,76 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" stylesheets="@../css/shapes.css" styleClass="bg" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="bg" stylesheets="@../css/shapes.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane id="auth-container-frame" layoutX="25.0" layoutY="25.0" style="-fx-background-color: gray;"
-                    AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0"
-                    AnchorPane.topAnchor="25.0">
+        <AnchorPane id="auth-container-frame" layoutX="25.0" layoutY="25.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
             <children>
-                <GridPane id="auth-container-hbob" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <GridPane id="auth-container-hbob" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES"/>
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <AnchorPane style="-fx-background-color: white;">
                             <children>
-                                <VBox alignment="CENTER" layoutX="53.0" layoutY="225.0" spacing="7.0"
-                                      AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0"
-                                      AnchorPane.topAnchor="35.0">
+                                <VBox alignment="CENTER" layoutX="53.0" layoutY="225.0" spacing="7.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="35.0">
                                     <children>
                                         <TextFlow prefHeight="200.0" prefWidth="200.0" textAlignment="CENTER">
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                                                      text="%ui.text.login.title">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.login.title">
                                                     <font>
-                                                        <Font size="36.0"/>
+                                                        <Font size="36.0" />
                                                     </font>
                                                 </Text>
                                             </children>
                                         </TextFlow>
-                                        <TextField id="login-textfield-email" prefHeight="40.0" prefWidth="137.0"
-                                                   promptText="Email" style="-fx-background-color: #F7F9FB;"
-                                                   styleClass="field"/>
-                                        <PasswordField id="login-textfield-password" prefHeight="46.0" prefWidth="276.0"
-                                                       promptText="Password" style="-fx-background-color: #F7F9FB;"/>
-                                        <Button id="login-button-submit" alignment="CENTER" mnemonicParsing="false"
-                                                prefHeight="50.0" prefWidth="230.0"
-                                                style="-fx-background-color: #1ECAAB;" text="%ui.text.login.submit"
-                                                textAlignment="CENTER" textFill="WHITE">
+                                        <TextField id="login-textfield-email" prefHeight="40.0" prefWidth="137.0" promptText="%ui.user.log.email" style="-fx-background-color: #F7F9FB;" styleClass="field" />
+                                        <PasswordField id="login-textfield-password" prefHeight="46.0" prefWidth="276.0" promptText="%ui.user.log.password" style="-fx-background-color: #F7F9FB;" />
+                                        <Button id="login-button-submit" alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="230.0" style="-fx-background-color: #1ECAAB;" text="%ui.text.login.submit" textAlignment="CENTER" textFill="WHITE">
                                             <graphic>
-                                                <ImageView fitHeight="68.0" fitWidth="28.0" pickOnBounds="true"
-                                                           preserveRatio="true">
+                                                <ImageView fitHeight="68.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../icons/icon-register.png"/>
+                                                        <Image url="@../icons/icon-register.png" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
                                             <VBox.margin>
-                                                <Insets top="10.0"/>
+                                                <Insets top="10.0" />
                                             </VBox.margin>
                                         </Button>
                                         <TextFlow textAlignment="CENTER">
                                             <children>
-                                                <Hyperlink id="login-text-to-register" text="%ui.text.login.register"
-                                                           textAlignment="CENTER"/>
+                                                <Hyperlink id="login-text-to-register" text="%ui.text.login.register" textAlignment="CENTER" />
                                             </children>
                                         </TextFlow>
                                     </children>
                                 </VBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane id="auth-container-hbox" style="-fx-background-color: F6F7FA;"
-                                    GridPane.columnIndex="1">
+                        <AnchorPane style="-fx-background-color: F6F7FA;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <children>
-                                <AnchorPane layoutX="293.0" layoutY="75.0" AnchorPane.leftAnchor="0.0"
-                                            AnchorPane.rightAnchor="0.0"/>
+                        <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <VBox alignment="CENTER">
+                                 <children>
+                                            <AnchorPane id="auth-container-hbox" prefHeight="300.0" prefWidth="300.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                             </children>
                         </AnchorPane>
                     </children>

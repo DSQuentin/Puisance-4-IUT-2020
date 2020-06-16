@@ -17,7 +17,7 @@
                     <children>
                         <HBox alignment="CENTER">
                             <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invitations">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.invitation.title">
                                     <HBox.margin>
                                         <Insets top="20.0"/>
                                     </HBox.margin>
@@ -31,12 +31,12 @@
                             <children>
                                 <TabPane tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
                                     <tabs>
-                                        <Tab text="Received">
+                                        <Tab text="%ui.invitation.received.title">
                                             <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
                                                             prefWidth="200.0">
                                                     <children>
-                                                        <ListView prefHeight="200.0" prefWidth="200.0"
+                                                        <ListView id="received-listview" prefHeight="200.0" prefWidth="200.0"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
                                                                   AnchorPane.rightAnchor="0.0"
@@ -45,12 +45,12 @@
                                                 </AnchorPane>
                                             </content>
                                         </Tab>
-                                        <Tab text="Send">
+                                        <Tab text="%ui.invitation.send.title">
                                             <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
                                                             prefWidth="200.0">
                                                     <children>
-                                                        <ListView prefHeight="200.0" prefWidth="200.0"
+                                                        <ListView id="send-listview" prefHeight="200.0" prefWidth="200.0"
                                                                   AnchorPane.bottomAnchor="0.0"
                                                                   AnchorPane.leftAnchor="0.0"
                                                                   AnchorPane.rightAnchor="0.0"
@@ -77,7 +77,7 @@
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                     <children>
-                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
+                                        <ImageView id="logo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
                                                    preserveRatio="true">
                                             <image>
                                                 <Image url="@../images/logo.png"/>
@@ -111,7 +111,7 @@
                                         </Button>
                                         <Button id="home-button-tologout" alignment="CENTER" contentDisplay="CENTER"
                                                 mnemonicParsing="false" style="-fx-background-color: #38B295;"
-                                                text="LOG OUT" textFill="WHITE">
+                                                text="%ui.user.logout.button" textFill="WHITE">
                                             <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>

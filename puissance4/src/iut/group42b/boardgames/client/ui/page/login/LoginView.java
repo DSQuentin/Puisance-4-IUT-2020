@@ -1,11 +1,13 @@
 package iut.group42b.boardgames.client.ui.page.login;
 
+import iut.group42b.boardgames.client.ui.component.Carousel;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginView extends AbstractView {
 
@@ -14,6 +16,7 @@ public class LoginView extends AbstractView {
 	private final TextField passwordField;
 	private final Button submitButton;
 	private final Hyperlink registerText;
+	private final AnchorPane carousel;
 
 	/* Variables */
 	private final String forcedEmail, forcedPassword;
@@ -24,7 +27,7 @@ public class LoginView extends AbstractView {
 	}
 
 	/* Constructor */
-	public LoginView(String forcedEmail, String forcedPassword) {
+	public LoginView(String forcedEmail, String forcedPassword){
 		super();
 
 		this.forcedEmail = forcedEmail;
@@ -35,6 +38,9 @@ public class LoginView extends AbstractView {
 		this.passwordField = (PasswordField) this.findById("login-textfield-password");
 		this.submitButton = (Button) this.findById("login-button-submit");
 		this.registerText = (Hyperlink) this.findById("login-text-to-register");
+		this.carousel = (AnchorPane) this.findById("auth-container-hbox");
+		this.carousel.getChildren().add(new Carousel());
+
 
 
 		if (forcedEmail != null) {
@@ -54,6 +60,22 @@ public class LoginView extends AbstractView {
 	@Override
 	public IController createController() {
 		return new LoginController();
+	}
+
+	public Hyperlink getRegisterText() {
+		return this.registerText;
+	}
+
+	public AnchorPane getCarousel() {
+		return this.carousel;
+	}
+
+	public String getForcedEmail() {
+		return this.forcedEmail;
+	}
+
+	public String getForcedPassword() {
+		return this.forcedPassword;
 	}
 
 	public TextField getEmailTextField() {

@@ -10,12 +10,15 @@ import iut.group42b.boardgames.game.impl.connect4.Connect4Side;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GameInfoPacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GridUpdatePacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4PutTokenPacket;
+import iut.group42b.boardgames.game.packet.PlayerLoosePacket;
 import iut.group42b.boardgames.game.packet.PlayerSurrenderPacket;
+import iut.group42b.boardgames.game.packet.PlayerWinPacket;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.util.Chronometer;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -89,6 +92,31 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 			this.chronometer = new Chronometer(this.view.getTimerText()::setText);
 			this.chronometer.setRunning(true);
 			this.chronometer.start();
+		}
+		else if (packet instanceof PlayerWinPacket) {
+			Platform.runLater(() -> {
+				Alert al = new Alert(Alert.AlertType.INFORMATION);
+				al.setTitle("Victory");
+				al.setHeaderText("Congratulations!\n You won!");
+
+				Optional<ButtonType> result = al.showAndWait();
+				System.out.println("agegfd");
+				if (result.get() == ButtonType.OK) {
+					UserInterface.get().set(new HomeView());
+				}
+			});
+
+		} else if (packet instanceof PlayerLoosePacket) {
+			Platform.runLater(() -> {
+				Alert al = new Alert(Alert.AlertType.INFORMATION);
+				al.setTitle("Defeat");
+				al.setHeaderText("Sorry!\n You Lost!");
+
+				Optional<ButtonType> result = al.showAndWait();
+				if (result.get() == ButtonType.OK) {
+					UserInterface.get().set(new HomeView());
+				}
+			});
 		}
 	}
 

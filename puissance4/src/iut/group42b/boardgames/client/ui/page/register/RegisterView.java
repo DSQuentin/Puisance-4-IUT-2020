@@ -1,11 +1,13 @@
 package iut.group42b.boardgames.client.ui.page.register;
 
+import iut.group42b.boardgames.client.ui.component.Carousel;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class RegisterView extends AbstractView {
 
@@ -15,6 +17,7 @@ public class RegisterView extends AbstractView {
 	private final TextField passwordPasswordField;
 	private final Button submitButton;
 	private final Hyperlink toLoginHyperlink;
+	private final AnchorPane carousel;
 
 	/* Constructor */
 	public RegisterView() {
@@ -26,6 +29,8 @@ public class RegisterView extends AbstractView {
 		this.passwordPasswordField = (PasswordField) this.findById("register-passwordfield-password");
 		this.submitButton = (Button) this.findById("register-button-submit");
 		this.toLoginHyperlink = (Hyperlink) this.findById("register-hyperlink-login");
+		this.carousel = (AnchorPane) this.findById("auth-container-hbox");
+		this.carousel.getChildren().add(new Carousel());
 	}
 
 	@Override
@@ -58,5 +63,7 @@ public class RegisterView extends AbstractView {
 		return this.toLoginHyperlink;
 	}
 
-
+	public AnchorPane getCarousel() {
+		return this.carousel;
+	}
 }

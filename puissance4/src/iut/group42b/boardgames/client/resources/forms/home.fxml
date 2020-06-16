@@ -55,7 +55,7 @@
                                         </Button>
                                         <Button id="home-button-tologout" alignment="CENTER" contentDisplay="CENTER"
                                                 mnemonicParsing="false" style="-fx-background-color: #38B295;"
-                                                text="LOG OUT" textFill="WHITE">
+                                                text="%ui.user.logout.button" textFill="WHITE">
                                             <HBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>
@@ -81,7 +81,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <TextField id="home-search-game" prefWidth="590.0" promptText="Search your games..."/>
+                                <TextField id="home-search-game" prefWidth="590.0" promptText="%ui.home.search.game"/>
                             </children>
                         </HBox>
                     </children>
