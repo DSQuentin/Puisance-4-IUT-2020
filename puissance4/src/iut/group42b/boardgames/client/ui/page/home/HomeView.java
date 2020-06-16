@@ -18,18 +18,20 @@ public class HomeView extends AbstractView {
 	private final Button toSocialButton;
 	private final TextField searchTextField;
 	private final Button toInvitationButton;
+	private final Button adminButton;
 
 
 	/* Constructor */
 	public HomeView() {
 		super();
 
-		this.gamesListView = (ListView) this.findById("home-listview-games");
-		this.profileImageView = (ImageView) this.findById("home-imageview-profile");
-		this.logoutButton = (Button) this.findById("home-button-tologout");
-		this.toSocialButton = (Button) this.findById("home-button-social");
-		this.searchTextField = (TextField) this.findById("home-search-game");
-		this.toInvitationButton = (Button) this.findById("home-invitation-button");
+		this.gamesListView = this.findById("home-listview-games");
+		this.profileImageView =  this.findById("home-imageview-profile");
+		this.logoutButton =  this.findById("home-button-tologout");
+		this.toSocialButton =  this.findById("home-button-social");
+		this.searchTextField =  this.findById("home-search-game");
+		this.toInvitationButton =  this.findById("home-invitation-button");
+		this.adminButton = this.findById("home-admin-button");
 
 
 	}
@@ -43,6 +45,8 @@ public class HomeView extends AbstractView {
 	public IController createController() {
 		return new HomeController();
 	}
+
+	public Button getAdminButton() {return this.adminButton;}
 
 	public ListView<IGame> getGamesListView() {
 		return this.gamesListView;

@@ -5,6 +5,7 @@ import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.list.game.GameListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
+import iut.group42b.boardgames.client.ui.page.admin.AdminDashBoardView;
 import iut.group42b.boardgames.client.ui.page.invitation.InvitationView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
@@ -43,6 +44,8 @@ public class HomeController implements IController, INetworkHandler {
 			UserInterface.get().set(new SocialView());
 		} else if (event.getSource() == this.view.getToInvitationButton()) {
 			UserInterface.get().set(new InvitationView());
+		} else if (event.getSource() == this.view.getAdminButton()) {
+			UserInterface.get().set(new AdminDashBoardView());
 		}
 	}
 
@@ -64,9 +67,14 @@ public class HomeController implements IController, INetworkHandler {
 		this.view.getLogoutButton().setOnAction(this);
 		this.view.getToSocialButton().setOnAction(this);
 		this.view.getToInvitationButton().setOnAction(this);
+		this.view.getAdminButton().setOnAction(this);
 		this.view.getGamesListView().setCellFactory(this.gameListViewCellController.cellFactory());
 		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
 
+		if(NetworkInterface.get().getSocketHandler().getUserProfile().isAdmin()){
+			this.view.getAdminButton().setVisible(true);
+			this.view.getAdminButton().setStyle("-fx-opacity: 1");
+		}
 		this.view.getSearchTextField().textProperty().addListener((observable) -> {
 			String filter = this.view.getSearchTextField().getText();
 
