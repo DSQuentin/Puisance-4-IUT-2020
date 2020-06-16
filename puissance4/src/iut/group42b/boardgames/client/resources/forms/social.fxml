@@ -75,7 +75,7 @@
                     <children>
                         <HBox prefHeight="40.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #38B295; -fx-background-radius: 2;" text="%ui.social.addfriend.button" textFill="WHITE">
+                        <Button id="social-button-add-friend" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: #38B295; -fx-background-radius: 2;" text="%ui.social.addfriend.button" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

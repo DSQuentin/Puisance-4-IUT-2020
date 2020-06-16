@@ -36,9 +36,6 @@ public class Connect4Game implements IGame {
 	}
 
 	@Override
-	/* public String picturePath() {
-		return "connect4cover.png";
-	}*/
 	public String picturePath() {
 
 		return "connect4cover.png";

@@ -19,4 +19,15 @@ public class Messages {
 	public static final IMessage UI_ALERT_CONTEXT_SURRENDER = new I18nMessage("ui.alert.surrender.context");
 	public static final IMessage UI_ALERT_HEADER_SURRENDER = new I18nMessage("ui.alert.surrender.header");
 
+
+	public static final IMessage UI_ALERT_TITLE_FIGHT = new I18nMessage("ui.alert.fight.title");
+	public static final IMessage UI_ALERT_HEADER_FIGHT = new I18nMessage("ui.alert.fight.header");
+	public static final IMessage UI_ALERT_CONTENT_FIGHT = new I18nMessage("ui.alert.fight.content");
+
+	public static final IMessage UI_ALERT_TITLE_FRIEND = new I18nMessage("ui.alert.add.friend.title");
+	public static final IMessage UI_ALERT_HEADER_FRIEND = new I18nMessage("ui.alert.add.friend.header");
+	public static final IMessage UI_ALERT_CONTENT_FRIEND = new I18nMessage("ui.alert.add.friend.content");
+
+
+
 }

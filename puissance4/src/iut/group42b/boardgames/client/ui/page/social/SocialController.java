@@ -1,5 +1,6 @@
 package iut.group42b.boardgames.client.ui.page.social;
 
+import iut.group42b.boardgames.client.i18n.Messages;
 import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.list.friend.MessageFriendListViewCellController;
@@ -9,6 +10,9 @@ import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
+import iut.group42b.boardgames.game.GameRegistry;
+import iut.group42b.boardgames.game.IGame;
+import iut.group42b.boardgames.game.impl.connect4.Connect4Game;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
@@ -22,23 +26,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
 
 public class SocialController implements IController, INetworkHandler {
-
-	/* UI */
-	private SocialView view;
-
-	/* Controllers */
-	private MessageFriendListViewCellController messageFriendListViewCellController;
-	private MessagesListViewCellController messagesListViewCellController;
 
 	/* Variables */
 	private final ObservableList<UserProfile> friendObservableList;
 	private final ObservableList<ExchangedMessage> messagesList;
+	/* UI */
+	private SocialView view;
+	/* Controllers */
+	private MessageFriendListViewCellController messageFriendListViewCellController;
+	private MessagesListViewCellController messagesListViewCellController;
 	private FilteredList<UserProfile> friendFilterList;
 	private UserProfile currentlyTalkingUserProfile;
 
@@ -56,19 +65,48 @@ public class SocialController implements IController, INetworkHandler {
 			UserInterface.get().set(new LogoutView());
 		}
 		if (event.getSource() == this.view.getSendMessageButton()) {
-			if (this.currentlyTalkingUserProfile != null && !this.view.getMessageInputTextField().getText().isEmpty()){
-				String textMessageToSend = this.view.getMessageInputTextField().getText();
+			this.callMessageButton();
 
-				ExchangedMessage message = new ExchangedMessage(currentlyTalkingUserProfile.getId(), textMessageToSend) ;
-
-				NetworkInterface.get().getSocketHandler().queue(new SendMessagePacket(message));
-
-				this.view.getMessageInputTextField().setText("");
-			}
-		}
-		else if (event.getSource() == this.view.getLogoutButton()) {
+		} else if (event.getSource() == this.view.getLogoutButton()) {
 			UserInterface.get().set(new LogoutView());
+
+		} else if (event.getSource() == this.view.getAddFriendsButton()) {
+			this.addFriendsAlertBox();
+
+		} else if (event.getSource() == this.view.getFightButton()) {
+
+			List<String> choices = new ArrayList<>();
+			Collection<IGame> games = GameRegistry.get().all();
+
+			for (IGame game : games) {
+				choices.add(game.getName());
+			}
+
+
+			IGame defaultGame = new Connect4Game();
+			ChoiceDialog<String> dialog = new ChoiceDialog<>(defaultGame.getName(), choices);
+			dialog.setTitle(Messages.UI_ALERT_TITLE_FIGHT.use());
+			dialog.setHeaderText(Messages.UI_ALERT_HEADER_FIGHT.use());
+			dialog.setContentText(Messages.UI_ALERT_CONTENT_FIGHT.use());
+
+			Optional<String> result = dialog.showAndWait();
+			// TODO : send invitations to user
+			result.ifPresent(s -> System.out.println("Your choice: " + s));
+
 		}
+
+	}
+
+	public void addFriendsAlertBox(){
+		TextInputDialog dialog = new TextInputDialog("Walter02");
+		dialog.setTitle(Messages.UI_ALERT_TITLE_FRIEND.use());
+		dialog.setHeaderText(Messages.UI_ALERT_HEADER_FRIEND.use());
+		dialog.setContentText(Messages.UI_ALERT_CONTENT_FRIEND.use());
+
+		//TODO : call server
+		Optional<String> result = dialog.showAndWait();
+
+		result.ifPresent(name -> System.out.println("Your name: " + name));
 
 	}
 
@@ -89,12 +127,15 @@ public class SocialController implements IController, INetworkHandler {
 		this.view.getMessagesListView().setItems(this.messagesList);
 		this.view.getSendMessageButton().setOnAction(this);
 
-		this.view.getMessagesListView().setFocusTraversable( false );
+		this.view.getMessagesListView().setFocusTraversable(false);
 		this.view.getFriendsListView().setCellFactory(this.messageFriendListViewCellController.cellFactory());
 		this.view.getMessagesListView().setCellFactory(this.messagesListViewCellController.cellFactory());
 
 		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
 		this.view.getLogoutButton().setOnAction(this);
+		this.view.getFightButton().setOnAction(this);
+		this.view.getAddFriendsButton().setOnAction(this);
+
 		this.view.getLogo().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new HomeView());
 		});
@@ -103,11 +144,10 @@ public class SocialController implements IController, INetworkHandler {
 		});
 
 		this.view.getMessageInputTextField().setOnKeyReleased(event -> {
-			if (event.getCode() == KeyCode.ENTER){
+			if (event.getCode() == KeyCode.ENTER) {
 				this.callMessageButton();
 			}
 		});
-
 
 
 		this.view.getFriendSearchInputTextField().textProperty().addListener((observable) -> {
@@ -127,12 +167,12 @@ public class SocialController implements IController, INetworkHandler {
 		NetworkInterface.get().getSocketHandler().queue(new FriendListPacket());
 	}
 
-	public void callMessageButton(){
+	public void callMessageButton() {
 
-		if (currentlyTalkingUserProfile != null && !this.view.getMessageInputTextField().getText().isEmpty()){
+		if (this.currentlyTalkingUserProfile != null && !this.view.getMessageInputTextField().getText().isEmpty()) {
 			String textMessageToSend = this.view.getMessageInputTextField().getText();
 
-			ExchangedMessage message = new ExchangedMessage(currentlyTalkingUserProfile.getId(), textMessageToSend) ;
+			ExchangedMessage message = new ExchangedMessage(this.currentlyTalkingUserProfile.getId(), textMessageToSend);
 
 			NetworkInterface.get().getSocketHandler().queue(new SendMessagePacket(message));
 
@@ -175,7 +215,7 @@ public class SocialController implements IController, INetworkHandler {
 	}
 
 	public void requestMessageList(UserProfile targetUserProfile) {
-		messagesListViewCellController.setCurrentlyTalkingToUserProfile(currentlyTalkingUserProfile = targetUserProfile);
+		this.messagesListViewCellController.setCurrentlyTalkingToUserProfile(this.currentlyTalkingUserProfile = targetUserProfile);
 
 		this.messagesList.clear();
 
