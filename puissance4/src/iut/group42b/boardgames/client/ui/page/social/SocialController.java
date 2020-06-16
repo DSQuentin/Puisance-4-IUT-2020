@@ -6,7 +6,9 @@ import iut.group42b.boardgames.client.ui.list.friend.MessageFriendListViewCellCo
 import iut.group42b.boardgames.client.ui.list.message.MessagesListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
+import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
+import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
@@ -21,10 +23,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 
-import java.sql.Date;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
 
 public class SocialController implements IController, INetworkHandler {
 
@@ -65,6 +65,9 @@ public class SocialController implements IController, INetworkHandler {
 				this.view.getMessageInputTextField().setText("");
 			}
 		}
+		else if (event.getSource() == this.view.getLogoutButton()) {
+			UserInterface.get().set(new LogoutView());
+		}
 
 	}
 
@@ -88,6 +91,14 @@ public class SocialController implements IController, INetworkHandler {
 		this.view.getMessagesListView().setFocusTraversable( false );
 		this.view.getFriendsListView().setCellFactory(this.messageFriendListViewCellController.cellFactory());
 		this.view.getMessagesListView().setCellFactory(this.messagesListViewCellController.cellFactory());
+
+		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));		this.view.getLogoutButton().setOnAction(this);
+		this.view.getLogo().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+			UserInterface.get().set(new HomeView());
+		});
+		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+			UserInterface.get().set(new OwnView());
+		});
 
 		this.view.getFriendSearchInputTextField().textProperty().addListener((observable) -> {
 			String filter = this.view.getFriendSearchInputTextField().getText();

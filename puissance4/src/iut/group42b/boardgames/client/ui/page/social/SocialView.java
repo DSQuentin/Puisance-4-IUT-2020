@@ -18,7 +18,10 @@ public class SocialView extends AbstractView {
 	private final TextField messageInputTextField;
 	private final Button sendMessageButton;
 	private final Button fightButton;
+	private final ImageView logo;
+	private final ImageView profileImageView;
 	private final Button logoutButton;
+
 
 	/* Constructor */
 	public SocialView() {
@@ -31,7 +34,9 @@ public class SocialView extends AbstractView {
 		this.messageInputTextField = this.findById("home-textfield-message-input");
 		this.sendMessageButton = this.findById("home-button-send-message");
 		this.fightButton = this.findById("home-button-fight");
-		this.logoutButton = this.findById("home-button-tologout");
+		this.logo = (ImageView) this.findById("logo");
+		this.profileImageView = (ImageView) this.findById("home-imageview-profile");
+		this.logoutButton = (Button) this.findById("home-button-tologout");
 
 
 	}
@@ -70,11 +75,20 @@ public class SocialView extends AbstractView {
 		return this.sendMessageButton;
 	}
 
-	public Button getLogoutButton() {
-		return this.logoutButton;
-	}
-
 	public Button getFightButton() {
 		return this.fightButton;
+	}
+
+
+	public ImageView getLogo() {
+		return this.logo;
+	}
+
+	public ImageView getProfileImageView() {
+		return this.profileImageView;
+	}
+
+	public Button getLogoutButton() {
+		return this.logoutButton;
 	}
 }
