@@ -6,6 +6,7 @@ import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
+import iut.group42b.boardgames.game.impl.connect4.Connect4GameArena;
 import iut.group42b.boardgames.game.impl.connect4.Connect4Side;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GameInfoPacket;
 import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GridUpdatePacket;
@@ -34,6 +35,8 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 	private Connect4UIView view;
 	private Connect4GridCanvas canvas;
 	private Chronometer chronometer;
+	private static Integer userNumberToken = Connect4GameArena.GRID_HEIGHT*Connect4GameArena.GRID_WIDTH;
+	private static Integer opponentNumberToken = Connect4GameArena.GRID_HEIGHT*Connect4GameArena.GRID_WIDTH;
 
 	@Override
 	public void attachView(IView view) {
@@ -48,7 +51,6 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 		UserProfile currentUserProfile = NetworkInterface.get().getSocketHandler().getUserProfile();
 		this.view.getUserImageView().setImage(new Image(currentUserProfile.getImageUrl(), true));
 		this.view.getUsernameText().setText(currentUserProfile.getUsername());
-		this.view.getUserTockensRemainingText().setText(Messages.GAME_NUMBER_OF_TOKENS.use(0));
 		this.view.getSurrenderButton().setOnAction(this);
 		this.canvas.setTokenClickCallback(this);
 		this.canvas.widthProperty().bind(this.view.getGridContainerStackPane().widthProperty());
@@ -79,6 +81,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 			this.updateWhichTurnToPlayText(gridUpdatePacket.getNextSideToPlay());
 			this.updateRemainingTokenTexts();
+
 		} else if (packet instanceof Connect4GameInfoPacket) {
 			Connect4GameInfoPacket gameInfoPacket = (Connect4GameInfoPacket) packet;
 
@@ -95,25 +98,27 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 		}
 		else if (packet instanceof PlayerWinPacket) {
 			Platform.runLater(() -> {
+				this.stopChronometerIfRunning();
 				Alert al = new Alert(Alert.AlertType.INFORMATION);
 				al.setTitle("Victory");
 				al.setHeaderText("Congratulations!\n You won!");
 
 				Optional<ButtonType> result = al.showAndWait();
 				System.out.println("agegfd");
-				if (result.get() == ButtonType.OK) {
+				if (result.get() == ButtonType.OK || result.get() == ButtonType.CLOSE) {
 					UserInterface.get().set(new HomeView());
 				}
 			});
 
 		} else if (packet instanceof PlayerLoosePacket) {
 			Platform.runLater(() -> {
+				this.stopChronometerIfRunning();
 				Alert al = new Alert(Alert.AlertType.INFORMATION);
 				al.setTitle("Defeat");
 				al.setHeaderText("Sorry!\n You Lost!");
 
 				Optional<ButtonType> result = al.showAndWait();
-				if (result.get() == ButtonType.OK) {
+				if (result.get() == ButtonType.OK || result.get() == ButtonType.CLOSE) {
 					UserInterface.get().set(new HomeView());
 				}
 			});
@@ -160,7 +165,8 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 	 */
 	private void updateRemainingTokenTexts() {
 		// TODO Compute remaining token for each side and display proper values
-		this.view.getOpponentTockensRemainingText().setText(Messages.GAME_NUMBER_OF_TOKENS.use(2));
+		this.view.getUserTockensRemainingText().setText(Messages.GAME_NUMBER_OF_TOKENS.use(14));
+		this.view.getOpponentTockensRemainingText().setText(Messages.GAME_NUMBER_OF_TOKENS.use(14));
 	}
 
 	@Override

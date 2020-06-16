@@ -174,7 +174,6 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 	 */
 	public void stopArena(Connect4GameArena arena) {
 		// TODO Send arena stop
-
 		if (Connect4GameArena.State.PLAYING.equals(arena.getState())) {
 			throw new IllegalStateException("stopping arena that have a playing state");
 		}

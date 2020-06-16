@@ -28,16 +28,16 @@ public class Connect4UIView extends AbstractView {
 	public Connect4UIView() {
 		super();
 
-		this.gridContainerStackPane = (StackPane) this.findById("connect4-stackpane-container");
-		this.surrenderButton = (Button) this.findById("connect4-button-surrender");
-		this.opponentNameText = (Text) this.findById("connect4-opponent-name");
-		this.whoTurnText = (Text) this.findById("connect4-who-turn");
-		this.timerText = (Text) this.findById("connect4-timer");
-		this.usernameText = (Text) this.findById("connect4-username");
-		this.userTockensRemainingText = (Text) this.findById("connect4-tokens-remaining");
-		this.opponentTockensRemainingText = (Text) this.findById("connect4-opponent-tokens-remaining");
-		this.userImageView = (ImageView) this.findById("connect4-imageview-user-profile");
-		this.opponentImageView = (ImageView) this.findById("connect4-imageview-opponent-profile");
+		this.gridContainerStackPane = this.findById("connect4-stackpane-container");
+		this.surrenderButton = this.findById("connect4-button-surrender");
+		this.opponentNameText = this.findById("connect4-opponent-name");
+		this.whoTurnText = this.findById("connect4-who-turn");
+		this.timerText = this.findById("connect4-timer");
+		this.usernameText = this.findById("connect4-username");
+		this.userTockensRemainingText = this.findById("connect4-tokens-remaining");
+		this.opponentTockensRemainingText = this.findById("connect4-opponent-tokens-remaining");
+		this.userImageView = this.findById("connect4-imageview-user-profile");
+		this.opponentImageView = this.findById("connect4-imageview-opponent-profile");
 	}
 
 	@Override
