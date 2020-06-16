@@ -17,6 +17,7 @@ import iut.group42b.boardgames.util.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
 
 public class LoginController implements IController, INetworkHandler {
 
@@ -29,17 +30,7 @@ public class LoginController implements IController, INetworkHandler {
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == this.view.getSubmitButton()) {
-			String email = this.view.getEmailTextField().getText();
-			String password = this.view.getPasswordField().getText();
-
-			if (!email.isEmpty() && !password.isEmpty()) {
-				this.view.getSubmitButton().setDisable(true);
-				this.view.getRegisterHyperlink().setDisable(true);
-
-				LOGGER.verbose("Trying to connect with '%s' and '%s'.", email, password);
-
-				NetworkInterface.get().getSocketHandler().queue(new UserLoginPacket(email, password));
-			}
+			this.callSubmitButton();
 		} else if (event.getSource() == this.view.getRegisterHyperlink()) {
 			UserInterface.get().set(new RegisterView());
 		}
@@ -55,6 +46,30 @@ public class LoginController implements IController, INetworkHandler {
 
 		this.view.getSubmitButton().setOnAction(this);
 		this.view.getRegisterHyperlink().setOnAction(this);
+
+
+		this.view.getPasswordField().setOnKeyReleased(event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				this.callSubmitButton();
+			}
+		});
+	}
+
+	/***
+	 * Call Submit button
+	 */
+	public void callSubmitButton() {
+		String email = this.view.getEmailTextField().getText();
+		String password = this.view.getPasswordField().getText();
+
+		if (!email.isEmpty() && !password.isEmpty()) {
+			this.view.getSubmitButton().setDisable(true);
+			this.view.getRegisterHyperlink().setDisable(true);
+
+			LOGGER.verbose("Trying to connect with '%s' and '%s'.", email, password);
+
+			NetworkInterface.get().getSocketHandler().queue(new UserLoginPacket(email, password));
+		}
 	}
 
 	@Override

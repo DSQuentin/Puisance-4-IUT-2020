@@ -16,6 +16,7 @@ import iut.group42b.boardgames.util.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
 
 public class RegisterController implements IController, INetworkHandler {
 
@@ -29,24 +30,8 @@ public class RegisterController implements IController, INetworkHandler {
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == this.registerVue.getSubmitButton()) {
-			this.lastEmail = null;
-			this.lastPassword = null;
+			this.callSubmitButton();
 
-			String username = this.registerVue.getUsernameTextField().getText();
-			String email = this.registerVue.getEmailTextField().getText();
-			String password = this.registerVue.getPasswordPasswordField().getText();
-
-			if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-				this.registerVue.getSubmitButton().setDisable(true);
-				this.registerVue.getToLoginHyperlink().setDisable(true);
-
-				LOGGER.verbose("Trying to register with '%s', '%s' and '%s'.", username, email, password);
-
-				this.lastEmail = email;
-				this.lastPassword = password;
-
-				NetworkInterface.get().getSocketHandler().queue(new UserRegisterPacket(username, email, password));
-			}
 		} else if (event.getSource() == this.registerVue.getToLoginHyperlink()) {
 			try {
 				UserInterface.get().set(new LoginView());
@@ -66,6 +51,35 @@ public class RegisterController implements IController, INetworkHandler {
 
 		this.registerVue.getSubmitButton().setOnAction(this);
 		this.registerVue.getToLoginHyperlink().setOnAction(this);
+
+		this.registerVue.getPasswordPasswordField().setOnKeyReleased(event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				this.callSubmitButton();
+			}
+		});
+	}
+
+	public void callSubmitButton() {
+
+		this.lastEmail = null;
+		this.lastPassword = null;
+
+		String username = this.registerVue.getUsernameTextField().getText();
+		String email = this.registerVue.getEmailTextField().getText();
+		String password = this.registerVue.getPasswordPasswordField().getText();
+
+		if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+			this.registerVue.getSubmitButton().setDisable(true);
+			this.registerVue.getToLoginHyperlink().setDisable(true);
+
+			LOGGER.verbose("Trying to register with '%s', '%s' and '%s'.", username, email, password);
+
+			this.lastEmail = email;
+			this.lastPassword = password;
+
+			NetworkInterface.get().getSocketHandler().queue(new UserRegisterPacket(username, email, password));
+		}
+
 	}
 
 	@Override

@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 
@@ -55,7 +56,7 @@ public class SocialController implements IController, INetworkHandler {
 			UserInterface.get().set(new LogoutView());
 		}
 		if (event.getSource() == this.view.getSendMessageButton()) {
-			if (currentlyTalkingUserProfile != null && !this.view.getMessageInputTextField().getText().isEmpty()){
+			if (this.currentlyTalkingUserProfile != null && !this.view.getMessageInputTextField().getText().isEmpty()){
 				String textMessageToSend = this.view.getMessageInputTextField().getText();
 
 				ExchangedMessage message = new ExchangedMessage(currentlyTalkingUserProfile.getId(), textMessageToSend) ;
@@ -92,13 +93,22 @@ public class SocialController implements IController, INetworkHandler {
 		this.view.getFriendsListView().setCellFactory(this.messageFriendListViewCellController.cellFactory());
 		this.view.getMessagesListView().setCellFactory(this.messagesListViewCellController.cellFactory());
 
-		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));		this.view.getLogoutButton().setOnAction(this);
+		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
+		this.view.getLogoutButton().setOnAction(this);
 		this.view.getLogo().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new HomeView());
 		});
 		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new OwnView());
 		});
+
+		this.view.getMessageInputTextField().setOnKeyReleased(event -> {
+			if (event.getCode() == KeyCode.ENTER){
+				this.callMessageButton();
+			}
+		});
+
+
 
 		this.view.getFriendSearchInputTextField().textProperty().addListener((observable) -> {
 			String filter = this.view.getFriendSearchInputTextField().getText();
@@ -116,6 +126,20 @@ public class SocialController implements IController, INetworkHandler {
 
 		NetworkInterface.get().getSocketHandler().queue(new FriendListPacket());
 	}
+
+	public void callMessageButton(){
+
+		if (currentlyTalkingUserProfile != null && !this.view.getMessageInputTextField().getText().isEmpty()){
+			String textMessageToSend = this.view.getMessageInputTextField().getText();
+
+			ExchangedMessage message = new ExchangedMessage(currentlyTalkingUserProfile.getId(), textMessageToSend) ;
+
+			NetworkInterface.get().getSocketHandler().queue(new SendMessagePacket(message));
+
+			this.view.getMessageInputTextField().setText("");
+		}
+	}
+
 
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
