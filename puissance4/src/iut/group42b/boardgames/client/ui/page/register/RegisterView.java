@@ -24,12 +24,12 @@ public class RegisterView extends AbstractView {
 		super();
 
 		/* "fichiersource-class-usage" */
-		this.usernameTextField = (TextField) this.findById("register-textfield-username");
-		this.emailTextField = (TextField) this.findById("register-textfield-email");
+		this.usernameTextField = this.findById("register-textfield-username");
+		this.emailTextField = this.findById("register-textfield-email");
 		this.passwordPasswordField = (PasswordField) this.findById("register-passwordfield-password");
-		this.submitButton = (Button) this.findById("register-button-submit");
-		this.toLoginHyperlink = (Hyperlink) this.findById("register-hyperlink-login");
-		this.carousel = (AnchorPane) this.findById("auth-container-hbox");
+		this.submitButton = this.findById("register-button-submit");
+		this.toLoginHyperlink = this.findById("register-hyperlink-login");
+		this.carousel = this.findById("auth-container-hbox");
 		this.carousel.getChildren().add(new Carousel());
 	}
 

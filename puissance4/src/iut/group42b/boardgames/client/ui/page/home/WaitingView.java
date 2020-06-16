@@ -22,8 +22,8 @@ public class WaitingView extends AbstractView {
 	public WaitingView(IGame game) {
 		super();
 		this.game = game;
-		this.cancelButton = (Button) this.findById("waiting-player-button-cancel");
-		this.logoGameImageView = (ImageView) this.findById("waiting-player-imageview-logo");
+		this.cancelButton = this.findById("waiting-player-button-cancel");
+		this.logoGameImageView = this.findById("waiting-player-imageview-logo");
 
 	}
 

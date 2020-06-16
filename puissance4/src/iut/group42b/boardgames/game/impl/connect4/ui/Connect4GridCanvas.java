@@ -26,6 +26,33 @@ public class Connect4GridCanvas extends ResizableCanvas {
 	private boolean helper;
 
 	/**
+	 * Constructor Connect4GridCanvas
+	 * <p>
+	 * During the construction, a grid is created .
+	 * It also add handler on canvas to detect mouse movement and click
+	 * </p>
+	 *
+	 * @see Connect4GridCanvas#createGrid()
+	 */
+	public Connect4GridCanvas() {
+		super();
+
+		this.grid = this.createGrid();
+		this.collisionsBox = new HashMap<>();
+
+		this.addEventHandler(MouseEvent.MOUSE_MOVED, this::onMouseEvent); // for location selector
+		this.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMouseEvent); // for side
+
+		/*
+		new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				onMouseEvent(event);
+			}
+		}*/
+	}
+
+	/**
 	 * @param event
 	 */
 	private void onMouseEvent(MouseEvent event) {
@@ -55,33 +82,6 @@ public class Connect4GridCanvas extends ResizableCanvas {
 		}
 
 		this.redraw();
-	}
-
-	/**
-	 * Constructor Connect4GridCanvas
-	 * <p>
-	 * During the construction, a grid is created .
-	 * It also add handler on canvas to detect mouse movement and click
-	 * </p>
-	 *
-	 * @see Connect4GridCanvas#createGrid()
-	 */
-	public Connect4GridCanvas() {
-		super();
-
-		this.grid = this.createGrid();
-		this.collisionsBox = new HashMap<>();
-
-		this.addEventHandler(MouseEvent.MOUSE_MOVED, this::onMouseEvent); // for location selector
-		this.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMouseEvent); // for side
-
-		/*
-		new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				onMouseEvent(event);
-			}
-		}*/
 	}
 
 	@Override
@@ -114,7 +114,7 @@ public class Connect4GridCanvas extends ResizableCanvas {
 
 		this.collisionsBox.clear();
 
-		boolean arrowDrawn = false;
+		int selectedGridX = -1;
 
 		for (int y = 0; y < Connect4Game.NUMBER_OF_ROWS; y++) {
 			Connect4Side[] line = this.grid[y];
@@ -144,27 +144,16 @@ public class Connect4GridCanvas extends ResizableCanvas {
 						&& this.lastMousePosition != null
 						&& this.lastMousePosition.getX() >= collisionBox.getMinX()
 						&& this.lastMousePosition.getX() <= collisionBox.getMaxX()
-						&& (y + 1 != this.grid.length && this.grid[y + 1][x] != Connect4Side.NONE) // TODO Make it work for column that don't have any token in the lower row
+						&& (y == this.grid.length - 1 || this.grid[y + 1][x] != Connect4Side.NONE)
 						&& at == Connect4Side.NONE) {
 					ctx.setFill(SELECTOR_COLOR);
 
-					canPlaceToken = true;
+					selectedGridX = x;
 				}
 
 				this.collisionsBox.put(collisionBox, new TokenCoordinate(x, y));
 
 				ctx.fillOval(absoluteX, absoluteY, absoluteWidth, absoluteHeight);
-
-				if (!arrowDrawn) {
-					double arrowX = offsetX + (availableWidth * (x + 0.5));
-
-					ctx.setStroke(Color.BLACK);
-					if (canPlaceToken) { // TODO Make it work for every lines
-						ctx.setStroke(Color.WHITE);
-					}
-
-					ctx.strokeLine(arrowX, 0, arrowX, arrowZoneHeight);
-				}
 
 				ctx.save();
 				ctx.setStroke(BORDER_TOKEN);
@@ -172,8 +161,62 @@ public class Connect4GridCanvas extends ResizableCanvas {
 				ctx.strokeOval(absoluteX, absoluteY, absoluteWidth, absoluteHeight);
 				ctx.restore();
 			}
+		}
 
-			arrowDrawn = true;
+		if (this.helper) {
+			for (int x = 0; x < Connect4Game.NUMBER_OF_COLUMNS; x++) {
+				double step = ((System.currentTimeMillis() % 1000) * 1.0d / 1000) - 0.5;
+
+				ctx.setFill(BORDER_TOKEN);
+				if (selectedGridX == x) {
+					ctx.setFill(SELECTOR_COLOR);
+				}
+
+				double arrowCenterX = offsetX + (availableWidth * (x + 0.5));
+				double arrowHalfWidth = availableWidth / 15;
+				double arrowHalferWidth = arrowHalfWidth / 2;
+
+				double stepOffset = arrowZoneHeight * 0.1 * step;
+
+				double arrowTopY = offsetY + arrowZoneHeight * 0.2 + stepOffset;
+				double arrowHeadY = offsetY + arrowZoneHeight * 0.55 + stepOffset;
+				double arrowBottomY = offsetY + arrowZoneHeight * 0.8 + stepOffset;
+
+				double[] xPoints = {
+						arrowCenterX - arrowHalfWidth,
+						arrowCenterX - arrowHalfWidth,
+						arrowCenterX - arrowHalfWidth - arrowHalferWidth,
+						arrowCenterX,
+						arrowCenterX + arrowHalfWidth + arrowHalferWidth,
+						arrowCenterX + arrowHalfWidth,
+						arrowCenterX + arrowHalfWidth,
+						arrowCenterX - arrowHalfWidth
+				};
+
+				double[] yPoints = {
+						arrowTopY, // 1
+						arrowHeadY,
+						arrowHeadY,
+						arrowBottomY,
+						arrowHeadY,
+						arrowHeadY,
+						arrowTopY,
+						arrowTopY, // 8
+				};
+
+				ctx.fillPolygon(xPoints, yPoints, xPoints.length);
+
+				/*
+				 *          8 TOP
+				 *        1 + | + 7
+				 *            |
+				 *       3  2 |
+				 *       +  + | +  +  HEAD
+				 *            | 5   6
+				 *          4 +
+				 *          BOTTOM
+				 */
+			}
 		}
 	}
 
@@ -214,7 +257,13 @@ public class Connect4GridCanvas extends ResizableCanvas {
 	 * @param enabledState a boolean.
 	 */
 	public void setHelperEnabled(boolean enabledState) {
+		boolean changed = this.helper != enabledState;
+
 		this.helper = enabledState;
+
+		if (changed) {
+			this.redraw();
+		}
 	}
 
 	/**

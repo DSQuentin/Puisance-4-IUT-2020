@@ -1,6 +1,6 @@
 .bg {
-	-fx-background-image : url("file:///C:/Users/thego/IdeaProjects/puissance4/src/iut/group42b/boardgames/client/resources/images/connect4-grid-empty.png") ;
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 100% 100%;
-	
+    -fx-background-image: url("file:///C:/Users/thego/IdeaProjects/puissance4/src/iut/group42b/boardgames/client/resources/images/connect4-grid-empty.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100% 100%;
+
 }

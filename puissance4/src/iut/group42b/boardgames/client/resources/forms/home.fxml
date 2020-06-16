@@ -43,7 +43,8 @@
                                 </HBox>
                                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                     <children>
-                                        <Button id="home-admin-button" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                        <Button id="home-admin-button" alignment="CENTER" contentDisplay="CENTER"
+                                                mnemonicParsing="false"
                                                 style="-fx-background-color: #38B295; -fx-opacity: 0;" text="ADMIN"
                                                 textFill="WHITE">
                                             <HBox.margin>

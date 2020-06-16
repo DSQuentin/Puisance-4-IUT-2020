@@ -10,9 +10,7 @@ import iut.group42b.boardgames.social.model.UserProfile;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class NetworkServer {
@@ -45,7 +43,7 @@ public class NetworkServer {
 				socketHandler.subscribe(GameManager.get());
 				socketHandler.subscribe(MatchmakingManager.get());
 
-				register(socketHandler);
+				this.register(socketHandler);
 
 				System.out.println(socket);
 			} catch (Exception exception) {
@@ -59,7 +57,7 @@ public class NetworkServer {
 			return false;
 		}
 
-		synchronized (connectedHandlers) {
+		synchronized (this.connectedHandlers) {
 			return this.connectedHandlers.add(socketHandler);
 		}
 	}
@@ -69,14 +67,14 @@ public class NetworkServer {
 			return false;
 		}
 
-		synchronized (connectedHandlers) {
+		synchronized (this.connectedHandlers) {
 			return this.connectedHandlers.remove(socketHandler);
 		}
 	}
 
 	public synchronized SocketHandler findSocketHandlerByProfileId(int userId) {
-		synchronized (connectedHandlers) {
-			for (SocketHandler socketHandler : connectedHandlers) {
+		synchronized (this.connectedHandlers) {
+			for (SocketHandler socketHandler : this.connectedHandlers) {
 				UserProfile userProfile = socketHandler.getUserProfile();
 
 				if (userProfile != null && userProfile.getId() == userId) {

@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 
-public class InvitationView  extends AbstractView {
+public class InvitationView extends AbstractView {
 
 	/* UI */
 	private final ImageView logo;
@@ -19,11 +19,11 @@ public class InvitationView  extends AbstractView {
 
 	public InvitationView() {
 		super();
-		this.logo = (ImageView) this.findById("logo");
-		this.profileImageView = (ImageView) this.findById("home-imageview-profile");
-		this.logoutButton = (Button) this.findById("home-button-tologout");
-		this.receivedListView = (ListView) this.findById("received-listview");
-		this.sendListView = (ListView) this.findById("send-listview");
+		this.logo = this.findById("logo");
+		this.profileImageView = this.findById("home-imageview-profile");
+		this.logoutButton = this.findById("home-button-tologout");
+		this.receivedListView = this.findById("received-listview");
+		this.sendListView = this.findById("send-listview");
 
 	}
 

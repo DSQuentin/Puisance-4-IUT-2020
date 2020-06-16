@@ -17,4 +17,8 @@ public class Utils {
 		}
 	}
 
+	public static boolean areEqualAndValid(String a, String b) {
+		return a != null && !a.isEmpty() && a.equals(b);
+	}
+
 }

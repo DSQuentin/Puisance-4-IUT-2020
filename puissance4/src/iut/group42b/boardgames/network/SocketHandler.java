@@ -172,7 +172,7 @@ public class SocketHandler implements Runnable {
 		this.setProfile(null);
 		this.connected = false;
 
-		if (isFromServerSide()) {
+		if (this.isFromServerSide()) {
 			ServerApplication.getServer().unregister(this);
 		} else {
 			// TODO Notify interface that client connection has been lost

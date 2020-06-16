@@ -13,10 +13,10 @@ public class LogoutView extends AbstractView {
 
 	public LogoutView() {
 		super();
-		this.backHome = (Button) this.findById("logout-button-gohome");
-		this.disconnectMsg = (Text) this.findById("logout-msg");
-		this.toRegisterButton = (Button) this.findById("index-button-register");
-		this.toLoginButton = (Button) this.findById("index-button-login");
+		this.backHome = this.findById("logout-button-gohome");
+		this.disconnectMsg = this.findById("logout-msg");
+		this.toRegisterButton = this.findById("index-button-register");
+		this.toLoginButton = this.findById("index-button-login");
 	}
 
 

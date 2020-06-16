@@ -29,5 +29,4 @@ public class Messages {
 	public static final IMessage UI_ALERT_CONTENT_FRIEND = new I18nMessage("ui.alert.add.friend.content");
 
 
-
 }

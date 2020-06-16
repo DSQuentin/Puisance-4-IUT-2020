@@ -1,30 +1,14 @@
 package iut.group42b.boardgames.client.ui.list.message;
 
-import iut.group42b.boardgames.client.i18n.Messages;
 import iut.group42b.boardgames.client.manager.NetworkInterface;
-import iut.group42b.boardgames.client.manager.UserInterface;
-import iut.group42b.boardgames.client.resources.Resource;
 import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
 import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
-import iut.group42b.boardgames.client.ui.page.home.WaitingView;
-import iut.group42b.boardgames.game.GameAvailability;
-import iut.group42b.boardgames.game.GameRegistry;
-import iut.group42b.boardgames.game.IGame;
-import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingJoinPacket;
 import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
-import iut.group42b.boardgames.util.Debug;
-import iut.group42b.boardgames.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.util.Callback;
-
-import static iut.group42b.boardgames.game.GameAvailability.PLAYABLE;
 
 public class MessagesListViewCellController implements IListViewCellController<ExchangedMessage> {
 
@@ -79,8 +63,8 @@ public class MessagesListViewCellController implements IListViewCellController<E
 			gameCellView.getSenderProfileImageView().setImage(null);
 			gameCellView.getReceiverProfileImageView().setImage(null);
 
-			if (currentlyTalkingToUserProfile != null) {
-				gameCellView.getSenderProfileImageView().setImage(new Image(currentlyTalkingToUserProfile.getImageUrl(), true));
+			if (this.currentlyTalkingToUserProfile != null) {
+				gameCellView.getSenderProfileImageView().setImage(new Image(this.currentlyTalkingToUserProfile.getImageUrl(), true));
 			}
 		}
 

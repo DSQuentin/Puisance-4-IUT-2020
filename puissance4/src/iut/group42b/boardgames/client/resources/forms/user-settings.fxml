@@ -6,8 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
-            prefWidth="900.0" stylesheets="@../css/shapes.css" styleClass="bg" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1">
+            prefWidth="900.0" styleClass="bg"
+            stylesheets="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/css/shapes.css"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane id="auth-container-frame" layoutX="25.0" layoutY="25.0" style="-fx-background-color: gray;"
                     AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0"
@@ -42,7 +43,7 @@
                                            layoutX="80.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true"
                                            AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="72.46427917480469">
                                     <image>
-                                        <Image url="@../images/avatar.png"/>
+                                        <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/avatar.png"/>
                                     </image>
                                 </ImageView>
                                 <VBox layoutX="63.0" layoutY="291.0" AnchorPane.leftAnchor="15.0"
@@ -53,7 +54,7 @@
                                                 <ImageView fitHeight="56.0" fitWidth="21.0" pickOnBounds="true"
                                                            preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../images/Email.png"/>
+                                                        <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/Email.png"/>
                                                     </image>
                                                     <HBox.margin>
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
@@ -75,7 +76,7 @@
                                                 <ImageView fitHeight="24.0" fitWidth="23.0" pickOnBounds="true"
                                                            preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../images/account.png"/>
+                                                        <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/account.png"/>
                                                     </image>
                                                     <HBox.margin>
                                                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
@@ -125,7 +126,7 @@
                                                         <ImageView fitHeight="68.0" fitWidth="28.0" pickOnBounds="true"
                                                                    preserveRatio="true">
                                                             <image>
-                                                                <Image url="@../images/plus.png"/>
+                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/plus.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
@@ -142,7 +143,7 @@
                                                         <ImageView fitHeight="68.0" fitWidth="28.0" pickOnBounds="true"
                                                                    preserveRatio="true">
                                                             <image>
-                                                                <Image url="@../icons/icon-register.png"/>
+                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/icons/icon-register.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
@@ -154,133 +155,157 @@
                                         </HBox>
                                     </bottom>
                                     <center>
-                                        <HBox BorderPane.alignment="CENTER">
+                                        <VBox BorderPane.alignment="CENTER">
                                             <children>
-                                                <VBox alignment="TOP_CENTER">
+                                                <HBox>
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                                                              text="%ui.user.settings.username.label">
-                                                            <VBox.margin>
-                                                                <Insets bottom="50.0"/>
-                                                            </VBox.margin>
-                                                        </Text>
-                                                        <HBox>
+                                                        <VBox alignment="TOP_CENTER">
                                                             <children>
-                                                                <ImageView fitHeight="21.0" fitWidth="26.0"
-                                                                           pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@../images/account.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                                <TextField id="user-setting-textfield-new-username"
-                                                                           promptText="%ui.user.settings.username.textfield">
-                                                                    <HBox.margin>
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                                      text="%ui.user.settings.username.label">
+                                                                    <VBox.margin>
                                                                         <Insets bottom="50.0"/>
-                                                                    </HBox.margin>
-                                                                </TextField>
+                                                                    </VBox.margin>
+                                                                </Text>
+                                                                <HBox>
+                                                                    <children>
+                                                                        <ImageView fitHeight="21.0" fitWidth="26.0"
+                                                                                   pickOnBounds="true"
+                                                                                   preserveRatio="true">
+                                                                            <image>
+                                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/account.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                        <TextField
+                                                                                id="user-setting-textfield-new-username"
+                                                                                promptText="%ui.user.settings.username.textfield">
+                                                                            <HBox.margin>
+                                                                                <Insets bottom="50.0"/>
+                                                                            </HBox.margin>
+                                                                        </TextField>
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox>
+                                                                    <children>
+                                                                        <ImageView fitHeight="21.0" fitWidth="26.0"
+                                                                                   pickOnBounds="true"
+                                                                                   preserveRatio="true">
+                                                                            <image>
+                                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/account.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                        <TextField
+                                                                                id="user-setting-textfield-new-username-confirm"
+                                                                                promptText="%ui.user.settings.username.textfield.confirm"/>
+                                                                    </children>
+                                                                </HBox>
                                                             </children>
-                                                        </HBox>
-                                                        <HBox>
+                                                            <HBox.margin>
+                                                                <Insets right="5.0"/>
+                                                            </HBox.margin>
+                                                        </VBox>
+                                                        <VBox alignment="TOP_CENTER">
                                                             <children>
-                                                                <ImageView fitHeight="21.0" fitWidth="26.0"
-                                                                           pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@../images/account.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                                <TextField
-                                                                        id="user-setting-textfield-new-username-confirm"
-                                                                        promptText="%ui.user.settings.username.textfield.confirm"/>
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                                      text="%ui.user.settings.password.text"
+                                                                      textAlignment="CENTER">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="50.0"/>
+                                                                    </VBox.margin>
+                                                                </Text>
+                                                                <HBox>
+                                                                    <children>
+                                                                        <ImageView fitHeight="18.0" fitWidth="21.0"
+                                                                                   pickOnBounds="true"
+                                                                                   preserveRatio="true">
+                                                                            <image>
+                                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/password.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                        <TextField id="user-setting-textfield-password"
+                                                                                   promptText="%ui.user.settings.password.prompttext">
+                                                                            <HBox.margin>
+                                                                                <Insets bottom="50.0"/>
+                                                                            </HBox.margin>
+                                                                        </TextField>
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox>
+                                                                    <children>
+                                                                        <ImageView fitHeight="18.0" fitWidth="21.0"
+                                                                                   pickOnBounds="true"
+                                                                                   preserveRatio="true">
+                                                                            <image>
+                                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/password.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                        <TextField
+                                                                                id="user-setting-textfield-password-confirm"
+                                                                                promptText="%ui.user.settings.password.prompttext.confirm"/>
+                                                                    </children>
+                                                                </HBox>
                                                             </children>
-                                                        </HBox>
+                                                            <HBox.margin>
+                                                                <Insets right="5.0"/>
+                                                            </HBox.margin>
+                                                        </VBox>
+                                                        <VBox alignment="TOP_CENTER">
+                                                            <children>
+                                                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                                                      text="%ui.user.settings.change.email.label"
+                                                                      textAlignment="CENTER">
+                                                                    <VBox.margin>
+                                                                        <Insets bottom="50.0"/>
+                                                                    </VBox.margin>
+                                                                </Text>
+                                                                <HBox>
+                                                                    <children>
+                                                                        <ImageView fitHeight="16.0" fitWidth="18.0"
+                                                                                   pickOnBounds="true"
+                                                                                   preserveRatio="true">
+                                                                            <image>
+                                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/email-settings.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                        <TextField id="user-setting-textfield-email"
+                                                                                   promptText="%ui.user.settings.change.email.textfield">
+                                                                            <HBox.margin>
+                                                                                <Insets bottom="50.0"/>
+                                                                            </HBox.margin>
+                                                                        </TextField>
+                                                                    </children>
+                                                                </HBox>
+                                                                <HBox>
+                                                                    <children>
+                                                                        <ImageView fitHeight="16.0" fitWidth="18.0"
+                                                                                   pickOnBounds="true"
+                                                                                   preserveRatio="true">
+                                                                            <image>
+                                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/email-settings.png"/>
+                                                                            </image>
+                                                                        </ImageView>
+                                                                        <TextField
+                                                                                id="user-setting-textfield-email-confirm"
+                                                                                promptText="%ui.user.settings.change.email.textfield.confirm"/>
+                                                                    </children>
+                                                                </HBox>
+                                                            </children>
+                                                        </VBox>
                                                     </children>
-                                                    <HBox.margin>
-                                                        <Insets right="5.0"/>
-                                                    </HBox.margin>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER">
+                                                </HBox>
+                                                <HBox>
                                                     <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                                                              text="%ui.user.settings.password.text"
-                                                              textAlignment="CENTER">
-                                                            <VBox.margin>
-                                                                <Insets bottom="50.0"/>
-                                                            </VBox.margin>
-                                                        </Text>
-                                                        <HBox>
-                                                            <children>
-                                                                <ImageView fitHeight="18.0" fitWidth="21.0"
-                                                                           pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@../images/password.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                                <TextField id="user-setting-textfield-password"
-                                                                           promptText="%ui.user.settings.password.prompttext">
-                                                                    <HBox.margin>
-                                                                        <Insets bottom="50.0"/>
-                                                                    </HBox.margin>
-                                                                </TextField>
-                                                            </children>
-                                                        </HBox>
-                                                        <HBox>
-                                                            <children>
-                                                                <ImageView fitHeight="18.0" fitWidth="21.0"
-                                                                           pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@../images/password.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                                <TextField id="user-setting-textfield-password-confirm"
-                                                                           promptText="%ui.user.settings.password.prompttext.confirm"/>
-                                                            </children>
-                                                        </HBox>
+                                                        <TextField id="user-settings-textfield-url-profile"
+                                                                   promptText="New url profile" HBox.hgrow="ALWAYS">
+                                                            <HBox.margin>
+                                                                <Insets bottom="10.0" left="10.0" right="10.0"
+                                                                        top="10.0"/>
+                                                            </HBox.margin>
+                                                        </TextField>
                                                     </children>
-                                                    <HBox.margin>
-                                                        <Insets right="5.0"/>
-                                                    </HBox.margin>
-                                                </VBox>
-                                                <VBox alignment="TOP_CENTER">
-                                                    <children>
-                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                                                              text="%ui.user.settings.change.email.label"
-                                                              textAlignment="CENTER">
-                                                            <VBox.margin>
-                                                                <Insets bottom="50.0"/>
-                                                            </VBox.margin>
-                                                        </Text>
-                                                        <HBox>
-                                                            <children>
-                                                                <ImageView fitHeight="16.0" fitWidth="18.0"
-                                                                           pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@../images/email-settings.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                                <TextField id="user-setting-textfield-email"
-                                                                           promptText="%ui.user.settings.change.email.textfield">
-                                                                    <HBox.margin>
-                                                                        <Insets bottom="50.0"/>
-                                                                    </HBox.margin>
-                                                                </TextField>
-                                                            </children>
-                                                        </HBox>
-                                                        <HBox>
-                                                            <children>
-                                                                <ImageView fitHeight="16.0" fitWidth="18.0"
-                                                                           pickOnBounds="true" preserveRatio="true">
-                                                                    <image>
-                                                                        <Image url="@../images/email-settings.png"/>
-                                                                    </image>
-                                                                </ImageView>
-                                                                <TextField id="user-setting-textfield-email-confirm"
-                                                                           promptText="%ui.user.settings.change.email.textfield.confirm"/>
-                                                            </children>
-                                                        </HBox>
-                                                    </children>
-                                                </VBox>
+                                                </HBox>
                                             </children>
-                                        </HBox>
+                                        </VBox>
                                     </center>
                                     <top>
                                         <StackPane BorderPane.alignment="CENTER">
@@ -293,7 +318,7 @@
                                                         <ImageView fitHeight="69.0" fitWidth="81.0" pickOnBounds="true"
                                                                    preserveRatio="true">
                                                             <image>
-                                                                <Image url="@../images/logo.png"/>
+                                                                <Image url="@../../../../../../../../../puissance4-oldlocal/src/iut/group42b/boardgames/client/resources/images/logo.png"/>
                                                             </image>
                                                             <HBox.margin>
                                                                 <Insets left="10.0"/>

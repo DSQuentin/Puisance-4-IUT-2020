@@ -7,6 +7,8 @@ import iut.group42b.boardgames.game.impl.connect4.packet.Connect4GridUpdatePacke
 import iut.group42b.boardgames.game.player.Player;
 import iut.group42b.boardgames.network.packet.IPacket;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Connect4GameArena implements IGameArena {
@@ -31,6 +33,8 @@ public class Connect4GameArena implements IGameArena {
 
 		this.sideToPlay = ThreadLocalRandom.current().nextBoolean() ? Connect4Side.YELLOW : Connect4Side.RED;
 		this.grid = new Connect4Side[GRID_HEIGHT][GRID_WIDTH];
+
+		this.state = State.PLAYING; // TODO Move
 
 		for (int y = 0; y < GRID_HEIGHT; y++) {
 			for (int x = 0; x < GRID_WIDTH; x++) {
@@ -102,14 +106,18 @@ public class Connect4GameArena implements IGameArena {
 
 	@Override
 	public void start(IGameHandler gameHandler) {
-		((Connect4GameHandler) gameHandler).startArena(this, this.redPlayer, this.yellowPlayer);
+		try {
+			((Connect4GameHandler) gameHandler).startArena(this, this.redPlayer, this.yellowPlayer);
 
-		this.yellowPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.YELLOW, this.redPlayer.getSocketHandler().getUserProfile()));
-		this.redPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.RED, this.yellowPlayer.getSocketHandler().getUserProfile()));
+			this.yellowPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.YELLOW, this.redPlayer.getSocketHandler().getUserProfile()));
+			this.redPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.RED, this.yellowPlayer.getSocketHandler().getUserProfile()));
 
-		this.broadcast(new Connect4GridUpdatePacket(this.grid, this.sideToPlay));
+			this.broadcast(new Connect4GridUpdatePacket(this.grid, this.sideToPlay));
 
-		this.startedAt = System.currentTimeMillis();
+			this.startedAt = System.currentTimeMillis();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	@Override
@@ -195,6 +203,11 @@ public class Connect4GameArena implements IGameArena {
 		return builder.toString();
 	}
 
+	@Override
+	public List<Player> getPlayers() {
+		return Arrays.asList(this.redPlayer, this.yellowPlayer);
+	}
+
 	public int getScoreRed() {
 		return this.scoreRed;
 	}
@@ -251,7 +264,6 @@ public class Connect4GameArena implements IGameArena {
 		public int getStateCode() {
 			return this.stateCode;
 		}
-
 	}
 
 }

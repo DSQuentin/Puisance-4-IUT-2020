@@ -6,7 +6,6 @@ import iut.group42b.boardgames.util.DataBuffer;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ExchangedMessage implements IWritableReadableObject {

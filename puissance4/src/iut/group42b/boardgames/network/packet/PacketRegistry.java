@@ -6,7 +6,6 @@ import iut.group42b.boardgames.network.packet.impl.PongPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
 import iut.group42b.boardgames.network.packet.impl.connection.ConnectionLostPacket;
 import iut.group42b.boardgames.network.packet.impl.connection.HeartbeatPacket;
-import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
 import iut.group42b.boardgames.util.Logger;
 
 import java.util.HashMap;

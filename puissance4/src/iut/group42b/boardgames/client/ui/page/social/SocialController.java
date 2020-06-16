@@ -3,6 +3,7 @@ package iut.group42b.boardgames.client.ui.page.social;
 import iut.group42b.boardgames.client.i18n.Messages;
 import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
+import iut.group42b.boardgames.client.ui.helper.NoSelectionModel;
 import iut.group42b.boardgames.client.ui.list.friend.MessageFriendListViewCellController;
 import iut.group42b.boardgames.client.ui.list.message.MessagesListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
@@ -32,10 +33,9 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class SocialController implements IController, INetworkHandler {
@@ -73,15 +73,9 @@ public class SocialController implements IController, INetworkHandler {
 		} else if (event.getSource() == this.view.getAddFriendsButton()) {
 			this.addFriendsAlertBox();
 
+
 		} else if (event.getSource() == this.view.getFightButton()) {
-
-			List<String> choices = new ArrayList<>();
-			Collection<IGame> games = GameRegistry.get().all();
-
-			for (IGame game : games) {
-				choices.add(game.getName());
-			}
-
+			List<String> choices = GameRegistry.get().playables().stream().map(IGame::getName).collect(Collectors.toList());
 
 			IGame defaultGame = new Connect4Game();
 			ChoiceDialog<String> dialog = new ChoiceDialog<>(defaultGame.getName(), choices);
@@ -92,12 +86,11 @@ public class SocialController implements IController, INetworkHandler {
 			Optional<String> result = dialog.showAndWait();
 			// TODO : send invitations to user
 			result.ifPresent(s -> System.out.println("Your choice: " + s));
-
 		}
 
 	}
 
-	public void addFriendsAlertBox(){
+	public void addFriendsAlertBox() {
 		TextInputDialog dialog = new TextInputDialog("Walter02");
 		dialog.setTitle(Messages.UI_ALERT_TITLE_FRIEND.use());
 		dialog.setHeaderText(Messages.UI_ALERT_HEADER_FRIEND.use());
@@ -124,12 +117,13 @@ public class SocialController implements IController, INetworkHandler {
 		this.view.getMyUserProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
 
 		this.view.getFriendsListView().setItems(this.friendObservableList);
-		this.view.getMessagesListView().setItems(this.messagesList);
-		this.view.getSendMessageButton().setOnAction(this);
-
-		this.view.getMessagesListView().setFocusTraversable(false);
 		this.view.getFriendsListView().setCellFactory(this.messageFriendListViewCellController.cellFactory());
+
+		this.view.getMessagesListView().setItems(this.messagesList);
+		this.view.getMessagesListView().setSelectionModel(new NoSelectionModel<>());
 		this.view.getMessagesListView().setCellFactory(this.messagesListViewCellController.cellFactory());
+
+		this.view.getSendMessageButton().setOnAction(this);
 
 		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
 		this.view.getLogoutButton().setOnAction(this);

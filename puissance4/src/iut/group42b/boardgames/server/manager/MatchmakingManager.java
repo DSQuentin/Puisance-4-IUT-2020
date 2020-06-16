@@ -9,10 +9,7 @@ import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.util.Logger;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MatchmakingManager implements INetworkHandler {
 
@@ -51,7 +48,11 @@ public class MatchmakingManager implements INetworkHandler {
 				socketList.add(handler);
 
 				if (socketList.size() >= game.getRequiredPlayer()) {
-					readyToPlaySockets = socketList.subList(0, game.getRequiredPlayer());
+					synchronized (socketList) {
+						readyToPlaySockets = new ArrayList<>(socketList.subList(0, game.getRequiredPlayer()));
+
+						socketList.removeAll(readyToPlaySockets);
+					}
 				}
 			}
 

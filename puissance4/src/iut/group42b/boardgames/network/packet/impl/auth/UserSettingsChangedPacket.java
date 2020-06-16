@@ -18,7 +18,7 @@ public class UserSettingsChangedPacket implements IPacket {
 	 * Constructor UserSettingsChangedPacket Empty to rebuild the packet.
 	 */
 	public UserSettingsChangedPacket() {
-		this(0, 0, 0, 0, null);
+		this(0, 0, 0, 0, new UserProfile());
 	}
 
 
@@ -95,8 +95,6 @@ public class UserSettingsChangedPacket implements IPacket {
 		return this.emailChanged == UserManager.CHANGE_DONE;
 	}
 
-	// TODO finish
-
 	/**
 	 * Check if Password is Changed.
 	 *
@@ -123,4 +121,5 @@ public class UserSettingsChangedPacket implements IPacket {
 	public UserProfile getNewUserProfile() {
 		return this.newUserProfile;
 	}
+
 }

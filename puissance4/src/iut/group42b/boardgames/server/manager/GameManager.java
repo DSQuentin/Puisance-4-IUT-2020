@@ -54,7 +54,7 @@ public class GameManager implements INetworkHandler {
 			Player player = entry.getKey();
 			IGameArena arena = entry.getValue();
 
-			if (player.getSocketHandler().equals(socketHandler)) {
+			if (socketHandler == player.getSocketHandler()) {
 				return arena;
 			}
 		}
@@ -91,6 +91,17 @@ public class GameManager implements INetworkHandler {
 			arena.start(gameHandler);
 		}).start();
 
+		System.out.println("AFTER START " + this.playerToArenaMap);
+	}
+
+	public void stop(IGameArena arena) {
+		List<Player> players = arena.getPlayers();
+
+		for (Player player : players) {
+			this.playerToArenaMap.remove(player);
+		}
+
+		System.out.println("AFTER END " + this.playerToArenaMap);
 	}
 
 	/**

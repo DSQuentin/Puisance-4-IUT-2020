@@ -27,20 +27,19 @@ public class LoginView extends AbstractView {
 	}
 
 	/* Constructor */
-	public LoginView(String forcedEmail, String forcedPassword){
+	public LoginView(String forcedEmail, String forcedPassword) {
 		super();
 
 		this.forcedEmail = forcedEmail;
 		this.forcedPassword = forcedPassword;
 
 		/* "fichiersource-class-usage" */
-		this.emailTextField = (TextField) this.findById("login-textfield-email");
+		this.emailTextField = this.findById("login-textfield-email");
 		this.passwordField = (PasswordField) this.findById("login-textfield-password");
-		this.submitButton = (Button) this.findById("login-button-submit");
-		this.registerText = (Hyperlink) this.findById("login-text-to-register");
-		this.carousel = (AnchorPane) this.findById("auth-container-hbox");
+		this.submitButton = this.findById("login-button-submit");
+		this.registerText = this.findById("login-text-to-register");
+		this.carousel = this.findById("auth-container-hbox");
 		this.carousel.getChildren().add(new Carousel());
-
 
 
 		if (forcedEmail != null) {

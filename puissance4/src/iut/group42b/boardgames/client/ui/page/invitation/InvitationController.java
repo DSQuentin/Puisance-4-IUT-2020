@@ -7,13 +7,12 @@ import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
-import iut.group42b.boardgames.client.ui.page.social.SocialView;
 import iut.group42b.boardgames.social.model.UserProfile;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
-public class InvitationController  implements IController {
+public class InvitationController implements IController {
 
 	private InvitationView view;
 

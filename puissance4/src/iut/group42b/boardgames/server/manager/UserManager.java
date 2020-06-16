@@ -5,7 +5,6 @@ import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
-import iut.group42b.boardgames.server.network.NetworkServer;
 import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
@@ -13,7 +12,6 @@ import iut.group42b.boardgames.social.packet.message.MessageListPacket;
 import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
 import iut.group42b.boardgames.util.Logger;
 
-import java.net.NetworkInterface;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -99,7 +97,7 @@ public class UserManager implements INetworkHandler {
 			int senderId = handler.getUserProfile().getId();
 			int receiverId = message.getUserId();
 
-			addMessage(senderId, message);
+			this.addMessage(senderId, message);
 
 			handler.queue(new MessageListPacket(senderId, this.getExchangedMessageWith(senderId, receiverId)));
 
@@ -203,7 +201,7 @@ public class UserManager implements INetworkHandler {
 			preparedStatement.setString(1, registerPacket.getUsername());
 			preparedStatement.setString(2, registerPacket.getEmail());
 			preparedStatement.setString(3, registerPacket.getPassword());
-			preparedStatement.setString(4, "https://imgur.com/download/ljrctP0"); //default image link TODO: change it
+			preparedStatement.setString(4, "https://imgur.com/download/ljrctP0"); //default image link TODO: change it in the SQL
 
 			preparedStatement.execute();
 
@@ -321,8 +319,8 @@ public class UserManager implements INetworkHandler {
 	/**
 	 * Get the message between tow people.
 	 *
-	 * @param fromUserId     User id who send the message.
-	 * @param toUserId User id of receiver
+	 * @param fromUserId User id who send the message.
+	 * @param toUserId   User id of receiver
 	 * @return A List of ExchangedMessage between 2 user.
 	 */
 	public List<ExchangedMessage> getExchangedMessageWith(int fromUserId, int toUserId) {

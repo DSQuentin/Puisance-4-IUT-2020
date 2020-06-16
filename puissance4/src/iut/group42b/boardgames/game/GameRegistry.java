@@ -4,8 +4,10 @@ import iut.group42b.boardgames.util.Logger;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class GameRegistry {
 
@@ -28,7 +30,7 @@ public class GameRegistry {
 		this.gameIdIncrement = new AtomicInteger(0);
 		this.gameToIdMap = new HashMap<>();
 		this.idToGameMap = new HashMap<>();
-		this.games = new HashMap<>();
+		this.games = new LinkedHashMap<>();
 	}
 
 	/**
@@ -58,6 +60,13 @@ public class GameRegistry {
 	 */
 	public Collection<IGame> all() {
 		return this.games.keySet();
+	}
+
+	public Collection<IGame> playables() {
+		return this.all()
+				.stream()
+				.filter((game) -> GameAvailability.PLAYABLE.equals(game.getAvailability()))
+				.collect(Collectors.toList());
 	}
 
 	/**

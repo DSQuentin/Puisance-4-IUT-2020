@@ -1,253 +1,286 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/search-friends.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" stylesheets="@../css/search-friends.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <BorderPane layoutX="6.0" style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutX="6.0" style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <VBox BorderPane.alignment="CENTER">
                     <children>
-                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: #365186;" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0"
+                              style="-fx-background-color: #365186;" VBox.vgrow="ALWAYS">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                     <children>
-                                        <ImageView id="logo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView id="logo" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
+                                                   preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/logo.png" />
+                                                <Image url="@../images/logo.png"/>
                                             </image>
                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
+                                                <Insets bottom="5.0" top="5.0"/>
                                             </HBox.margin>
                                         </ImageView>
-                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Online board Games" textAlignment="CENTER">
+                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Online board Games" textAlignment="CENTER">
                                             <font>
-                                                <Font name="System Bold" size="24.0" />
+                                                <Font name="System Bold" size="24.0"/>
                                             </font>
                                             <HBox.margin>
-                                                <Insets right="100.0" />
+                                                <Insets right="100.0"/>
                                             </HBox.margin>
                                         </Text>
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                     <children>
-                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #38B295; -fx-opacity: 0;" text="ADMIN" textFill="WHITE">
+                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                                style="-fx-background-color: #38B295; -fx-opacity: 0;" text="ADMIN"
+                                                textFill="WHITE">
                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>
                                             <font>
-                                                <Font size="14.0" />
+                                                <Font size="14.0"/>
                                             </font>
                                         </Button>
-                                        <Button id="admin-dashboard-logout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #38B295;" text="LOG OUT" textFill="WHITE">
+                                        <Button id="admin-dashboard-logout" alignment="CENTER" contentDisplay="CENTER"
+                                                mnemonicParsing="false" style="-fx-background-color: #38B295;"
+                                                text="LOG OUT" textFill="WHITE">
                                             <HBox.margin>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                             </HBox.margin>
                                             <font>
-                                                <Font size="14.0" />
+                                                <Font size="14.0"/>
                                             </font>
                                         </Button>
                                     </children>
                                     <HBox.margin>
-                                        <Insets left="200.0" />
+                                        <Insets left="200.0"/>
                                     </HBox.margin>
                                 </HBox>
-                                <ImageView id="admin-dashboard-imageview-profile" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView id="admin-dashboard-imageview-profile" fitHeight="40.0" fitWidth="40.0"
+                                           pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/avatar.png" />
+                                        <Image url="@../images/avatar.png"/>
                                     </image>
                                     <HBox.margin>
-                                        <Insets bottom="5.0" top="5.0" />
+                                        <Insets bottom="5.0" top="5.0"/>
                                     </HBox.margin>
                                 </ImageView>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0"/>
                     </children>
                 </VBox>
             </top>
             <left>
-                <Pane BorderPane.alignment="CENTER" />
+                <Pane BorderPane.alignment="CENTER"/>
             </left>
         </BorderPane>
-      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-         <center>
-            <GridPane BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <AnchorPane style="-fx-background-color: white;">
-                     <children>
-                        <VBox alignment="CENTER" layoutY="33.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%admin.dashboard.users.manager" textAlignment="CENTER" wrappingWidth="85.35693359375">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Text>
-                              <Button id="admin-dashboard-manage-users" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #1E90FF;" text="%admin.dashboard.online.manage" textFill="WHITE" />
-                           </children>
-                        </VBox>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-                  <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="1">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%admin.dashboard.games.played.game1" textAlignment="CENTER" wrappingWidth="150.0">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Text>
-                              <Text id="admin-dashboard-games-played-game1" strokeType="OUTSIDE" strokeWidth="0.0" text="21">
-                                 <font>
-                                    <Font size="30.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-                  <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="2">
-                     <children>
-                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%admin.dashboard.games.played.game2" wrappingWidth="150.0">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Text>
-                              <Text id="admin-dashboard-games-played-game2" strokeType="OUTSIDE" strokeWidth="0.0" text="68">
-                                 <font>
-                                    <Font size="30.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-                  <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="3">
-                     <children>
-                        <VBox alignment="CENTER" layoutX="14.0" layoutY="13.8134765625" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%admin.dashboard.games.played.game3" wrappingWidth="150.0">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Text>
-                              <Text id="admin-dashboard-games-played-game3" strokeType="OUTSIDE" strokeWidth="0.0" text="45">
-                                 <font>
-                                    <Font size="30.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-                  <AnchorPane minHeight="150.0" minWidth="150.0" style="-fx-background-color: white;" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-                  <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <VBox alignment="CENTER" layoutX="4.0" layoutY="14.41796875" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%admin.dashboard.top.user" textAlignment="CENTER" wrappingWidth="85.35692989826202">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Text>
-                              <Text id="admin-dashboard-top-user" strokeType="OUTSIDE" strokeWidth="0.0" text="Jane Doe" textAlignment="CENTER" wrappingWidth="149.99999105930328">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Text>
-                              <Text id="admin-dashboard-top-user-score" strokeType="OUTSIDE" strokeWidth="0.0" text="152 000 points" textAlignment="CENTER" wrappingWidth="158.00000298768282" />
-                           </children>
-                        </VBox>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-                  <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <VBox alignment="CENTER" layoutY="14.41796875" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%admin.dashboard.online.admins">
-                                 <font>
-                                    <Font name="System Bold" size="20.0" />
-                                 </font>
-                              </Text>
-                              <ListView prefHeight="100.0" prefWidth="150.0" />
-                           </children>
-                           <padding>
-                              <Insets left="5.0" right="5.0" />
-                           </padding>
-                        </VBox>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-                  <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <children>
-                        <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <ImageView id="admin-dashboard-imagegraph" fitHeight="144.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../../../../../../Images/téléchargement.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </VBox>
-                     </children>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </GridPane.margin>
-                  </AnchorPane>
-               </children>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </GridPane>
-         </center>
-      </BorderPane>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="60.0">
+            <center>
+                <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <AnchorPane style="-fx-background-color: white;">
+                            <children>
+                                <VBox alignment="CENTER" layoutY="33.0" AnchorPane.bottomAnchor="-0.0"
+                                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                      AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="%admin.dashboard.users.manager" textAlignment="CENTER"
+                                              wrappingWidth="85.35693359375">
+                                            <font>
+                                                <Font name="System Bold" size="20.0"/>
+                                            </font>
+                                        </Text>
+                                        <Button id="admin-dashboard-manage-users" mnemonicParsing="false"
+                                                prefHeight="30.0" prefWidth="120.0"
+                                                style="-fx-background-color: #1E90FF;"
+                                                text="%admin.dashboard.online.manage" textFill="WHITE"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="1">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
+                                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="%admin.dashboard.games.played.game1" textAlignment="CENTER"
+                                              wrappingWidth="150.0">
+                                            <font>
+                                                <Font name="System Bold" size="15.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text id="admin-dashboard-games-played-game1" strokeType="OUTSIDE"
+                                              strokeWidth="0.0" text="21">
+                                            <font>
+                                                <Font size="30.0"/>
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="2">
+                            <children>
+                                <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="%admin.dashboard.games.played.game2" wrappingWidth="150.0">
+                                            <font>
+                                                <Font name="System Bold" size="15.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text id="admin-dashboard-games-played-game2" strokeType="OUTSIDE"
+                                              strokeWidth="0.0" text="68">
+                                            <font>
+                                                <Font size="30.0"/>
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="3">
+                            <children>
+                                <VBox alignment="CENTER" layoutX="14.0" layoutY="13.8134765625"
+                                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="%admin.dashboard.games.played.game3" wrappingWidth="150.0">
+                                            <font>
+                                                <Font name="System Bold" size="15.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text id="admin-dashboard-games-played-game3" strokeType="OUTSIDE"
+                                              strokeWidth="0.0" text="45">
+                                            <font>
+                                                <Font size="30.0"/>
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane minHeight="150.0" minWidth="150.0" style="-fx-background-color: white;"
+                                    GridPane.rowIndex="1">
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <children>
+                                <VBox alignment="CENTER" layoutX="4.0" layoutY="14.41796875"
+                                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%admin.dashboard.top.user"
+                                              textAlignment="CENTER" wrappingWidth="85.35692989826202">
+                                            <font>
+                                                <Font name="System Bold" size="20.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text id="admin-dashboard-top-user" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Jane Doe" textAlignment="CENTER" wrappingWidth="149.99999105930328">
+                                            <font>
+                                                <Font name="System Bold" size="20.0"/>
+                                            </font>
+                                        </Text>
+                                        <Text id="admin-dashboard-top-user-score" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="152 000 points" textAlignment="CENTER"
+                                              wrappingWidth="158.00000298768282"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                            <children>
+                                <VBox alignment="CENTER" layoutY="14.41796875" AnchorPane.bottomAnchor="0.0"
+                                      AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                      AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="%admin.dashboard.online.admins">
+                                            <font>
+                                                <Font name="System Bold" size="20.0"/>
+                                            </font>
+                                        </Text>
+                                        <ListView prefHeight="100.0" prefWidth="150.0"/>
+                                    </children>
+                                    <padding>
+                                        <Insets left="5.0" right="5.0"/>
+                                    </padding>
+                                </VBox>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                        <AnchorPane style="-fx-background-color: white;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                            <children>
+                                <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <ImageView id="admin-dashboard-imagegraph" fitHeight="144.0" fitWidth="150.0"
+                                                   pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../../../../../../../../../Images/téléchargement.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <GridPane.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </GridPane.margin>
+                        </AnchorPane>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets/>
+                    </BorderPane.margin>
+                </GridPane>
+            </center>
+        </BorderPane>
     </children>
 </AnchorPane>

@@ -20,9 +20,9 @@ public class IndexView extends AbstractView {
 	/* Constructor */
 	public IndexView() {
 		super();
-		this.PlayNowButton = (Button) this.findById("index-button-play-now");
-		this.toRegisterButton = (Button) this.findById("index-button-register");
-		this.ToLoginButton = (Button) this.findById("index-button-login");
+		this.PlayNowButton = this.findById("index-button-play-now");
+		this.toRegisterButton = this.findById("index-button-register");
+		this.ToLoginButton = this.findById("index-button-login");
 	}
 
 	@Override

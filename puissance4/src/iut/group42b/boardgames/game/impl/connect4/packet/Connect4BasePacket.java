@@ -23,15 +23,15 @@ public abstract class Connect4BasePacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(arenaIdentifier);
+		buffer.write(this.arenaIdentifier);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		arenaIdentifier = buffer.readInt();
+		this.arenaIdentifier = buffer.readInt();
 	}
 
 	public int getArenaIdentifier() {
-		return arenaIdentifier;
+		return this.arenaIdentifier;
 	}
 }

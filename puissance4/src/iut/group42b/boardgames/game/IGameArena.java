@@ -1,6 +1,9 @@
 package iut.group42b.boardgames.game;
 
+import iut.group42b.boardgames.game.player.Player;
 import iut.group42b.boardgames.network.packet.IPacket;
+
+import java.util.List;
 
 public interface IGameArena {
 
@@ -45,5 +48,7 @@ public interface IGameArena {
 	 * @return String
 	 */
 	String toJSONGameState();
+
+	List<Player> getPlayers();
 
 }

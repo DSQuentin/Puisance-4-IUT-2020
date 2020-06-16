@@ -2,6 +2,7 @@ package iut.group42b.boardgames.client.ui.page.home;
 
 import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
+import iut.group42b.boardgames.client.ui.helper.NoSelectionModel;
 import iut.group42b.boardgames.client.ui.list.game.GameListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
@@ -69,12 +70,15 @@ public class HomeController implements IController, INetworkHandler {
 		this.view.getToInvitationButton().setOnAction(this);
 		this.view.getAdminButton().setOnAction(this);
 		this.view.getGamesListView().setCellFactory(this.gameListViewCellController.cellFactory());
+		this.view.getGamesListView().setSelectionModel(new NoSelectionModel<>());
+
 		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
 
-		if(NetworkInterface.get().getSocketHandler().getUserProfile().isAdmin()){
+		if (NetworkInterface.get().getSocketHandler().getUserProfile().isAdmin()) {
 			this.view.getAdminButton().setVisible(true);
 			this.view.getAdminButton().setStyle("-fx-opacity: 1");
 		}
+
 		this.view.getSearchTextField().textProperty().addListener((observable) -> {
 			String filter = this.view.getSearchTextField().getText();
 
@@ -88,7 +92,6 @@ public class HomeController implements IController, INetworkHandler {
 				this.gamesFilterList.setPredicate((game) -> game.getName().toLowerCase().contains(filter.toLowerCase()));
 			}
 		});
-
 
 		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new OwnView());

@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox alignment="CENTER" AnchorPane.leftAnchor="0.0">
-         <children>
-            <ImageView id="sender-imageview-profile" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-               <image>
-                  <Image url="@../images/avatar.png" />
-               </image>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </ImageView>
-         </children>
-      </VBox>
-      <HBox alignment="CENTER" layoutX="334.0" layoutY="108.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
-               <children>
-                  <HBox alignment="CENTER">
-                     <children>
-                        <HBox id="content-message" alignment="CENTER" style="-fx-background-color: #0275B1; -fx-background-radius: 2;">
-                           <children>
-                              <Text id="message-text-content" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="I’m okay! Do you want to play to Connect 4? " HBox.hgrow="ALWAYS">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </Text>
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+            minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox alignment="CENTER" AnchorPane.leftAnchor="0.0">
+            <children>
+                <ImageView id="sender-imageview-profile" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true"
+                           preserveRatio="true" VBox.vgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/avatar.png"/>
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </VBox.margin>
+                </ImageView>
+            </children>
+        </VBox>
+        <HBox alignment="CENTER" layoutX="334.0" layoutY="108.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                      HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <HBox id="content-message" alignment="CENTER"
+                                      style="-fx-background-color: #0275B1; -fx-background-radius: 2;">
+                                    <children>
+                                        <Text id="message-text-content" fill="WHITE" strokeType="OUTSIDE"
+                                              strokeWidth="0.0" text="I’m okay! Do you want to play to Connect 4? "
+                                              HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                            </HBox.margin>
+                                        </Text>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                    </HBox.margin>
+                                </HBox>
+                            </children>
                         </HBox>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" VBox.vgrow="SOMETIMES">
-                     <children>
-                        <Text id="sender-text-date" strokeType="OUTSIDE" strokeWidth="0.0" text="4:30 PM">
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
-                        </Text>
-                        <Text id="receiver-text-date" strokeType="OUTSIDE" strokeWidth="0.0" text="4:30 PM" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <VBox alignment="CENTER" AnchorPane.rightAnchor="0.0">
-         <children>
-            <ImageView id="receiver-imageview-profile" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
-               <image>
-                  <Image url="@../images/avatar.png" />
-               </image>
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
-            </ImageView>
-         </children>
-      </VBox>
-   </children>
+                        <HBox alignment="CENTER" VBox.vgrow="SOMETIMES">
+                            <children>
+                                <Text id="sender-text-date" strokeType="OUTSIDE" strokeWidth="0.0" text="4:30 PM">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                    </HBox.margin>
+                                </Text>
+                                <Text id="receiver-text-date" strokeType="OUTSIDE" strokeWidth="0.0" text="4:30 PM"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <VBox alignment="CENTER" AnchorPane.rightAnchor="0.0">
+            <children>
+                <ImageView id="receiver-imageview-profile" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true"
+                           preserveRatio="true" VBox.vgrow="ALWAYS">
+                    <image>
+                        <Image url="@../images/avatar.png"/>
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </VBox.margin>
+                </ImageView>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

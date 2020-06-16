@@ -35,8 +35,8 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 	private Connect4UIView view;
 	private Connect4GridCanvas canvas;
 	private Chronometer chronometer;
-	private static Integer userNumberToken = Connect4GameArena.GRID_HEIGHT*Connect4GameArena.GRID_WIDTH;
-	private static Integer opponentNumberToken = Connect4GameArena.GRID_HEIGHT*Connect4GameArena.GRID_WIDTH;
+	private static final Integer userNumberToken = Connect4GameArena.GRID_HEIGHT * Connect4GameArena.GRID_WIDTH;
+	private static final Integer opponentNumberToken = Connect4GameArena.GRID_HEIGHT * Connect4GameArena.GRID_WIDTH;
 
 	@Override
 	public void attachView(IView view) {
@@ -58,8 +58,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 		this.view.getGridContainerStackPane().getChildren().add(this.canvas); // add canvas witch contain grid into stackpane
 
-		// Close the waiting dialog
-		UserInterface.get().getCurrentDialog().close();
+		UserInterface.get().closeCurrentDialog();
 	}
 
 	@Override
@@ -81,7 +80,6 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 			this.updateWhichTurnToPlayText(gridUpdatePacket.getNextSideToPlay());
 			this.updateRemainingTokenTexts();
-
 		} else if (packet instanceof Connect4GameInfoPacket) {
 			Connect4GameInfoPacket gameInfoPacket = (Connect4GameInfoPacket) packet;
 
@@ -95,13 +93,26 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 			this.chronometer = new Chronometer(this.view.getTimerText()::setText);
 			this.chronometer.setRunning(true);
 			this.chronometer.start();
-		}
-		else if (packet instanceof PlayerWinPacket) {
+		} else if (packet instanceof PlayerWinPacket) {
+			PlayerWinPacket winPacket = (PlayerWinPacket) packet;
+
+			this.stopChronometerIfRunning();
+
+			String winReason;
+			if (winPacket.isSurrender()) {
+				winReason = "surrender";
+			} else if (winPacket.isConnectionLost()) {
+				winReason = "connection lost";
+			} else {
+				winReason = "normal";
+			}
+
 			Platform.runLater(() -> {
-				this.stopChronometerIfRunning();
+
+
 				Alert al = new Alert(Alert.AlertType.INFORMATION);
 				al.setTitle("Victory");
-				al.setHeaderText("Congratulations!\n You won!");
+				al.setHeaderText("Congratulations!\n You won by: " + winReason);
 
 				Optional<ButtonType> result = al.showAndWait();
 				System.out.println("agegfd");

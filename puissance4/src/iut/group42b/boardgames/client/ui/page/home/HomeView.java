@@ -26,11 +26,11 @@ public class HomeView extends AbstractView {
 		super();
 
 		this.gamesListView = this.findById("home-listview-games");
-		this.profileImageView =  this.findById("home-imageview-profile");
-		this.logoutButton =  this.findById("home-button-tologout");
-		this.toSocialButton =  this.findById("home-button-social");
-		this.searchTextField =  this.findById("home-search-game");
-		this.toInvitationButton =  this.findById("home-invitation-button");
+		this.profileImageView = this.findById("home-imageview-profile");
+		this.logoutButton = this.findById("home-button-tologout");
+		this.toSocialButton = this.findById("home-button-social");
+		this.searchTextField = this.findById("home-search-game");
+		this.toInvitationButton = this.findById("home-invitation-button");
 		this.adminButton = this.findById("home-admin-button");
 
 
@@ -46,7 +46,9 @@ public class HomeView extends AbstractView {
 		return new HomeController();
 	}
 
-	public Button getAdminButton() {return this.adminButton;}
+	public Button getAdminButton() {
+		return this.adminButton;
+	}
 
 	public ListView<IGame> getGamesListView() {
 		return this.gamesListView;

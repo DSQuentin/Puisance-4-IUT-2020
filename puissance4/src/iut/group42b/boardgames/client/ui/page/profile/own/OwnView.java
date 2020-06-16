@@ -28,19 +28,19 @@ public class OwnView extends AbstractView {
 
 	public OwnView() {
 		super();
-		this.logoImageView = (ImageView) this.findById("logo");
-		this.toLogOutButton = (Button) this.findById("logout");
-		this.profileImageView = (ImageView) this.findById("profile-picture");
-		this.profileImageOnProfile = (ImageView) this.findById("own-avatar");
-		this.numberGamesPlayedText = (Text) this.findById("number-game-played");
-		this.usernameText = (Text) this.findById("username");
-		this.numberFriendsText = (Text) this.findById("number-friends");
-		this.numberWinText = (Text) this.findById("number-win");
-		this.timeText = (Text) this.findById("time");
-		this.scoreText = (Text) this.findById("score");
-		this.toSettingsButton = (Button) this.findById("own-profile-button-goto-settings");
-		this.winCircle = (AnchorPane) this.findById("win-circle");
-		this.defeatCircle = (AnchorPane) this.findById("defeat-circle");
+		this.logoImageView = this.findById("logo");
+		this.toLogOutButton = this.findById("logout");
+		this.profileImageView = this.findById("profile-picture");
+		this.profileImageOnProfile = this.findById("own-avatar");
+		this.numberGamesPlayedText = this.findById("number-game-played");
+		this.usernameText = this.findById("username");
+		this.numberFriendsText = this.findById("number-friends");
+		this.numberWinText = this.findById("number-win");
+		this.timeText = this.findById("time");
+		this.scoreText = this.findById("score");
+		this.toSettingsButton = this.findById("own-profile-button-goto-settings");
+		this.winCircle = this.findById("win-circle");
+		this.defeatCircle = this.findById("defeat-circle");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
 	}
