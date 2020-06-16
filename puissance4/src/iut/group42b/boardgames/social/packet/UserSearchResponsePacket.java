@@ -13,12 +13,20 @@ public class UserSearchResponsePacket implements IPacket {
 	private String query;
 	private List<UserProfile> found;
 
-	/* Constructor */
+
+	/**
+	 * Constructor UserSearchResponsePacket Empty to rebuild the packet.
+	 */
 	public UserSearchResponsePacket() {
 		this(null, Collections.emptyList());
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor UserSearchResponsePacket
+	 *
+	 * @param query String.
+	 * @param found List<UserProfile>.
+	 */
 	public UserSearchResponsePacket(String query, List<UserProfile> found) {
 		this.query = query;
 		this.found = found;
@@ -26,22 +34,32 @@ public class UserSearchResponsePacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(query);
-		buffer.writeList(found);
+		buffer.write(this.query);
+		buffer.writeList(this.found);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		query = buffer.readString();
-		found = buffer.readList(() -> new UserProfile());
+		this.query = buffer.readString();
+		this.found = buffer.readList(UserProfile::new);
 	}
 
+	/**
+	 * Get the Query.
+	 *
+	 * @return String
+	 */
 	public String getQuery() {
-		return query;
+		return this.query;
 	}
 
+	/**
+	 * Get Founded User Profiles.
+	 *
+	 * @return List<UserProfile>
+	 */
 	public List<UserProfile> getFound() {
-		return found;
+		return this.found;
 	}
 
 }

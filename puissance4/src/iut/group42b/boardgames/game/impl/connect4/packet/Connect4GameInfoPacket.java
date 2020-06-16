@@ -23,24 +23,24 @@ public class Connect4GameInfoPacket implements IConnect4Packet {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write((byte) mySide.ordinal());
-		opponentProfile.write(buffer);
+		buffer.write((byte) this.mySide.ordinal());
+		this.opponentProfile.write(buffer);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		mySide = Connect4Side.values()[buffer.readByte()];
+		this.mySide = Connect4Side.values()[buffer.readByte()];
 
-		opponentProfile = new UserProfile();
-		opponentProfile.read(buffer);
+		this.opponentProfile = new UserProfile();
+		this.opponentProfile.read(buffer);
 	}
 
 	public Connect4Side getMySide() {
-		return mySide;
+		return this.mySide;
 	}
 
 	public UserProfile getOpponentProfile() {
-		return opponentProfile;
+		return this.opponentProfile;
 	}
 
 }

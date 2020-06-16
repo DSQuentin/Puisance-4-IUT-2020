@@ -28,30 +28,30 @@ public class OwnView extends AbstractView {
 
 	public OwnView() {
 		super();
-		this.logoImageView = (ImageView) findById("logo");
-		this.toLogOutButton = (Button) findById("logout");
-		this.profileImageView = (ImageView) findById("profile-picture");
-		this.profileImageOnProfile = (ImageView) findById("own-avatar");
-		this.numberGamesPlayedText = (Text) findById("number-game-played");
-		this.usernameText = (Text) findById("username");
-		this.numberFriendsText = (Text) findById("number-friends");
-		this.numberWinText = (Text) findById("number-win");
-		this.timeText = (Text) findById("time");
-		this.scoreText = (Text) findById("score");
-		this.toSettingsButton = (Button) findById("own-profile-button-goto-settings");
-		this.winCircle = (AnchorPane) findById("win-circle");
-		this.defeatCircle = (AnchorPane) findById("defeat-circle");
+		this.logoImageView = (ImageView) this.findById("logo");
+		this.toLogOutButton = (Button) this.findById("logout");
+		this.profileImageView = (ImageView) this.findById("profile-picture");
+		this.profileImageOnProfile = (ImageView) this.findById("own-avatar");
+		this.numberGamesPlayedText = (Text) this.findById("number-game-played");
+		this.usernameText = (Text) this.findById("username");
+		this.numberFriendsText = (Text) this.findById("number-friends");
+		this.numberWinText = (Text) this.findById("number-win");
+		this.timeText = (Text) this.findById("time");
+		this.scoreText = (Text) this.findById("score");
+		this.toSettingsButton = (Button) this.findById("own-profile-button-goto-settings");
+		this.winCircle = (AnchorPane) this.findById("win-circle");
+		this.defeatCircle = (AnchorPane) this.findById("defeat-circle");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
 	}
 
 	public AnchorPane getWinCircleAnchor() {
-		return winCircle;
+		return this.winCircle;
 	}
 
-	public RingProgressIndicator getWinCircle(){
-		for (Node n : this.getWinCircleAnchor().getChildren()){
-			if (n instanceof RingProgressIndicator){
+	public RingProgressIndicator getWinCircle() {
+		for (Node n : this.getWinCircleAnchor().getChildren()) {
+			if (n instanceof RingProgressIndicator) {
 				return (RingProgressIndicator) n;
 			}
 		}
@@ -59,12 +59,12 @@ public class OwnView extends AbstractView {
 	}
 
 	public AnchorPane getDefeatCircleAnchor() {
-		return defeatCircle;
+		return this.defeatCircle;
 	}
 
-	public RingProgressIndicator getDefeatCircle(){
-		for (Node n : this.getDefeatCircleAnchor().getChildren()){
-			if (n instanceof RingProgressIndicator){
+	public RingProgressIndicator getDefeatCircle() {
+		for (Node n : this.getDefeatCircleAnchor().getChildren()) {
+			if (n instanceof RingProgressIndicator) {
 				return (RingProgressIndicator) n;
 			}
 		}
@@ -72,47 +72,47 @@ public class OwnView extends AbstractView {
 	}
 
 	public Button getToLogOutButton() {
-		return toLogOutButton;
+		return this.toLogOutButton;
 	}
 
 	public ImageView getProfileImageView() {
-		return profileImageView;
+		return this.profileImageView;
 	}
 
 	public Text getUsernameText() {
-		return usernameText;
+		return this.usernameText;
 	}
 
 	public ImageView getLogoImageView() {
-		return logoImageView;
+		return this.logoImageView;
 	}
 
 	public ImageView getProfileImageOnProfile() {
-		return profileImageOnProfile;
+		return this.profileImageOnProfile;
 	}
 
 	public Text getNumberGamesPlayedText() {
-		return numberGamesPlayedText;
+		return this.numberGamesPlayedText;
 	}
 
 	public Text getNumberFriendsText() {
-		return numberFriendsText;
+		return this.numberFriendsText;
 	}
 
 	public Text getNumberWinText() {
-		return numberWinText;
+		return this.numberWinText;
 	}
 
 	public Text getTimeText() {
-		return timeText;
+		return this.timeText;
 	}
 
 	public Text getScoreText() {
-		return scoreText;
+		return this.scoreText;
 	}
 
 	public Button getToSettingsButton() {
-		return toSettingsButton;
+		return this.toSettingsButton;
 	}
 
 	@Override

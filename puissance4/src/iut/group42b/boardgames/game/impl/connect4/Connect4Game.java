@@ -40,7 +40,7 @@ public class Connect4Game implements IGame {
 		return "connect4cover.png";
 	}*/
 	public String picturePath() {
-		//return "connect4-waiting-alertbox.png";
+
 		return "connect4cover.png";
 	}
 

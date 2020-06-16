@@ -28,19 +28,19 @@ public class LoginController implements IController, INetworkHandler {
 
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == view.getSubmitButton()) {
-			String email = view.getEmailTextField().getText();
-			String password = view.getPasswordField().getText();
+		if (event.getSource() == this.view.getSubmitButton()) {
+			String email = this.view.getEmailTextField().getText();
+			String password = this.view.getPasswordField().getText();
 
 			if (!email.isEmpty() && !password.isEmpty()) {
-				view.getSubmitButton().setDisable(true);
-				view.getRegisterHyperlink().setDisable(true);
+				this.view.getSubmitButton().setDisable(true);
+				this.view.getRegisterHyperlink().setDisable(true);
 
 				LOGGER.verbose("Trying to connect with '%s' and '%s'.", email, password);
 
 				NetworkInterface.get().getSocketHandler().queue(new UserLoginPacket(email, password));
 			}
-		} else if (event.getSource() == view.getRegisterHyperlink()) {
+		} else if (event.getSource() == this.view.getRegisterHyperlink()) {
 			UserInterface.get().set(new RegisterView());
 		}
 	}
@@ -69,8 +69,8 @@ public class LoginController implements IController, INetworkHandler {
 
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
-		view.getSubmitButton().setDisable(false);
-		view.getRegisterHyperlink().setDisable(false);
+		this.view.getSubmitButton().setDisable(false);
+		this.view.getRegisterHyperlink().setDisable(false);
 
 		if (packet instanceof UserAuthentificationErrorPacket) {
 			UserAuthentificationErrorPacket errorPacket = (UserAuthentificationErrorPacket) packet;

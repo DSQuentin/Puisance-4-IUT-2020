@@ -16,10 +16,10 @@ public class UserSettingsView extends AbstractView {
 
 	public UserSettingsView() {
 		super();
-		this.profileImageView = (ImageView) findById("usersettings-imageview-profile");
-		this.emailText = (Text) findById("user-settings-text-email");
-		this.usernameText = (Text) findById("user-settings-text-username");
-		this.creationDateText = (Text) findById("user-settings-text-date");
+		this.profileImageView = (ImageView) this.findById("usersettings-imageview-profile");
+		this.emailText = (Text) this.findById("user-settings-text-email");
+		this.usernameText = (Text) this.findById("user-settings-text-username");
+		this.creationDateText = (Text) this.findById("user-settings-text-date");
 	}
 
 	@Override
@@ -33,19 +33,19 @@ public class UserSettingsView extends AbstractView {
 	}
 
 	public ImageView getProfileImageView() {
-		return profileImageView;
+		return this.profileImageView;
 	}
 
 	public Text getEmailText() {
-		return emailText;
+		return this.emailText;
 	}
 
 	public Text getUsernameText() {
-		return usernameText;
+		return this.usernameText;
 	}
 
 	public Text getCreationDateText() {
-		return creationDateText;
+		return this.creationDateText;
 	}
 
 	public void setProfileImageView(ImageView profileImageView) {

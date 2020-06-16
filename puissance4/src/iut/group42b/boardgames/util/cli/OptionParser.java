@@ -8,14 +8,28 @@ public class OptionParser {
 
 	private final List<Option> options;
 
+	/**
+	 * Constructor OptionParser.
+	 */
 	public OptionParser() {
 		this.options = new ArrayList<>();
 	}
 
+	/**
+	 * Add option.
+	 *
+	 * @param option Option.
+	 */
 	public void addOption(Option option) {
 		this.options.add(option);
 	}
 
+	/**
+	 * Parse all arguments.
+	 *
+	 * @param args String[].
+	 * @throws OptionParseException
+	 */
 	public void parse(String[] args) throws OptionParseException {
 		for (String argument : args) {
 			Option option = null;
@@ -28,7 +42,7 @@ public class OptionParser {
 					throw new OptionParseException();
 				}
 
-				for (Option opt : options) {
+				for (Option opt : this.options) {
 					if (opt.getLongName().equalsIgnoreCase(argumentName)) {
 						option = opt;
 						break;
@@ -41,7 +55,7 @@ public class OptionParser {
 					throw new OptionParseException();
 				}
 
-				for (Option opt : options) {
+				for (Option opt : this.options) {
 					if (opt.getShortName() == argumentName.charAt(0)) {
 						option = opt;
 						break;
@@ -70,8 +84,13 @@ public class OptionParser {
 		}
 	}
 
+	/**
+	 * Display help for User in terminal.
+	 *
+	 * @param printStream
+	 */
 	public void printHelp(PrintStream printStream) {
-		for (Option option : options) {
+		for (Option option : this.options) {
 			if (option.getShortName() == (char) 0) {
 				printStream.println(String.format("    --%-12s : %s", option.getLongName(), option.getDescription()));
 			} else {

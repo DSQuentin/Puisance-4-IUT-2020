@@ -19,6 +19,11 @@ public class ClientApplication extends Application {
 	/* Logger */
 	private final static Logger LOGGER = new Logger(ClientApplication.class);
 
+	/**
+	 * Start the client application.
+	 *
+	 * @throws Exception
+	 */
 	public static void startFromBootstrap() throws Exception {
 		LOGGER.verbose("Starting client...");
 

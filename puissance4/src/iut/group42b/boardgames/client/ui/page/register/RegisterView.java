@@ -21,11 +21,11 @@ public class RegisterView extends AbstractView {
 		super();
 
 		/* "fichiersource-class-usage" */
-		this.usernameTextField = (TextField) findById("register-textfield-username");
-		this.emailTextField = (TextField) findById("register-textfield-email");
-		this.passwordPasswordField = (PasswordField) findById("register-passwordfield-password");
-		this.submitButton = (Button) findById("register-button-submit");
-		this.toLoginHyperlink = (Hyperlink) findById("register-hyperlink-login");
+		this.usernameTextField = (TextField) this.findById("register-textfield-username");
+		this.emailTextField = (TextField) this.findById("register-textfield-email");
+		this.passwordPasswordField = (PasswordField) this.findById("register-passwordfield-password");
+		this.submitButton = (Button) this.findById("register-button-submit");
+		this.toLoginHyperlink = (Hyperlink) this.findById("register-hyperlink-login");
 	}
 
 	@Override
@@ -39,23 +39,23 @@ public class RegisterView extends AbstractView {
 	}
 
 	public TextField getUsernameTextField() {
-		return usernameTextField;
+		return this.usernameTextField;
 	}
 
 	public TextField getEmailTextField() {
-		return emailTextField;
+		return this.emailTextField;
 	}
 
 	public TextField getPasswordPasswordField() {
-		return passwordPasswordField;
+		return this.passwordPasswordField;
 	}
 
 	public Button getSubmitButton() {
-		return submitButton;
+		return this.submitButton;
 	}
 
 	public Hyperlink getToLoginHyperlink() {
-		return toLoginHyperlink;
+		return this.toLoginHyperlink;
 	}
 
 

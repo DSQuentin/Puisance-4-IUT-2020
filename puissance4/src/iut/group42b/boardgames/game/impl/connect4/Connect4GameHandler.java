@@ -37,7 +37,9 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 	private final AtomicInteger arenaIdIncrement;
 	private final Map<Integer, Connect4GameArena> runningArena;
 
-	/* Constructor */
+	/**
+	 * Constructor Connect4GameHandler
+	 */
 	public Connect4GameHandler() {
 		this.arenaIdIncrement = new AtomicInteger(0);
 		this.runningArena = new HashMap<>();
@@ -53,7 +55,7 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 
 			if (arena.isPlaying()) {
 				arena.setState(Connect4GameArena.State.SURRENDER);
-				stopArena(arena);
+				this.stopArena(arena);
 			}
 		} else if (packet instanceof IConnect4Packet) {
 			Connect4GameArena arena = (Connect4GameArena) GameManager.get().findArena(handler);
@@ -77,7 +79,7 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 					}
 
 					arena.putTokenAt(arena.getSideToPlay(), putTokenPacket.getX(), putTokenPacket.getY());
-					storeArena(arena);
+					this.storeArena(arena);
 
 					boolean oneHasWin = false;
 					if (arena.checkWin(Connect4Side.RED)) {
@@ -95,7 +97,7 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 					if (oneHasWin) {
 						arena.setState(Connect4GameArena.State.DONE);
 
-						stopArena(arena);
+						this.stopArena(arena);
 
 						// TODO Send
 					} else {
@@ -109,10 +111,15 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 		}
 	}
 
+	/**
+	 * @param arena
+	 * @param redPlayer
+	 * @param yellowPlayer
+	 */
 	public void startArena(Connect4GameArena arena, Player redPlayer, Player yellowPlayer) {
-		int arenaId = arenaIdIncrement.getAndIncrement();
+		int arenaId = this.arenaIdIncrement.getAndIncrement();
 
-		runningArena.put(arenaId, arena);
+		this.runningArena.put(arenaId, arena);
 
 		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("INSERT INTO `played_games` (`game_state`, `id_user_1`, `id_user_2`) VALUES (?, ?, ?);", Statement.RETURN_GENERATED_KEYS)) {
 			statement.setString(1, arena.toJSONGameState());
@@ -140,6 +147,11 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 		}
 	}
 
+	/**
+	 * Save arena into database.
+	 *
+	 * @param arena Connect4GameArena
+	 */
 	public void storeArena(Connect4GameArena arena) {
 		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("UPDATE `played_games` SET `game_state` = ?, `score_1` = ?, `score_2` = ? WHERE `id` = ?;")) {
 			statement.setString(1, arena.toJSONGameState());
@@ -155,6 +167,11 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 		}
 	}
 
+	/**
+	 * Stop Arena in database.
+	 *
+	 * @param arena Connect4GameArena.
+	 */
 	public void stopArena(Connect4GameArena arena) {
 		// TODO Send arena stop
 
@@ -162,7 +179,7 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 			throw new IllegalStateException("stopping arena that have a playing state");
 		}
 
-		storeArena(arena);
+		this.storeArena(arena);
 
 		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("UPDATE `played_games` SET `end_at` = NOW(), `state_number` = ? WHERE `id` = ?;")) {
 			statement.setInt(1, arena.getState().getStateCode());

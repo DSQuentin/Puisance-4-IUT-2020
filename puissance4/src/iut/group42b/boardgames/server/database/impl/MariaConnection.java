@@ -9,7 +9,14 @@ public class MariaConnection extends AbstractDatabaseConnection {
 	/* Variables */
 	private final String host, database, user, password;
 
-	/* Constructor */
+	/**
+	 * Constructor MariaConnection.
+	 *
+	 * @param host     String.
+	 * @param database String.
+	 * @param user     String.
+	 * @param password String.
+	 */
 	public MariaConnection(String host, String database, String user, String password) {
 		this.host = Objects.requireNonNull(host, "Database host can't be null.");
 		this.database = Objects.requireNonNull(database, "Database database can't be null.");
@@ -24,17 +31,17 @@ public class MariaConnection extends AbstractDatabaseConnection {
 
 	@Override
 	public String getJdbcUrl() {
-		return String.format("jdbc:mariadb://%s/%s", host, database);
+		return String.format("jdbc:mariadb://%s/%s", this.host, this.database);
 	}
 
 	@Override
 	public String getUser() {
-		return user;
+		return this.user;
 	}
 
 	@Override
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 }

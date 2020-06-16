@@ -24,36 +24,36 @@ public class Connect4PutTokenPacket implements IConnect4Packet {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write((byte) side.ordinal());
-		buffer.write((byte) x);
-		buffer.write((byte) y);
+		buffer.write((byte) this.side.ordinal());
+		buffer.write((byte) this.x);
+		buffer.write((byte) this.y);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		side = Connect4Side.values()[buffer.readByte()];
-		x = buffer.readByte();
-		y = buffer.readByte();
+		this.side = Connect4Side.values()[buffer.readByte()];
+		this.x = buffer.readByte();
+		this.y = buffer.readByte();
 	}
 
 	public Connect4Side getSide() {
-		return side;
+		return this.side;
 	}
 
 	public int getX() {
-		return x;
+		return this.x;
 	}
 
 	public int getY() {
-		return y;
+		return this.y;
 	}
 
 	@Override
 	public String toString() {
 		return "Connect4PutTokenPacket{" +
-				"side=" + side +
-				", x=" + x +
-				", y=" + y +
+				"side=" + this.side +
+				", x=" + this.x +
+				", y=" + this.y +
 				'}';
 	}
 }

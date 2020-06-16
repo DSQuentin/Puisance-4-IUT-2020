@@ -22,20 +22,22 @@ public class Connect4UIView extends AbstractView {
 	private final ImageView userImageView;
 	private final ImageView opponentImageView;
 
-	/* Constructor */
+	/**
+	 * Constructor Connect4UIView
+	 */
 	public Connect4UIView() {
 		super();
 
-		this.gridContainerStackPane = (StackPane) findById("connect4-stackpane-container");
-		this.surrenderButton = (Button) findById("connect4-button-surrender");
-		this.opponentNameText = (Text) findById("connect4-opponent-name");
-		this.whoTurnText = (Text) findById("connect4-who-turn");
-		this.timerText = (Text) findById("connect4-timer");
-		this.usernameText = (Text) findById("connect4-username");
-		this.userTockensRemainingText = (Text) findById("connect4-tokens-remaining");
-		this.opponentTockensRemainingText = (Text) findById("connect4-opponent-tokens-remaining");
-		this.userImageView = (ImageView) findById("connect4-imageview-user-profile");
-		this.opponentImageView = (ImageView) findById("connect4-imageview-opponent-profile");
+		this.gridContainerStackPane = (StackPane) this.findById("connect4-stackpane-container");
+		this.surrenderButton = (Button) this.findById("connect4-button-surrender");
+		this.opponentNameText = (Text) this.findById("connect4-opponent-name");
+		this.whoTurnText = (Text) this.findById("connect4-who-turn");
+		this.timerText = (Text) this.findById("connect4-timer");
+		this.usernameText = (Text) this.findById("connect4-username");
+		this.userTockensRemainingText = (Text) this.findById("connect4-tokens-remaining");
+		this.opponentTockensRemainingText = (Text) this.findById("connect4-opponent-tokens-remaining");
+		this.userImageView = (ImageView) this.findById("connect4-imageview-user-profile");
+		this.opponentImageView = (ImageView) this.findById("connect4-imageview-opponent-profile");
 	}
 
 	@Override
@@ -48,43 +50,73 @@ public class Connect4UIView extends AbstractView {
 		return new Connect4UIController();
 	}
 
+	/**
+	 * @return StackPane.
+	 */
 	public StackPane getGridContainerStackPane() {
-		return gridContainerStackPane;
+		return this.gridContainerStackPane;
 	}
 
+	/**
+	 * @return Button.
+	 */
 	public Button getSurrenderButton() {
-		return surrenderButton;
+		return this.surrenderButton;
 	}
 
+	/**
+	 * @return Text
+	 */
 	public Text getWhoTurnText() {
-		return whoTurnText;
+		return this.whoTurnText;
 	}
 
+	/**
+	 * @return Text
+	 */
 	public Text getOpponentNameText() {
-		return opponentNameText;
+		return this.opponentNameText;
 	}
 
+	/**
+	 * @return Text
+	 */
 	public Text getTimerText() {
-		return timerText;
+		return this.timerText;
 	}
 
+	/**
+	 * @return Text
+	 */
 	public Text getUsernameText() {
-		return usernameText;
+		return this.usernameText;
 	}
 
+	/**
+	 * @return Text
+	 */
 	public Text getUserTockensRemainingText() {
-		return userTockensRemainingText;
+		return this.userTockensRemainingText;
 	}
 
+	/**
+	 * @return Text
+	 */
 	public Text getOpponentTockensRemainingText() {
-		return opponentTockensRemainingText;
+		return this.opponentTockensRemainingText;
 	}
 
+	/**
+	 * @return ImageView
+	 */
 	public ImageView getUserImageView() {
-		return userImageView;
+		return this.userImageView;
 	}
 
+	/**
+	 * @return ImageView
+	 */
 	public ImageView getOpponentImageView() {
-		return opponentImageView;
+		return this.opponentImageView;
 	}
 }

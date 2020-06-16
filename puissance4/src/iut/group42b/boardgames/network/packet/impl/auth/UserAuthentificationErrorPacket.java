@@ -9,17 +9,28 @@ public class UserAuthentificationErrorPacket implements IPacket {
 	private ErrorType errorType;
 	private String extra;
 
-	/* Constructor */
+	/**
+	 * Constructor UserAuthentificationErrorPacket Empty for rebuild the packet.
+	 */
 	public UserAuthentificationErrorPacket() {
 		this(null, null);
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor UserAuthentificationErrorPacket.
+	 *
+	 * @param errorType ErrorType
+	 */
 	public UserAuthentificationErrorPacket(ErrorType errorType) {
 		this(errorType, null);
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor UserAuthentificationErrorPacket
+	 *
+	 * @param errorType ErrorType
+	 * @param extra     String
+	 */
 	public UserAuthentificationErrorPacket(ErrorType errorType, String extra) {
 		this.errorType = errorType;
 		this.extra = extra == null ? "" : extra;
@@ -27,27 +38,37 @@ public class UserAuthentificationErrorPacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write((byte) errorType.ordinal());
-		buffer.write(extra);
+		buffer.write((byte) this.errorType.ordinal());
+		buffer.write(this.extra);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		errorType = ErrorType.values()[buffer.readByte()];
-		extra = buffer.readString();
+		this.errorType = ErrorType.values()[buffer.readByte()];
+		this.extra = buffer.readString();
 	}
 
+	/**
+	 * Get error type.
+	 *
+	 * @return ErrorType.
+	 */
 	public ErrorType getErrorType() {
-		return errorType;
+		return this.errorType;
 	}
 
+	/**
+	 * Get Extra Errors
+	 *
+	 * @return String.
+	 */
 	public String getExtra() {
-		return extra;
+		return this.extra;
 	}
 
 	@Override
 	public String toString() {
-		return "UserAuthentificationErrorPacket{" + "errorType=" + errorType + ", extra='" + extra + '\'' + '}';
+		return "UserAuthentificationErrorPacket{" + "errorType=" + this.errorType + ", extra='" + this.extra + '\'' + '}';
 	}
 
 	public enum ErrorType {

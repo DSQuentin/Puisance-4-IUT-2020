@@ -51,7 +51,6 @@ public class GameListViewCellController implements IListViewCellController<IGame
 		gameCellView.getCoverImageView().setFitWidth(70.0);
 		gameCellView.getCoverImageView().setPreserveRatio(true);
 
-
 		GameAvailability gameState = item.getAvailability();
 
 		gameCellView.getActionButton().setText(Messages.GAME_AVAILABILIY_STATE.use(gameState));

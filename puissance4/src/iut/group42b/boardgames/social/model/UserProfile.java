@@ -15,12 +15,26 @@ public class UserProfile implements IWritableReadableObject {
 	private boolean admin;
 	private String creationDate;
 
-	/* Constructor */
+
+	/**
+	 * Constructor UserProfile Empty to rebuild the Object.
+	 */
 	public UserProfile() {
 		this(0, null, null, null, false, false, false, null);
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor UserProfile
+	 *
+	 * @param id           String.
+	 * @param username     String.
+	 * @param email        String.
+	 * @param imageUrl     String.
+	 * @param enabled      boolean.
+	 * @param connected    boolean.
+	 * @param admin        boolean.
+	 * @param creationDate String.
+	 */
 	public UserProfile(int id, String username, String email, String imageUrl, boolean enabled, boolean connected, boolean admin, String creationDate) {
 		this.id = id;
 		this.username = username;
@@ -32,77 +46,123 @@ public class UserProfile implements IWritableReadableObject {
 		this.creationDate = creationDate;
 	}
 
+	/**
+	 * Create a random User Profile.
+	 * <p>For testing.</p>
+	 *
+	 * @return UserProfile.
+	 */
 	public static UserProfile random() {
 		return new UserProfile(-1, "Random", "random@rand.om", "https://i.imgur.com/U8ekCQP.jpg", true, true, false, "Yesterday");
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(id);
-		buffer.write(username);
-		buffer.write(email);
-		buffer.write(imageUrl);
-		buffer.write(enabled);
-		buffer.write(connected);
-		buffer.write(admin);
-		buffer.write(creationDate);
+		buffer.write(this.id);
+		buffer.write(this.username);
+		buffer.write(this.email);
+		buffer.write(this.imageUrl);
+		buffer.write(this.enabled);
+		buffer.write(this.connected);
+		buffer.write(this.admin);
+		buffer.write(this.creationDate);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		id = buffer.readInt();
-		username = buffer.readString();
-		email = buffer.readString();
-		imageUrl = buffer.readString();
-		enabled = buffer.readBoolean();
-		connected = buffer.readBoolean();
-		admin = buffer.readBoolean();
-		creationDate = buffer.readString();
+		this.id = buffer.readInt();
+		this.username = buffer.readString();
+		this.email = buffer.readString();
+		this.imageUrl = buffer.readString();
+		this.enabled = buffer.readBoolean();
+		this.connected = buffer.readBoolean();
+		this.admin = buffer.readBoolean();
+		this.creationDate = buffer.readString();
 	}
 
+	/**
+	 * Get the User ID.
+	 *
+	 * @return int.
+	 */
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
+	/**
+	 * Get the Username.
+	 *
+	 * @return String.
+	 */
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
+	/**
+	 * Get the Email.
+	 *
+	 * @return String.
+	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
+	/**
+	 * Get the Image Url.
+	 *
+	 * @return String.
+	 */
 	public String getImageUrl() {
-		return imageUrl;
+		return this.imageUrl;
 	}
 
+	/**
+	 * Get the Creation Date.
+	 *
+	 * @return String.
+	 */
 	public String getCreationDate() {
-		return creationDate;
+		return this.creationDate;
 	}
 
+	/**
+	 * Check if User is Enabled.
+	 *
+	 * @return boolean.
+	 */
 	public boolean isEnabled() {
-		return enabled;
+		return this.enabled;
 	}
 
+	/***
+	 * Check if user is connected.
+	 * @return boolean.
+	 */
 	public boolean isConnected() {
-		return connected;
+		return this.connected;
 	}
 
+
+	/**
+	 * Check if user is Admin.
+	 *
+	 * @return boolean
+	 */
 	public boolean isAdmin() {
-		return admin;
+		return this.admin;
 	}
 
 
 	@Override
 	public String toString() {
 		return "UserProfile{" +
-				"id=" + id +
-				", username='" + username + '\'' +
-				", email='" + email + '\'' +
-				", imageUrl='" + imageUrl + '\'' +
-				", enabled=" + enabled +
-				", connected=" + connected +
-				", admin=" + admin +
+				"id=" + this.id +
+				", username='" + this.username + '\'' +
+				", email='" + this.email + '\'' +
+				", imageUrl='" + this.imageUrl + '\'' +
+				", enabled=" + this.enabled +
+				", connected=" + this.connected +
+				", admin=" + this.admin +
 				'}';
 	}
 

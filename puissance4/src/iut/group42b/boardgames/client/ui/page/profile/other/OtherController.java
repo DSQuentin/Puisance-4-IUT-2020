@@ -24,7 +24,7 @@ public class OtherController implements IController, INetworkHandler {
 
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == view.getLogoutButton()) {
+		if (event.getSource() == this.view.getLogoutButton()) {
 			UserInterface.get().set(new LogoutView());
 		}
 	}
@@ -45,13 +45,13 @@ public class OtherController implements IController, INetworkHandler {
 			UserInterface.get().set(new HomeView());
 		});
 
-		Random rand=new Random();
+		Random rand = new Random();
 
 		this.view.getWinCircle().setRingWidth(10);
 		this.view.getDefeatCircle().setRingWidth(10);
 
-		this.view.getWinCircle().setProgress((rand.nextInt(100-0)+1));
-		this.view.getDefeatCircle().setProgress((rand.nextInt(100-0)+1));
+		this.view.getWinCircle().setProgress((rand.nextInt(100 - 0) + 1));
+		this.view.getDefeatCircle().setProgress((rand.nextInt(100 - 0) + 1));
 	}
 
 	@Override

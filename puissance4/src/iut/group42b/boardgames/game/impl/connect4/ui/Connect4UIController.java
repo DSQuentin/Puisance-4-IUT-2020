@@ -51,7 +51,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 		this.canvas.widthProperty().bind(this.view.getGridContainerStackPane().widthProperty());
 		this.canvas.heightProperty().bind(this.view.getGridContainerStackPane().heightProperty());
 
-		this.view.getGridContainerStackPane().getChildren().add(canvas); // add canvas witch contain grid into stackpane
+		this.view.getGridContainerStackPane().getChildren().add(this.canvas); // add canvas witch contain grid into stackpane
 
 		// Close the waiting dialog
 		UserInterface.get().getCurrentDialog().close();
@@ -72,50 +72,64 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 		if (packet instanceof Connect4GridUpdatePacket) {
 			Connect4GridUpdatePacket gridUpdatePacket = (Connect4GridUpdatePacket) packet;
 
-			canvas.updateLocalGrid(gridUpdatePacket.toSideGrid());
+			this.canvas.updateLocalGrid(gridUpdatePacket.toSideGrid());
 
-			updateWhichTurnToPlayText(gridUpdatePacket.getNextSideToPlay());
-			updateRemainingTokenTexts();
+			this.updateWhichTurnToPlayText(gridUpdatePacket.getNextSideToPlay());
+			this.updateRemainingTokenTexts();
 		} else if (packet instanceof Connect4GameInfoPacket) {
 			Connect4GameInfoPacket gameInfoPacket = (Connect4GameInfoPacket) packet;
 
-			playerSide = gameInfoPacket.getMySide();
-			opponentUserProfile = gameInfoPacket.getOpponentProfile();
+			this.playerSide = gameInfoPacket.getMySide();
+			this.opponentUserProfile = gameInfoPacket.getOpponentProfile();
 
-			updateUserProfile();
+			this.updateUserProfile();
 
-			stopChronometerIfRunning();
+			this.stopChronometerIfRunning();
 
-			chronometer = new Chronometer(view.getTimerText()::setText);
-			chronometer.setRunning(true);
-			chronometer.start();
+			this.chronometer = new Chronometer(this.view.getTimerText()::setText);
+			this.chronometer.setRunning(true);
+			this.chronometer.start();
 		}
 	}
 
+	/**
+	 * Stop Chronometer if running
+	 */
 	private void stopChronometerIfRunning() {
-		if (chronometer != null) {
-			chronometer.setRunning(false);
-			chronometer = null;
+		if (this.chronometer != null) {
+			this.chronometer.setRunning(false);
+			this.chronometer = null;
 		}
 	}
 
+	/**
+	 * Update UserProfile view elements.
+	 */
 	private void updateUserProfile() {
-		this.view.getOpponentNameText().setText(opponentUserProfile.getUsername());
-		this.view.getOpponentImageView().setImage(new Image(opponentUserProfile.getImageUrl()));
+		this.view.getOpponentNameText().setText(this.opponentUserProfile.getUsername());
+		this.view.getOpponentImageView().setImage(new Image(this.opponentUserProfile.getImageUrl()));
 	}
 
+	/**
+	 * Update which turn to play text
+	 *
+	 * @param nextSideToPlay Connect4Side
+	 */
 	private void updateWhichTurnToPlayText(Connect4Side nextSideToPlay) {
-		String name = opponentUserProfile.getUsername();
-		canvas.setHelperEnabled(false);
-		if (playerSide == nextSideToPlay) {
-			canvas.setHelperEnabled(true);
+		String name = this.opponentUserProfile.getUsername();
+		this.canvas.setHelperEnabled(false);
+		if (this.playerSide == nextSideToPlay) {
+			this.canvas.setHelperEnabled(true);
 
 			name = NetworkInterface.get().getSocketHandler().getUserProfile().getUsername();
 		}
 
-		view.getWhoTurnText().setText(Messages.UI_CONNECT4_TURN.use(name));
+		this.view.getWhoTurnText().setText(Messages.UI_CONNECT4_TURN.use(name));
 	}
 
+	/**
+	 * Update Remaining Token Texts
+	 */
 	private void updateRemainingTokenTexts() {
 		// TODO Compute remaining token for each side and display proper values
 		this.view.getOpponentTockensRemainingText().setText(Messages.GAME_NUMBER_OF_TOKENS.use(2));
@@ -123,7 +137,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == view.getSurrenderButton()) {
+		if (event.getSource() == this.view.getSurrenderButton()) {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.setTitle(Messages.UI_ALERT_TITLE_SURRENDER.use());
 			alert.setHeaderText(Messages.UI_ALERT_HEADER_SURRENDER.use());
@@ -141,11 +155,11 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 	@Override
 	public void onClick(Connect4GridCanvas canvas, int x, int y) {
-		if (playerSide == null) {
+		if (this.playerSide == null) {
 			return;
 		}
 
-		NetworkInterface.get().getSocketHandler().queue(new Connect4PutTokenPacket(playerSide, x, y));
+		NetworkInterface.get().getSocketHandler().queue(new Connect4PutTokenPacket(this.playerSide, x, y));
 	}
 
 }

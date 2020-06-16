@@ -13,10 +13,10 @@ public class LogoutView extends AbstractView {
 
 	public LogoutView() {
 		super();
-		this.backHome = (Button) findById("logout-button-gohome");
-		this.disconnectMsg = (Text) findById("logout-msg");
-		this.toRegisterButton = (Button) findById("index-button-register");
-		this.toLoginButton = (Button) findById("index-button-login");
+		this.backHome = (Button) this.findById("logout-button-gohome");
+		this.disconnectMsg = (Text) this.findById("logout-msg");
+		this.toRegisterButton = (Button) this.findById("index-button-register");
+		this.toLoginButton = (Button) this.findById("index-button-login");
 	}
 
 
@@ -26,19 +26,19 @@ public class LogoutView extends AbstractView {
 	}
 
 	public Button getToRegisterButton() {
-		return toRegisterButton;
+		return this.toRegisterButton;
 	}
 
 	public Button getToLoginButton() {
-		return toLoginButton;
+		return this.toLoginButton;
 	}
 
 	public Text getDisconnectMsg() {
-		return disconnectMsg;
+		return this.disconnectMsg;
 	}
 
 	public Button getBackHome() {
-		return backHome;
+		return this.backHome;
 	}
 
 	@Override

@@ -22,13 +22,22 @@ public class UserSettingsChangePacket implements IPacket {
 	private String password;
 	private String imageUrl;
 
-	/* Constructor */
+	/**
+	 * Constructor UserSettingsChangePacket
+	 */
 	public UserSettingsChangePacket() {
 		this(null, null, null, null);
 	}
 
 
-	/* Constructor */
+	/**
+	 * Constructor UserSettingsChangePacket
+	 *
+	 * @param email    String
+	 * @param username String
+	 * @param password String
+	 * @param imageUrl String
+	 */
 	public UserSettingsChangePacket(String email, String username, String password, String imageUrl) {
 		this.email = email;
 		this.username = username;
@@ -41,22 +50,22 @@ public class UserSettingsChangePacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(numberOfUpdatedField);
+		buffer.write(this.numberOfUpdatedField);
 
-		if (email != null) {
-			buffer.write(TYPE_EMAIL).write(email);
+		if (this.email != null) {
+			buffer.write(TYPE_EMAIL).write(this.email);
 		}
 
-		if (username != null) {
-			buffer.write(TYPE_USERNAME).write(username);
+		if (this.username != null) {
+			buffer.write(TYPE_USERNAME).write(this.username);
 		}
 
-		if (password != null) {
-			buffer.write(TYPE_PASSWORD).write(password);
+		if (this.password != null) {
+			buffer.write(TYPE_PASSWORD).write(this.password);
 		}
 
-		if (imageUrl != null) {
-			buffer.write(TYPE_IMAGE_URL).write(imageUrl);
+		if (this.imageUrl != null) {
+			buffer.write(TYPE_IMAGE_URL).write(this.imageUrl);
 		}
 	}
 
@@ -64,25 +73,25 @@ public class UserSettingsChangePacket implements IPacket {
 	public void read(DataBuffer buffer) {
 		this.numberOfUpdatedField = buffer.readInt();
 
-		for (int i = 0; i < numberOfUpdatedField; i++) {
+		for (int i = 0; i < this.numberOfUpdatedField; i++) {
 			int type = buffer.readInt();
 			String value = buffer.readString();
 
 			switch (type) {
 				case TYPE_EMAIL:
-					email = value;
+					this.email = value;
 					break;
 
 				case TYPE_USERNAME:
-					username = value;
+					this.username = value;
 					break;
 
 				case TYPE_PASSWORD:
-					password = value;
+					this.password = value;
 					break;
 
 				case TYPE_IMAGE_URL:
-					imageUrl = value;
+					this.imageUrl = value;
 					break;
 
 				default:
@@ -92,23 +101,48 @@ public class UserSettingsChangePacket implements IPacket {
 		}
 	}
 
+	/**
+	 * Get Number Of Updated Fields.
+	 *
+	 * @return int
+	 */
 	public int getNumberOfUpdatedField() {
-		return numberOfUpdatedField;
+		return this.numberOfUpdatedField;
 	}
 
+	/**
+	 * Get the Email.
+	 *
+	 * @return String.
+	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
+	/**
+	 * Get the Username.
+	 *
+	 * @return String.
+	 */
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
+	/**
+	 * Get the password.
+	 *
+	 * @return String.
+	 */
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
+	/**
+	 * Get Image Url.
+	 *
+	 * @return String.
+	 */
 	public String getImageUrl() {
-		return imageUrl;
+		return this.imageUrl;
 	}
 }

@@ -21,7 +21,9 @@ public class GameRegistry {
 	private final Map<Integer, IGame> idToGameMap;
 	private final Map<IGame, IGameHandler> games;
 
-	/* Constructor */
+	/**
+	 * Constructor GameRegistry
+	 */
 	private GameRegistry() {
 		this.gameIdIncrement = new AtomicInteger(0);
 		this.gameToIdMap = new HashMap<>();
@@ -29,6 +31,11 @@ public class GameRegistry {
 		this.games = new HashMap<>();
 	}
 
+	/**
+	 * Register a new game.
+	 *
+	 * @param game IGame to register.
+	 */
 	public void register(IGame game) {
 		LOGGER.debug("Registered game '%s' with class: %s", game.getName(), game.getClass().getCanonicalName());
 
@@ -37,33 +44,66 @@ public class GameRegistry {
 			handler.registerPackets();
 		}
 
-		int gameId = gameIdIncrement.getAndIncrement();
-		gameToIdMap.put(game, gameId);
-		idToGameMap.put(gameId, game);
+		int gameId = this.gameIdIncrement.getAndIncrement();
+		this.gameToIdMap.put(game, gameId);
+		this.idToGameMap.put(gameId, game);
 
 		this.games.put(game, handler);
 	}
 
+	/**
+	 * Get all games.
+	 *
+	 * @return Collection<IGame>
+	 */
 	public Collection<IGame> all() {
-		return games.keySet();
+		return this.games.keySet();
 	}
 
+	/**
+	 * Get game by ID
+	 *
+	 * @param gameId ID of game.
+	 * @return IGame.
+	 */
 	public IGame getById(int gameId) {
-		return idToGameMap.get(gameId);
+		return this.idToGameMap.get(gameId);
 	}
 
+	/**
+	 * Get id of game.
+	 *
+	 * @param game IGame.
+	 * @return Int.
+	 */
 	public int getIdFor(IGame game) {
-		return gameToIdMap.get(game);
+		return this.gameToIdMap.get(game);
 	}
 
+	/**
+	 * Get handler for specific game.
+	 *
+	 * @param game game handler wanted.
+	 * @return IGameHandler.
+	 */
 	public IGameHandler getHandlerFor(IGame game) {
-		return games.get(game);
+		return this.games.get(game);
 	}
 
+	/**
+	 * Get all Game Handlers.
+	 *
+	 * @return Collection<IGameHandler>.
+	 */
 	public Collection<IGameHandler> allGameHandlers() {
-		return games.values();
+		return this.games.values();
 	}
 
+	/**
+	 * Get the GameRegistry.
+	 *
+	 * @return GameRegistry
+	 */
 	public static GameRegistry get() {
 		return INSTANCE;
 	}

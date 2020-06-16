@@ -8,12 +8,20 @@ public class UserRegisterPacket implements IPacket {
 	/* Variables */
 	private String username, email, password;
 
-	/* Constructor */
+	/**
+	 * Constructor UserRegisterPacket Empty to rebuild the packet.
+	 */
 	public UserRegisterPacket() {
 		this(null, null, null);
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor UserRegisterPacket
+	 *
+	 * @param username String
+	 * @param email    String
+	 * @param password String
+	 */
 	public UserRegisterPacket(String username, String email, String password) {
 		this.username = username;
 		this.email = email;
@@ -22,27 +30,42 @@ public class UserRegisterPacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(username);
-		buffer.write(email);
-		buffer.write(password);
+		buffer.write(this.username);
+		buffer.write(this.email);
+		buffer.write(this.password);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		username = buffer.readString();
-		email = buffer.readString();
-		password = buffer.readString();
+		this.username = buffer.readString();
+		this.email = buffer.readString();
+		this.password = buffer.readString();
 	}
 
+	/**
+	 * Get the Username.
+	 *
+	 * @return String
+	 */
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
+	/**
+	 * Get the Email.
+	 *
+	 * @return String
+	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
+	/**
+	 * Get the Password.
+	 *
+	 * @return String
+	 */
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 }

@@ -25,21 +25,24 @@ public class Connect4GridCanvas extends ResizableCanvas {
 	private OnTokenClick tokenClickCallback;
 	private boolean helper;
 
+	/**
+	 * @param event
+	 */
 	private void onMouseEvent(MouseEvent event) {
-		lastMousePosition = new Point2D.Double(event.getX(), event.getY());
+		this.lastMousePosition = new Point2D.Double(event.getX(), event.getY());
 
 		if (MouseEvent.MOUSE_CLICKED.equals(event.getEventType())) {
-			for (Map.Entry<Ellipse2D, TokenCoordinate> entry : collisionsBox.entrySet()) {
+			for (Map.Entry<Ellipse2D, TokenCoordinate> entry : this.collisionsBox.entrySet()) {
 				Ellipse2D tokenCollisionBox = entry.getKey();
 				TokenCoordinate tokenCoordinate = entry.getValue();
 
-				if (tokenCollisionBox.contains(lastMousePosition)) {
+				if (tokenCollisionBox.contains(this.lastMousePosition)) {
 					System.out.println(tokenCoordinate);
 
-					for (int y = grid.length - 1; y >= 0; y--) {
-						if (grid[y][tokenCoordinate.x] == Connect4Side.NONE) {
-							if (tokenClickCallback != null) {
-								tokenClickCallback.onClick(this, tokenCoordinate.x, y);
+					for (int y = this.grid.length - 1; y >= 0; y--) {
+						if (this.grid[y][tokenCoordinate.x] == Connect4Side.NONE) {
+							if (this.tokenClickCallback != null) {
+								this.tokenClickCallback.onClick(this, tokenCoordinate.x, y);
 							}
 
 							break;
@@ -51,19 +54,29 @@ public class Connect4GridCanvas extends ResizableCanvas {
 			}
 		}
 
-		redraw();
+		this.redraw();
 	}
 
+	/**
+	 * Constructor Connect4GridCanvas
+	 * <p>
+	 * During the construction, a grid is created .
+	 * It also add handler on canvas to detect mouse movement and click
+	 * </p>
+	 *
+	 * @see Connect4GridCanvas#createGrid()
+	 */
 	public Connect4GridCanvas() {
 		super();
 
-		this.grid = createGrid();
+		this.grid = this.createGrid();
 		this.collisionsBox = new HashMap<>();
 
-		addEventHandler(MouseEvent.MOUSE_MOVED, this::onMouseEvent);
-		addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMouseEvent);
+		this.addEventHandler(MouseEvent.MOUSE_MOVED, this::onMouseEvent); // for location selector
+		this.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMouseEvent); // for side
 
-		/*new EventHandler<MouseEvent>() {
+		/*
+		new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				onMouseEvent(event);
@@ -74,9 +87,9 @@ public class Connect4GridCanvas extends ResizableCanvas {
 	@Override
 	public void draw(GraphicsContext ctx) {
 		ctx.setFill(Color.BLUE.brighter());
-		ctx.fillRect(0, 0, getWidth(), getHeight());
+		ctx.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-		double width = Math.min(getWidth(), getHeight());
+		double width = Math.min(this.getWidth(), this.getHeight());
 		double height = width;
 
 		double availableWidth = width / 7;
@@ -91,20 +104,20 @@ public class Connect4GridCanvas extends ResizableCanvas {
 		double offsetX = 0;
 		double offsetY = 0;
 
-		if (width != getWidth()) {
-			offsetX = Math.abs(getWidth() - width) / 2;
+		if (width != this.getWidth()) {
+			offsetX = Math.abs(this.getWidth() - width) / 2;
 		}
 
-		if (height != getHeight()) {
-			offsetY = Math.abs(getHeight() - height) / 2;
+		if (height != this.getHeight()) {
+			offsetY = Math.abs(this.getHeight() - height) / 2;
 		}
 
-		collisionsBox.clear();
+		this.collisionsBox.clear();
 
 		boolean arrowDrawn = false;
 
 		for (int y = 0; y < Connect4Game.NUMBER_OF_ROWS; y++) {
-			Connect4Side[] line = grid[y];
+			Connect4Side[] line = this.grid[y];
 
 			for (int x = 0; x < Connect4Game.NUMBER_OF_COLUMNS; x++) {
 				Connect4Side at = line[x];
@@ -127,18 +140,18 @@ public class Connect4GridCanvas extends ResizableCanvas {
 				Ellipse2D collisionBox = new Ellipse2D.Double(absoluteX, absoluteY, absoluteWidth, absoluteHeight);
 
 				boolean canPlaceToken = false;
-				if (helper
-						&& lastMousePosition != null
-						&& lastMousePosition.getX() >= collisionBox.getMinX()
-						&& lastMousePosition.getX() <= collisionBox.getMaxX()
-						&& (y + 1 != grid.length && grid[y + 1][x] != Connect4Side.NONE) // TODO Make it work for column that don't have any token in the lower row
+				if (this.helper
+						&& this.lastMousePosition != null
+						&& this.lastMousePosition.getX() >= collisionBox.getMinX()
+						&& this.lastMousePosition.getX() <= collisionBox.getMaxX()
+						&& (y + 1 != this.grid.length && this.grid[y + 1][x] != Connect4Side.NONE) // TODO Make it work for column that don't have any token in the lower row
 						&& at == Connect4Side.NONE) {
 					ctx.setFill(SELECTOR_COLOR);
 
 					canPlaceToken = true;
 				}
 
-				collisionsBox.put(collisionBox, new TokenCoordinate(x, y));
+				this.collisionsBox.put(collisionBox, new TokenCoordinate(x, y));
 
 				ctx.fillOval(absoluteX, absoluteY, absoluteWidth, absoluteHeight);
 
@@ -165,6 +178,11 @@ public class Connect4GridCanvas extends ResizableCanvas {
 	}
 
 
+	/**
+	 * Create the grid of connect 4. Each side is represented with '.' for None, 'X' for red side and 'O' for yellow.
+	 *
+	 * @return a 2 dimensional array, it look like matrice representation see in first semester in python.
+	 */
 	public Connect4Side[][] createGrid() {
 		Connect4Side x = Connect4Side.NONE;
 
@@ -178,20 +196,39 @@ public class Connect4GridCanvas extends ResizableCanvas {
 		};
 	}
 
+	/**
+	 * Replace the grid with the new grid and redraw the canvas
+	 *
+	 * @param grid a connect 4 game grid
+	 * @see ResizableCanvas#redraw()
+	 */
 	public void updateLocalGrid(Connect4Side[][] grid) {
 		this.grid = grid;
 
-		redraw();
+		this.redraw();
 	}
 
+	/**
+	 * Enable or disable the location selector helper
+	 *
+	 * @param enabledState a boolean.
+	 */
 	public void setHelperEnabled(boolean enabledState) {
 		this.helper = enabledState;
 	}
 
+	/**
+	 * Add handler on token
+	 *
+	 * @param tokenClickCallback
+	 */
 	public void setTokenClickCallback(OnTokenClick tokenClickCallback) {
 		this.tokenClickCallback = tokenClickCallback;
 	}
 
+	/**
+	 * Handler
+	 */
 	public interface OnTokenClick {
 
 		void onClick(Connect4GridCanvas canvas, int x, int y);

@@ -26,54 +26,74 @@ public class UserInterface {
 	private IController currentController;
 	private Stage currentDialog;
 
-	/* Constructor */
+	/**
+	 * Constructor UserInterface
+	 */
 	private UserInterface() {
 	}
 
+	/**
+	 * Get the UserInterface.
+	 *
+	 * @return UserInterface.
+	 */
 	public static UserInterface get() {
 		return INSTANCE;
 	}
 
-	/* Setting up first page  */
+
+	/**
+	 * Setting up first page
+	 *
+	 * @param primaryStage
+	 * @throws Exception
+	 */
 	public void initialize(Stage primaryStage) throws Exception {
 		this.stage = primaryStage;
 
 		if (Bootstrap.CLIENT_GIVEN_EMAIL_OPTION.isUsed() || Bootstrap.CLIENT_GIVEN_PASSWORD_OPTION.isUsed()) {
-			set(new LoginView((String) Bootstrap.CLIENT_GIVEN_EMAIL_OPTION.getValue(), (String) Bootstrap.CLIENT_GIVEN_PASSWORD_OPTION.getValue()));
+			this.set(new LoginView((String) Bootstrap.CLIENT_GIVEN_EMAIL_OPTION.getValue(), (String) Bootstrap.CLIENT_GIVEN_PASSWORD_OPTION.getValue()));
 		} else {
-			set(new IndexView());
+			this.set(new IndexView());
 		}
 		//set(new Connect4UIView());
 	}
 
+	/**
+	 * Set view to an other.
+	 *
+	 * @param view View to switch
+	 */
 	public void set(IView view) {
 		Platform.runLater(() -> {
-			if (currentController != null) {
-				currentController.onUnmount();
-				currentController = null;
+			if (this.currentController != null) {
+				this.currentController.onUnmount();
+				this.currentController = null;
 			}
 
-			currentView = view;
-			currentController = view.createController();
+			this.currentView = view;
+			this.currentController = view.createController();
 
 			LOGGER.verbose("Set view to: %s", view.getClass().getCanonicalName());
 
-			if (currentController != null) {
-				currentController.onMount();
-				currentController.attachView(view);
+			if (this.currentController != null) {
+				this.currentController.onMount();
+				this.currentController.attachView(view);
 			}
 
-			if (scene == null) {
-				scene = new Scene(view.getRoot());
-				stage.setScene(scene);
+			if (this.scene == null) {
+				this.scene = new Scene(view.getRoot());
+				this.stage.setScene(this.scene);
 			} else {
-				scene.setRoot(view.getRoot());
+				this.scene.setRoot(view.getRoot());
 			}
 		});
 	}
 
-	/*
+	/**
 	 * Open a dialog window
+	 *
+	 * @param view View of Dialog
 	 */
 	public void openDialog(IView view) {
 		// run dialog in a new thread
@@ -91,22 +111,37 @@ public class UserInterface {
 
 			this.currentDialog.setScene(new Scene(view.getRoot()));
 
-			this.currentDialog.initOwner(stage);
+			this.currentDialog.initOwner(this.stage);
 			this.currentDialog.initModality(Modality.APPLICATION_MODAL);
 			this.currentDialog.showAndWait();
 
-			System.out.println("Closed dialog");
 			if (controller != null) {
 				controller.onUnmount();
 			}
+
+			this.currentDialog = null;
 		});
+
+
 	}
 
-	public void closeCurrentDialog(){
-		this.currentDialog.close();
+	/**
+	 * Close current Dialog.
+	 *
+	 * @see <a href="https://stackoverflow.com/questions/28698106/why-am-i-unable-to-programmatically-close-a-dialog-on-javafx">How to close dialog</a>
+	 */
+	public void closeCurrentDialog() {
+		if (this.currentDialog != null) {
+			this.currentDialog.close();
+		}
 	}
 
+	/**
+	 * Get current Opened dialog.
+	 *
+	 * @return CurrentDialog.
+	 */
 	public Stage getCurrentDialog() {
-		return currentDialog;
+		return this.currentDialog;
 	}
 }

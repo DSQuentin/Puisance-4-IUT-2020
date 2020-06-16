@@ -34,32 +34,37 @@ public class Connect4GameArena implements IGameArena {
 
 		for (int y = 0; y < GRID_HEIGHT; y++) {
 			for (int x = 0; x < GRID_WIDTH; x++) {
-				grid[y][x] = Connect4Side.NONE;
+				this.grid[y][x] = Connect4Side.NONE;
 			}
 		}
 	}
 
 	public Connect4GameArena putTokenAt(Connect4Side side, int x, int y) {
-		if (side != Connect4Side.NONE && grid[y][x] != Connect4Side.NONE) {
+		if (side != Connect4Side.NONE && this.grid[y][x] != Connect4Side.NONE) {
 			return this;
 		}
 
-		grid[y][x] = side;
+		this.grid[y][x] = side;
 
 		if (side == Connect4Side.RED) {
-			scoreRed++;
+			this.scoreRed++;
 		} else {
-			scoreYellow++;
+			this.scoreYellow++;
 		}
 
 		return this;
 	}
 
+	/**
+	 * Found @see <a href="https://stackoverflow.com/questions/32770321/connect-4-check-for-a-win-algorithm">here<a/> how to check win on connect4 games
+	 *
+	 * @return a simple boolean
+	 */
 	public boolean checkWin(Connect4Side side) {
 		/* Horizontal check. */
 		for (int j = 0; j < GRID_WIDTH - 3; j++) {
 			for (int i = 0; i < GRID_HEIGHT; i++) {
-				if (grid[i][j] == side && grid[i][j + 1] == side && grid[i][j + 2] == side && grid[i][j + 3] == side) {
+				if (this.grid[i][j] == side && this.grid[i][j + 1] == side && this.grid[i][j + 2] == side && this.grid[i][j + 3] == side) {
 					return true;
 				}
 			}
@@ -68,7 +73,7 @@ public class Connect4GameArena implements IGameArena {
 		/* Vertical check. */
 		for (int i = 0; i < GRID_HEIGHT - 3; i++) {
 			for (int j = 0; j < GRID_WIDTH; j++) {
-				if (grid[i][j] == side && grid[i + 1][j] == side && grid[i + 2][j] == side && grid[i + 3][j] == side) {
+				if (this.grid[i][j] == side && this.grid[i + 1][j] == side && this.grid[i + 2][j] == side && this.grid[i + 3][j] == side) {
 					return true;
 				}
 			}
@@ -77,7 +82,7 @@ public class Connect4GameArena implements IGameArena {
 		/* Ascending diagonal check. */
 		for (int i = 3; i < GRID_HEIGHT; i++) {
 			for (int j = 0; j < GRID_WIDTH - 3; j++) {
-				if (grid[i][j] == side && grid[i - 1][j + 1] == side && grid[i - 2][j + 2] == side && grid[i - 3][j + 3] == side) {
+				if (this.grid[i][j] == side && this.grid[i - 1][j + 1] == side && this.grid[i - 2][j + 2] == side && this.grid[i - 3][j + 3] == side) {
 					return true;
 				}
 			}
@@ -86,7 +91,7 @@ public class Connect4GameArena implements IGameArena {
 		/* Descending diagonal check. */
 		for (int i = 3; i < GRID_HEIGHT; i++) {
 			for (int j = 3; j < GRID_WIDTH; j++) {
-				if (grid[i][j] == side && grid[i - 1][j - 1] == side && grid[i - 2][j - 2] == side && grid[i - 3][j - 3] == side) {
+				if (this.grid[i][j] == side && this.grid[i - 1][j - 1] == side && this.grid[i - 2][j - 2] == side && this.grid[i - 3][j - 3] == side) {
 					return true;
 				}
 			}
@@ -97,58 +102,58 @@ public class Connect4GameArena implements IGameArena {
 
 	@Override
 	public void start(IGameHandler gameHandler) {
-		((Connect4GameHandler) gameHandler).startArena(this, redPlayer, yellowPlayer);
+		((Connect4GameHandler) gameHandler).startArena(this, this.redPlayer, this.yellowPlayer);
 
-		yellowPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.YELLOW, redPlayer.getSocketHandler().getUserProfile()));
-		redPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.RED, yellowPlayer.getSocketHandler().getUserProfile()));
+		this.yellowPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.YELLOW, this.redPlayer.getSocketHandler().getUserProfile()));
+		this.redPlayer.getSocketHandler().queue(new Connect4GameInfoPacket(Connect4Side.RED, this.yellowPlayer.getSocketHandler().getUserProfile()));
 
-		broadcast(new Connect4GridUpdatePacket(grid, sideToPlay));
+		this.broadcast(new Connect4GridUpdatePacket(this.grid, this.sideToPlay));
 
-		startedAt = System.currentTimeMillis();
+		this.startedAt = System.currentTimeMillis();
 	}
 
 	@Override
 	public void end(IGameHandler gameHandler) {
-		endAt = System.currentTimeMillis();
+		this.endAt = System.currentTimeMillis();
 	}
 
 	public long duration() {
-		if (state == State.PLAYING) {
+		if (this.state == State.PLAYING) {
 			throw new IllegalStateException("Game is still playing");
 		}
 
-		return endAt - startedAt;
+		return this.endAt - this.startedAt;
 	}
 
 	public Connect4Side getSideToPlay() {
-		return sideToPlay;
+		return this.sideToPlay;
 	}
 
 	public Connect4GameArena inverseSide() {
-		if (sideToPlay == Connect4Side.RED) {
-			sideToPlay = Connect4Side.YELLOW;
+		if (this.sideToPlay == Connect4Side.RED) {
+			this.sideToPlay = Connect4Side.YELLOW;
 		} else {
-			sideToPlay = Connect4Side.RED;
+			this.sideToPlay = Connect4Side.RED;
 		}
 
 		return this;
 	}
 
 	public Connect4Side[][] getGrid() {
-		return grid;
+		return this.grid;
 	}
 
 	public Player getYellowPlayer() {
-		return yellowPlayer;
+		return this.yellowPlayer;
 	}
 
 	public Player getRedPlayer() {
-		return redPlayer;
+		return this.redPlayer;
 	}
 
 	public void broadcast(IPacket packet) {
-		yellowPlayer.getSocketHandler().queue(packet);
-		redPlayer.getSocketHandler().queue(packet);
+		this.yellowPlayer.getSocketHandler().queue(packet);
+		this.redPlayer.getSocketHandler().queue(packet);
 	}
 
 	@Override
@@ -158,7 +163,7 @@ public class Connect4GameArena implements IGameArena {
 
 	@Override
 	public int getDatabaseId() {
-		return databaseId;
+		return this.databaseId;
 	}
 
 	@Override
@@ -166,14 +171,14 @@ public class Connect4GameArena implements IGameArena {
 		StringBuilder builder = new StringBuilder();
 
 		builder.append("{\n");
-		builder.append("\t\"side_to_play\": \"" + sideToPlay.toString() + "\",\n");
+		builder.append("\t\"side_to_play\": \"" + this.sideToPlay.toString() + "\",\n");
 		builder.append("\t\"grid\": [\n");
 
 		for (int y = 0; y < Connect4Game.NUMBER_OF_ROWS; y++) {
 			builder.append("\t\t\"");
 
 			for (int x = 0; x < Connect4Game.NUMBER_OF_COLUMNS; x++) {
-				builder.append(grid[y][x].getLetter());
+				builder.append(this.grid[y][x].getLetter());
 			}
 
 			builder.append("\"");
@@ -191,11 +196,11 @@ public class Connect4GameArena implements IGameArena {
 	}
 
 	public int getScoreRed() {
-		return scoreRed;
+		return this.scoreRed;
 	}
 
 	public int getScoreYellow() {
-		return scoreYellow;
+		return this.scoreYellow;
 	}
 
 	public void setState(State state) {
@@ -203,7 +208,7 @@ public class Connect4GameArena implements IGameArena {
 	}
 
 	public State getState() {
-		return state;
+		return this.state;
 	}
 
 	public static void main(String[] args) {
@@ -215,15 +220,15 @@ public class Connect4GameArena implements IGameArena {
 	}
 
 	public boolean isPlaying() {
-		return state == State.PLAYING;
+		return this.state == State.PLAYING;
 	}
 
 	public boolean isDone() {
-		return state == State.DONE;
+		return this.state == State.DONE;
 	}
 
 	public boolean isSurrender() {
-		return state == State.SURRENDER;
+		return this.state == State.SURRENDER;
 	}
 
 	public enum State {
@@ -244,7 +249,7 @@ public class Connect4GameArena implements IGameArena {
 		 * @return State code in the database.
 		 */
 		public int getStateCode() {
-			return stateCode;
+			return this.stateCode;
 		}
 
 	}

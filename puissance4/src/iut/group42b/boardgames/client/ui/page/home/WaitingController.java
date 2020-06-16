@@ -10,7 +10,6 @@ import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import javafx.event.ActionEvent;
-import javafx.stage.Stage;
 
 
 public class WaitingController implements IController, INetworkHandler {
@@ -21,8 +20,8 @@ public class WaitingController implements IController, INetworkHandler {
 
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == view.getCancelButton()) {
-			onCancel();
+		if (event.getSource() == this.view.getCancelButton()) {
+			this.onCancel();
 		}
 	}
 

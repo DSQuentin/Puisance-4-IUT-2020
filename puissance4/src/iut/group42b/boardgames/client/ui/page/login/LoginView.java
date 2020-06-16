@@ -31,18 +31,18 @@ public class LoginView extends AbstractView {
 		this.forcedPassword = forcedPassword;
 
 		/* "fichiersource-class-usage" */
-		this.emailTextField = (TextField) findById("login-textfield-email");
-		this.passwordField = (PasswordField) findById("login-textfield-password");
-		this.submitButton = (Button) findById("login-button-submit");
-		this.registerText = (Hyperlink) findById("login-text-to-register");
+		this.emailTextField = (TextField) this.findById("login-textfield-email");
+		this.passwordField = (PasswordField) this.findById("login-textfield-password");
+		this.submitButton = (Button) this.findById("login-button-submit");
+		this.registerText = (Hyperlink) this.findById("login-text-to-register");
 
 
 		if (forcedEmail != null) {
-			emailTextField.setText(forcedEmail);
+			this.emailTextField.setText(forcedEmail);
 		}
 
 		if (forcedPassword != null) {
-			passwordField.setText(forcedPassword);
+			this.passwordField.setText(forcedPassword);
 		}
 	}
 
@@ -57,19 +57,19 @@ public class LoginView extends AbstractView {
 	}
 
 	public TextField getEmailTextField() {
-		return emailTextField;
+		return this.emailTextField;
 	}
 
 	public TextField getPasswordField() {
-		return passwordField;
+		return this.passwordField;
 	}
 
 	public Button getSubmitButton() {
-		return submitButton;
+		return this.submitButton;
 	}
 
 	public Hyperlink getRegisterHyperlink() {
-		return registerText;
+		return this.registerText;
 	}
 
 }

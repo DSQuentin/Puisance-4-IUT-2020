@@ -5,6 +5,7 @@ import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.list.game.GameListViewCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
+import iut.group42b.boardgames.client.ui.page.invitation.InvitationView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
 import iut.group42b.boardgames.client.ui.page.social.SocialView;
@@ -17,6 +18,7 @@ import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.util.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -28,16 +30,19 @@ public class HomeController implements IController, INetworkHandler {
 
 	/* Controllers */
 	private GameListViewCellController gameListViewCellController;
+	private FilteredList<IGame> gamesFilterList; //https://stackoverflow.com/questions/28448851/how-to-use-javafx-filteredlist-in-a-listview
 
 	/* Variables */
 	private HomeView view;
 
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == view.getLogoutButton()) {
+		if (event.getSource() == this.view.getLogoutButton()) {
 			UserInterface.get().set(new LogoutView());
-		} else if (event.getSource() == view.getToSocialButton()) {
+		} else if (event.getSource() == this.view.getToSocialButton()) {
 			UserInterface.get().set(new SocialView());
+		} else if (event.getSource() == this.view.getToInvitationButton()) {
+			UserInterface.get().set(new InvitationView());
 		}
 	}
 
@@ -52,13 +57,30 @@ public class HomeController implements IController, INetworkHandler {
 		ObservableList<IGame> gameObservableList = FXCollections.observableArrayList();
 		gameObservableList.addAll(GameRegistry.get().all());
 
-		gameListViewCellController = new GameListViewCellController();
+		this.gameListViewCellController = new GameListViewCellController();
+		this.gamesFilterList = new FilteredList<>(gameObservableList, (item) -> true);
 
+		this.view.getGamesListView().setItems(this.gamesFilterList);
 		this.view.getLogoutButton().setOnAction(this);
 		this.view.getToSocialButton().setOnAction(this);
-		this.view.getGamesListView().setItems(gameObservableList);
-		this.view.getGamesListView().setCellFactory(gameListViewCellController.cellFactory());
+		this.view.getToInvitationButton().setOnAction(this);
+		this.view.getGamesListView().setCellFactory(this.gameListViewCellController.cellFactory());
 		this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
+
+		this.view.getSearchTextField().textProperty().addListener((observable) -> {
+			String filter = this.view.getSearchTextField().getText();
+
+			if (this.gamesFilterList == null) {
+				return;
+			}
+
+			if (filter == null || filter.length() == 0) {
+				this.gamesFilterList.setPredicate((game) -> true);
+			} else {
+				this.gamesFilterList.setPredicate((game) -> game.getName().toLowerCase().contains(filter.toLowerCase()));
+			}
+		});
+
 
 		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new OwnView());

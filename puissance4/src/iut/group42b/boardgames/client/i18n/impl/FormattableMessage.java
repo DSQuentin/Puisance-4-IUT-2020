@@ -7,14 +7,19 @@ public class FormattableMessage implements IMessage {
 	/* Variables */
 	private final String format;
 
-	/* Constructor */
+
+	/**
+	 * Constructor FormattableMessage.
+	 *
+	 * @param format
+	 */
 	public FormattableMessage(String format) {
 		this.format = format;
 	}
 
 	@Override
 	public String use(Object... args) {
-		return String.format(format, args);
+		return String.format(this.format, args);
 	}
 
 }

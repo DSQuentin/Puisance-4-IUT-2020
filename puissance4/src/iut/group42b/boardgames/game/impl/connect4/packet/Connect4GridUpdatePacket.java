@@ -40,14 +40,14 @@ public class Connect4GridUpdatePacket implements IConnect4Packet {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(linearGrid);
-		buffer.write((byte) nextSideToPlay.ordinal());
+		buffer.write(this.linearGrid);
+		buffer.write((byte) this.nextSideToPlay.ordinal());
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		linearGrid = buffer.readString();
-		nextSideToPlay = Connect4Side.values()[buffer.readByte()];
+		this.linearGrid = buffer.readString();
+		this.nextSideToPlay = Connect4Side.values()[buffer.readByte()];
 	}
 
 	public static String toLinearGrid(Connect4Side[][] grid) {
@@ -72,7 +72,7 @@ public class Connect4GridUpdatePacket implements IConnect4Packet {
 
 		for (int y = 0; y < Connect4Game.NUMBER_OF_ROWS; y++) {
 			for (int x = 0; x < Connect4Game.NUMBER_OF_COLUMNS; x++) {
-				grid[y][x] = Connect4Side.fromLetter(linearGrid.charAt(offset++));
+				grid[y][x] = Connect4Side.fromLetter(this.linearGrid.charAt(offset++));
 			}
 		}
 
@@ -80,11 +80,11 @@ public class Connect4GridUpdatePacket implements IConnect4Packet {
 	}
 
 	public String getLinearGrid() {
-		return linearGrid;
+		return this.linearGrid;
 	}
 
 	public Connect4Side getNextSideToPlay() {
-		return nextSideToPlay;
+		return this.nextSideToPlay;
 	}
 
 }

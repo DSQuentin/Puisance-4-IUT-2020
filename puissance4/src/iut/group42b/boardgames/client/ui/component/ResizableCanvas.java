@@ -9,12 +9,12 @@ public abstract class ResizableCanvas extends Canvas {
 	public ResizableCanvas() {
 		super();
 
-		widthProperty().addListener(event -> redraw());
-		heightProperty().addListener(event -> redraw());
+		this.widthProperty().addListener(event -> this.redraw());
+		this.heightProperty().addListener(event -> this.redraw());
 	}
 
 	public void redraw() {
-		draw(getGraphicsContext2D());
+		this.draw(this.getGraphicsContext2D());
 	}
 
 	public abstract void draw(GraphicsContext ctx);
@@ -26,11 +26,11 @@ public abstract class ResizableCanvas extends Canvas {
 
 	@Override
 	public double prefWidth(double height) {
-		return getWidth();
+		return this.getWidth();
 	}
 
 	@Override
 	public double prefHeight(double width) {
-		return getHeight();
+		return this.getHeight();
 	}
 }

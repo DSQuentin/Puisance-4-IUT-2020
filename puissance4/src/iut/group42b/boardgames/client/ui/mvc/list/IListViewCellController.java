@@ -16,9 +16,9 @@ public interface IListViewCellController<T> extends EventHandler<ActionEvent> {
 
 	default Callback<ListView<T>, ListCell<T>> cellFactory() {
 		return (listView) -> {
-			AbstractViewCell<T> cell = createView();
+			AbstractViewCell<T> cell = this.createView();
 
-			attachView(cell);
+			this.attachView(cell);
 
 			return cell;
 		};

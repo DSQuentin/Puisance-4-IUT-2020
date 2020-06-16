@@ -16,33 +16,33 @@ public abstract class AbstractView implements IView {
 
 	/* Constructor */
 	protected AbstractView() {
-		this.logger = new Logger(getClass());
+		this.logger = new Logger(this.getClass());
 
 		try {
-			this.root = FXMLLoader.load(Resource.loadForm(getViewPath()), I18nMessage.getGlobalResourceBundle());
-			Debug.dump(root);
+			this.root = FXMLLoader.load(Resource.loadForm(this.getViewPath()), I18nMessage.getGlobalResourceBundle());
+			Debug.dump(this.root);
 		} catch (Exception exception) {
 			throw new RuntimeException(exception);
 		}
 	}
 
-	protected Node findById(String id) {
-		Node node = root.lookup("#" + id);
+	protected <T extends Node> T findById(String id) {
+		Node node = this.root.lookup("#" + id);
 
 		if (node == null) {
-			getLogger().warning("There is no view with ID: %s", id);
+			this.getLogger().warning("There is no view with ID: %s", id);
 		}
 
-		return node;
+		return (T) node;
 	}
 
 	@Override
 	public Parent getRoot() {
-		return root;
+		return this.root;
 	}
 
 	public Logger getLogger() {
-		return logger;
+		return this.logger;
 	}
 
 }

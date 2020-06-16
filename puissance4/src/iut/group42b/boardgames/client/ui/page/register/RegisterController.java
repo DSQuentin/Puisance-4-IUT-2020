@@ -28,26 +28,26 @@ public class RegisterController implements IController, INetworkHandler {
 
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == registerVue.getSubmitButton()) {
-			lastEmail = null;
-			lastPassword = null;
+		if (event.getSource() == this.registerVue.getSubmitButton()) {
+			this.lastEmail = null;
+			this.lastPassword = null;
 
-			String username = registerVue.getUsernameTextField().getText();
-			String email = registerVue.getEmailTextField().getText();
-			String password = registerVue.getPasswordPasswordField().getText();
+			String username = this.registerVue.getUsernameTextField().getText();
+			String email = this.registerVue.getEmailTextField().getText();
+			String password = this.registerVue.getPasswordPasswordField().getText();
 
 			if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-				registerVue.getSubmitButton().setDisable(true);
-				registerVue.getToLoginHyperlink().setDisable(true);
+				this.registerVue.getSubmitButton().setDisable(true);
+				this.registerVue.getToLoginHyperlink().setDisable(true);
 
 				LOGGER.verbose("Trying to register with '%s', '%s' and '%s'.", username, email, password);
 
-				lastEmail = email;
-				lastPassword = password;
+				this.lastEmail = email;
+				this.lastPassword = password;
 
 				NetworkInterface.get().getSocketHandler().queue(new UserRegisterPacket(username, email, password));
 			}
-		} else if (event.getSource() == registerVue.getToLoginHyperlink()) {
+		} else if (event.getSource() == this.registerVue.getToLoginHyperlink()) {
 			try {
 				UserInterface.get().set(new LoginView());
 			} catch (Exception exception) {
@@ -64,8 +64,8 @@ public class RegisterController implements IController, INetworkHandler {
 
 		this.registerVue = (RegisterView) view;
 
-		registerVue.getSubmitButton().setOnAction(this);
-		registerVue.getToLoginHyperlink().setOnAction(this);
+		this.registerVue.getSubmitButton().setOnAction(this);
+		this.registerVue.getToLoginHyperlink().setOnAction(this);
 	}
 
 	@Override
@@ -80,8 +80,8 @@ public class RegisterController implements IController, INetworkHandler {
 
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
-		registerVue.getSubmitButton().setDisable(false);
-		registerVue.getToLoginHyperlink().setDisable(false);
+		this.registerVue.getSubmitButton().setDisable(false);
+		this.registerVue.getToLoginHyperlink().setDisable(false);
 
 		if (packet instanceof UserAuthentificationErrorPacket) {
 			UserAuthentificationErrorPacket errorPacket = (UserAuthentificationErrorPacket) packet;
@@ -97,7 +97,7 @@ public class RegisterController implements IController, INetworkHandler {
 		} else if (packet instanceof UserAuthentificationSuccessPacket) {
 			handler.setProfile(null);
 
-			UserInterface.get().set(new LoginView(lastEmail, lastPassword));
+			UserInterface.get().set(new LoginView(this.lastEmail, this.lastPassword));
 		}
 	}
 

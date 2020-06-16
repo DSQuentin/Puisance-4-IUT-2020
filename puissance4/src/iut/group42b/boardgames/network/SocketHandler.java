@@ -1,5 +1,6 @@
 package iut.group42b.boardgames.network;
 
+import iut.group42b.boardgames.application.ServerApplication;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.PacketRegistry;
@@ -23,105 +24,40 @@ public class SocketHandler implements Runnable {
 	private final static Logger LOGGER = new Logger(SocketHandler.class);
 
 	/* Variables */
+	private final boolean fromServerSide;
 	private final Socket socket;
 	private final Queue<IPacket> packetQueue; // paquet en attentes
 	private final List<INetworkHandler> handlers;
 	private long timeSinceLast;
+	private boolean connected;
 	private UserProfile userProfile;
 
 	/* Constructor */
 	public SocketHandler(Socket socket) {
+		this(false, socket);
+	}
+
+	/**
+	 * Constructor SocketHandler
+	 *
+	 * @param socket Socket
+	 */
+	public SocketHandler(boolean fromServerSide, Socket socket) {
+		this.fromServerSide = fromServerSide;
 		this.socket = socket;
 		this.packetQueue = new LinkedList<>();
 		this.handlers = new ArrayList<>();
+
+		this.connected = true;
 	}
 
-	@Override
-	public void run() {
-		timeSinceLast = System.currentTimeMillis();
-
-		while (socket.isConnected() && !socket.isClosed()) {
-			IPacket packetToSend;
-
-			packetToSend = packetQueue.poll();
-			if (packetToSend == null && (System.currentTimeMillis() - timeSinceLast) > 1000) {
-				packetToSend = HeartbeatPacket.INSTANCE;
-			}
-
-			if (packetToSend != null) {
-				try {
-					if (!(packetToSend instanceof HeartbeatPacket)) {
-						LOGGER.debug("(%s) Send packet: %s", socket, packetToSend);
-					}
-
-					sendPacket(socket, packetToSend);
-
-					timeSinceLast = System.currentTimeMillis();
-				} catch (Exception exception) {
-					exception.printStackTrace();
-
-					Utils.slientClose(socket);
-
-					continue;
-				}
-			}
-
-			try {
-				if (socket.getInputStream().available() > 4) {
-					IPacket packet = readPacket(socket);
-
-					if (!(packet instanceof HeartbeatPacket)) {
-						LOGGER.debug("(%s) Received packet: %s", socket, packet);
-
-						notify(packet);
-					}
-
-					timeSinceLast = System.currentTimeMillis();
-				}
-			} catch (Exception exception) {
-				exception.printStackTrace();
-
-				Utils.slientClose(socket);
-
-				continue;
-			}
-
-			try {
-				Thread.sleep(20L);
-			} catch (Exception exception) {
-			}
-		}
-
-		LOGGER.debug("(%s) Socket close", socket);
-		notify(new ConnectionLostPacket());
-		setProfile(null);
-	}
-
-
-	public void queue(IPacket packet) {
-		packetQueue.add(packet);
-	}
-
-	public void subscribe(INetworkHandler handler) {
-		unsubscribe(handler);
-
-		this.handlers.add(handler);
-	}
-
-	public void unsubscribe(INetworkHandler handler) {
-		this.handlers.remove(handler);
-	}
-
-	public void notify(IPacket packet) {
-		for (INetworkHandler networkHandler : handlers) {
-			try {
-				networkHandler.handlePacket(this, packet);
-			} catch (Exception exception) {
-				exception.printStackTrace();
-			}
-		}
-	}
-
+	/**
+	 * Send a packet.
+	 *
+	 * @param socket Socket.
+	 * @param packet IPacket.
+	 * @throws IOException
+	 */
 	public static void sendPacket(Socket socket, IPacket packet) throws IOException {
 		DataBuffer packetBuffer = new DataBuffer();
 		packet.write(packetBuffer);
@@ -134,6 +70,13 @@ public class SocketHandler implements Runnable {
 		socket.getOutputStream().write(buffer.toByteArray());
 	}
 
+	/**
+	 * Build the packet received in Socket.
+	 *
+	 * @param socket Socket.
+	 * @return IPacket.
+	 * @throws Exception
+	 */
 	public static IPacket readPacket(Socket socket) throws Exception {
 		byte[] tmp = new byte[2];
 		DataBuffer buffer = new DataBuffer();
@@ -168,17 +111,148 @@ public class SocketHandler implements Runnable {
 		return packet;
 	}
 
+	@Override
+	public void run() {
+		this.timeSinceLast = System.currentTimeMillis();
+
+		while (this.socket.isConnected() && !this.socket.isClosed()) {
+			IPacket packetToSend;
+
+			packetToSend = this.packetQueue.poll();
+			if (packetToSend == null && (System.currentTimeMillis() - this.timeSinceLast) > 1000) {
+				packetToSend = HeartbeatPacket.INSTANCE;
+			}
+
+			if (packetToSend != null) {
+				try {
+					if (!(packetToSend instanceof HeartbeatPacket)) {
+						LOGGER.debug("(%s) Send packet: %s", this.socket, packetToSend);
+					}
+
+					sendPacket(this.socket, packetToSend);
+
+					this.timeSinceLast = System.currentTimeMillis();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+
+					Utils.slientClose(this.socket);
+
+					continue;
+				}
+			}
+
+			try {
+				if (this.socket.getInputStream().available() > 4) {
+					IPacket packet = readPacket(this.socket);
+
+					if (!(packet instanceof HeartbeatPacket)) {
+						LOGGER.debug("(%s) Received packet: %s", this.socket, packet);
+
+						this.notify(packet);
+					}
+
+					this.timeSinceLast = System.currentTimeMillis();
+				}
+			} catch (Exception exception) {
+				exception.printStackTrace();
+
+				Utils.slientClose(this.socket);
+
+				continue;
+			}
+
+			try {
+				Thread.sleep(20L);
+			} catch (Exception exception) {
+			}
+		}
+
+		LOGGER.debug("(%s) Socket close", this.socket);
+		this.notify(new ConnectionLostPacket());
+		this.setProfile(null);
+		this.connected = false;
+
+		if (isFromServerSide()) {
+			ServerApplication.getServer().unregister(this);
+		} else {
+			// TODO Notify interface that client connection has been lost
+		}
+	}
+
+	/**
+	 * Add packet to queue.
+	 *
+	 * @param packet IPacket.
+	 */
+	public void queue(IPacket packet) {
+		this.packetQueue.add(packet);
+	}
+
+	/**
+	 * Start listening handler.
+	 *
+	 * @param handler INetworkHandler.
+	 */
+	public void subscribe(INetworkHandler handler) {
+		this.unsubscribe(handler);
+
+		this.handlers.add(handler);
+	}
+
+	/**
+	 * Stop listening handler.
+	 *
+	 * @param handler INetworkHandler.
+	 */
+	public void unsubscribe(INetworkHandler handler) {
+		this.handlers.remove(handler);
+	}
+
+	/**
+	 * For all subscribers send a packet.
+	 *
+	 * @param packet IPacket
+	 */
+	public void notify(IPacket packet) {
+		for (INetworkHandler networkHandler : this.handlers) {
+			try {
+				networkHandler.handlePacket(this, packet);
+			} catch (Exception exception) {
+				exception.printStackTrace();
+			}
+		}
+	}
+
+	/**
+	 * Start a thread in background.
+	 */
 	public void newThread() {
 		new Thread(this).start();
 	}
 
+	/**
+	 * Set the user profile
+	 *
+	 * @param userProfile UserProfile
+	 */
 	public void setProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
 
+	/**
+	 * Get the user profile.
+	 *
+	 * @return UserProfile.
+	 */
 	public UserProfile getUserProfile() {
-		return userProfile;
+		return this.userProfile;
 	}
 
+	public boolean isConnected() {
+		return this.connected;
+	}
 
+	public boolean isFromServerSide() {
+		return this.fromServerSide;
+	}
 }

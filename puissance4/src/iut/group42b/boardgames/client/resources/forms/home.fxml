@@ -81,7 +81,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <TextField prefWidth="590.0" promptText="Search your games..."/>
+                                <TextField id="home-search-game" prefWidth="590.0" promptText="Search your games..."/>
                             </children>
                         </HBox>
                     </children>
@@ -110,7 +110,22 @@
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="40.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0"
                               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Button id="home-social-button" contentDisplay="CENTER" mnemonicParsing="false"
+                                <Button id="home-button-social" contentDisplay="CENTER" mnemonicParsing="false"
+                                        style="-fx-background-color: white;">
+                                    <graphic>
+                                        <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/account.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_LEFT" prefHeight="40.0">
+                            <children>
+                                <Button id="home-invitation-button" contentDisplay="CENTER" mnemonicParsing="false"
                                         style="-fx-background-color: white;">
                                     <graphic>
                                         <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true"

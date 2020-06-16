@@ -6,6 +6,7 @@ import iut.group42b.boardgames.network.packet.impl.PongPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
 import iut.group42b.boardgames.network.packet.impl.connection.ConnectionLostPacket;
 import iut.group42b.boardgames.network.packet.impl.connection.HeartbeatPacket;
+import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
 import iut.group42b.boardgames.util.Logger;
 
 import java.util.HashMap;
@@ -27,40 +28,59 @@ public class PacketRegistry {
 	private final Map<Class<? extends IPacket>, Integer> reversePacketClassMap;
 
 	/* Constructor */
+
+	/**
+	 * Constructor PacketRegistry, init the packet registry with core packets.
+	 *
+	 * @see PacketRegistry#registerDefaults()
+	 */
 	private PacketRegistry() {
-		this.packetIdIncrement = new AtomicInteger(0);
+		this.packetIdIncrement = new AtomicInteger(0); // incr at every packet add.
 		this.packetClassMap = new HashMap<>();
 		this.reversePacketClassMap = new HashMap<>();
 
-		registerDefaults();
+		this.registerDefaults();
 	}
 
+	/**
+	 * Core Packet
+	 *
+	 * @see PacketRegistry#register
+	 */
 	private void registerDefaults() {
 		/* Line */
-		register(HeartbeatPacket.class);
-		register(ConnectionLostPacket.class);
+		this.register(HeartbeatPacket.class);
+		this.register(ConnectionLostPacket.class);
 
 		/* Ping - Pong */
-		register(PingPacket.class);
-		register(PongPacket.class);
+		this.register(PingPacket.class);
+		this.register(PongPacket.class);
 
 		/* User */
-		register(UserLoginPacket.class);
-		register(UserRegisterPacket.class);
-		register(UserAuthentificationSuccessPacket.class);
-		register(UserAuthentificationErrorPacket.class);
+		this.register(UserLoginPacket.class);
+		this.register(UserRegisterPacket.class);
+		this.register(UserAuthentificationSuccessPacket.class);
+		this.register(UserAuthentificationErrorPacket.class);
 
 		/* User Settings */
-		register(UserSettingsChangePacket.class);
-		register(UserSettingsChangedPacket.class);
+		this.register(UserSettingsChangePacket.class);
+		this.register(UserSettingsChangedPacket.class);
+
+
 	}
 
+	/**
+	 * Add packet in registry.
+	 *
+	 * @param clazz The packet class.
+	 * @return Return -1 if already in registry.
+	 */
 	public int register(Class<? extends IPacket> clazz) {
-		if (!reversePacketClassMap.containsKey(clazz)) {
-			int id = packetIdIncrement.getAndIncrement();
+		if (!this.reversePacketClassMap.containsKey(clazz)) {
+			int id = this.packetIdIncrement.getAndIncrement();
 
-			packetClassMap.put(id, clazz);
-			reversePacketClassMap.put(clazz, id);
+			this.packetClassMap.put(id, clazz);
+			this.reversePacketClassMap.put(clazz, id);
 			LOGGER.debug("Registered packet ID %s with class: <app>%s", id, clazz.getCanonicalName().substring(Bootstrap.class.getPackage().getName().length()));
 
 			return id;
@@ -69,24 +89,41 @@ public class PacketRegistry {
 		return -1;
 	}
 
+	/**
+	 * Retrieve class from packet id.
+	 *
+	 * @param packetId Id of packet.
+	 * @return Class of packet found.
+	 */
 	public Class<? extends IPacket> lookup(int packetId) {
-		if (!packetClassMap.containsKey(packetId)) {
+		if (!this.packetClassMap.containsKey(packetId)) {
 			throw new IllegalStateException("The packet id is not registered: " + packetId);
 		}
 
-		return packetClassMap.get(packetId);
+		return this.packetClassMap.get(packetId);
 	}
 
+	/**
+	 * Retrieve packet id from this class.
+	 *
+	 * @param packetClass The packet class.
+	 * @return the id of packet.
+	 */
 	public int lookup(Class<? extends IPacket> packetClass) {
 		Objects.requireNonNull(packetClass, "Packet class can't be null");
 
-		if (!reversePacketClassMap.containsKey(packetClass)) {
+		if (!this.reversePacketClassMap.containsKey(packetClass)) {
 			throw new IllegalStateException("The packet class is not registered: " + packetClass);
 		}
 
-		return reversePacketClassMap.get(packetClass);
+		return this.reversePacketClassMap.get(packetClass);
 	}
 
+	/**
+	 * Get the PacketRegistry
+	 *
+	 * @return The instance of packet Registry
+	 */
 	public static PacketRegistry get() {
 		return INSTANCE;
 	}

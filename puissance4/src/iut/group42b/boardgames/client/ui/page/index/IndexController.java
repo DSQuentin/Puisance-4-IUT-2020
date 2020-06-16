@@ -15,11 +15,11 @@ public class IndexController implements IController {
 
 	@Override
 	public void handle(ActionEvent event) {
-		if (event.getSource() == view.getToLoginButton() || event.getSource() == view.getPlayNowButton()) {
+		if (event.getSource() == this.view.getToLoginButton() || event.getSource() == this.view.getPlayNowButton()) {
 
 			// UserInterface.get().openDialog(new LoginView());
 			UserInterface.get().set(new LoginView());
-		} else if (event.getSource() == view.getToRegisterButton()) {
+		} else if (event.getSource() == this.view.getToRegisterButton()) {
 			UserInterface.get().set(new RegisterView());
 		}
 	}

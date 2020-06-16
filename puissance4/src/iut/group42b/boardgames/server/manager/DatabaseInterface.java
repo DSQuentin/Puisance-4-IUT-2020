@@ -14,10 +14,27 @@ public class DatabaseInterface {
 	/* Variables */
 	private AbstractDatabaseConnection connection;
 
-	/* Constructor */
+	/**
+	 * Constructor  DatabaseInterface
+	 */
 	private DatabaseInterface() {
 	}
 
+	/**
+	 * Get the DatabaseInterface.
+	 *
+	 * @return DatabaseInterface.
+	 */
+	public static DatabaseInterface get() {
+		return INSTANCE;
+	}
+
+	/**
+	 * Connect to database.
+	 *
+	 * @param connection AbstractDatabaseConnection.
+	 * @throws Exception
+	 */
 	public void initialize(AbstractDatabaseConnection connection) throws Exception {
 		if (this.connection != null) {
 			throw new IllegalStateException("There are already a database connection provided.");
@@ -30,12 +47,13 @@ public class DatabaseInterface {
 		this.connection = connection;
 	}
 
+	/**
+	 * Get the connection.
+	 *
+	 * @return AbstractDatabaseConnection
+	 */
 	public AbstractDatabaseConnection getConnection() {
-		return connection;
-	}
-
-	public static DatabaseInterface get() {
-		return INSTANCE;
+		return this.connection;
 	}
 
 }

@@ -25,7 +25,9 @@ public class MatchmakingManager implements INetworkHandler {
 	/* Variables */
 	private final Map<IGame, List<SocketHandler>> waitingToPlaySocketsMap;
 
-	/* Constructor */
+	/**
+	 * Constructor MatchmakingManager.
+	 */
 	private MatchmakingManager() {
 		this.waitingToPlaySocketsMap = new HashMap<>();
 	}
@@ -43,8 +45,8 @@ public class MatchmakingManager implements INetworkHandler {
 
 			List<SocketHandler> readyToPlaySockets = null;
 
-			synchronized (waitingToPlaySocketsMap) {
-				List<SocketHandler> socketList = waitingToPlaySocketsMap.computeIfAbsent(game, (key) -> new LinkedList<>());
+			synchronized (this.waitingToPlaySocketsMap) {
+				List<SocketHandler> socketList = this.waitingToPlaySocketsMap.computeIfAbsent(game, (key) -> new LinkedList<>());
 
 				socketList.add(handler);
 
@@ -57,13 +59,18 @@ public class MatchmakingManager implements INetworkHandler {
 				GameManager.get().start(game, readyToPlaySockets);
 			}
 		} else if (packet instanceof MatchmakingLeavePacket) {
-			synchronized (waitingToPlaySocketsMap) {
-				waitingToPlaySocketsMap.values().forEach((socketList) -> socketList.remove(handler));
+			synchronized (this.waitingToPlaySocketsMap) {
+				this.waitingToPlaySocketsMap.values().forEach((socketList) -> socketList.remove(handler));
 			}
 		}
 
 	}
 
+	/**
+	 * Get the MatchmakingManager.
+	 *
+	 * @return MatchmakingManager.
+	 */
 	public static MatchmakingManager get() {
 		return INSTANCE;
 	}

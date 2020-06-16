@@ -10,12 +10,19 @@ public class UserAuthentificationSuccessPacket implements IPacket {
 	private SuccessType successType;
 	private UserProfile userProfile;
 
-	/* Constructor */
+	/**
+	 * Constructor UserAuthentificationSuccessPacket Empty to rebuild packet.
+	 */
 	public UserAuthentificationSuccessPacket() {
 		this(null, null);
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor UserAuthentificationSuccessPacket
+	 *
+	 * @param successType SuccessType
+	 * @param userProfile UserProfile
+	 */
 	public UserAuthentificationSuccessPacket(SuccessType successType, UserProfile userProfile) {
 		this.successType = successType;
 		this.userProfile = userProfile;
@@ -23,36 +30,46 @@ public class UserAuthentificationSuccessPacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write((byte) successType.ordinal());
+		buffer.write((byte) this.successType.ordinal());
 
-		if (SuccessType.LOGGED.equals(successType)) {
-			userProfile.write(buffer);
+		if (SuccessType.LOGGED.equals(this.successType)) {
+			this.userProfile.write(buffer);
 		}
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		successType = SuccessType.values()[buffer.readByte()];
+		this.successType = SuccessType.values()[buffer.readByte()];
 
-		if (SuccessType.LOGGED.equals(successType)) {
-			userProfile = new UserProfile();
-			userProfile.read(buffer);
+		if (SuccessType.LOGGED.equals(this.successType)) {
+			this.userProfile = new UserProfile();
+			this.userProfile.read(buffer);
 		}
 	}
 
+	/**
+	 * Get the success type.
+	 *
+	 * @return SuccessType
+	 */
 	public SuccessType getSuccessType() {
-		return successType;
+		return this.successType;
 	}
 
+	/**
+	 * Get the user profile.
+	 *
+	 * @return UserProfile.
+	 */
 	public UserProfile getUserProfile() {
-		return userProfile;
+		return this.userProfile;
 	}
 
 	@Override
 	public String toString() {
 		return "UserAuthentificationSuccessPacket{" +
-				"successType=" + successType +
-				", userProfile=" + userProfile +
+				"successType=" + this.successType +
+				", userProfile=" + this.userProfile +
 				'}';
 	}
 

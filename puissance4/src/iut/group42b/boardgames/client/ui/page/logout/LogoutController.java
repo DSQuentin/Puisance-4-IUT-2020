@@ -16,11 +16,11 @@ public class LogoutController implements IController {
 	@Override
 	public void handle(ActionEvent event) {
 
-		if (event.getSource() == view.getToLoginButton()) {
+		if (event.getSource() == this.view.getToLoginButton()) {
 			UserInterface.get().set(new LoginView());
-		} else if (event.getSource() == view.getToRegisterButton()) {
+		} else if (event.getSource() == this.view.getToRegisterButton()) {
 			UserInterface.get().set(new RegisterView());
-		} else if (event.getSource() == view.getBackHome()) {
+		} else if (event.getSource() == this.view.getBackHome()) {
 			UserInterface.get().set(new IndexView());
 		}
 	}

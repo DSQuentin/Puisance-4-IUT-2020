@@ -19,10 +19,10 @@ public class GameListViewCellView extends AbstractViewCell<IGame> {
 	protected GameListViewCellView(IListViewCellController<IGame> partController) {
 		super(partController);
 
-		this.actionButton = (Button) findById("home-button-action");
-		this.tagsLabel = (Label) findById("home-label-tags");
-		this.gameTitleLabel = (Label) findById("home-label-game-title");
-		this.coverImageView = (ImageView) findById("home-imageview-game-logo");
+		this.actionButton = (Button) this.findById("home-button-action");
+		this.tagsLabel = (Label) this.findById("home-label-tags");
+		this.gameTitleLabel = (Label) this.findById("home-label-game-title");
+		this.coverImageView = (ImageView) this.findById("home-imageview-game-logo");
 	}
 
 	@Override
@@ -31,19 +31,19 @@ public class GameListViewCellView extends AbstractViewCell<IGame> {
 	}
 
 	public Button getActionButton() {
-		return actionButton;
+		return this.actionButton;
 	}
 
 	public Label getTagsLabel() {
-		return tagsLabel;
+		return this.tagsLabel;
 	}
 
 	public ImageView getCoverImageView() {
-		return coverImageView;
+		return this.coverImageView;
 	}
 
 	public Label getGameTitleLabel() {
-		return gameTitleLabel;
+		return this.gameTitleLabel;
 	}
 
 }

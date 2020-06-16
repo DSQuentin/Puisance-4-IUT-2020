@@ -26,30 +26,30 @@ public class OtherView extends AbstractView {
 
 	public OtherView() {
 		super();
-		this.logoImageView = (ImageView) findById("other-profile-imageview-logo");
-		this.avatarImageView = (ImageView) findById("other-profile-imageview-avatar");
-		this.gamesPlayedText = (Text) findById("other-profile-text-games-played");
-		this.usernameText = (Text) findById("other-profile-text-username");
-		this.friendsText = (Text) findById("other-profile-text-friends");
-		this.winsText = (Text) findById("other-profile-text-wins");
-		this.addFriendButton = (Button) findById("other-profile-button-add-friend");
-		this.averageTimeText = (Text) findById("other-profile-text-average-time-per-game");
-		this.maxScoreText = (Text) findById("other-profile-text-max-score");
-		this.logoutButton = (Button) findById("other-button-logout");
-		this.ownAvatarImageView = (ImageView) findById("profile-picture");
-		this.winCircle = (AnchorPane) findById("win-cirle");
-		this.defeatCircle = (AnchorPane) findById("defeat-circle");
+		this.logoImageView = (ImageView) this.findById("other-profile-imageview-logo");
+		this.avatarImageView = (ImageView) this.findById("other-profile-imageview-avatar");
+		this.gamesPlayedText = (Text) this.findById("other-profile-text-games-played");
+		this.usernameText = (Text) this.findById("other-profile-text-username");
+		this.friendsText = (Text) this.findById("other-profile-text-friends");
+		this.winsText = (Text) this.findById("other-profile-text-wins");
+		this.addFriendButton = (Button) this.findById("other-profile-button-add-friend");
+		this.averageTimeText = (Text) this.findById("other-profile-text-average-time-per-game");
+		this.maxScoreText = (Text) this.findById("other-profile-text-max-score");
+		this.logoutButton = (Button) this.findById("other-button-logout");
+		this.ownAvatarImageView = (ImageView) this.findById("profile-picture");
+		this.winCircle = (AnchorPane) this.findById("win-cirle");
+		this.defeatCircle = (AnchorPane) this.findById("defeat-circle");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
 	}
 
 	public AnchorPane getWinCircleAnchor() {
-		return winCircle;
+		return this.winCircle;
 	}
 
-	public RingProgressIndicator getWinCircle(){
-		for (Node n : this.getWinCircleAnchor().getChildren()){
-			if (n instanceof RingProgressIndicator){
+	public RingProgressIndicator getWinCircle() {
+		for (Node n : this.getWinCircleAnchor().getChildren()) {
+			if (n instanceof RingProgressIndicator) {
 				return (RingProgressIndicator) n;
 			}
 		}
@@ -57,12 +57,12 @@ public class OtherView extends AbstractView {
 	}
 
 	public AnchorPane getDefeatCircleAnchor() {
-		return defeatCircle;
+		return this.defeatCircle;
 	}
 
-	public RingProgressIndicator getDefeatCircle(){
-		for (Node n : this.getDefeatCircleAnchor().getChildren()){
-			if (n instanceof RingProgressIndicator){
+	public RingProgressIndicator getDefeatCircle() {
+		for (Node n : this.getDefeatCircleAnchor().getChildren()) {
+			if (n instanceof RingProgressIndicator) {
 				return (RingProgressIndicator) n;
 			}
 		}
@@ -75,48 +75,48 @@ public class OtherView extends AbstractView {
 	}
 
 	public ImageView getLogoImageView() {
-		return logoImageView;
+		return this.logoImageView;
 	}
 
 	public ImageView getAvatarImageView() {
-		return avatarImageView;
+		return this.avatarImageView;
 	}
 
 	public Text getGamesPlayedText() {
-		return gamesPlayedText;
+		return this.gamesPlayedText;
 	}
 
 	public Text getUsernameText() {
-		return usernameText;
+		return this.usernameText;
 	}
 
 	public Text getFriendsText() {
-		return friendsText;
+		return this.friendsText;
 	}
 
 	public Text getWinsText() {
-		return winsText;
+		return this.winsText;
 	}
 
 	public Button getAddFriendButton() {
-		return addFriendButton;
+		return this.addFriendButton;
 	}
 
 	public Text getAverageTimeText() {
-		return averageTimeText;
+		return this.averageTimeText;
 	}
 
 	public Text getMaxScoreText() {
-		return maxScoreText;
+		return this.maxScoreText;
 	}
 
 
 	public Button getLogoutButton() {
-		return logoutButton;
+		return this.logoutButton;
 	}
 
 	public ImageView getOwnAvatarImageView() {
-		return ownAvatarImageView;
+		return this.ownAvatarImageView;
 	}
 
 	@Override

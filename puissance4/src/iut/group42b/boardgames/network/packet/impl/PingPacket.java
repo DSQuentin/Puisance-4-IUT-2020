@@ -8,27 +8,38 @@ public class PingPacket implements IPacket {
 	/* Variables */
 	private final long millis;
 
-	/* Constructor */
+	/**
+	 * Constructor PingPacket
+	 */
 	public PingPacket() {
 		this(System.currentTimeMillis());
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor PingPacket
+	 *
+	 * @param millis A duration in milliseconds.
+	 */
 	public PingPacket(long millis) {
 		this.millis = millis;
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(millis);
+		buffer.write(this.millis);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
 	}
 
+	/**
+	 * Get a duration
+	 *
+	 * @return Duration in milliseconds.
+	 */
 	public long getMillis() {
-		return millis;
+		return this.millis;
 	}
 
 }

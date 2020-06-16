@@ -20,10 +20,10 @@ public class I18nEnumMessage implements IMessage {
 	@Override
 	public String use(Object... args) {
 		if (I18nMessage.getGlobalResourceBundle() == null || args.length == 0) {
-			return baseKey;
+			return this.baseKey;
 		}
 
-		String key = baseKey + "." + args[0].toString().toLowerCase();
+		String key = this.baseKey + "." + args[0].toString().toLowerCase();
 
 		Object[] remainingArgs = new Object[args.length - 1];
 		System.arraycopy(args, 1, remainingArgs, 0, remainingArgs.length);

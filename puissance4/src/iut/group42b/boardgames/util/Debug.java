@@ -6,14 +6,22 @@ import javafx.scene.control.SplitPane;
 
 public class Debug {
 
-	/*
-	 * https://stackoverflow.com/questions/21175767/how-to-traverse-the-entire-scene-graph-hierarchy
-	 * Debugging routine to dump the scene graph.
-	 * */
+	/**
+	 * Dump all node in the view.
+	 *
+	 * @param n Node.
+	 * @see <a href="https://stackoverflow.com/questions/21175767/how-to-traverse-the-entire-scene-graph-hierarchy">Debugging routine to dump the scene graph.</a>
+	 **/
 	public static void dump(Node n) {
 		dump(n, 0);
 	}
 
+	/**
+	 * Simple dfs
+	 *
+	 * @param n     Node.
+	 * @param depth int.
+	 */
 	private static void dump(Node n, int depth) {
 		for (int i = 0; i < depth; i++) System.out.print("  ");
 		System.out.println(n);

@@ -22,8 +22,8 @@ public class WaitingView extends AbstractView {
 	public WaitingView(IGame game) {
 		super();
 		this.game = game;
-		this.cancelButton = (Button) findById("waiting-player-button-cancel");
-		this.logoGameImageView = (ImageView) findById("waiting-player-imageview-logo");
+		this.cancelButton = (Button) this.findById("waiting-player-button-cancel");
+		this.logoGameImageView = (ImageView) this.findById("waiting-player-imageview-logo");
 
 	}
 
@@ -39,14 +39,14 @@ public class WaitingView extends AbstractView {
 	}
 
 	public IGame getGame() {
-		return game;
+		return this.game;
 	}
 
 	public Button getCancelButton() {
-		return cancelButton;
+		return this.cancelButton;
 	}
 
 	public ImageView getLogoGameImageView() {
-		return logoGameImageView;
+		return this.logoGameImageView;
 	}
 }

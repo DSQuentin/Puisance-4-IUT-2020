@@ -12,17 +12,42 @@ public class Option {
 	private Object value;
 	private boolean used;
 
-	/* Constructor */
+
+	/**
+	 * Constructor Option.
+	 *
+	 * @param shortName   char.
+	 * @param longName    String.
+	 * @param description String.
+	 */
 	public Option(char shortName, String longName, String description) {
 		this(shortName, longName, description, false, null, null);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Option.
+	 *
+	 * @param shortName    char.
+	 * @param longName     String.
+	 * @param description  String.
+	 * @param defaultValue Object.
+	 */
 	public Option(char shortName, String longName, String description, Object defaultValue) {
 		this(shortName, longName, description, true, defaultValue, defaultValue == null ? null : defaultValue.getClass());
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Option
+	 *
+	 * @param shortName    char.
+	 * @param longName     String.
+	 * @param description  String.
+	 * @param hasValue     boolean.
+	 * @param defaultValue Object.
+	 * @param type         Class<?>.
+	 */
 	public Option(char shortName, String longName, String description, boolean hasValue, Object defaultValue, Class<?> type) {
 		this.shortName = shortName;
 		this.longName = longName;
@@ -35,42 +60,92 @@ public class Option {
 		this.used = false;
 	}
 
+	/**
+	 * Get the Short Name of Option.
+	 *
+	 * @return char.
+	 */
 	public char getShortName() {
-		return shortName;
+		return this.shortName;
 	}
 
+	/**
+	 * Get the long name of option.
+	 *
+	 * @return String.
+	 */
 	public String getLongName() {
-		return longName;
+		return this.longName;
 	}
 
+	/**
+	 * Get the Description of option.
+	 *
+	 * @return String.
+	 */
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
+	/**
+	 * Check if options have value.
+	 *
+	 * @return boolean.
+	 */
 	public boolean isHasValue() {
-		return hasValue;
+		return this.hasValue;
 	}
 
+	/**
+	 * Get Type.
+	 *
+	 * @return Class<?>.
+	 */
 	public Class<?> getType() {
-		return type;
+		return this.type;
 	}
 
+	/**
+	 * Get the Default Value.
+	 *
+	 * @return Object.
+	 */
 	public Object getDefaultValue() {
-		return defaultValue;
+		return this.defaultValue;
 	}
 
+	/**
+	 * Get the value.
+	 *
+	 * @return Object.
+	 */
 	public Object getValue() {
-		return value;
+		return this.value;
 	}
 
+	/**
+	 * Set the Value.
+	 *
+	 * @param value Object.
+	 */
 	public void setValue(Object value) {
 		this.value = value;
 	}
 
+	/**
+	 * Check if options is used.
+	 *
+	 * @return boolean.
+	 */
 	public boolean isUsed() {
-		return used;
+		return this.used;
 	}
 
+	/**
+	 * Set Used.
+	 *
+	 * @param used boolean.
+	 */
 	public void setUsed(boolean used) {
 		this.used = used;
 	}

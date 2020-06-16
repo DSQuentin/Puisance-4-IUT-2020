@@ -8,28 +8,40 @@ public class UserSearchRequestPacket implements IPacket {
 	/* Variables */
 	private String query;
 
-	/* Constructor */
+	/**
+	 * UserSearchRequestPacket Constructor Empty to rebuild the packet.
+	 */
 	public UserSearchRequestPacket() {
 		this(null);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor UserSearchRequestPacket.
+	 *
+	 * @param query
+	 */
 	public UserSearchRequestPacket(String query) {
 		this.query = query;
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(query);
+		buffer.write(this.query);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		query = buffer.readString();
+		this.query = buffer.readString();
 	}
 
+	/**
+	 * Get the query.
+	 *
+	 * @return String.
+	 */
 	public String getQuery() {
-		return query;
+		return this.query;
 	}
 
 }

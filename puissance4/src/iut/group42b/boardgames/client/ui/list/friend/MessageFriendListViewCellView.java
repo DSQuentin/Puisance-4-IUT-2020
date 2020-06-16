@@ -3,48 +3,34 @@ package iut.group42b.boardgames.client.ui.list.friend;
 import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
 import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
 import iut.group42b.boardgames.social.model.UserProfile;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 public class MessageFriendListViewCellView extends AbstractViewCell<UserProfile> {
 
 	/* UI */
-	private final Button actionButton;
-	private final Label tagsLabel;
-	private final Label gameTitleLabel;
-	private final ImageView coverImageView;
+	private final ImageView pictureImageView;
+	private final Text nameText;
 
 	/* Constructor */
 	protected MessageFriendListViewCellView(IListViewCellController<UserProfile> partController) {
 		super(partController);
 
-		this.actionButton = (Button) findById("home-button-action");
-		this.tagsLabel = (Label) findById("home-label-tags");
-		this.gameTitleLabel = (Label) findById("home-label-game-title");
-		this.coverImageView = (ImageView) findById("home-imageview-game-logo");
+		this.pictureImageView = (ImageView) this.findById("social-friend-cell-image-picture");
+		this.nameText = (Text) this.findById("social-friend-cell-text-name");
 	}
 
 	@Override
 	public String getViewPath() {
-		return "home-game-cell.fxml";
+		return "social-friends-cell.fxml";
 	}
 
-	public Button getActionButton() {
-		return actionButton;
+	public ImageView getPictureImageView() {
+		return this.pictureImageView;
 	}
 
-	public Label getTagsLabel() {
-		return tagsLabel;
+	public Text getNameText() {
+		return this.nameText;
 	}
-
-	public ImageView getCoverImageView() {
-		return coverImageView;
-	}
-
-	public Label getGameTitleLabel() {
-		return gameTitleLabel;
-	}
-
 
 }

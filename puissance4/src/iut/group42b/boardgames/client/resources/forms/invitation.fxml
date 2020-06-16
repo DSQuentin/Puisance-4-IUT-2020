@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <BorderPane layoutX="326.0" layoutY="200.0" prefHeight="200.0" prefWidth="200.0"
+                    style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <VBox BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER">
+                            <children>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invitations">
+                                    <HBox.margin>
+                                        <Insets top="20.0"/>
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+                                </Text>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                            <children>
+                                <TabPane tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
+                                    <tabs>
+                                        <Tab text="Received">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0">
+                                                    <children>
+                                                        <ListView prefHeight="200.0" prefWidth="200.0"
+                                                                  AnchorPane.bottomAnchor="0.0"
+                                                                  AnchorPane.leftAnchor="0.0"
+                                                                  AnchorPane.rightAnchor="0.0"
+                                                                  AnchorPane.topAnchor="0.0"/>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab text="Send">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                                            prefWidth="200.0">
+                                                    <children>
+                                                        <ListView prefHeight="200.0" prefWidth="200.0"
+                                                                  AnchorPane.bottomAnchor="0.0"
+                                                                  AnchorPane.leftAnchor="0.0"
+                                                                  AnchorPane.rightAnchor="0.0"
+                                                                  AnchorPane.topAnchor="0.0"/>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </TabPane>
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                </VBox>
+            </center>
+            <top>
+                <VBox BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0"
+                              style="-fx-background-color: #365186;" VBox.vgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/logo.png"/>
+                                            </image>
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0"/>
+                                            </HBox.margin>
+                                        </ImageView>
+                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
+                                              text="Online board Games" textAlignment="CENTER">
+                                            <font>
+                                                <Font name="System Bold" size="24.0"/>
+                                            </font>
+                                            <HBox.margin>
+                                                <Insets right="100.0"/>
+                                            </HBox.margin>
+                                        </Text>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                                                style="-fx-background-color: #38B295; -fx-opacity: 0;" text="ADMIN"
+                                                textFill="WHITE">
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                            </HBox.margin>
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button id="home-button-tologout" alignment="CENTER" contentDisplay="CENTER"
+                                                mnemonicParsing="false" style="-fx-background-color: #38B295;"
+                                                text="LOG OUT" textFill="WHITE">
+                                            <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                            </HBox.margin>
+                                            <font>
+                                                <Font size="14.0"/>
+                                            </font>
+                                        </Button>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="200.0"/>
+                                    </HBox.margin>
+                                </HBox>
+                                <ImageView id="home-imageview-profile" fitHeight="40.0" fitWidth="40.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/avatar.png"/>
+                                    </image>
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" top="5.0"/>
+                                    </HBox.margin>
+                                </ImageView>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </top>
+            <left>
+                <AnchorPane prefWidth="100.0" BorderPane.alignment="CENTER"/>
+            </left>
+            <right>
+                <AnchorPane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER"/>
+            </right>
+            <bottom>
+                <AnchorPane prefHeight="50.0" BorderPane.alignment="CENTER"/>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>

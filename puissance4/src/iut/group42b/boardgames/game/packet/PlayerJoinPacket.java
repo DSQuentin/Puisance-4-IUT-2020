@@ -20,22 +20,22 @@ public class PlayerJoinPacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(gameId);
+		buffer.write(this.gameId);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		gameId = buffer.readInt();
+		this.gameId = buffer.readInt();
 	}
 
 	public int getGameId() {
-		return gameId;
+		return this.gameId;
 	}
 
 	@Override
 	public String toString() {
 		return "PlayerJoinPacket{" +
-				"gameId=" + gameId +
+				"gameId=" + this.gameId +
 				'}';
 	}
 

@@ -18,21 +18,21 @@ public abstract class AbstractViewCell<T> extends ListCell<T> {
 
 	/* Constructor */
 	protected AbstractViewCell(IListViewCellController<T> partController) {
-		this.logger = new Logger(getClass());
+		this.logger = new Logger(this.getClass());
 		this.partController = partController;
 
 		try {
-			this.root = FXMLLoader.load(Resource.loadForm(getViewPath()), I18nMessage.getGlobalResourceBundle());
+			this.root = FXMLLoader.load(Resource.loadForm(this.getViewPath()), I18nMessage.getGlobalResourceBundle());
 		} catch (Exception exception) {
 			throw new RuntimeException(exception);
 		}
 	}
 
 	protected Node findById(String id) {
-		Node node = root.lookup("#" + id);
+		Node node = this.root.lookup("#" + id);
 
 		if (node == null) {
-			getLogger().warning("There is no view with ID: %s", id);
+			this.getLogger().warning("There is no view with ID: %s", id);
 		}
 
 		return node;
@@ -42,30 +42,30 @@ public abstract class AbstractViewCell<T> extends ListCell<T> {
 	protected void updateItem(T item, boolean empty) {
 		super.updateItem(item, empty);
 
-		setUserData(null);
-		setText(null);
+		this.setUserData(null);
+		this.setText(null);
 
-		currentItem = item;
+		this.currentItem = item;
 
 		if (empty || item == null) {
-			setGraphic(null);
+			this.setGraphic(null);
 		} else {
-			setUserData(item);
-			partController.updateItem(this, item);
-			setGraphic(root);
+			this.setUserData(item);
+			this.partController.updateItem(this, item);
+			this.setGraphic(this.root);
 		}
 	}
 
 	public Parent getRoot() {
-		return root;
+		return this.root;
 	}
 
 	public Logger getLogger() {
-		return logger;
+		return this.logger;
 	}
 
 	public T getCurrentItem() {
-		return currentItem;
+		return this.currentItem;
 	}
 
 	public abstract String getViewPath();

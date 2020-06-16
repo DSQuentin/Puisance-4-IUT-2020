@@ -20,10 +20,10 @@ public class I18nMessage implements IMessage {
 	@Override
 	public String use(Object... args) {
 		if (resourceBundle == null) {
-			return key;
+			return this.key;
 		}
 
-		return String.format(resourceBundle.getString(key), args);
+		return String.format(resourceBundle.getString(this.key), args);
 	}
 
 	public static void setGlobalResourceBundle(ResourceBundle resourceBundle) {

@@ -27,7 +27,9 @@ public class GameManager implements INetworkHandler {
 	/* Variables */
 	private final Map<Player, IGameArena> playerToArenaMap;
 
-	/* Constructor */
+	/**
+	 * Constructor GameManager.
+	 */
 	private GameManager() {
 		this.playerToArenaMap = new HashMap<>();
 	}
@@ -41,8 +43,14 @@ public class GameManager implements INetworkHandler {
 		}
 	}
 
+	/**
+	 * Find an Arena by id.
+	 *
+	 * @param socketHandler SocketHandler.
+	 * @return IGameArena.
+	 */
 	public IGameArena findArena(SocketHandler socketHandler) {
-		for (Map.Entry<Player, IGameArena> entry : playerToArenaMap.entrySet()) {
+		for (Map.Entry<Player, IGameArena> entry : this.playerToArenaMap.entrySet()) {
 			Player player = entry.getKey();
 			IGameArena arena = entry.getValue();
 
@@ -54,6 +62,12 @@ public class GameManager implements INetworkHandler {
 		return null;
 	}
 
+	/**
+	 * Start the game.
+	 *
+	 * @param game               IGame.
+	 * @param readyToPlaySockets List<SocketHandler>.
+	 */
 	public void start(IGame game, List<SocketHandler> readyToPlaySockets) {
 		List<Player> players = readyToPlaySockets.stream().map(Player::new).collect(Collectors.toList());
 
@@ -61,7 +75,7 @@ public class GameManager implements INetworkHandler {
 		IGameArena arena = gameHandler.createArena(players);
 
 		for (Player player : players) {
-			playerToArenaMap.put(player, arena);
+			this.playerToArenaMap.put(player, arena);
 		}
 
 		arena.broadcast(new PlayerJoinPacket(GameRegistry.get().getIdFor(game)));
@@ -79,6 +93,11 @@ public class GameManager implements INetworkHandler {
 
 	}
 
+	/**
+	 * Get the GameManager.
+	 *
+	 * @return GameManager.
+	 */
 	public static GameManager get() {
 		return INSTANCE;
 	}
