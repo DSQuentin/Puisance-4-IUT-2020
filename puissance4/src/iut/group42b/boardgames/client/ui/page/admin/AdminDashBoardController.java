@@ -35,6 +35,7 @@ public class AdminDashBoardController  implements IController {
         UserProfile userProfile = NetworkInterface.get().getSocketHandler().getUserProfile();
 
         this.view.getLogOut().setOnAction(this);
+        this.view.getProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
 
 
         this.view.getLogoImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {

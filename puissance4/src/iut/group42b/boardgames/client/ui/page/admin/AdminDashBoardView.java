@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 
 public class AdminDashBoardView extends AbstractView {
     private final ImageView logoImageView;
+    private final ImageView profileImageView;
     private final Button logOut;
     private final Text gamesPlayedGame1;
     private final Text gamesPlayedGame2;
@@ -21,6 +22,7 @@ public class AdminDashBoardView extends AbstractView {
 
     public AdminDashBoardView() {
         this.logoImageView = (ImageView) this.findById("logo");
+        this.profileImageView =  this.findById("admin-dashboard-imageview-profile");
         this.gamesPlayedGame1 = (Text) this.findById("admin-dashboard-games-played-game1");
         this.gamesPlayedGame2 = (Text) this.findById("admin-dashboard-games-played-game2");
         this.gamesPlayedGame3 = (Text) this.findById("admin-dashboard-games-played-game3");
@@ -31,49 +33,29 @@ public class AdminDashBoardView extends AbstractView {
         this.logOut = (Button) this.findById("admin-dashboard-logout");
     }
 
-    public ImageView getLogoImageView() {
-        return this.logoImageView;
-    }
+    public ImageView getProfileImageView() { return this.profileImageView; }
 
-    public Button getLogOut() {
-        return this.logOut;
-    }
+    public ImageView getLogoImageView() { return this.logoImageView; }
 
-    public Button getManageButton() {
-        return this.manageButton;
-    }
+    public Button getLogOut() { return this.logOut; }
 
-    public Text getGamesPlayedGame1() {
-        return this.gamesPlayedGame1;
-    }
+    public Button getManageButton() { return this.manageButton; }
 
-    public Text getGamesPlayedGame2() {
-        return this.gamesPlayedGame2;
-    }
+    public Text getGamesPlayedGame1() { return this.gamesPlayedGame1; }
 
-    public Text getGamesPlayedGame3() {
-        return this.gamesPlayedGame3;
-    }
+    public Text getGamesPlayedGame2() { return this.gamesPlayedGame2; }
 
-    public Text getTopUser() {
-        return this.topUser;
-    }
+    public Text getGamesPlayedGame3() { return this.gamesPlayedGame3; }
 
-    public Text getTopUserScore() {
-        return this.topUserScore;
-    }
+    public Text getTopUser() { return this.topUser; }
 
-    public ImageView getImageGraph() {
-        return this.imageGraph;
-    }
+    public Text getTopUserScore() { return this.topUserScore; }
+
+    public ImageView getImageGraph() { return this.imageGraph; }
 
     @Override
-    public String getViewPath() {
-        return "admin-dashboard.fxml";
-    }
+    public String getViewPath() { return "admin-dashboard.fxml"; }
 
     @Override
-    public IController createController() {
-        return new AdminDashBoardController();
-    }
+    public IController createController() { return new AdminDashBoardController(); }
 }

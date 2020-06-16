@@ -67,7 +67,7 @@
                                         <Insets left="200.0" />
                                     </HBox.margin>
                                 </HBox>
-                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView id="admin-dashboard-imageview-profile" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/avatar.png" />
                                     </image>
