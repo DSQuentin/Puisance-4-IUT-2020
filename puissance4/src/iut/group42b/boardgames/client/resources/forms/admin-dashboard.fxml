@@ -192,10 +192,10 @@
                            <children>
                               <LineChart id="admin-dashboard-linechart-cpu" title="%admin.dashboard.cpu.load">
                                 <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
+                                  <CategoryAxis id="admin-dashboard-linechart-xaxis" side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
-                                  <NumberAxis side="LEFT" />
+                                  <NumberAxis id="admin-dashboard-linechart-yaxis" side="LEFT" />
                                 </yAxis>
                               </LineChart>
                            </children>
