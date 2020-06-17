@@ -7,6 +7,7 @@ import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
 import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
+import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
 import iut.group42b.boardgames.social.packet.message.MessageListPacket;
 import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
@@ -289,6 +290,30 @@ public class UserManager implements INetworkHandler {
 		}
 
 		return friends;
+	}
+
+	public List<GameHistoryItem> getGameHistory(int userId) {
+		List<GameHistoryItem> gameHistory = new ArrayList<>();
+
+		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("select * from played_games WHERE ( id_user_1 = ? AND id_user_2 != ? ) OR  ( id_user_1 != ? AND id_user_2 = ?) LIMIT 10 ;")) {
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, userId);
+			preparedStatement.setInt(3, userId);
+			preparedStatement.setInt(4, userId);
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				while (resultSet.next()) {
+
+
+				 	gameHistory.add(new GameHistoryItem());
+				}
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+
+		Collections.reverse(gameHistory);
+		return gameHistory;
 	}
 
 }
