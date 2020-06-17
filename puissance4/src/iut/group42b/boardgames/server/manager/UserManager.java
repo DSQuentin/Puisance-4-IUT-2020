@@ -6,6 +6,7 @@ import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
+import iut.group42b.boardgames.social.packet.history.GameListHistoryPacket;
 import iut.group42b.boardgames.util.Logger;
 
 import java.sql.PreparedStatement;
@@ -76,6 +77,12 @@ public class UserManager implements INetworkHandler {
 			handler.setProfile(newUserProfile);
 
 			handler.queue(new UserSettingsChangedPacket(changed, newUserProfile));
+		} else if (packet instanceof GameListHistoryPacket) {
+			GameListHistoryPacket historyPacket = (GameListHistoryPacket) packet;
+
+			int userId = historyPacket.getUserId();
+
+			handler.queue(new GameListHistoryPacket(userId, getGameHistory(userId)));
 		}
 	}
 

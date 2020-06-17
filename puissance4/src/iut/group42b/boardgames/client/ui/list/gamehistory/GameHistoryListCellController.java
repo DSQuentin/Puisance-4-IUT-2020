@@ -20,7 +20,7 @@ public class GameHistoryListCellController implements IListViewCellController<Ga
 
 	@Override
 	public AbstractViewCell<GameHistoryItem> createView() {
-		return null;
+		return new GameHistoryListCellView(this);
 	}
 
 	@Override

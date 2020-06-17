@@ -25,8 +25,7 @@ public class GameListHistoryPacket implements IPacket {
 	 * @param userId
 	 */
 	public GameListHistoryPacket(int userId) {
-		this.userId = userId;
-		this.gameListHistory = new ArrayList<>();
+		this(userId, new ArrayList<>());
 	}
 
 	/**

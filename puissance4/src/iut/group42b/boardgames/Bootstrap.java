@@ -16,6 +16,7 @@ import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingJoinPacket;
 import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingLeavePacket;
 import iut.group42b.boardgames.network.packet.PacketRegistry;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
+import iut.group42b.boardgames.social.packet.history.GameListHistoryPacket;
 import iut.group42b.boardgames.social.packet.message.MessageListPacket;
 import iut.group42b.boardgames.social.packet.message.OpenedMessagesPacket;
 import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
@@ -99,6 +100,7 @@ public class Bootstrap {
 		PacketRegistry.get().register(MessageListPacket.class);
 		PacketRegistry.get().register(SendMessagePacket.class);
 		PacketRegistry.get().register(OpenedMessagesPacket.class);
+		PacketRegistry.get().register(GameListHistoryPacket.class);
 
 		/* Registering all games. */
 		GameRegistry.get().register(new Connect4Game());
