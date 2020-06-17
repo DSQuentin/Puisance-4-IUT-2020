@@ -24,7 +24,7 @@
                                 </ImageView>
                                 <Text id="connect4-username" strokeType="OUTSIDE" strokeWidth="0.0" text="You"/>
                                 <Text id="connect4-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="Tocken blabla"/>
+                                      text="Number of tokens remaining : 14"/>
                             </children>
                         </VBox>
                     </children>
@@ -39,7 +39,7 @@
                                 <VBox>
                                     <children>
                                         <Text id="connect4-timer" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Time : 3.52 minutes" textAlignment="CENTER">
+                                              text="Time : 0:00:00 " textAlignment="CENTER">
                                             <font>
                                                 <Font size="18.0"/>
                                             </font>
@@ -52,7 +52,7 @@
                                 <VBox alignment="CENTER">
                                     <children>
                                         <Text id="connect4-who-turn" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Eva’s turn" textAlignment="CENTER">
+                                              text=" " textAlignment="CENTER">
                                             <font>
                                                 <Font size="36.0"/>
                                             </font>
@@ -110,7 +110,7 @@
                                         <Image url="@../images/avatar.png"/>
                                     </image>
                                 </ImageView>
-                                <Text id="connect4-opponent-name" strokeType="OUTSIDE" strokeWidth="0.0" text="You"/>
+                                <Text id="connect4-opponent-name" strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent"/>
                                 <Text id="connect4-opponent-tokens-remaining" strokeType="OUTSIDE" strokeWidth="0.0"
                                       text="Number of tokens remaining : 14"/>
                             </children>
