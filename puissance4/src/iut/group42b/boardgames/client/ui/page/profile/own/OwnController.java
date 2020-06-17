@@ -10,9 +10,6 @@ import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.client.ui.page.user.settings.UserSettingsView;
-import iut.group42b.boardgames.game.GameRegistry;
-import iut.group42b.boardgames.game.IGame;
-import iut.group42b.boardgames.game.packet.PlayerJoinPacket;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
@@ -52,12 +49,12 @@ public class OwnController implements IController, INetworkHandler {
 
 		this.view = (OwnView) view;
 
-		this.gameHistoryListViewCellController = new GameHistoryListCellController();
+		this.gameHistoryListViewCellController = new GameHistoryListCellController(this);
 
 		UserProfile userProfile = NetworkInterface.get().getSocketHandler().getUserProfile();
 
 		UserProfile targetUserProfile = this.view.getUserprofile();
-
+		System.out.println(targetUserProfile);
 
 		 this.gameHistoryItemsObservableList = FXCollections.observableArrayList();
 
@@ -112,5 +109,9 @@ public class OwnController implements IController, INetworkHandler {
 				this.gameHistoryItemsObservableList.addAll(gameListHistoryPacket.getGameListHistory());
 			}
 		}
+	}
+
+	public UserProfile getUserProfile() {
+		return view.getUserprofile();
 	}
 }

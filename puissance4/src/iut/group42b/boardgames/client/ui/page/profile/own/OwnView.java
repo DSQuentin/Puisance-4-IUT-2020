@@ -1,5 +1,6 @@
 package iut.group42b.boardgames.client.ui.page.profile.own;
 
+import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.ui.component.circularprogressbar.RingProgressIndicator;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
@@ -32,6 +33,7 @@ public class OwnView extends AbstractView {
 
 	public OwnView(UserProfile up) {
 		super();
+
 		this.logoImageView = this.findById("logo");
 		this.toLogOutButton = this.findById("logout");
 		this.profileImageView = this.findById("profile-picture");
@@ -48,7 +50,8 @@ public class OwnView extends AbstractView {
 		this.gameHistory = this.findById("own-profile-listview-history");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
-		this.userprofile = up;
+
+		this.userprofile = up == null ? NetworkInterface.get().getSocketHandler().getUserProfile() : up;
 	}
 
 	public AnchorPane getWinCircleAnchor() {
