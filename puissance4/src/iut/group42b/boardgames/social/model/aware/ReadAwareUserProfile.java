@@ -1,9 +1,7 @@
 package iut.group42b.boardgames.social.model.aware;
 
-import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.util.DataBuffer;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

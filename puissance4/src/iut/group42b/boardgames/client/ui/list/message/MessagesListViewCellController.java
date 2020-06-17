@@ -7,7 +7,6 @@ import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class MessagesListViewCellController implements IListViewCellController<ExchangedMessage> {
@@ -64,7 +63,7 @@ public class MessagesListViewCellController implements IListViewCellController<E
 			gameCellView.getReceiverProfileImageView().setImage(null);
 
 			if (this.currentlyTalkingToUserProfile != null) {
-				gameCellView.getSenderProfileImageView().setImage(currentlyTalkingToUserProfile.picture());
+				gameCellView.getSenderProfileImageView().setImage(this.currentlyTalkingToUserProfile.picture());
 			}
 		}
 

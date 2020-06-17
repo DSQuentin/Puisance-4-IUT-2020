@@ -1,80 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Text?>
-
-
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <HBox layoutX="108.0" layoutY="108.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Circle id="historycell-circle-wonstate" fill="#2ec73500" radius="27.0" stroke="#10c90d" strokeType="INSIDE" strokeWidth="10.0">
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </Circle>
-            <VBox alignment="CENTER">
-               <children>
-                  <Text id="historycell-text-current-username" strokeType="OUTSIDE" strokeWidth="0.0" text="Albator" />
-               </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox alignment="CENTER">
-               <children>
-                  <Text id="historycell-text-game" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect 4 " />
-               </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Text id="historycell-text-time" strokeType="OUTSIDE" strokeWidth="0.0" text="15.36 " />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <Text id="historycell-text-time-unit" strokeType="OUTSIDE" strokeWidth="0.0" text="minutes" />
-                     </children>
-                  </HBox>
-               </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox alignment="CENTER">
-               <children>
-                  <Text id="historycell-text-point" strokeType="OUTSIDE" strokeWidth="0.0" text="24" />
-               </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox alignment="CENTER">
-               <children>
-                  <Text id="historycell-text-enemy" strokeType="OUTSIDE" strokeWidth="0.0" text="Albatard842" />
-               </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-            <VBox alignment="CENTER">
-               <children>
-                  <Text id="historycell-text-date" strokeType="OUTSIDE" strokeWidth="0.0" text="2020/12/05 - 10AM" />
-               </children>
-               <HBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </HBox.margin>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+            minWidth="-Infinity" style="-fx-background-radius: 5; -fx-border-radius: 5;"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <HBox layoutX="108.0" layoutY="108.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Circle id="historycell-circle-wonstate" fill="#2ec73500" radius="27.0" stroke="#10c90d"
+                        strokeType="INSIDE" strokeWidth="10.0">
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </HBox.margin>
+                </Circle>
+                <VBox alignment="CENTER">
+                    <children>
+                        <Text id="historycell-text-current-username" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="Albator"/>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </HBox.margin>
+                </VBox>
+                <VBox alignment="CENTER">
+                    <children>
+                        <Text id="historycell-text-game" strokeType="OUTSIDE" strokeWidth="0.0" text="Connect 4 "/>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </HBox.margin>
+                </VBox>
+                <VBox alignment="CENTER">
+                    <children>
+                        <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Text id="historycell-text-time" strokeType="OUTSIDE" strokeWidth="0.0" text="15.36 "/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
+                            <children>
+                                <Text id="historycell-text-time-unit" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="minutes"/>
+                            </children>
+                        </HBox>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </HBox.margin>
+                </VBox>
+                <VBox alignment="CENTER">
+                    <children>
+                        <Text id="historycell-text-point" strokeType="OUTSIDE" strokeWidth="0.0" text="24"/>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </HBox.margin>
+                </VBox>
+                <VBox alignment="CENTER">
+                    <children>
+                        <Text id="historycell-text-enemy" strokeType="OUTSIDE" strokeWidth="0.0" text="Albatard842"/>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </HBox.margin>
+                </VBox>
+                <VBox alignment="CENTER">
+                    <children>
+                        <Text id="historycell-text-date" strokeType="OUTSIDE" strokeWidth="0.0"
+                              text="2020/12/05 - 10AM"/>
+                    </children>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </HBox.margin>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

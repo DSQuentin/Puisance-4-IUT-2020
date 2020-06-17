@@ -1,16 +1,11 @@
 package iut.group42b.boardgames.server.manager;
 
-import iut.group42b.boardgames.application.ServerApplication;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
-import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
-import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
-import iut.group42b.boardgames.social.packet.message.MessageListPacket;
-import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
 import iut.group42b.boardgames.util.Logger;
 
 import java.sql.PreparedStatement;
@@ -18,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 public class UserManager implements INetworkHandler {
@@ -266,16 +260,16 @@ public class UserManager implements INetworkHandler {
 		List<UserProfile> friends = new ArrayList<>();
 
 		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("" +
-				"SELECT DISTINCT\n" +
-				"    user.*\n" +
-				"FROM\n" +
-				"    users user\n" +
-				"INNER JOIN are_friends friendship \n" +
-				"    ON friendship.id_user_1 = user.id OR friendship.id_user_2 = user.id\n" +
-				"WHERE\n" +
-				"    (friendship.id_user_1 = ?\n" +
-				"\tOR friendship.id_user_2 = ?)\n" +
-				"\tAND user.id != ?;")) {
+				"SELECT DISTINCT " +
+				"    user.* " +
+				"FROM " +
+				"    users user " +
+				"INNER JOIN are_friends friendship  " +
+				"    ON friendship.id_user_1 = user.id OR friendship.id_user_2 = user.id " +
+				"WHERE " +
+				"    (friendship.id_user_1 = ? " +
+				"    OR friendship.id_user_2 = ?) " +
+				"    AND user.id != ?;")) {
 			for (int i = 0; i < 3; i++) {
 				preparedStatement.setObject(i + 1, ofUserProfile.getId());
 			}
@@ -295,17 +289,45 @@ public class UserManager implements INetworkHandler {
 	public List<GameHistoryItem> getGameHistory(int userId) {
 		List<GameHistoryItem> gameHistory = new ArrayList<>();
 
-		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("select * from played_games WHERE ( id_user_1 = ? AND id_user_2 != ? ) OR  ( id_user_1 != ? AND id_user_2 = ?) LIMIT 10 ;")) {
+		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("" +
+				"SELECT " +
+				"    `state_number`, " +
+				"    `user1`.`id`                                         AS `user1_id`, " +
+				"    `user1`.`username`                                   AS `user1_name`, " +
+				"    `user2`.`id`                                         AS `user2_id`, " +
+				"    `user2`.`username`                                   AS `user2_name`, " +
+				"    `id_user_winner`, " +
+				"    TIMEDIFF(`end_at`, `started_at`)                            AS `duration`, " +
+				"    IF(`id_user_winner` = `id_user_1`, `score_1`, `score_2`)    AS `winner_score`, " +
+				"    `started_at` " +
+				"FROM `played_games` " +
+				"INNER JOIN `users` `user1` " +
+				"    ON `user1`.`id` = `played_games`.`id_user_1` " +
+				"INNER JOIN `users` `user2` " +
+				"    ON `user2`.`id` = `played_games`.`id_user_2` " +
+				"WHERE " +
+				"    (`played_games`.`id_user_1` = ? " +
+				"    OR `played_games`.`id_user_2` = ?) " +
+				"    AND `played_games`.`end_at` IS NOT NULL " +
+				"ORDER BY `played_games`.`id` DESC " +
+				"LIMIT 10;")) {
 			preparedStatement.setInt(1, userId);
 			preparedStatement.setInt(2, userId);
-			preparedStatement.setInt(3, userId);
-			preparedStatement.setInt(4, userId);
+
 
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
+					int gameState = resultSet.getInt("state_number");
+					int user1Id = resultSet.getInt("user1_id");
+					String user1Name = resultSet.getString("user1_name");
+					int user2Id = resultSet.getInt("user2_id");
+					String user2Name = resultSet.getString("user2_name");
+					int idUserWinner = resultSet.getInt("id_user_winner");
+					String duration = resultSet.getString("duration");
+					int winnerScore = resultSet.getInt("winner_score");
+					String startedAt = resultSet.getString("started_at");
 
-
-				 	gameHistory.add(new GameHistoryItem());
+					gameHistory.add(new GameHistoryItem(gameState, user1Id, user1Name, user2Id, user2Name, idUserWinner, duration, winnerScore, startedAt));
 				}
 			}
 		} catch (Exception exception) {

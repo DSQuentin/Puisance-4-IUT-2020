@@ -24,18 +24,18 @@ public class UserProfilePictureCache {
 	}
 
 	public Image auto(UserProfile userProfile) {
-		return auto(userProfile.getImageUrl());
+		return this.auto(userProfile.getImageUrl());
 	}
 
 	public Image auto(String imageUrl) {
-		synchronized (images) {
-			return images.computeIfAbsent(imageUrl, (url) -> new Image(url, true));
+		synchronized (this.images) {
+			return this.images.computeIfAbsent(imageUrl, (url) -> new Image(url, true));
 		}
 	}
 
 	public void clear() {
-		synchronized (images) {
-			images.clear();
+		synchronized (this.images) {
+			this.images.clear();
 		}
 	}
 

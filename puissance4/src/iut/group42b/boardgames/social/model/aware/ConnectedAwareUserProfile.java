@@ -25,14 +25,14 @@ public class ConnectedAwareUserProfile implements IWritableReadableObject {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		userProfile.write(buffer);
-		buffer.write(connectedProperty.get());
+		this.userProfile.write(buffer);
+		buffer.write(this.connectedProperty.get());
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		userProfile.read(buffer);
-		connectedProperty.set(buffer.readBoolean());
+		this.userProfile.read(buffer);
+		this.connectedProperty.set(buffer.readBoolean());
 	}
 
 	public UserProfile getUserProfile() {

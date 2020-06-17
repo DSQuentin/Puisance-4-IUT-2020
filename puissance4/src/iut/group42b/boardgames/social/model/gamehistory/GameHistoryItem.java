@@ -5,85 +5,101 @@ import iut.group42b.boardgames.util.DataBuffer;
 
 public class GameHistoryItem implements IWritableReadableObject {
 
-	private String started_at;
-	private String end_at;
-	private int state_number;
-	private String game_state;
-	private int id_user_1;
-	private int id_user_2;
-	private int score_1;
-	private int score_2;
+	/* Variables */
 
+
+	int gameState;
+	int user1Id;
+	String user1Name;
+	int user2Id;
+	String user2Name;
+	int idUserWinner;
+	String duration;
+	int winnerScore;
+	String startedAt;
+
+
+	/* Constructor */
 	public GameHistoryItem() {
-		this(null, null, 0, null, 0, 0, 0, 0);
+		this(0, 0, "", 0, "", 0, "", 0, "");
 	}
 
-
-	public GameHistoryItem(String started_at, String end_at, int state_number, String game_state, int id_user_1, int id_user_2, int score_1, int score_2) {
-		this.started_at = started_at;
-		this.end_at = end_at;
-		this.state_number = state_number;
-		this.game_state = game_state;
-		this.id_user_1 = id_user_1;
-		this.id_user_2 = id_user_2;
-		this.score_1 = score_1;
-		this.score_2 = score_2;
+	public GameHistoryItem(int gameState, int user1Id, String user1Name, int user2Id, String user2Name, int idUserWinner, String duration, int winnerScore, String startedAt) {
+		this.gameState = gameState;
+		this.user1Id = user1Id;
+		this.user1Name = user1Name;
+		this.user2Id = user2Id;
+		this.user2Name = user2Name;
+		this.idUserWinner = idUserWinner;
+		this.duration = duration;
+		this.winnerScore = winnerScore;
+		this.startedAt = startedAt;
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(this.started_at);
-		buffer.write(this.end_at);
-		buffer.write(this.state_number);
-		buffer.write(this.game_state);
-		buffer.write(this.id_user_1);
-		buffer.write(this.id_user_2);
-		buffer.write(this.score_1);
-		buffer.write(this.score_2);
+
+		buffer.write(this.gameState);
+		buffer.write(this.user1Id);
+		buffer.write(this.user1Name);
+		buffer.write(this.user2Id);
+		buffer.write(this.user2Name);
+		buffer.write(this.idUserWinner);
+		buffer.write(this.duration);
+		buffer.write(this.winnerScore);
+		buffer.write(this.startedAt);
 
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		this.started_at = buffer.readString();
-		this.end_at = buffer.readString();
-		this.state_number = buffer.readInt();
-		this.game_state = buffer.readString();
-		this.id_user_1 = buffer.readInt();
-		this.id_user_2 = buffer.readInt();
-		this.score_1 = buffer.readInt();
-		this.score_2 = buffer.readInt();
+
+		this.gameState = buffer.readInt();
+		this.user1Id = buffer.readInt();
+		this.user1Name = buffer.readString();
+		this.user2Id = buffer.readInt();
+		this.user2Name = buffer.readString();
+		this.idUserWinner = buffer.readInt();
+		this.duration = buffer.readString();
+		this.winnerScore = buffer.readInt();
+		this.startedAt = buffer.readString();
+
+
 	}
 
-	public String getStarted_at() {
-		return this.started_at;
+	public int getGameState() {
+		return this.gameState;
 	}
 
-	public String getEnd_at() {
-		return this.end_at;
+	public int getUser1Id() {
+		return this.user1Id;
 	}
 
-	public int getState_number() {
-		return this.state_number;
+	public String getUser1Name() {
+		return this.user1Name;
 	}
 
-	public String getGame_state() {
-		return this.game_state;
+	public int getUser2Id() {
+		return this.user2Id;
 	}
 
-	public int getId_user_1() {
-		return this.id_user_1;
+	public String getUser2Name() {
+		return this.user2Name;
 	}
 
-	public int getId_user_2() {
-		return this.id_user_2;
+	public int getIdUserWinner() {
+		return this.idUserWinner;
 	}
 
-	public int getScore_1() {
-		return this.score_1;
+	public String getDuration() {
+		return this.duration;
 	}
 
-	public int getScore_2() {
-		return this.score_2;
+	public int getWinnerScore() {
+		return this.winnerScore;
+	}
+
+	public String getStartedAt() {
+		return this.startedAt;
 	}
 }

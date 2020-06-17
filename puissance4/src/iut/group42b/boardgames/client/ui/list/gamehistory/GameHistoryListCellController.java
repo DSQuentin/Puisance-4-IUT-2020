@@ -5,7 +5,7 @@ import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
 import javafx.event.ActionEvent;
 
-public class GameHistoryListCellController  implements IListViewCellController<GameHistoryItem> {
+public class GameHistoryListCellController implements IListViewCellController<GameHistoryItem> {
 
 
 	@Override

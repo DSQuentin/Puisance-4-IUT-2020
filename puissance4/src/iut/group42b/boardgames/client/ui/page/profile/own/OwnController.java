@@ -12,9 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
-import java.util.List;
-import java.util.Random;
-
 public class OwnController implements IController {
 
 	private OwnView view;
@@ -46,12 +43,7 @@ public class OwnController implements IController {
 		this.view.getProfileImageOnProfile().setImage(new Image(targetUserProfile.getImageUrl(), true));
 		this.view.getToLogOutButton().setOnAction(this);
 
-		if (targetUserProfile.getId()==userProfile.getId()){
-			this.view.getToSettingsButton().setVisible(true);
-		}
-		else{
-			this.view.getToSettingsButton().setVisible(false);
-		}
+		this.view.getToSettingsButton().setVisible(targetUserProfile.getId() == userProfile.getId());
 
 		this.view.getToSettingsButton().setOnAction(this);
 

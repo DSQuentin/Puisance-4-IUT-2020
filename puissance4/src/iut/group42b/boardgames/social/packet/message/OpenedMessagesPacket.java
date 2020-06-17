@@ -20,7 +20,7 @@ public class OpenedMessagesPacket implements IPacket {
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(userId);
+		buffer.write(this.userId);
 	}
 
 	@Override

@@ -10,7 +10,6 @@ import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
-import iut.group42b.boardgames.client.ui.page.profile.other.OtherView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
@@ -61,7 +60,7 @@ public class SocialController implements IController, INetworkHandler {
 
 	/* Constructor */
 	public SocialController() {
-		this.friendObservableList = FXCollections.observableArrayList((friend) -> new Observable[] { friend.connectedProperty(), friend.notReadProperty() });
+		this.friendObservableList = FXCollections.observableArrayList((friend) -> new Observable[]{friend.connectedProperty(), friend.notReadProperty()});
 		this.messagesList = FXCollections.observableArrayList();
 	}
 
@@ -90,7 +89,7 @@ public class SocialController implements IController, INetworkHandler {
 			// TODO : send invitations to user
 			result.ifPresent(s -> System.out.println("Your choice: " + s));
 
-		} else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null){
+		} else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null) {
 			UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));
 		}
 	}
@@ -196,10 +195,10 @@ public class SocialController implements IController, INetworkHandler {
 		} else if (packet instanceof MessageListPacket) {
 			MessageListPacket messageListPacket = (MessageListPacket) packet;
 
-			ReadAwareUserProfile target = findFriendById(messageListPacket.getSenderId());
+			ReadAwareUserProfile target = this.findFriendById(messageListPacket.getSenderId());
 
-			if (currentlyTalkingUserProfile != null && currentlyTalkingUserProfile.getId() == messageListPacket.getSenderId()) {
-				NetworkInterface.get().getSocketHandler().queue(new OpenedMessagesPacket(currentlyTalkingUserProfile.getId()));
+			if (this.currentlyTalkingUserProfile != null && this.currentlyTalkingUserProfile.getId() == messageListPacket.getSenderId()) {
+				NetworkInterface.get().getSocketHandler().queue(new OpenedMessagesPacket(this.currentlyTalkingUserProfile.getId()));
 
 				if (target != null) {
 					target.notReadProperty().set(0);
@@ -209,10 +208,10 @@ public class SocialController implements IController, INetworkHandler {
 					this.messagesList.clear();
 					this.messagesList.addAll(messageListPacket.getMessages());
 
-					if (!scrolledToBottom) {
-						scrolledToBottom = true;
+					if (!this.scrolledToBottom) {
+						this.scrolledToBottom = true;
 
-						this.view.getMessagesListView().scrollTo(messagesList.size() - 1);
+						this.view.getMessagesListView().scrollTo(this.messagesList.size() - 1);
 					}
 				});
 			} else {
@@ -224,7 +223,7 @@ public class SocialController implements IController, INetworkHandler {
 	}
 
 	private ReadAwareUserProfile findFriendById(int id) {
-		for (ReadAwareUserProfile profile : friendObservableList) {
+		for (ReadAwareUserProfile profile : this.friendObservableList) {
 			if (profile.getUserProfile().getId() == id) {
 				return profile;
 			}
@@ -244,7 +243,7 @@ public class SocialController implements IController, INetworkHandler {
 	}
 
 	public void requestMessageList(UserProfile targetUserProfile) {
-		scrolledToBottom = false;
+		this.scrolledToBottom = false;
 
 		this.messagesListViewCellController.setCurrentlyTalkingToUserProfile(this.currentlyTalkingUserProfile = targetUserProfile);
 

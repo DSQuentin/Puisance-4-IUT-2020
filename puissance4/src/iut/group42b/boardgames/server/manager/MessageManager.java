@@ -29,7 +29,6 @@ public class MessageManager implements INetworkHandler {
 	private final static MessageManager INSTANCE = new MessageManager();
 
 	private MessageManager() {
-		;
 	}
 
 	@Override
@@ -73,10 +72,9 @@ public class MessageManager implements INetworkHandler {
 			int senderId = handler.getUserProfile().getId();
 			int receiverId = openedMessagesPacket.getUserId();
 
-			updateOpenedMessage(senderId, receiverId);
+			this.updateOpenedMessage(senderId, receiverId);
 		}
 	}
-
 
 
 	/**

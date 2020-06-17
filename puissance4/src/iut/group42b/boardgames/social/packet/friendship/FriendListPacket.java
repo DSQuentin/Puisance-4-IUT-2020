@@ -1,7 +1,6 @@
 package iut.group42b.boardgames.social.packet.friendship;
 
 import iut.group42b.boardgames.network.packet.IPacket;
-import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.aware.ReadAwareUserProfile;
 import iut.group42b.boardgames.util.DataBuffer;
 
@@ -14,6 +13,7 @@ public class FriendListPacket implements IPacket {
 	private List<ReadAwareUserProfile> users;
 
 	/* Constructor */
+
 	/**
 	 * Constructor FriendListPacket Empty to rebuild the Packet.
 	 */

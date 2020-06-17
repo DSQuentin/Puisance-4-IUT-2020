@@ -12,8 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
-import javax.jws.soap.SOAPBinding;
-
 public class OwnView extends AbstractView {
 
 	private final ImageView logoImageView;
@@ -50,7 +48,7 @@ public class OwnView extends AbstractView {
 		this.gameHistory = this.findById("own-profile-listview-history");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
-		this.userprofile=up;
+		this.userprofile = up;
 	}
 
 	public AnchorPane getWinCircleAnchor() {
