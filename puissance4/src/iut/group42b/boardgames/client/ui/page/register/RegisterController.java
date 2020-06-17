@@ -18,6 +18,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class RegisterController implements IController, INetworkHandler {
 
 	/* Logger */
@@ -26,6 +29,11 @@ public class RegisterController implements IController, INetworkHandler {
 	/* Variables */
 	private String lastEmail, lastPassword;
 	private RegisterView registerVue;
+	String regexmail = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+	String regexnumber=".*\\d.*";
+	String regexCapital=".*[A-Z].*";
+	String mdp[] ={"123456","123456789","qwerty","password","1234567","12345678","12345","iloveyou","111111","123123"};
+	List<String> mdpinterdits = Arrays.asList(mdp);
 
 	@Override
 	public void handle(ActionEvent event) {
@@ -69,15 +77,26 @@ public class RegisterController implements IController, INetworkHandler {
 		String password = this.registerVue.getPasswordPasswordField().getText();
 
 		if (!username.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-			this.registerVue.getSubmitButton().setDisable(true);
-			this.registerVue.getToLoginHyperlink().setDisable(true);
 
-			LOGGER.verbose("Trying to register with '%s', '%s' and '%s'.", username, email, password);
+			if(!email.matches(regexmail) || mdpinterdits.contains(password) || !password.matches(regexnumber) || !password.matches(regexCapital)){
+				Alert alerte = new Alert(Alert.AlertType.ERROR);
+				alerte.setTitle("Password/Email Error");
+				alerte.setContentText("Email or password is not correct\nPassword needs at least one capital letter and one number");
+				alerte.showAndWait();
+				this.registerVue.getEmailTextField().setText("");
+				this.registerVue.getPasswordPasswordField().setText("");
+				this.registerVue.getUsernameTextField().setText("");
+			}
+			else{
+				this.registerVue.getSubmitButton().setDisable(true);
+				this.registerVue.getToLoginHyperlink().setDisable(true);
 
-			this.lastEmail = email;
-			this.lastPassword = password;
+				LOGGER.verbose("Trying to register with '%s', '%s' and '%s'.", username, email, password);
 
-			NetworkInterface.get().getSocketHandler().queue(new UserRegisterPacket(username, email, password));
+				this.lastEmail = email;
+				this.lastPassword = password;
+
+				NetworkInterface.get().getSocketHandler().queue(new UserRegisterPacket(username, email, password));}
 		}
 
 	}
