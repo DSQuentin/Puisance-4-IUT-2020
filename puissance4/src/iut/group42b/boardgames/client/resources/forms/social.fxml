@@ -174,7 +174,7 @@
                                     <children>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../../../../../../../../../../Desktop/IUT/PROJET/puissance4/src/iut/group42b/boardgames/client/resources/images/search.png" />
+                                                <Image url="@../images/search.png" />
                                             </image>
                                         </ImageView>
                                         <TextField id="home-textfield-search-friend" promptText="%ui.social.search.friend">
