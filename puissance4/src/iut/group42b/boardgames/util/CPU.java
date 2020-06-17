@@ -15,7 +15,7 @@ public class CPU {
 	 * @return the pourcentage of CPU utilisation.
 	 */
 	public static int getLoadPercentageWindows() {
-		System.out.println("CALLED");
+		//System.out.println("CALLED");
 		processBuilder.command("cmd.exe", "/c", "wmic cpu get loadpercentage"); // commant send via cmd
 		int finalPoucentage = 0;
 		try {
