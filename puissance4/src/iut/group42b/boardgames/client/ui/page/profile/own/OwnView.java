@@ -3,9 +3,10 @@ package iut.group42b.boardgames.client.ui.page.profile.own;
 import iut.group42b.boardgames.client.ui.component.circularprogressbar.RingProgressIndicator;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
-import iut.group42b.boardgames.social.model.UserProfile;
+import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -27,7 +28,7 @@ public class OwnView extends AbstractView {
 	private final Text scoreText;
 	private final AnchorPane winCircle;
 	private final AnchorPane defeatCircle;
-	private final UserProfile userprofile;
+	private final ListView gameHistory;
 
 	public OwnView(UserProfile up) {
 		super();
@@ -44,9 +45,10 @@ public class OwnView extends AbstractView {
 		this.toSettingsButton = this.findById("own-profile-button-goto-settings");
 		this.winCircle = this.findById("win-circle");
 		this.defeatCircle = this.findById("defeat-circle");
+		this.gameHistory = this.findById("own-profile-listview-history");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
-		this.userprofile = up;
+
 	}
 
 	public AnchorPane getWinCircleAnchor() {
@@ -121,6 +123,10 @@ public class OwnView extends AbstractView {
 
 	public Button getToSettingsButton() {
 		return this.toSettingsButton;
+	}
+
+	public ListView<GameHistoryItem> getGameHistory() {
+		return this.gameHistory;
 	}
 
 	@Override

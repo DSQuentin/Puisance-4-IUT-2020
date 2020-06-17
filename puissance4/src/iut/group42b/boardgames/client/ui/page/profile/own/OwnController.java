@@ -12,11 +12,13 @@ import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
+import java.util.List;
 import java.util.Random;
 
 public class OwnController implements IController {
 
 	private OwnView view;
+
 
 	@Override
 	public void handle(ActionEvent event) {
@@ -59,12 +61,7 @@ public class OwnController implements IController {
 			UserInterface.get().set(new HomeView());
 		});
 
-		// WTF It's work be I don't know why! Please do not touch this !!!
-		/*
-		this.view.getToSettingsButton().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			System.out.println("Button triggered dfsdfdsfsdfdsf");
-		});
-		*/
+
 
 		Random rand = new Random();
 
