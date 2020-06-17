@@ -19,10 +19,13 @@ import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
+import iut.group42b.boardgames.social.model.aware.ReadAwareUserProfile;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
 import iut.group42b.boardgames.social.packet.message.MessageListPacket;
+import iut.group42b.boardgames.social.packet.message.OpenedMessagesPacket;
 import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
 import javafx.application.Platform;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -40,40 +43,39 @@ import java.util.stream.Collectors;
 
 public class SocialController implements IController, INetworkHandler {
 
-	/* Variables */
-	private final ObservableList<UserProfile> friendObservableList;
-	private final ObservableList<ExchangedMessage> messagesList;
 	/* UI */
 	private SocialView view;
+
 	/* Controllers */
 	private MessageFriendListViewCellController messageFriendListViewCellController;
 	private MessagesListViewCellController messagesListViewCellController;
-	private FilteredList<UserProfile> friendFilterList;
+
+	/* Variables */
+	private final ObservableList<ReadAwareUserProfile> friendObservableList;
+	private final ObservableList<ExchangedMessage> messagesList;
+	private FilteredList<ReadAwareUserProfile> friendFilterList;
 	private UserProfile currentlyTalkingUserProfile;
+	private boolean scrolledToBottom;
 
 
 	/* Constructor */
 	public SocialController() {
-		this.friendObservableList = FXCollections.observableArrayList();
+		this.friendObservableList = FXCollections.observableArrayList((friend) -> new Observable[] { friend.connectedProperty(), friend.notReadProperty() });
 		this.messagesList = FXCollections.observableArrayList();
 	}
 
 	@Override
 	public void handle(ActionEvent event) {
-
 		if (event.getSource() == this.view.getLogoutButton()) {
 			UserInterface.get().set(new LogoutView());
 		}
+
 		if (event.getSource() == this.view.getSendMessageButton()) {
 			this.callMessageButton();
-
 		} else if (event.getSource() == this.view.getLogoutButton()) {
 			UserInterface.get().set(new LogoutView());
-
 		} else if (event.getSource() == this.view.getAddFriendsButton()) {
 			this.addFriendsAlertBox();
-
-
 		} else if (event.getSource() == this.view.getFightButton()) {
 			List<String> choices = GameRegistry.get().playables().stream().map(IGame::getName).collect(Collectors.toList());
 
@@ -87,7 +89,6 @@ public class SocialController implements IController, INetworkHandler {
 			// TODO : send invitations to user
 			result.ifPresent(s -> System.out.println("Your choice: " + s));
 		}
-
 	}
 
 	public void addFriendsAlertBox() {
@@ -100,7 +101,6 @@ public class SocialController implements IController, INetworkHandler {
 		Optional<String> result = dialog.showAndWait();
 
 		result.ifPresent(name -> System.out.println("Your name: " + name));
-
 	}
 
 	@Override
@@ -143,7 +143,6 @@ public class SocialController implements IController, INetworkHandler {
 			}
 		});
 
-
 		this.view.getFriendSearchInputTextField().textProperty().addListener((observable) -> {
 			String filter = this.view.getFriendSearchInputTextField().getText();
 
@@ -152,9 +151,9 @@ public class SocialController implements IController, INetworkHandler {
 			}
 
 			if (filter == null || filter.length() == 0) {
-				this.friendFilterList.setPredicate((userProfile) -> true);
+				this.friendFilterList.setPredicate((user) -> true);
 			} else {
-				this.friendFilterList.setPredicate((userProfile) -> userProfile.getUsername().contains(filter));
+				this.friendFilterList.setPredicate((user) -> user.getUserProfile().getUsername().contains(filter));
 			}
 		});
 
@@ -162,7 +161,6 @@ public class SocialController implements IController, INetworkHandler {
 	}
 
 	public void callMessageButton() {
-
 		if (this.currentlyTalkingUserProfile != null && !this.view.getMessageInputTextField().getText().isEmpty()) {
 			String textMessageToSend = this.view.getMessageInputTextField().getText();
 
@@ -173,7 +171,6 @@ public class SocialController implements IController, INetworkHandler {
 			this.view.getMessageInputTextField().setText("");
 		}
 	}
-
 
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
@@ -191,11 +188,41 @@ public class SocialController implements IController, INetworkHandler {
 		} else if (packet instanceof MessageListPacket) {
 			MessageListPacket messageListPacket = (MessageListPacket) packet;
 
-			Platform.runLater(() -> {
-				this.messagesList.clear();
-				this.messagesList.addAll(messageListPacket.getMessages());
-			});
+			ReadAwareUserProfile target = findFriendById(messageListPacket.getSenderId());
+
+			if (currentlyTalkingUserProfile != null && currentlyTalkingUserProfile.getId() == messageListPacket.getSenderId()) {
+				NetworkInterface.get().getSocketHandler().queue(new OpenedMessagesPacket(currentlyTalkingUserProfile.getId()));
+
+				if (target != null) {
+					target.notReadProperty().set(0);
+				}
+
+				Platform.runLater(() -> {
+					this.messagesList.clear();
+					this.messagesList.addAll(messageListPacket.getMessages());
+
+					if (!scrolledToBottom) {
+						scrolledToBottom = true;
+
+						this.view.getMessagesListView().scrollTo(messagesList.size() - 1);
+					}
+				});
+			} else {
+				if (target != null) {
+					target.notReadProperty().set(target.notReadProperty().get() + 1);
+				}
+			}
 		}
+	}
+
+	private ReadAwareUserProfile findFriendById(int id) {
+		for (ReadAwareUserProfile profile : friendObservableList) {
+			if (profile.getUserProfile().getId() == id) {
+				return profile;
+			}
+		}
+
+		return null;
 	}
 
 	@Override
@@ -209,6 +236,8 @@ public class SocialController implements IController, INetworkHandler {
 	}
 
 	public void requestMessageList(UserProfile targetUserProfile) {
+		scrolledToBottom = false;
+
 		this.messagesListViewCellController.setCurrentlyTalkingToUserProfile(this.currentlyTalkingUserProfile = targetUserProfile);
 
 		this.messagesList.clear();

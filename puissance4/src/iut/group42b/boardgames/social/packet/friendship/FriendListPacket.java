@@ -2,6 +2,7 @@ package iut.group42b.boardgames.social.packet.friendship;
 
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.social.model.UserProfile;
+import iut.group42b.boardgames.social.model.aware.ReadAwareUserProfile;
 import iut.group42b.boardgames.util.DataBuffer;
 
 import java.util.Collections;
@@ -10,10 +11,9 @@ import java.util.List;
 public class FriendListPacket implements IPacket {
 
 	/* Variables */
-	private List<UserProfile> users;
+	private List<ReadAwareUserProfile> users;
 
 	/* Constructor */
-
 	/**
 	 * Constructor FriendListPacket Empty to rebuild the Packet.
 	 */
@@ -27,7 +27,7 @@ public class FriendListPacket implements IPacket {
 	 *
 	 * @param users List<UserProfile>.
 	 */
-	public FriendListPacket(List<UserProfile> users) {
+	public FriendListPacket(List<ReadAwareUserProfile> users) {
 		this.users = users;
 	}
 
@@ -38,7 +38,7 @@ public class FriendListPacket implements IPacket {
 
 	@Override
 	public void read(DataBuffer buffer) {
-		this.users = buffer.readList(UserProfile::new);
+		this.users = buffer.readList(ReadAwareUserProfile::new);
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class FriendListPacket implements IPacket {
 	 *
 	 * @return List<UserProfile>.
 	 */
-	public List<UserProfile> getUsers() {
+	public List<ReadAwareUserProfile> getUsers() {
 		return this.users;
 	}
 

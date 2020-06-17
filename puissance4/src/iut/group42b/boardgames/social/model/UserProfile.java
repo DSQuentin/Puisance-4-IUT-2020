@@ -1,7 +1,9 @@
 package iut.group42b.boardgames.social.model;
 
+import iut.group42b.boardgames.client.manager.UserProfilePictureCache;
 import iut.group42b.boardgames.network.rw.IWritableReadableObject;
 import iut.group42b.boardgames.util.DataBuffer;
+import javafx.scene.image.Image;
 
 public class UserProfile implements IWritableReadableObject {
 
@@ -152,6 +154,9 @@ public class UserProfile implements IWritableReadableObject {
 		return this.admin;
 	}
 
+	public Image picture() {
+		return UserProfilePictureCache.get().auto(this);
+	}
 
 	@Override
 	public String toString() {

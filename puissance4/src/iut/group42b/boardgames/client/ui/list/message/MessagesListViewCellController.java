@@ -47,7 +47,7 @@ public class MessagesListViewCellController implements IListViewCellController<E
 
 			gameCellView.getSenderProfileImageView().setVisible(false);
 			gameCellView.getReceiverProfileImageView().setVisible(true);
-			gameCellView.getReceiverProfileImageView().setImage(new Image(NetworkInterface.get().getSocketHandler().getUserProfile().getImageUrl(), true));
+			gameCellView.getReceiverProfileImageView().setImage(NetworkInterface.get().getSocketHandler().getUserProfile().picture());
 			gameCellView.getSenderProfileImageView().setImage(null);
 		} else { // TODO
 			gameCellView.getReceiverDateText().setText(item.getDate());
@@ -64,7 +64,7 @@ public class MessagesListViewCellController implements IListViewCellController<E
 			gameCellView.getReceiverProfileImageView().setImage(null);
 
 			if (this.currentlyTalkingToUserProfile != null) {
-				gameCellView.getSenderProfileImageView().setImage(new Image(this.currentlyTalkingToUserProfile.getImageUrl(), true));
+				gameCellView.getSenderProfileImageView().setImage(currentlyTalkingToUserProfile.picture());
 			}
 		}
 

@@ -81,31 +81,6 @@ public class UserManager implements INetworkHandler {
 			handler.setProfile(newUserProfile);
 
 			handler.queue(new UserSettingsChangedPacket(changed, newUserProfile));
-		} else if (packet instanceof FriendListPacket) {
-			handler.queue(new FriendListPacket(this.findFriendsByUser(handler.getUserProfile())));
-		} else if (packet instanceof MessageListPacket) {
-			MessageListPacket messageListPacket = (MessageListPacket) packet;
-
-			int to = messageListPacket.getSenderId();
-
-			handler.queue(new MessageListPacket(to, this.getExchangedMessageWith(handler.getUserProfile().getId(), to)));
-		} else if (packet instanceof SendMessagePacket) {
-			SendMessagePacket sendMessagePacket = (SendMessagePacket) packet;
-
-			ExchangedMessage message = sendMessagePacket.getMessage();
-
-			int senderId = handler.getUserProfile().getId();
-			int receiverId = message.getUserId();
-
-			this.addMessage(senderId, message);
-
-			handler.queue(new MessageListPacket(senderId, this.getExchangedMessageWith(senderId, receiverId)));
-
-			SocketHandler receiverHandler = ServerApplication.getServer().findSocketHandlerByProfileId(receiverId);
-			System.out.println(receiverHandler);
-			if (receiverHandler != null) {
-				receiverHandler.queue(new MessageListPacket(receiverId, this.getExchangedMessageWith(receiverId, senderId)));
-			}
 		}
 	}
 
@@ -314,52 +289,6 @@ public class UserManager implements INetworkHandler {
 		}
 
 		return friends;
-	}
-
-	/**
-	 * Get the message between tow people.
-	 *
-	 * @param fromUserId User id who send the message.
-	 * @param toUserId   User id of receiver
-	 * @return A List of ExchangedMessage between 2 user.
-	 */
-	public List<ExchangedMessage> getExchangedMessageWith(int fromUserId, int toUserId) {
-		List<ExchangedMessage> messages = new ArrayList<>();
-
-		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("SELECT `sent`, `content`, `id_sender` FROM `messages` WHERE (`id_sender` = ? OR `id_sender` = ?) AND (`id_receiver` = ? OR `id_receiver` = ?) ORDER BY `id` DESC LIMIT 50 ;")) {
-			preparedStatement.setInt(1, fromUserId);
-			preparedStatement.setInt(2, toUserId);
-			preparedStatement.setInt(3, fromUserId);
-			preparedStatement.setInt(4, toUserId);
-
-			try (ResultSet resultSet = preparedStatement.executeQuery()) {
-				while (resultSet.next()) {
-					Date date = resultSet.getDate("sent");
-					String content = resultSet.getString("content");
-					int senderId = resultSet.getInt("id_sender");
-
-					messages.add(new ExchangedMessage(senderId, date, content));
-				}
-			}
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
-
-		Collections.reverse(messages);
-		return messages;
-	}
-
-	public void addMessage(int senderId, ExchangedMessage message) {
-		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("INSERT INTO messages (sent, content, id_sender, id_receiver, opened) VALUES (?, ?, ?, ?, false);")) {
-			preparedStatement.setDate(1, new java.sql.Date(message.getDateObject().getTime())); /* Conversion was mandatory to work... */
-			preparedStatement.setString(2, message.getContent());
-			preparedStatement.setInt(3, senderId);
-			preparedStatement.setInt(4, message.getUserId());
-
-			preparedStatement.execute();
-		} catch (Exception exception) {
-			exception.printStackTrace();
-		}
 	}
 
 }

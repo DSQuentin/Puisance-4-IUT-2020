@@ -4,6 +4,7 @@ package iut.group42b.boardgames.server.network;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.server.manager.GameManager;
 import iut.group42b.boardgames.server.manager.MatchmakingManager;
+import iut.group42b.boardgames.server.manager.MessageManager;
 import iut.group42b.boardgames.server.manager.UserManager;
 import iut.group42b.boardgames.social.model.UserProfile;
 
@@ -38,10 +39,11 @@ public class NetworkServer {
 				Socket socket = this.serverSocket.accept();
 				SocketHandler socketHandler = new SocketHandler(socket);
 
-				socketHandler.newThread(); // create new thread for new client
 				socketHandler.subscribe(UserManager.get());
 				socketHandler.subscribe(GameManager.get());
 				socketHandler.subscribe(MatchmakingManager.get());
+				socketHandler.subscribe(MessageManager.get());
+				socketHandler.newThread(); // create new thread for new client
 
 				this.register(socketHandler);
 
