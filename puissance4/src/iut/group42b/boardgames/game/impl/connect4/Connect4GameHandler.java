@@ -67,7 +67,6 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 						.findFirst()
 						.orElseThrow(() -> new IllegalStateException("is there no opponent in this arena?: " + arena.getDatabaseId()))
 						.getSocketHandler();
-				System.out.println(winning);
 
 				int winMode = PlayerWinPacket.MODE_SURRENDER;
 
@@ -76,12 +75,11 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 				} else {
 					losing.queue(new PlayerLoosePacket());
 				}
-				System.out.println(winMode);
 
 				winning.queue(new PlayerWinPacket(winMode));
 
 				arena.setState(Connect4GameArena.State.SURRENDER);
-				this.stopArena(arena);
+				this.stopArena(arena, winning);
 			}
 		} else if (packet instanceof IConnect4Packet) {
 			Connect4GameArena arena = (Connect4GameArena) GameManager.get().findArena(handler);
@@ -107,23 +105,23 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 					arena.putTokenAt(arena.getSideToPlay(), putTokenPacket.getX(), putTokenPacket.getY());
 					this.storeArena(arena);
 
-					boolean oneHasWin = false;
+					Player winner = null;
 					if (arena.checkWin(Connect4Side.RED)) {
-						oneHasWin = true;
+						winner = arena.getRedPlayer();
 
 						arena.getRedPlayer().getSocketHandler().queue(new PlayerWinPacket());
 						arena.getYellowPlayer().getSocketHandler().queue(new PlayerLoosePacket());
 					} else if (arena.checkWin(Connect4Side.YELLOW)) {
-						oneHasWin = true;
+						winner = arena.getYellowPlayer();
 
 						arena.getRedPlayer().getSocketHandler().queue(new PlayerLoosePacket());
 						arena.getYellowPlayer().getSocketHandler().queue(new PlayerWinPacket());
 					}
 
-					if (oneHasWin) {
+					if (winner != null) {
 						arena.setState(Connect4GameArena.State.DONE);
 
-						this.stopArena(arena);
+						this.stopArena(arena, winner.getSocketHandler());
 
 						// TODO Send
 					} else {
@@ -197,7 +195,7 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 	 *
 	 * @param arena Connect4GameArena.
 	 */
-	public void stopArena(Connect4GameArena arena) {
+	public void stopArena(Connect4GameArena arena, SocketHandler winner) {
 		if (Connect4GameArena.State.PLAYING.equals(arena.getState())) {
 			throw new IllegalStateException("stopping arena that have a playing state");
 		}
@@ -215,9 +213,10 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 			exception.printStackTrace();
 		}
 
-		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("UPDATE `played_games` SET `end_at` = NOW(), `state_number` = ? WHERE `id` = ?;")) {
+		try (PreparedStatement statement = DatabaseInterface.get().getConnection().prepareStatement("UPDATE `played_games` SET `end_at` = NOW(), `state_number` = ?, `id_user_winner` = ? WHERE `id` = ?;")) {
 			statement.setInt(1, arena.getState().getStateCode());
-			statement.setInt(2, arena.getDatabaseId());
+			statement.setInt(2, winner.getUserProfile().getId());
+			statement.setInt(3, arena.getDatabaseId());
 
 			if (statement.executeUpdate() == 0) {
 				throw new SQLException("failed to update arena with ID: " + arena.getDatabaseId());

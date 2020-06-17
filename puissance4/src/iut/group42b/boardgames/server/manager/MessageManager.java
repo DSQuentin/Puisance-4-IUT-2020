@@ -8,6 +8,8 @@ import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.aware.ReadAwareUserProfile;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendNotFoundPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendRequestPacket;
 import iut.group42b.boardgames.social.packet.message.MessageListPacket;
 import iut.group42b.boardgames.social.packet.message.OpenedMessagesPacket;
 import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
@@ -73,6 +75,22 @@ public class MessageManager implements INetworkHandler {
 			int receiverId = openedMessagesPacket.getUserId();
 
 			this.updateOpenedMessage(senderId, receiverId);
+		} else if (packet instanceof FriendRequestPacket) {
+			FriendRequestPacket requestPacket = (FriendRequestPacket) packet;
+
+			UserProfile targetFriendUserProfile = UserManager.get().findUserByUsername(requestPacket.getName());
+
+			if (targetFriendUserProfile != null) {
+				List<UserProfile> currentFriends = UserManager.get().findFriendsByUser(handler.getUserProfile());
+
+				if (currentFriends.stream().noneMatch((profile) -> profile.getUsername().equals(targetFriendUserProfile.getUsername()))) {
+					createFriendship(handler.getUserProfile().getId(), targetFriendUserProfile.getId());
+				}
+
+				handlePacket(handler, new FriendListPacket()); /* Lazy */
+			} else {
+				handler.queue(new FriendNotFoundPacket());
+			}
 		}
 	}
 
@@ -123,7 +141,7 @@ public class MessageManager implements INetworkHandler {
 
 	public void addMessage(int senderId, ExchangedMessage message) {
 		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("INSERT INTO messages (sent, content, id_sender, id_receiver, opened) VALUES (?, ?, ?, ?, false);")) {
-			preparedStatement.setDate(1, new java.sql.Date(message.getDateObject().getTime())); /* Conversion was mandatory to work... */
+			preparedStatement.setDate(1, new java.sql.Date(message.getDateObject().getTime())); /* Conversion was mandatory to work... */ // TODO need more work because hours are not working
 			preparedStatement.setString(2, message.getContent());
 			preparedStatement.setInt(3, senderId);
 			preparedStatement.setInt(4, message.getUserId());
@@ -145,7 +163,7 @@ public class MessageManager implements INetworkHandler {
 			int total = 0;
 
 			try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("SELECT COUNT(`opened`) AS `total` FROM `messages` WHERE `opened` != 1 AND `id_receiver` = ? AND `id_sender` = ?;")) {
-				preparedStatement.setInt(1, from.getId()); /* Conversion was mandatory to work... */
+				preparedStatement.setInt(1, from.getId());
 				preparedStatement.setInt(2, other.getId());
 
 				try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -161,6 +179,17 @@ public class MessageManager implements INetworkHandler {
 		}
 
 		return counts;
+	}
+
+	public void createFriendship(int userA, int userB) {
+		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("INSERT INTO are_friends (id_user_1, id_user_2) VALUES (?, ?);")) {
+			preparedStatement.setInt(1, userA);
+			preparedStatement.setInt(2,userB);
+
+			preparedStatement.execute();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
 	}
 
 	public static MessageManager get() {

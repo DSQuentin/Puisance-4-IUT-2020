@@ -32,13 +32,14 @@ public class GameHistoryListCellController implements IListViewCellController<Ga
 	public void updateItem(AbstractViewCell<GameHistoryItem> cellView, GameHistoryItem item) {
 		GameHistoryListCellView view = (GameHistoryListCellView) cellView;
 
-		System.out.println(item);
-
-		view.getUser1().setText(item.getUser1Name());
-		view.getUser2().setText(item.getUser2Name());
+		view.getUser1().setText("");
+		view.getUser2().setText(String.format("%s vs. %s", item.getUser1Name(), item.getUser2Name()));
 		view.getDate().setText(item.getStartedAt());
 		view.getDuration().setText(item.getDuration());
 		view.getScore().setText(String.valueOf(item.getWinnerScore()));
+		view.getTimeUnit().setText("");
+
+		System.out.println(item.getIdUserWinner());
 
 		if (item.getIdUserWinner() == this.controller.getUserProfile().getId()) {
 			view.getWonState().setStroke(Color.GREEN);

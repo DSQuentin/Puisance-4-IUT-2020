@@ -22,6 +22,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
+import java.util.Collections;
+
 public class OwnController implements IController, INetworkHandler {
 
 	/* Controllers */
@@ -105,6 +107,8 @@ public class OwnController implements IController, INetworkHandler {
 			GameListHistoryPacket gameListHistoryPacket = (GameListHistoryPacket) packet;
 
 			if (gameListHistoryPacket.getUserId() == this.view.getUserprofile().getId()) {
+				this.view.getNumberGamesPlayedText().setText(String.valueOf(gameListHistoryPacket.getTotalPlayed()));
+
 				this.gameHistoryItemsObservableList.clear();
 				this.gameHistoryItemsObservableList.addAll(gameListHistoryPacket.getGameListHistory());
 			}

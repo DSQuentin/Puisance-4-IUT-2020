@@ -12,6 +12,7 @@ public class GameListHistoryPacket implements IPacket {
 
 	/* Variables */
 	private int userId;
+	private int totalPlayed;
 	private List<GameHistoryItem> gameListHistory;
 
 	/**
@@ -25,14 +26,15 @@ public class GameListHistoryPacket implements IPacket {
 	 * @param userId
 	 */
 	public GameListHistoryPacket(int userId) {
-		this(userId, new ArrayList<>());
+		this(userId, 0, new ArrayList<>());
 	}
 
 	/**
 	 * @param userId
 	 */
-	public GameListHistoryPacket(int userId, List<GameHistoryItem> gameListHistory) {
+	public GameListHistoryPacket(int userId, int totalPlayed, List<GameHistoryItem> gameListHistory) {
 		this.userId = userId;
+		this.totalPlayed = totalPlayed;
 		this.gameListHistory = gameListHistory;
 	}
 
@@ -40,18 +42,24 @@ public class GameListHistoryPacket implements IPacket {
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.write(this.userId);
+		buffer.write(this.totalPlayed);
 		buffer.write(this.gameListHistory);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
 		this.userId = buffer.readInt();
+		this.totalPlayed = buffer.readInt();
 		this.gameListHistory = buffer.readList(GameHistoryItem::new);
 	}
 
 
 	public int getUserId() {
 		return this.userId;
+	}
+
+	public int getTotalPlayed() {
+		return this.totalPlayed;
 	}
 
 	public List<GameHistoryItem> getGameListHistory() {

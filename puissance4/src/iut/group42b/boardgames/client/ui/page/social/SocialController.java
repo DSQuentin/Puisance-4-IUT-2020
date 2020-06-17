@@ -21,6 +21,7 @@ import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.aware.ReadAwareUserProfile;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendRequestPacket;
 import iut.group42b.boardgames.social.packet.message.MessageListPacket;
 import iut.group42b.boardgames.social.packet.message.OpenedMessagesPacket;
 import iut.group42b.boardgames.social.packet.message.SendMessagePacket;
@@ -101,10 +102,9 @@ public class SocialController implements IController, INetworkHandler {
 		dialog.setHeaderText(Messages.UI_ALERT_HEADER_FRIEND.use());
 		dialog.setContentText(Messages.UI_ALERT_CONTENT_FRIEND.use());
 
-		//TODO : call server
-		Optional<String> result = dialog.showAndWait();
-
-		result.ifPresent(name -> System.out.println("Your name: " + name));
+		dialog.showAndWait().ifPresent((name) -> {
+			NetworkInterface.get().getSocketHandler().queue(new FriendRequestPacket(name));
+		});
 	}
 
 	@Override
@@ -184,14 +184,18 @@ public class SocialController implements IController, INetworkHandler {
 		if (packet instanceof FriendListPacket) {
 			FriendListPacket friendListPacket = (FriendListPacket) packet;
 
-			this.friendObservableList.clear();
-			this.friendObservableList.addAll(friendListPacket.getUsers());
+			Platform.runLater(() -> {
+				this.view.getFriendsListView().setItems(null);
+				this.friendFilterList = null;
 
-			this.friendFilterList = new FilteredList<>(this.friendObservableList, (item) -> true);
-			this.view.getFriendsListView().setItems(this.friendFilterList);
+				this.friendObservableList.clear();
+				this.friendObservableList.addAll(friendListPacket.getUsers());
 
-			this.view.getFriendSearchInputTextField().setText("");
+				this.friendFilterList = new FilteredList<>(this.friendObservableList, (item) -> true);
+				this.view.getFriendsListView().setItems(this.friendFilterList);
 
+				this.view.getFriendSearchInputTextField().setText("");
+			});
 		} else if (packet instanceof MessageListPacket) {
 			MessageListPacket messageListPacket = (MessageListPacket) packet;
 

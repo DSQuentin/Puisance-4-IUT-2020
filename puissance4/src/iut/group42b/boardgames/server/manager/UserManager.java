@@ -1,11 +1,14 @@
 package iut.group42b.boardgames.server.manager;
 
+import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.network.packet.impl.auth.*;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
+import iut.group42b.boardgames.social.packet.friendship.FriendNotFoundPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendRequestPacket;
 import iut.group42b.boardgames.social.packet.history.GameListHistoryPacket;
 import iut.group42b.boardgames.util.Logger;
 
@@ -81,8 +84,9 @@ public class UserManager implements INetworkHandler {
 			GameListHistoryPacket historyPacket = (GameListHistoryPacket) packet;
 
 			int userId = historyPacket.getUserId();
+			List<GameHistoryItem> history = getGameHistory(userId);
 
-			handler.queue(new GameListHistoryPacket(userId, getGameHistory(userId)));
+			handler.queue(new GameListHistoryPacket(userId, history.size(), history.subList(0, Math.min(history.size(), 10))));
 		}
 	}
 
@@ -227,6 +231,17 @@ public class UserManager implements INetworkHandler {
 	}
 
 	/**
+	 * Get user by username in database.
+	 *
+	 * @param targetName
+	 * @return An UserProfile
+	 * @see UserManager#findUserBy(String, Object)
+	 */
+	public UserProfile findUserByUsername(String targetName) {
+		return this.findUserBy("username", targetName);
+	}
+
+	/**
 	 * Get user by id in database.
 	 *
 	 * @param targetId
@@ -316,32 +331,34 @@ public class UserManager implements INetworkHandler {
 				"    (`played_games`.`id_user_1` = ? " +
 				"    OR `played_games`.`id_user_2` = ?) " +
 				"    AND `played_games`.`end_at` IS NOT NULL " +
-				"ORDER BY `played_games`.`id` DESC " +
-				"LIMIT 10;")) {
+				"ORDER BY `played_games`.`id` DESC ;")) {
 			preparedStatement.setInt(1, userId);
 			preparedStatement.setInt(2, userId);
 
-
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
-					int gameState = resultSet.getInt("state_number");
-					int user1Id = resultSet.getInt("user1_id");
-					String user1Name = resultSet.getString("user1_name");
-					int user2Id = resultSet.getInt("user2_id");
-					String user2Name = resultSet.getString("user2_name");
-					int idUserWinner = resultSet.getInt("id_user_winner");
-					String duration = resultSet.getString("duration");
-					int winnerScore = resultSet.getInt("winner_score");
-					String startedAt = resultSet.getString("started_at");
+					if (gameHistory.size() < 10) { /* Avoid loading too much into memory. */
+						int gameState = resultSet.getInt("state_number");
+						int user1Id = resultSet.getInt("user1_id");
+						String user1Name = resultSet.getString("user1_name");
+						int user2Id = resultSet.getInt("user2_id");
+						String user2Name = resultSet.getString("user2_name");
+						int idUserWinner = resultSet.getInt("id_user_winner");
+						String duration = resultSet.getString("duration");
+						int winnerScore = resultSet.getInt("winner_score");
+						String startedAt = resultSet.getString("started_at");
 
-					gameHistory.add(new GameHistoryItem(gameState, user1Id, user1Name, user2Id, user2Name, idUserWinner, duration, winnerScore, startedAt));
+						gameHistory.add(new GameHistoryItem(gameState, user1Id, user1Name, user2Id, user2Name, idUserWinner, duration, winnerScore, startedAt));
+
+					} else {
+						gameHistory.add(null); /* But still 'counting' them. */
+					}
 				}
 			}
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 
-		Collections.reverse(gameHistory);
 		return gameHistory;
 	}
 

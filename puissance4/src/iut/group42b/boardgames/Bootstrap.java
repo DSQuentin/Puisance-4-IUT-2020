@@ -16,6 +16,8 @@ import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingJoinPacket;
 import iut.group42b.boardgames.game.packet.matchmaking.MatchmakingLeavePacket;
 import iut.group42b.boardgames.network.packet.PacketRegistry;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendNotFoundPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendRequestPacket;
 import iut.group42b.boardgames.social.packet.history.GameListHistoryPacket;
 import iut.group42b.boardgames.social.packet.message.MessageListPacket;
 import iut.group42b.boardgames.social.packet.message.OpenedMessagesPacket;
@@ -92,14 +94,20 @@ public class Bootstrap {
 		/* Registering all packets. */
 		PacketRegistry.get().register(MatchmakingJoinPacket.class);
 		PacketRegistry.get().register(MatchmakingLeavePacket.class);
+
 		PacketRegistry.get().register(PlayerWinPacket.class);
 		PacketRegistry.get().register(PlayerLoosePacket.class);
 		PacketRegistry.get().register(PlayerJoinPacket.class);
 		PacketRegistry.get().register(PlayerSurrenderPacket.class);
+
 		PacketRegistry.get().register(FriendListPacket.class);
+		PacketRegistry.get().register(FriendRequestPacket.class);
+		PacketRegistry.get().register(FriendNotFoundPacket.class);
+
 		PacketRegistry.get().register(MessageListPacket.class);
 		PacketRegistry.get().register(SendMessagePacket.class);
 		PacketRegistry.get().register(OpenedMessagesPacket.class);
+
 		PacketRegistry.get().register(GameListHistoryPacket.class);
 
 		/* Registering all games. */
