@@ -33,6 +33,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
@@ -89,9 +90,9 @@ public class SocialController implements IController, INetworkHandler {
 			// TODO : send invitations to user
 			result.ifPresent(s -> System.out.println("Your choice: " + s));
 
-		} else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null) {
-			UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));
-		}
+		} //else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null) {
+			//UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));
+		//}
 	}
 
 	public void addFriendsAlertBox() {
@@ -133,9 +134,8 @@ public class SocialController implements IController, INetworkHandler {
 		this.view.getFightButton().setOnAction(this);
 		this.view.getAddFriendsButton().setOnAction(this);
 
-
 		this.view.getCheckProfile().setOnAction(this);
-
+		this.view.getCheckProfile().setVisible(false);
 
 		this.view.getLogo().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new HomeView());
@@ -248,6 +248,12 @@ public class SocialController implements IController, INetworkHandler {
 		this.messagesListViewCellController.setCurrentlyTalkingToUserProfile(this.currentlyTalkingUserProfile = targetUserProfile);
 
 		this.messagesList.clear();
+
+		ImageView im = new ImageView(new Image(targetUserProfile.getImageUrl()));
+		im.setFitWidth(40);
+		im.setPreserveRatio(true);
+		this.view.getCheckProfile().setGraphic(im);
+		this.view.getCheckProfile().setVisible(true);
 
 		NetworkInterface.get().getSocketHandler().queue(new MessageListPacket(targetUserProfile.getId()));
 	}

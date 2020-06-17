@@ -120,10 +120,10 @@
                                                 style="-fx-background-color: #38B295; -fx-background-radius: 10;"
                                                 text="%ui.social.view.profile" textFill="WHITE">
                                             <graphic>
-                                                <ImageView id="other-imageview" fitHeight="40.0" fitWidth="40.0"
+                                                <ImageView id="other-image" fitHeight="40.0" fitWidth="40.0"
                                                            pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../images/avatar%20enemy.png"/>
+                                                        <Image url="@../images/avatar.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
