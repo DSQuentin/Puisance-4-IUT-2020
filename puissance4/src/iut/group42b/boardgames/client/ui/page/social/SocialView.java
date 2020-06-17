@@ -42,7 +42,7 @@ public class SocialView extends AbstractView {
 		this.logoutButton = this.findById("home-button-tologout");
 		this.addFriendsButton = this.findById("social-button-add-friend");
 		this.checkProfile = this.findById("check-other-profile");
-		this.otherProfile = this.findById("other-profile");
+		this.otherProfile = this.findById("other-imageview");
 	}
 
 	@Override
