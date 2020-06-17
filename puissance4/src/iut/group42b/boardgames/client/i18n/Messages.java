@@ -5,6 +5,10 @@ import iut.group42b.boardgames.client.i18n.impl.I18nMessage;
 
 public class Messages {
 
+	public static final IMessage ALERT_SERVER_ERROR_TITLE = new I18nMessage("alert.server.title");
+	public static final IMessage ALERT_SERVER_ERROR_HEADER = new I18nMessage("alert.server.header");
+	public static final IMessage ALERT_SERVER_ERROR_CONTENT = new I18nMessage("alert.server.content");
+
 	public static final IMessage ALERT_LOGIN_TITLE = new I18nMessage("alert.login.title");
 	public static final IMessage USER_ACCOUNT_CREATED_AT = new I18nMessage("ui.user.settings.created-at");
 	public static final IMessage ALERT_REGISTER_TITLE = new I18nMessage("alert.register.title");
