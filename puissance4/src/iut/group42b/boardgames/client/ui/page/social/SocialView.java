@@ -22,6 +22,8 @@ public class SocialView extends AbstractView {
 	private final ImageView profileImageView;
 	private final Button logoutButton;
 	private final Button addFriendsButton;
+	private final Button checkProfile;
+	private final ImageView otherProfile;
 
 
 	/* Constructor */
@@ -39,7 +41,8 @@ public class SocialView extends AbstractView {
 		this.profileImageView = this.findById("home-imageview-profile");
 		this.logoutButton = this.findById("home-button-tologout");
 		this.addFriendsButton = this.findById("social-button-add-friend");
-
+		this.checkProfile = this.findById("check-other-profile");
+		this.otherProfile = this.findById("other-profile");
 	}
 
 	@Override
@@ -94,5 +97,13 @@ public class SocialView extends AbstractView {
 
 	public Button getAddFriendsButton() {
 		return this.addFriendsButton;
+	}
+
+	public Button getCheckProfile() {
+		return this.checkProfile;
+	}
+
+	public ImageView getOtherProfile() {
+		return this.otherProfile;
 	}
 }
