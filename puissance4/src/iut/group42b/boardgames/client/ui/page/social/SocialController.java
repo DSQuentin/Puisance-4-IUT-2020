@@ -10,6 +10,7 @@ import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
+import iut.group42b.boardgames.client.ui.page.profile.other.OtherView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
@@ -88,6 +89,9 @@ public class SocialController implements IController, INetworkHandler {
 			Optional<String> result = dialog.showAndWait();
 			// TODO : send invitations to user
 			result.ifPresent(s -> System.out.println("Your choice: " + s));
+
+		} else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null){
+			UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));
 		}
 	}
 
@@ -130,11 +134,15 @@ public class SocialController implements IController, INetworkHandler {
 		this.view.getFightButton().setOnAction(this);
 		this.view.getAddFriendsButton().setOnAction(this);
 
+
+		this.view.getCheckProfile().setOnAction(this);
+
+
 		this.view.getLogo().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new HomeView());
 		});
 		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			UserInterface.get().set(new OwnView());
+			UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));
 		});
 
 		this.view.getMessageInputTextField().setOnKeyReleased(event -> {

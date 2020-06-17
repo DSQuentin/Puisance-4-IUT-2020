@@ -93,7 +93,7 @@
                                                                                 <Text id="number-game-played"
                                                                                       fill="#f2a839"
                                                                                       strokeType="OUTSIDE"
-                                                                                      strokeWidth="0.0" text="3564">
+                                                                                      strokeWidth="0.0" text="?">
                                                                                     <font>
                                                                                         <Font size="18.0"/>
                                                                                     </font>
@@ -147,7 +147,7 @@
                                                                             <children>
                                                                                 <Text id="number-friends" fill="#ff3a29"
                                                                                       strokeType="OUTSIDE"
-                                                                                      strokeWidth="0.0" text="103">
+                                                                                      strokeWidth="0.0" text="?">
                                                                                     <font>
                                                                                         <Font size="18.0"/>
                                                                                     </font>
@@ -172,7 +172,7 @@
                                                                             <children>
                                                                                 <Text id="number-win" fill="#4339f2"
                                                                                       strokeType="OUTSIDE"
-                                                                                      strokeWidth="0.0" text="1732">
+                                                                                      strokeWidth="0.0" text="?">
                                                                                     <font>
                                                                                         <Font size="18.0"/>
                                                                                     </font>
@@ -308,7 +308,7 @@
                                                         <HBox alignment="CENTER">
                                                             <children>
                                                                 <Text id="time" strokeType="OUTSIDE" strokeWidth="0.0"
-                                                                      text="15.00 min">
+                                                                      text="?">
                                                                     <font>
                                                                         <Font name="System Bold" size="16.0"/>
                                                                     </font>
@@ -344,7 +344,7 @@
                                                         <HBox alignment="CENTER">
                                                             <children>
                                                                 <Text id="score" strokeType="OUTSIDE" strokeWidth="0.0"
-                                                                      text="1532 pts">
+                                                                      text="?">
                                                                     <font>
                                                                         <Font name="System Bold" size="16.0"/>
                                                                     </font>

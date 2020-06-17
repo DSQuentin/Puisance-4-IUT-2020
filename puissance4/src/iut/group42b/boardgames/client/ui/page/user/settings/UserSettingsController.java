@@ -26,7 +26,7 @@ public class UserSettingsController implements IController, INetworkHandler {
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == this.view.getCancelButton()) {
-			UserInterface.get().set(new OwnView());
+			UserInterface.get().set(new OwnView(NetworkInterface.get().getSocketHandler().getUserProfile()));
 		} else if (event.getSource() == this.view.getApplyButton()) {
 			String username1 = this.view.getNewUsername().getText();
 			String username2 = this.view.getNewUsernameConfirm().getText();

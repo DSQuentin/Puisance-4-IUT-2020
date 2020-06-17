@@ -37,7 +37,7 @@ public class OtherView extends AbstractView {
 		this.maxScoreText = this.findById("other-profile-text-max-score");
 		this.logoutButton = this.findById("other-button-logout");
 		this.ownAvatarImageView = this.findById("profile-picture");
-		this.winCircle = this.findById("win-cirle");
+		this.winCircle = this.findById("win-circle");
 		this.defeatCircle = this.findById("defeat-circle");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());

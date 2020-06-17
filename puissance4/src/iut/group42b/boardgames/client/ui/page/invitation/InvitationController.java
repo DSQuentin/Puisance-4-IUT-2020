@@ -39,7 +39,7 @@ public class InvitationController implements IController {
 			UserInterface.get().set(new HomeView());
 		});
 		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			UserInterface.get().set(new OwnView());
+			UserInterface.get().set(new OwnView(NetworkInterface.get().getSocketHandler().getUserProfile()));
 		});
 	}
 

@@ -3,11 +3,14 @@ package iut.group42b.boardgames.client.ui.page.profile.own;
 import iut.group42b.boardgames.client.ui.component.circularprogressbar.RingProgressIndicator;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
+import iut.group42b.boardgames.social.model.UserProfile;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+
+import javax.jws.soap.SOAPBinding;
 
 public class OwnView extends AbstractView {
 
@@ -24,9 +27,9 @@ public class OwnView extends AbstractView {
 	private final Text scoreText;
 	private final AnchorPane winCircle;
 	private final AnchorPane defeatCircle;
+	private final UserProfile userprofile;
 
-
-	public OwnView() {
+	public OwnView(UserProfile up) {
 		super();
 		this.logoImageView = this.findById("logo");
 		this.toLogOutButton = this.findById("logout");
@@ -43,6 +46,7 @@ public class OwnView extends AbstractView {
 		this.defeatCircle = this.findById("defeat-circle");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
+		this.userprofile = up;
 	}
 
 	public AnchorPane getWinCircleAnchor() {
@@ -105,6 +109,10 @@ public class OwnView extends AbstractView {
 
 	public Text getTimeText() {
 		return this.timeText;
+	}
+
+	public UserProfile getUserprofile() {
+		return this.userprofile;
 	}
 
 	public Text getScoreText() {

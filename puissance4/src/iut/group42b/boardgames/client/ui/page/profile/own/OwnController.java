@@ -24,8 +24,9 @@ public class OwnController implements IController {
 			UserInterface.get().set(new LogoutView());
 		} else if (event.getSource() == this.view.getToSettingsButton()) {
 			UserInterface.get().set(new UserSettingsView());
+		} else if (event.getSource() == this.view.getProfileImageOnProfile()) {
+			UserInterface.get().set(new OwnView(NetworkInterface.get().getSocketHandler().getUserProfile()));
 		}
-
 	}
 
 	@Override
@@ -38,10 +39,20 @@ public class OwnController implements IController {
 
 		UserProfile userProfile = NetworkInterface.get().getSocketHandler().getUserProfile();
 
-		this.view.getUsernameText().setText(userProfile.getUsername());
+		UserProfile targetUserProfile = this.view.getUserprofile();
+
+		this.view.getUsernameText().setText(targetUserProfile.getUsername());
 		this.view.getProfileImageView().setImage(new Image(userProfile.getImageUrl(), true));
-		this.view.getProfileImageOnProfile().setImage(new Image(userProfile.getImageUrl(), true));
+		this.view.getProfileImageOnProfile().setImage(new Image(targetUserProfile.getImageUrl(), true));
 		this.view.getToLogOutButton().setOnAction(this);
+
+		if (targetUserProfile.getId()==userProfile.getId()){
+			this.view.getToSettingsButton().setVisible(true);
+		}
+		else{
+			this.view.getToSettingsButton().setVisible(false);
+		}
+
 		this.view.getToSettingsButton().setOnAction(this);
 
 		this.view.getLogoImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -60,8 +71,6 @@ public class OwnController implements IController {
 		this.view.getWinCircle().setRingWidth(10);
 		this.view.getDefeatCircle().setRingWidth(10);
 
-		this.view.getWinCircle().setProgress((rand.nextInt(100 - 0) + 1));
-		this.view.getDefeatCircle().setProgress((rand.nextInt(100 - 0) + 1));
 	}
 
 	@Override
