@@ -3,6 +3,7 @@ package iut.group42b.boardgames.client.ui.page.profile.own;
 import iut.group42b.boardgames.client.ui.component.circularprogressbar.RingProgressIndicator;
 import iut.group42b.boardgames.client.ui.mvc.AbstractView;
 import iut.group42b.boardgames.client.ui.mvc.IController;
+import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -29,6 +30,7 @@ public class OwnView extends AbstractView {
 	private final AnchorPane winCircle;
 	private final AnchorPane defeatCircle;
 	private final ListView gameHistory;
+	private final UserProfile userprofile;
 
 	public OwnView(UserProfile up) {
 		super();
@@ -48,7 +50,7 @@ public class OwnView extends AbstractView {
 		this.gameHistory = this.findById("own-profile-listview-history");
 		this.winCircle.getChildren().add(new RingProgressIndicator());
 		this.defeatCircle.getChildren().add(new RingProgressIndicator());
-
+		this.userprofile=up;
 	}
 
 	public AnchorPane getWinCircleAnchor() {

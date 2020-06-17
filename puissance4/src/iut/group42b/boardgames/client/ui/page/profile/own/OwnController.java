@@ -26,8 +26,6 @@ public class OwnController implements IController {
 			UserInterface.get().set(new LogoutView());
 		} else if (event.getSource() == this.view.getToSettingsButton()) {
 			UserInterface.get().set(new UserSettingsView());
-		} else if (event.getSource() == this.view.getProfileImageOnProfile()) {
-			UserInterface.get().set(new OwnView(NetworkInterface.get().getSocketHandler().getUserProfile()));
 		}
 	}
 
@@ -60,10 +58,9 @@ public class OwnController implements IController {
 		this.view.getLogoImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			UserInterface.get().set(new HomeView());
 		});
-
-
-
-		Random rand = new Random();
+		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+			UserInterface.get().set(new OwnView(NetworkInterface.get().getSocketHandler().getUserProfile()));
+		});
 
 		this.view.getWinCircle().setRingWidth(10);
 		this.view.getDefeatCircle().setRingWidth(10);
