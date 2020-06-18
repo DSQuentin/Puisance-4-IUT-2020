@@ -18,10 +18,18 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class UserSettingsController implements IController, INetworkHandler {
 
 	/* Variables */
 	private UserSettingsView view;
+	String regexmail = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+	String regexnumber = ".*\\d.*";
+	String regexCapital = ".*[A-Z].*";
+	String[] mdp = {"123456", "123456789", "qwerty", "password", "1234567", "12345678", "12345", "iloveyou", "111111", "123123"};
+	List<String> mdpinterdits = Arrays.asList(this.mdp);
 
 	@Override
 	public void handle(ActionEvent event) {
@@ -36,6 +44,19 @@ public class UserSettingsController implements IController, INetworkHandler {
 			String email2 = this.view.getNewEmailConfirm().getText();
 			String profileUrl = this.view.getNewProfilePictureURLTextField().getText();
 
+			if (!email1.matches(this.regexmail) || this.mdpinterdits.contains(password1) || !password1.matches(this.regexnumber) || !password1.matches(this.regexCapital)) {
+				Alert alerte = new Alert(Alert.AlertType.ERROR);
+				alerte.setTitle("Password/Email Error");
+				alerte.setContentText("Email or password is not correct\nPassword needs at least one capital letter and one number");
+				alerte.showAndWait();
+				this.view.getNewEmail().setText("");
+				this.view.getNewEmailConfirm().setText("");
+				this.view.getNewPassword().setText("");
+				this.view.getNewPasswordConfirm().setText("");
+				this.view.getNewUsername().setText("");
+				this.view.getNewUsernameConfirm().setText("");
+			}
+			else{
 			boolean updateUsername = Utils.areEqualAndValid(username1, username2);
 			boolean updatePassword = Utils.areEqualAndValid(password1, password2);
 			boolean updateEmail = Utils.areEqualAndValid(email1, email2);
@@ -53,7 +74,7 @@ public class UserSettingsController implements IController, INetworkHandler {
 			System.out.println("username2 = " + username2);
 			System.out.println("updateUsername = " + updateUsername);
 			System.out.println("updatePassword = " + updatePassword);
-			System.out.println("updateProfilePicture = " + updateProfilePicture);
+			System.out.println("updateProfilePicture = " + updateProfilePicture);}
 		}
 	}
 
