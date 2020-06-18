@@ -22,6 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class OwnController implements IController, INetworkHandler {
@@ -57,7 +60,7 @@ public class OwnController implements IController, INetworkHandler {
 
 		UserProfile targetUserProfile = this.view.getUserprofile();
 
-		 this.gameHistoryItemsObservableList = FXCollections.observableArrayList();
+		this.gameHistoryItemsObservableList = FXCollections.observableArrayList();
 
 
 		this.view.getUsernameText().setText(targetUserProfile.getUsername());
@@ -115,22 +118,45 @@ public class OwnController implements IController, INetworkHandler {
 			int win = 0;
 			int defeat = 0;
 			int maxScore = 0;
-			
-			List<GameHistoryItem> games =  gameListHistoryPacket.getGameListHistory();
-			if ( games != null) {
-				for (GameHistoryItem game : games ) {
-					if (game.getIdUserWinner() == NetworkInterface.get().getSocketHandler().getUserProfile().getId()) {
-						defeat++;
-					} else {
+			List<Date> durations = new ArrayList<>();
+
+
+			List<GameHistoryItem> games = gameListHistoryPacket.getGameListHistory();
+
+			if (games != null) {
+				for (GameHistoryItem game : games) {
+
+					if (game.getIdUserWinner() == this.view.getUserprofile().getId()) {
+
+						System.out.println(game.getDuration());
+						try {
+							Date date = new SimpleDateFormat("hh:mm:ss").parse(game.getDuration());
+							durations.add(date);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 						win++;
 						if (maxScore < game.getWinnerScore()) {
 							maxScore = game.getWinnerScore();
 						}
-
+					} else {
+						defeat++;
 					}
 
-
 				}
+
+				long totalSeconds = 0L;
+				for (Date date : durations) {
+					totalSeconds += date.getTime() / 1000L;
+				}
+				long averageSeconds = totalSeconds / durations.size();
+				Date averageDate = new Date(averageSeconds * 1000L);
+
+				SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+				String time = localDateFormat.format(averageDate);
+
+				this.view.getTimeText().setText(time);
+
 
 				int winRatio = (win * 100) / games.size();
 				int defeatRatio = (defeat * 100) / games.size();
