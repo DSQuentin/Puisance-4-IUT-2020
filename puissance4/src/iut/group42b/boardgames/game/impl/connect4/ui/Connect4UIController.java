@@ -100,19 +100,20 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 			String winReason; // TODO i18n
 			if (winPacket.isSurrender()) {
-				winReason = " by : surrender";
+				winReason = Messages.ALERT_WINREASON_SURRENDER.use();
 			} else if (winPacket.isConnectionLost()) {
-				winReason = " by : connection lost";
+				winReason = Messages.ALERT_WINREASON_CONNECTIONLOST.use();
 			} else {
-				winReason = "!";
+				winReason = Messages.ALERT_WINREASON_NORMAL.use();
 			}
 
 			Platform.runLater(() -> {
 
 
 				Alert al = new Alert(Alert.AlertType.INFORMATION);
-				al.setTitle("Victory");
-				al.setHeaderText("Congratulations!\n You won" + winReason);
+				al.setTitle(Messages.ALERT_VICTORY_TITLE.use());
+				al.setHeaderText(Messages.ALERT_VICTORY_HEADER.use());
+				al.setContentText(winReason);
 
 				Optional<ButtonType> result = al.showAndWait();
 				if (result.get() == ButtonType.OK || result.get() == ButtonType.CLOSE) {
@@ -124,8 +125,8 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 			Platform.runLater(() -> {
 				this.stopChronometerIfRunning();
 				Alert al = new Alert(Alert.AlertType.INFORMATION);
-				al.setTitle("Defeat");
-				al.setHeaderText("Sorry!\n You Lost!");
+				al.setTitle(Messages.ALERT_DEFEAT_TITLE.use());
+				al.setHeaderText(Messages.ALERT_DEFEAT_HEADER.use());
 
 				Optional<ButtonType> result = al.showAndWait();
 				if (result.get() == ButtonType.OK || result.get() == ButtonType.CLOSE) {
@@ -182,7 +183,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == this.view.getSurrenderButton()) {
-			Alert alert = new Alert(Alert.AlertType.WARNING);
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 			alert.setTitle(Messages.UI_ALERT_TITLE_SURRENDER.use());
 			alert.setHeaderText(Messages.UI_ALERT_HEADER_SURRENDER.use());
 			alert.setContentText(Messages.UI_ALERT_CONTEXT_SURRENDER.use());

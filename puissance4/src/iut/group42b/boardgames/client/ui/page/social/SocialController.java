@@ -231,8 +231,8 @@ public class SocialController implements IController, INetworkHandler {
 
 
 				Alert al = new Alert(Alert.AlertType.INFORMATION);
-				al.setTitle("Friend not found");
-				al.setHeaderText("Username must be incorrect!");
+				al.setTitle(Messages.ALERT_FRIEND_NOT_FOUND_TITLE.use());
+				al.setHeaderText(Messages.ALERT_FRIEND_NOT_FOUND_HEADER.use());
 				al.showAndWait();
 			});
 		}

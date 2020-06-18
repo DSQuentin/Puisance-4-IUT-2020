@@ -10,7 +10,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 
-public class MessagesListViewCellController implements IListViewCellController<ExchangedMessage> {
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+public class 	MessagesListViewCellController implements IListViewCellController<ExchangedMessage> {
 
 	/* Variables */
 	private MessagesListViewCellView view;
@@ -37,7 +40,7 @@ public class MessagesListViewCellController implements IListViewCellController<E
 		MessagesListViewCellView gameCellView = (MessagesListViewCellView) cellView;
 
 		if (item.getUserId() == NetworkInterface.get().getSocketHandler().getUserProfile().getId()) {
-			gameCellView.getSenderDateText().setText(item.getDate());
+			//gameCellView.getSenderDateText().setText(item.getDate());
 			gameCellView.getContentText().setFill(Color.WHITE);
 			gameCellView.getMessageBox().setStyle("-fx-background-color: #0183ff;-fx-background-radius: 5;"); //blue
 			gameCellView.getMessageBox().setAlignment(Pos.CENTER_LEFT);
@@ -51,7 +54,7 @@ public class MessagesListViewCellController implements IListViewCellController<E
 			gameCellView.getReceiverProfileImageView().setImage(NetworkInterface.get().getSocketHandler().getUserProfile().picture());
 			gameCellView.getSenderProfileImageView().setImage(null);
 		} else { // TODO
-			gameCellView.getReceiverDateText().setText(item.getDate());
+			//gameCellView.getReceiverDateText().setText(item.getDate());
 			gameCellView.getContentText().setFill(Color.BLACK);
 			gameCellView.getMessageBox().setStyle("-fx-background-color: #eaeaea;-fx-background-radius: 10;"); //grey
 			gameCellView.getMessageBox().setAlignment(Pos.CENTER_LEFT);
