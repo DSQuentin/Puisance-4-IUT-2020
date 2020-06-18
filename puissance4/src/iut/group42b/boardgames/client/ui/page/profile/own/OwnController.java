@@ -158,22 +158,33 @@ public class OwnController implements IController, INetworkHandler {
 				for (Date date : durations) {
 					totalSeconds += date.getTime() / 1000L;
 				}
-				long averageSeconds = totalSeconds / durations.size();
-				Date averageDate = new Date(averageSeconds * 1000L);
 
-				SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
-				String time = localDateFormat.format(averageDate);
+				if (!durations.isEmpty()) { // Avoid division / 0
+					long averageSeconds = totalSeconds / durations.size();
+					Date averageDate = new Date(averageSeconds * 1000L);
 
-				this.view.getTimeText().setText(time);
+					SimpleDateFormat localDateFormat = new SimpleDateFormat("HH:mm:ss");
+					String time = localDateFormat.format(averageDate);
+
+					this.view.getTimeText().setText(time);
+				}
 
 
-				int winRatio = (win * 100) / games.size();
-				int defeatRatio = (defeat * 100) / games.size();
+				int winRatio = 0;
+				int defeatRatio = 0;
 
+				if (!games.isEmpty()){
+
+					winRatio = (win * 100) / games.size();
+					defeatRatio = (defeat * 100) / games.size();
+				}
+
+				int finalDefeatRatio = defeatRatio;
+				int finalWinRatio = winRatio;
 				Platform.runLater(() -> {
 					this.view.getDefeatCircle().getStyleClass().add("circleindicator-container-defeat");
-					this.view.getDefeatCircle().setProgress(defeatRatio);
-					this.view.getWinCircle().setProgress(winRatio);
+					this.view.getDefeatCircle().setProgress(finalDefeatRatio);
+					this.view.getWinCircle().setProgress(finalWinRatio);
 
 				});
 				this.view.getNumberWinText().setText(String.valueOf(win));
