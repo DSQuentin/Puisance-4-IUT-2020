@@ -46,8 +46,8 @@ public class UserSettingsController implements IController, INetworkHandler {
 
 			if (!email1.matches(this.regexmail) || this.mdpinterdits.contains(password1) || !password1.matches(this.regexnumber) || !password1.matches(this.regexCapital)) {
 				Alert alerte = new Alert(Alert.AlertType.ERROR);
-				alerte.setTitle("Password/Email Error");
-				alerte.setContentText("Email or password is not correct\nPassword needs at least one capital letter and one number");
+				alerte.setTitle(Messages.ALERT_PSWD_EMAIL_ERROR_TITLE.use());
+				alerte.setContentText(Messages.ALERT_PSWD_EMAIL_ERROR_HEADER.use());
 				alerte.showAndWait();
 				this.view.getNewEmail().setText("");
 				this.view.getNewEmailConfirm().setText("");
@@ -116,6 +116,7 @@ public class UserSettingsController implements IController, INetworkHandler {
 
 			StringBuilder builder = new StringBuilder();
 			builder.append("Your: ");
+			//TODO change image message
 
 			if (changedPacket.isUsernameChanged()) {
 				builder.append("\n - Username has been changed");

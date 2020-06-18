@@ -5,6 +5,9 @@ import iut.group42b.boardgames.client.i18n.impl.I18nMessage;
 
 public class Messages {
 
+	public static final IMessage ALERT_PSWD_EMAIL_ERROR_TITLE = new I18nMessage("alert.pswd_email.error.title");
+	public static final IMessage ALERT_PSWD_EMAIL_ERROR_HEADER = new I18nMessage("alert.pswd_email.error.header");
+
 	public static final IMessage ALERT_VICTORY_TITLE = new I18nMessage("alert.victory.title");
 	public static final IMessage ALERT_VICTORY_HEADER = new I18nMessage("alert.victory.header");
 	public static final IMessage ALERT_WINREASON_SURRENDER = new I18nMessage("alert.winreason.surrender");
