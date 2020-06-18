@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/circleprogress.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/circleprogress.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <BorderPane layoutY="246.0" style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -301,13 +301,28 @@
                                         </AnchorPane>
                                     </children>
                                 </HBox>
-                                <HBox spacing="70.0">
+                                <HBox>
                                     <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.title" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.game" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.Time" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.Points" />
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.Enemy" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.title">
+                                 <HBox.margin>
+                                    <Insets left="20.0" right="75.0" />
+                                 </HBox.margin></Text>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.game">
+                                 <HBox.margin>
+                                    <Insets right="50.0" />
+                                 </HBox.margin></Text>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.Time">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin></Text>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.Points">
+                                 <HBox.margin>
+                                    <Insets right="40.0" />
+                                 </HBox.margin></Text>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.Enemy">
+                                 <HBox.margin>
+                                    <Insets right="90.0" />
+                                 </HBox.margin></Text>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%own.profile.history.Date" />
                                     </children>
                                     <VBox.margin>
