@@ -19,11 +19,26 @@ public class GameHistoryItem implements IWritableReadableObject {
 	String startedAt;
 
 
-	/* Constructor */
+	/**
+	 * Constructor GameHistoryItem Empty to rebuild
+	 */
 	public GameHistoryItem() {
 		this(0, 0, "", 0, "", 0, "", 0, "");
 	}
 
+	/**
+	 * Constructor GameHistoryItem
+	 *
+	 * @param gameState
+	 * @param user1Id
+	 * @param user1Name
+	 * @param user2Id
+	 * @param user2Name
+	 * @param idUserWinner
+	 * @param duration
+	 * @param winnerScore
+	 * @param startedAt
+	 */
 	public GameHistoryItem(int gameState, int user1Id, String user1Name, int user2Id, String user2Name, int idUserWinner, String duration, int winnerScore, String startedAt) {
 		this.gameState = gameState;
 		this.user1Id = user1Id;

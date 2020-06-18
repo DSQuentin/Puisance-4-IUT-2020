@@ -8,7 +8,6 @@ import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
 import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
 import iut.group42b.boardgames.client.ui.page.admin.AdminGameSettingsView;
 import iut.group42b.boardgames.client.ui.page.home.WaitingView;
-import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.game.GameAvailability;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
@@ -42,7 +41,7 @@ public class GameListViewCellController implements IListViewCellController<IGame
 		});
 		cellView.getSettingsButton().setOnAction((event) -> {
 			IGame game = view.getCurrentItem();
-			System.out.println("TEST TEST "+game);
+			System.out.println("TEST TEST " + game);
 			UserInterface.get().set(new AdminGameSettingsView(game));
 		});
 		if (NetworkInterface.get().getSocketHandler().getUserProfile().isAdmin()) {

@@ -8,12 +8,19 @@ public class PlayerJoinPacket implements IPacket {
 	/* Variables */
 	private int gameId;
 
-	/* Constructor */
+
+	/**
+	 * Constructor PlayerJoinPacket Empty to rebuild.
+	 */
 	public PlayerJoinPacket() {
 		this(0);
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor PlayerJoinPacket
+	 *
+	 * @param gameId
+	 */
 	public PlayerJoinPacket(int gameId) {
 		this.gameId = gameId;
 	}
@@ -28,6 +35,11 @@ public class PlayerJoinPacket implements IPacket {
 		this.gameId = buffer.readInt();
 	}
 
+	/**
+	 * Get the game Id.
+	 *
+	 * @return
+	 */
 	public int getGameId() {
 		return this.gameId;
 	}

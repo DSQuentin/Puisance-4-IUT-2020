@@ -18,27 +18,48 @@ public class UserProfilePictureCache {
 	/* Variables */
 	private final Map<String, Image> images;
 
-	/* Constructor */
+
+	/***
+	 * Constructor UserProfilePictureCache
+	 */
 	private UserProfilePictureCache() {
 		this.images = new HashMap<>();
 	}
 
+	/***
+	 * Put image in cache
+	 * @param userProfile
+	 * @return
+	 */
 	public Image auto(UserProfile userProfile) {
 		return this.auto(userProfile.getImageUrl());
 	}
 
+	/***
+	 * Put image in cache
+	 * @param imageUrl
+	 * @return
+	 */
 	public Image auto(String imageUrl) {
 		synchronized (this.images) {
 			return this.images.computeIfAbsent(imageUrl, (url) -> new Image(url, true));
 		}
 	}
 
+	/**
+	 * Clear all cached images
+	 */
 	public void clear() {
 		synchronized (this.images) {
 			this.images.clear();
 		}
 	}
 
+	/**
+	 * Get the cache.
+	 *
+	 * @return
+	 */
 	public static UserProfilePictureCache get() {
 		return INSTANCE;
 	}

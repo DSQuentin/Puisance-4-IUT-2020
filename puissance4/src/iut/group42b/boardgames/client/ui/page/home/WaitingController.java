@@ -10,10 +10,6 @@ import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.stage.Stage;
-import javafx.stage.Window;
-import javafx.stage.WindowEvent;
 
 
 public class WaitingController implements IController, INetworkHandler {

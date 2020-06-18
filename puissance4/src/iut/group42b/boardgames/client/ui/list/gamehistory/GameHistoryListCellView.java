@@ -9,15 +9,14 @@ import javafx.scene.text.Text;
 public class GameHistoryListCellView extends AbstractViewCell<GameHistoryItem> {
 
 	/* UI */
-	private Circle wonState;
-	private Text user1;
-	private Text game;
-	private Text user2;
-	private Text duration;
-	private Text timeUnit;
-	private Text score;
-	private Text date;
-
+	private final Circle wonState;
+	private final Text user1;
+	private final Text game;
+	private final Text user2;
+	private final Text duration;
+	private final Text timeUnit;
+	private final Text score;
+	private final Text date;
 
 
 	protected GameHistoryListCellView(IListViewCellController<GameHistoryItem> partController) {

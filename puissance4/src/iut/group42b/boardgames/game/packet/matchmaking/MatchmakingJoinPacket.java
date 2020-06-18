@@ -8,12 +8,19 @@ public class MatchmakingJoinPacket implements IPacket {
 	/* Variables */
 	private int gameId;
 
-	/* Constructor */
+
+	/**
+	 * Constructor MatchmakingJoinPacket Empty to rebuild
+	 */
 	public MatchmakingJoinPacket() {
 		this(0);
 	}
 
-	/* Constructor */
+	/**
+	 * Constructor MatchmakingJoinPacket
+	 *
+	 * @param gameId
+	 */
 	public MatchmakingJoinPacket(int gameId) {
 		this.gameId = gameId;
 	}

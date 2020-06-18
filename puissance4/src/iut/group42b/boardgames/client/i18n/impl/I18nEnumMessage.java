@@ -12,7 +12,11 @@ public class I18nEnumMessage implements IMessage {
 	/* Variables */
 	private final String baseKey;
 
-	/* Constructor */
+
+	/***
+	 * Constructor I18nEnumMessage
+	 * @param baseKey
+	 */
 	public I18nEnumMessage(String baseKey) {
 		this.baseKey = baseKey;
 	}

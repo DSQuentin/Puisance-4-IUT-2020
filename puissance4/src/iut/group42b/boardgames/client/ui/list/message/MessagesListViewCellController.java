@@ -10,10 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
-public class 	MessagesListViewCellController implements IListViewCellController<ExchangedMessage> {
+public class MessagesListViewCellController implements IListViewCellController<ExchangedMessage> {
 
 	/* Variables */
 	private MessagesListViewCellView view;
@@ -44,7 +41,7 @@ public class 	MessagesListViewCellController implements IListViewCellController<
 			gameCellView.getContentText().setFill(Color.WHITE);
 			gameCellView.getMessageBox().setStyle("-fx-background-color: #0183ff;-fx-background-radius: 5;"); //blue
 			gameCellView.getMessageBox().setAlignment(Pos.CENTER_LEFT);
-			gameCellView.getMessageBox().setPadding(new Insets(5,5,5,5));
+			gameCellView.getMessageBox().setPadding(new Insets(5, 5, 5, 5));
 
 			gameCellView.getReceiverDateText().setVisible(false);
 			gameCellView.getSenderDateText().setVisible(true);
@@ -58,7 +55,7 @@ public class 	MessagesListViewCellController implements IListViewCellController<
 			gameCellView.getContentText().setFill(Color.BLACK);
 			gameCellView.getMessageBox().setStyle("-fx-background-color: #eaeaea;-fx-background-radius: 10;"); //grey
 			gameCellView.getMessageBox().setAlignment(Pos.CENTER_LEFT);
-			gameCellView.getMessageBox().setPadding(new Insets(5,5,5,5));
+			gameCellView.getMessageBox().setPadding(new Insets(5, 5, 5, 5));
 
 			gameCellView.getReceiverDateText().setVisible(true);
 			gameCellView.getSenderDateText().setVisible(false);

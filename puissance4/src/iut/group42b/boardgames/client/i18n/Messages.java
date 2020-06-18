@@ -47,7 +47,7 @@ public class Messages {
 	public static final IMessage UI_ALERT_HEADER_FRIEND = new I18nMessage("ui.alert.add.friend.header");
 	public static final IMessage UI_ALERT_CONTENT_FRIEND = new I18nMessage("ui.alert.add.friend.content");
 
-	// todo
+
 	public static final IMessage ALERT_WIN_DEFEAT = new I18nMessage("game.windefeat.alert");
 
 

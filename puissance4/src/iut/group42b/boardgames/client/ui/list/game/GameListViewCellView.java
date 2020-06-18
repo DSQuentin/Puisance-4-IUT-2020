@@ -32,7 +32,9 @@ public class GameListViewCellView extends AbstractViewCell<IGame> {
 		return "home-game-cell.fxml";
 	}
 
-	public Button getSettingsButton() { return this.settingsButton; }
+	public Button getSettingsButton() {
+		return this.settingsButton;
+	}
 
 	public Button getActionButton() {
 		return this.actionButton;

@@ -26,7 +26,13 @@ public class Connect4GameArena implements IGameArena {
 	private final Connect4Side[][] grid;
 	private int databaseId;
 
-	/* Constructor */
+
+	/**
+	 * Constructor
+	 *
+	 * @param redPlayer
+	 * @param yellowPlayer
+	 */
 	public Connect4GameArena(Player redPlayer, Player yellowPlayer) {
 		this.redPlayer = redPlayer;
 		this.yellowPlayer = yellowPlayer;
@@ -43,6 +49,14 @@ public class Connect4GameArena implements IGameArena {
 		}
 	}
 
+	/**
+	 * Place a side at given x and y positions inside the grid
+	 *
+	 * @param side
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public Connect4GameArena putTokenAt(Connect4Side side, int x, int y) {
 		if (side != Connect4Side.NONE && this.grid[y][x] != Connect4Side.NONE) {
 			return this;
@@ -133,10 +147,20 @@ public class Connect4GameArena implements IGameArena {
 		return this.endAt - this.startedAt;
 	}
 
+	/**
+	 * Get the current side to play.
+	 *
+	 * @return
+	 */
 	public Connect4Side getSideToPlay() {
 		return this.sideToPlay;
 	}
 
+	/**
+	 * Inverse the side to play.
+	 *
+	 * @return
+	 */
 	public Connect4GameArena inverseSide() {
 		if (this.sideToPlay == Connect4Side.RED) {
 			this.sideToPlay = Connect4Side.YELLOW;
@@ -151,14 +175,29 @@ public class Connect4GameArena implements IGameArena {
 		return this.grid;
 	}
 
+	/**
+	 * Get the yellow  player.
+	 *
+	 * @return
+	 */
 	public Player getYellowPlayer() {
 		return this.yellowPlayer;
 	}
 
+	/**
+	 * Get the red player.
+	 *
+	 * @return
+	 */
 	public Player getRedPlayer() {
 		return this.redPlayer;
 	}
 
+	/**
+	 * Send pacjet to all connected socket.
+	 *
+	 * @param packet Packet to broadcast.
+	 */
 	public void broadcast(IPacket packet) {
 		this.yellowPlayer.getSocketHandler().queue(packet);
 		this.redPlayer.getSocketHandler().queue(packet);
@@ -208,38 +247,65 @@ public class Connect4GameArena implements IGameArena {
 		return Arrays.asList(this.redPlayer, this.yellowPlayer);
 	}
 
+	/**
+	 * Get the red score.
+	 *
+	 * @return int.
+	 */
 	public int getScoreRed() {
 		return this.scoreRed;
 	}
 
+	/**
+	 * Get the yellow score.
+	 *
+	 * @return int.
+	 */
 	public int getScoreYellow() {
 		return this.scoreYellow;
 	}
 
+	/**
+	 * Set the state.
+	 *
+	 * @param state
+	 */
 	public void setState(State state) {
 		this.state = state;
 	}
 
+	/**
+	 * Get the state.
+	 *
+	 * @return
+	 */
 	public State getState() {
 		return this.state;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(new Connect4GameArena(null, null)
-				.putTokenAt(Connect4Side.RED, 3, 3)
-				.putTokenAt(Connect4Side.YELLOW, 4, 3)
-				.inverseSide()
-				.toJSONGameState());
-	}
-
+	/**
+	 * Check if game is still playing.
+	 *
+	 * @return
+	 */
 	public boolean isPlaying() {
 		return this.state == State.PLAYING;
 	}
 
+	/**
+	 * Check if game is ended.
+	 *
+	 * @return
+	 */
 	public boolean isDone() {
 		return this.state == State.DONE;
 	}
 
+	/**
+	 * Check if surrender state is enable.
+	 *
+	 * @return
+	 */
 	public boolean isSurrender() {
 		return this.state == State.SURRENDER;
 	}

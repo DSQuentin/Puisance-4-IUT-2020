@@ -5,12 +5,20 @@ import iut.group42b.boardgames.util.DataBuffer;
 
 public class FriendNumberPacket implements IPacket {
 
-	private int number ;
+	private int number;
 
+	/**
+	 * Constructor FriendNumberPacket Empty to rebuild.
+	 */
 	public FriendNumberPacket() {
 		this(0);
 	}
 
+	/**
+	 * Constructor FriendNumberPacket
+	 *
+	 * @param number
+	 */
 	public FriendNumberPacket(int number) {
 		this.number = number;
 	}
@@ -26,10 +34,12 @@ public class FriendNumberPacket implements IPacket {
 		this.number = buffer.readInt();
 	}
 
+	/**
+	 * Get number
+	 *
+	 * @return
+	 */
 	public int getNumber() {
 		return this.number;
 	}
 }
-
-
-	//select count(*) from are_friends where id_user_1=1 or id_user_2=1;

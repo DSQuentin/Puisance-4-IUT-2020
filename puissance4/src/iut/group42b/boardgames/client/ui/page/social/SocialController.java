@@ -33,7 +33,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -226,7 +225,7 @@ public class SocialController implements IController, INetworkHandler {
 					target.notReadProperty().set(target.notReadProperty().get() + 1);
 				}
 			}
-		} else if (packet instanceof FriendNotFoundPacket){
+		} else if (packet instanceof FriendNotFoundPacket) {
 			Platform.runLater(() -> {
 
 

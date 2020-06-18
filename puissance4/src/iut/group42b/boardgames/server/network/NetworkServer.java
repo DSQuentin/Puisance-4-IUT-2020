@@ -47,7 +47,6 @@ public class NetworkServer {
 
 				this.register(socketHandler);
 
-				System.out.println(socket);
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}

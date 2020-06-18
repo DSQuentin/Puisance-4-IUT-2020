@@ -12,7 +12,7 @@ public class GameHistoryListCellController implements IListViewCellController<Ga
 
 	/* Variables */
 	private GameHistoryListCellView view;
-	private OwnController controller;
+	private final OwnController controller;
 
 	public GameHistoryListCellController(OwnController controller) {
 		this.controller = controller;
@@ -20,7 +20,6 @@ public class GameHistoryListCellController implements IListViewCellController<Ga
 
 	@Override
 	public void attachView(AbstractViewCell<GameHistoryItem> view) {
-
 
 
 	}

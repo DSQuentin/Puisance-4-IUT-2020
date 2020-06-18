@@ -12,7 +12,10 @@ public class I18nMessage implements IMessage {
 	/* Variables */
 	private final String key;
 
-	/* Constructor */
+	/***
+	 * Constructor I18nMessage
+	 * @param key String.
+	 */
 	public I18nMessage(String key) {
 		this.key = key;
 	}
@@ -26,6 +29,10 @@ public class I18nMessage implements IMessage {
 		return String.format(resourceBundle.getString(this.key), args);
 	}
 
+	/***
+	 * Define the global resource bundle for translations
+	 * @param resourceBundle ResourceBundle.
+	 */
 	public static void setGlobalResourceBundle(ResourceBundle resourceBundle) {
 		I18nMessage.resourceBundle = resourceBundle;
 	}

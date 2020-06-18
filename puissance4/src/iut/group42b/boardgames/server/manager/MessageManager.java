@@ -84,10 +84,10 @@ public class MessageManager implements INetworkHandler {
 				List<UserProfile> currentFriends = UserManager.get().findFriendsByUser(handler.getUserProfile());
 
 				if (currentFriends.stream().noneMatch((profile) -> profile.getUsername().equals(targetFriendUserProfile.getUsername()))) {
-					createFriendship(handler.getUserProfile().getId(), targetFriendUserProfile.getId());
+					this.createFriendship(handler.getUserProfile().getId(), targetFriendUserProfile.getId());
 				}
 
-				handlePacket(handler, new FriendListPacket()); /* Lazy */
+				this.handlePacket(handler, new FriendListPacket()); /* Lazy */
 			} else {
 				handler.queue(new FriendNotFoundPacket());
 			}
@@ -128,6 +128,12 @@ public class MessageManager implements INetworkHandler {
 		return messages;
 	}
 
+	/**
+	 * Update Opened Messages in database.
+	 *
+	 * @param fromUserId
+	 * @param toUserId
+	 */
 	public void updateOpenedMessage(int fromUserId, int toUserId) {
 		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("UPDATE messages SET opened = 1 WHERE `id_sender` = ? AND `id_receiver` = ?;")) {
 			preparedStatement.setInt(1, toUserId);
@@ -139,6 +145,12 @@ public class MessageManager implements INetworkHandler {
 		}
 	}
 
+	/**
+	 * Add Messages
+	 *
+	 * @param senderId
+	 * @param message
+	 */
 	public void addMessage(int senderId, ExchangedMessage message) {
 		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("INSERT INTO messages (sent, content, id_sender, id_receiver, opened) VALUES (?, ?, ?, ?, false);")) {
 			preparedStatement.setDate(1, new java.sql.Date(message.getDateObject().getTime())); /* Conversion was mandatory to work... */ // TODO need more work because hours are not working
@@ -152,6 +164,13 @@ public class MessageManager implements INetworkHandler {
 		}
 	}
 
+	/**
+	 * Get Not Readed Messages
+	 *
+	 * @param from
+	 * @param others
+	 * @return
+	 */
 	public List<Integer> getNotReadedCount(UserProfile from, List<UserProfile> others) {
 		List<Integer> counts = new ArrayList<>(others.size());
 
@@ -181,10 +200,16 @@ public class MessageManager implements INetworkHandler {
 		return counts;
 	}
 
+	/**
+	 * Add friend.
+	 *
+	 * @param userA
+	 * @param userB
+	 */
 	public void createFriendship(int userA, int userB) {
 		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("INSERT INTO are_friends (id_user_1, id_user_2) VALUES (?, ?);")) {
 			preparedStatement.setInt(1, userA);
-			preparedStatement.setInt(2,userB);
+			preparedStatement.setInt(2, userB);
 
 			preparedStatement.execute();
 		} catch (Exception exception) {
@@ -192,6 +217,11 @@ public class MessageManager implements INetworkHandler {
 		}
 	}
 
+	/**
+	 * Get the manager.
+	 *
+	 * @return
+	 */
 	public static MessageManager get() {
 		return INSTANCE;
 	}

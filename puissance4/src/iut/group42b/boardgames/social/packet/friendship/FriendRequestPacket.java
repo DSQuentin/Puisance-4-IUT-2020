@@ -8,24 +8,31 @@ public class FriendRequestPacket implements IPacket {
 	/* Variables */
 	private String name;
 
-	/* Constructor */
+	/**
+	 * Constructor FriendRequestPacket to rebuild.
+	 */
 	public FriendRequestPacket() {
 		this("");
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor FriendRequestPacket
+	 *
+	 * @param name
+	 */
 	public FriendRequestPacket(String name) {
 		this.name = name;
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.write(name);
+		buffer.write(this.name);
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
-		name = buffer.readString();
+		this.name = buffer.readString();
 	}
 
 	public String getName() {

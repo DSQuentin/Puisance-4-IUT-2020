@@ -5,7 +5,10 @@ import javafx.scene.canvas.GraphicsContext;
 
 public abstract class ResizableCanvas extends Canvas {
 
-	/* Constructor */
+
+	/***
+	 * Constructor ResizableCanvas
+	 */
 	public ResizableCanvas() {
 		super();
 
@@ -13,9 +16,13 @@ public abstract class ResizableCanvas extends Canvas {
 		this.heightProperty().addListener(event -> this.redraw());
 	}
 
+	/**
+	 * Redraw the canvas
+	 */
 	public void redraw() {
 		this.draw(this.getGraphicsContext2D());
 	}
+
 
 	public abstract void draw(GraphicsContext ctx);
 

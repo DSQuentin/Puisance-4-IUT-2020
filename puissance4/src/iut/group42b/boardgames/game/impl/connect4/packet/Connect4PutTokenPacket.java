@@ -10,12 +10,22 @@ public class Connect4PutTokenPacket implements IConnect4Packet {
 	private int x;
 	private int y;
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4PutTokenPacket Empty to rebuild
+	 */
 	public Connect4PutTokenPacket() {
 		this(null, 0, 0);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4PutTokenPacket
+	 *
+	 * @param side
+	 * @param x
+	 * @param y
+	 */
 	public Connect4PutTokenPacket(Connect4Side side, int x, int y) {
 		this.side = side;
 		this.x = x;
@@ -36,14 +46,29 @@ public class Connect4PutTokenPacket implements IConnect4Packet {
 		this.y = buffer.readByte();
 	}
 
+	/**
+	 * Get side
+	 *
+	 * @return
+	 */
 	public Connect4Side getSide() {
 		return this.side;
 	}
 
+	/**
+	 * Get X
+	 *
+	 * @return
+	 */
 	public int getX() {
 		return this.x;
 	}
 
+	/**
+	 * Get Y
+	 *
+	 * @return
+	 */
 	public int getY() {
 		return this.y;
 	}

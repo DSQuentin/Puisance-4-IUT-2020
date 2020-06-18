@@ -10,12 +10,20 @@ public class ReadAwareUserProfile extends ConnectedAwareUserProfile {
 	/* Variables */
 	private final IntegerProperty notReadProperty;
 
-	/* Constructor */
+	/**
+	 * Constructor ReadAwareUserProfile Empty to rebuild
+	 */
 	public ReadAwareUserProfile() {
 		this(new UserProfile(), 0);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor ReadAwareUserProfile
+	 *
+	 * @param userProfile
+	 * @param notReadCount
+	 */
 	public ReadAwareUserProfile(UserProfile userProfile, int notReadCount) {
 		super(userProfile);
 
@@ -36,6 +44,11 @@ public class ReadAwareUserProfile extends ConnectedAwareUserProfile {
 		this.notReadProperty.set(buffer.readInt());
 	}
 
+	/**
+	 * Not read property
+	 *
+	 * @return
+	 */
 	public IntegerProperty notReadProperty() {
 		return this.notReadProperty;
 	}

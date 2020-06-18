@@ -11,12 +11,20 @@ public abstract class Connect4BasePacket implements IPacket {
 	/* Variables */
 	private int arenaIdentifier;
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4BasePacket Empty packet to rebuild
+	 */
 	public Connect4BasePacket() {
 		this(0);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4BasePacket
+	 *
+	 * @param arenaIdentifier
+	 */
 	public Connect4BasePacket(int arenaIdentifier) {
 		this.arenaIdentifier = arenaIdentifier;
 	}
@@ -31,6 +39,11 @@ public abstract class Connect4BasePacket implements IPacket {
 		this.arenaIdentifier = buffer.readInt();
 	}
 
+	/**
+	 * Get the arena Id
+	 *
+	 * @return int
+	 */
 	public int getArenaIdentifier() {
 		return this.arenaIdentifier;
 	}

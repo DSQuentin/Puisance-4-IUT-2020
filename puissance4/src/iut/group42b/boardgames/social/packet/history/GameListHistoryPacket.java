@@ -23,6 +23,8 @@ public class GameListHistoryPacket implements IPacket {
 	}
 
 	/**
+	 * GameListHistoryPacket Constructor
+	 *
 	 * @param userId
 	 */
 	public GameListHistoryPacket(int userId) {
@@ -30,6 +32,8 @@ public class GameListHistoryPacket implements IPacket {
 	}
 
 	/**
+	 * GameListHistoryPacket Constructor
+	 *
 	 * @param userId
 	 */
 	public GameListHistoryPacket(int userId, int totalPlayed, List<GameHistoryItem> gameListHistory) {

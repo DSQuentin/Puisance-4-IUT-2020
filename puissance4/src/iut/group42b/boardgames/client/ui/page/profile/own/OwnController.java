@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,10 +109,10 @@ public class OwnController implements IController, INetworkHandler {
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
 
-		if (packet instanceof FriendNumberPacket){
+		if (packet instanceof FriendNumberPacket) {
 			FriendNumberPacket numberOfFriend = (FriendNumberPacket) packet;
 
-			this.view.getNumberFriendsText().setText(numberOfFriend.getNumber() +"");
+			this.view.getNumberFriendsText().setText(numberOfFriend.getNumber() + "");
 
 		}
 
@@ -173,7 +174,7 @@ public class OwnController implements IController, INetworkHandler {
 				int winRatio = 0;
 				int defeatRatio = 0;
 
-				if (!games.isEmpty()){
+				if (!games.isEmpty()) {
 
 					winRatio = (win * 100) / games.size();
 					defeatRatio = (defeat * 100) / games.size();

@@ -45,7 +45,7 @@ public class UserInterface {
 	/**
 	 * Setting up first page
 	 *
-	 * @param primaryStage
+	 * @param primaryStage Stage.
 	 * @throws Exception
 	 */
 	public void initialize(Stage primaryStage) throws Exception {

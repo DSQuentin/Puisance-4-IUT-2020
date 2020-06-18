@@ -10,7 +10,6 @@ import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.util.DataBuffer;
 import iut.group42b.boardgames.util.Logger;
 import iut.group42b.boardgames.util.Utils;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.Socket;

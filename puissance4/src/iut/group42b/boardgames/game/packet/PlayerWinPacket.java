@@ -13,12 +13,20 @@ public class PlayerWinPacket implements IPacket {
 	/* Variables */
 	private int mode;
 
-	/* Constructor */
+
+	/**
+	 * Constructor PlayerWinPacket Empty to rebuild
+	 */
 	public PlayerWinPacket() {
 		this(MODE_NORMAL);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor PlayerWinPacket.
+	 *
+	 * @param mode
+	 */
 	public PlayerWinPacket(int mode) {
 		this.mode = mode;
 	}
@@ -33,18 +41,38 @@ public class PlayerWinPacket implements IPacket {
 		this.mode = buffer.readByte();
 	}
 
+	/**
+	 * Get the mode.
+	 *
+	 * @return
+	 */
 	public int getMode() {
 		return this.mode;
 	}
 
+	/**
+	 * Check if game is normal
+	 *
+	 * @return
+	 */
 	public boolean isNormal() {
 		return this.mode == MODE_NORMAL;
 	}
 
+	/**
+	 * Check if game is surrended
+	 *
+	 * @return
+	 */
 	public boolean isSurrender() {
 		return this.mode == MODE_SURRENDER;
 	}
 
+	/**
+	 * Check if connection is lost s
+	 *
+	 * @return
+	 */
 	public boolean isConnectionLost() {
 		return this.mode == MODE_CONNECTION_LOST;
 	}

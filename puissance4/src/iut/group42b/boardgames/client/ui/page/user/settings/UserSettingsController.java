@@ -55,26 +55,21 @@ public class UserSettingsController implements IController, INetworkHandler {
 				this.view.getNewPasswordConfirm().setText("");
 				this.view.getNewUsername().setText("");
 				this.view.getNewUsernameConfirm().setText("");
+			} else {
+				boolean updateUsername = Utils.areEqualAndValid(username1, username2);
+				boolean updatePassword = Utils.areEqualAndValid(password1, password2);
+				boolean updateEmail = Utils.areEqualAndValid(email1, email2);
+				boolean updateProfilePicture = Utils.areEqualAndValid(profileUrl, profileUrl);
+
+				NetworkInterface.get().getSocketHandler().queue(new UserSettingsChangePacket(
+						updateEmail ? email1 : null,
+						updateUsername ? username1 : null,
+						updatePassword ? password1 : null,
+						updateProfilePicture ? profileUrl : null
+				));
+
+
 			}
-			else{
-			boolean updateUsername = Utils.areEqualAndValid(username1, username2);
-			boolean updatePassword = Utils.areEqualAndValid(password1, password2);
-			boolean updateEmail = Utils.areEqualAndValid(email1, email2);
-			boolean updateProfilePicture = Utils.areEqualAndValid(profileUrl, profileUrl);
-
-			NetworkInterface.get().getSocketHandler().queue(new UserSettingsChangePacket(
-					updateEmail ? email1 : null,
-					updateUsername ? username1 : null,
-					updatePassword ? password1 : null,
-					updateProfilePicture ? profileUrl : null
-			));
-
-			System.out.println("updateEmail = " + updateEmail);
-			System.out.println("username1 = " + username1);
-			System.out.println("username2 = " + username2);
-			System.out.println("updateUsername = " + updateUsername);
-			System.out.println("updatePassword = " + updatePassword);
-			System.out.println("updateProfilePicture = " + updateProfilePicture);}
 		}
 	}
 

@@ -10,12 +10,21 @@ public class Connect4GameInfoPacket implements IConnect4Packet {
 	private Connect4Side mySide;
 	private UserProfile opponentProfile;
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4GameInfoPacket Empty constructor to rebuild
+	 */
 	public Connect4GameInfoPacket() {
 		this(null, null);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4GameInfoPacket
+	 *
+	 * @param mySide          Connect4Side
+	 * @param opponentProfile UserProfile
+	 */
 	public Connect4GameInfoPacket(Connect4Side mySide, UserProfile opponentProfile) {
 		this.mySide = mySide;
 		this.opponentProfile = opponentProfile;
@@ -35,10 +44,20 @@ public class Connect4GameInfoPacket implements IConnect4Packet {
 		this.opponentProfile.read(buffer);
 	}
 
+	/**
+	 * Get this own side
+	 *
+	 * @return Connect4Side
+	 */
 	public Connect4Side getMySide() {
 		return this.mySide;
 	}
 
+	/**
+	 * Get the opponent userprofile
+	 *
+	 * @return
+	 */
 	public UserProfile getOpponentProfile() {
 		return this.opponentProfile;
 	}

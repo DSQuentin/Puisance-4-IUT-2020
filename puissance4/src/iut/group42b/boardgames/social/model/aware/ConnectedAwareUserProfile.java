@@ -12,12 +12,20 @@ public class ConnectedAwareUserProfile implements IWritableReadableObject {
 	private final UserProfile userProfile;
 	private final BooleanProperty connectedProperty;
 
-	/* Constructor */
+
+	/**
+	 * Constructor ConnectedAwareUserProfile Empty to rebuild
+	 */
 	public ConnectedAwareUserProfile() {
 		this(new UserProfile());
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor ConnectedAwareUserProfile
+	 *
+	 * @param userProfile
+	 */
 	public ConnectedAwareUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 		this.connectedProperty = new SimpleBooleanProperty(userProfile.isConnected());
@@ -35,10 +43,20 @@ public class ConnectedAwareUserProfile implements IWritableReadableObject {
 		this.connectedProperty.set(buffer.readBoolean());
 	}
 
+	/**
+	 * Get the userprofile.
+	 *
+	 * @return
+	 */
 	public UserProfile getUserProfile() {
 		return this.userProfile;
 	}
 
+	/**
+	 * Connected Property
+	 *
+	 * @return
+	 */
 	public BooleanProperty connectedProperty() {
 		return this.connectedProperty;
 	}

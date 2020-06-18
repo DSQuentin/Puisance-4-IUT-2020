@@ -1,69 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <BorderPane layoutX="318.0" layoutY="123.0" style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutX="318.0" layoutY="123.0" style="-fx-background-color: #E9EBEE;" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
-                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: #365186;" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: #365186;"
+                      BorderPane.alignment="CENTER">
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                             <children>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/logo.png" />
+                                        <Image url="@../images/logo.png"/>
                                     </image>
-                           <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </HBox.margin>
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                    </HBox.margin>
                                 </ImageView>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Online board Games" textAlignment="CENTER">
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Online board Games"
+                                      textAlignment="CENTER">
                                     <font>
-                                        <Font name="System Bold" size="24.0" />
+                                        <Font name="System Bold" size="24.0"/>
                                     </font>
                                     <HBox.margin>
-                                        <Insets right="100.0" />
+                                        <Insets right="100.0"/>
                                     </HBox.margin>
                                 </Text>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT">
                             <children>
-                                <Button id="index-button-register" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #38B295;" text="%ui.button.index.register" textAlignment="CENTER" textFill="WHITE">
+                                <Button id="index-button-register" alignment="CENTER" contentDisplay="CENTER"
+                                        mnemonicParsing="false" style="-fx-background-color: #38B295;"
+                                        text="%ui.button.index.register" textAlignment="CENTER" textFill="WHITE">
                                     <HBox.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                     </HBox.margin>
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
-                                <Button id="index-button-login" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #38B295;" text="%ui.button.index.login" textFill="WHITE">
+                                <Button id="index-button-login" alignment="CENTER" contentDisplay="CENTER"
+                                        mnemonicParsing="false" style="-fx-background-color: #38B295;"
+                                        text="%ui.button.index.login" textFill="WHITE">
                                     <HBox.margin>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                                     </HBox.margin>
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="14.0"/>
                                     </font>
                                 </Button>
                             </children>
                             <HBox.margin>
-                                <Insets left="200.0" />
+                                <Insets left="200.0"/>
                             </HBox.margin>
                         </HBox>
                     </children>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
+                    <padding>
+                        <Insets bottom="5.0"/>
+                    </padding>
                 </HBox>
             </top>
             <left>
@@ -71,20 +73,20 @@
                     <children>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/checker.png" />
+                                <Image url="@../images/checker.png"/>
                             </image>
                             <VBox.margin>
-                                <Insets bottom="50.0" />
+                                <Insets bottom="50.0"/>
                             </VBox.margin>
                         </ImageView>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/monopoly.png" />
+                                <Image url="@../images/monopoly.png"/>
                             </image>
                         </ImageView>
                     </children>
                     <padding>
-                        <Insets left="20.0" />
+                        <Insets left="20.0"/>
                     </padding>
                 </VBox>
             </left>
@@ -93,20 +95,20 @@
                     <children>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/chess.png" />
+                                <Image url="@../images/chess.png"/>
                             </image>
                             <VBox.margin>
-                                <Insets bottom="50.0" />
+                                <Insets bottom="50.0"/>
                             </VBox.margin>
                         </ImageView>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/werewolf.png" />
+                                <Image url="@../images/werewolf.png"/>
                             </image>
                         </ImageView>
                     </children>
                     <BorderPane.margin>
-                        <Insets right="20.0" />
+                        <Insets right="20.0"/>
                     </BorderPane.margin>
                 </VBox>
             </right>
@@ -119,38 +121,42 @@
                                     <children>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part1" textAlignment="CENTER">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part1"
+                                                      textAlignment="CENTER">
                                                     <font>
-                                                        <Font size="16.0" />
+                                                        <Font size="16.0"/>
                                                     </font>
                                                 </Text>
                                             </children>
                                         </HBox>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part2" textAlignment="CENTER">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part2"
+                                                      textAlignment="CENTER">
                                                     <font>
-                                                        <Font size="16.0" />
+                                                        <Font size="16.0"/>
                                                     </font>
                                                     <HBox.margin>
-                                                        <Insets bottom="10.0" />
+                                                        <Insets bottom="10.0"/>
                                                     </HBox.margin>
                                                 </Text>
                                             </children>
                                         </HBox>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part3" textAlignment="CENTER" wrappingWidth="313.822265625">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part3"
+                                              textAlignment="CENTER" wrappingWidth="313.822265625">
                                             <font>
-                                                <Font size="16.0" />
+                                                <Font size="16.0"/>
                                             </font>
                                         </Text>
                                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                             <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part4" textAlignment="CENTER">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%ui.text.index.part4"
+                                                      textAlignment="CENTER">
                                                     <font>
-                                                        <Font size="16.0" />
+                                                        <Font size="16.0"/>
                                                     </font>
                                                     <HBox.margin>
-                                                        <Insets top="20.0" />
+                                                        <Insets top="20.0"/>
                                                     </HBox.margin>
                                                 </Text>
                                             </children>
@@ -159,37 +165,39 @@
                                 </VBox>
                             </children>
                             <VBox.margin>
-                                <Insets top="20.0" />
+                                <Insets top="20.0"/>
                             </VBox.margin>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
                                 <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/petitschevaux.png" />
+                                        <Image url="@../images/petitschevaux.png"/>
                                     </image>
                                     <HBox.margin>
-                                        <Insets right="50.0" />
+                                        <Insets right="50.0"/>
                                     </HBox.margin>
                                 </ImageView>
                                 <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/puissance4.png" />
+                                        <Image url="@../images/puissance4.png"/>
                                     </image>
                                     <HBox.margin>
-                                        <Insets left="50.0" />
+                                        <Insets left="50.0"/>
                                     </HBox.margin>
                                 </ImageView>
                             </children>
                             <VBox.margin>
-                                <Insets top="20.0" />
+                                <Insets top="20.0"/>
                             </VBox.margin>
                         </HBox>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                             <children>
-                                <Button id="index-button-play-now" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #38B295;" text="%ui.button.index.play.now" textFill="WHITE">
+                                <Button id="index-button-play-now" contentDisplay="CENTER" mnemonicParsing="false"
+                                        style="-fx-background-color: #38B295;" text="%ui.button.index.play.now"
+                                        textFill="WHITE">
                                     <font>
-                                        <Font size="25.0" />
+                                        <Font size="25.0"/>
                                     </font>
                                 </Button>
                             </children>

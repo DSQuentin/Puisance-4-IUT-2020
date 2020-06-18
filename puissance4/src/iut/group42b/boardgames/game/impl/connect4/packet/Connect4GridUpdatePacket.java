@@ -12,27 +12,53 @@ public class Connect4GridUpdatePacket implements IConnect4Packet {
 	private String linearGrid;
 	private Connect4Side nextSideToPlay;
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4GridUpdatePacket to rebuild
+	 */
 	public Connect4GridUpdatePacket() {
 		this((String) null, null);
 	}
 
 	/* Constructor */
+
+	/**
+	 * Constructor Connect4GridUpdatePacket
+	 *
+	 * @param grid
+	 */
 	public Connect4GridUpdatePacket(Connect4Side[][] grid) {
 		this(grid, Connect4Side.NONE);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4GridUpdatePacket
+	 *
+	 * @param linearGrid
+	 */
 	public Connect4GridUpdatePacket(String linearGrid) {
 		this(linearGrid, Connect4Side.NONE);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4GridUpdatePacket
+	 *
+	 * @param grid
+	 * @param nextSideToPlay
+	 */
 	public Connect4GridUpdatePacket(Connect4Side[][] grid, Connect4Side nextSideToPlay) {
 		this(toLinearGrid(grid), nextSideToPlay);
 	}
 
-	/* Constructor */
+
+	/**
+	 * Constructor Connect4GridUpdatePacket
+	 *
+	 * @param linearGrid
+	 * @param nextSideToPlay
+	 */
 	public Connect4GridUpdatePacket(String linearGrid, Connect4Side nextSideToPlay) {
 		this.linearGrid = linearGrid;
 		this.nextSideToPlay = nextSideToPlay;
@@ -50,6 +76,11 @@ public class Connect4GridUpdatePacket implements IConnect4Packet {
 		this.nextSideToPlay = Connect4Side.values()[buffer.readByte()];
 	}
 
+	/***
+	 * Transform connect4 side grid object grid into string grid .
+	 * @param grid
+	 * @return
+	 */
 	public static String toLinearGrid(Connect4Side[][] grid) {
 		StringBuilder builder = new StringBuilder();
 
@@ -65,6 +96,11 @@ public class Connect4GridUpdatePacket implements IConnect4Packet {
 		return builder.toString();
 	}
 
+	/**
+	 * Transform string grid into connect4 side grid object.
+	 *
+	 * @return Connect4Side[][]
+	 */
 	public Connect4Side[][] toSideGrid() {
 		Connect4Side[][] grid = new Connect4Side[Connect4Game.NUMBER_OF_ROWS][Connect4Game.NUMBER_OF_COLUMNS];
 
@@ -79,10 +115,20 @@ public class Connect4GridUpdatePacket implements IConnect4Packet {
 		return grid;
 	}
 
+	/**
+	 * Get the linear grid.
+	 *
+	 * @return String.
+	 */
 	public String getLinearGrid() {
 		return this.linearGrid;
 	}
 
+	/**
+	 * Get the next side to play.
+	 *
+	 * @return Connect4Side.
+	 */
 	public Connect4Side getNextSideToPlay() {
 		return this.nextSideToPlay;
 	}

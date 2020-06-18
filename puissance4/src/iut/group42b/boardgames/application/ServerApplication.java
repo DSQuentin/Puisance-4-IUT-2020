@@ -14,6 +14,9 @@ public class ServerApplication {
 	/* Static */
 	private static NetworkServer server;
 
+	/**
+	 * Start the server with hardcoded host and ip address
+	 */
 	public static void startFromBootstrap() throws Exception {
 		LOGGER.verbose("Starting server...");
 

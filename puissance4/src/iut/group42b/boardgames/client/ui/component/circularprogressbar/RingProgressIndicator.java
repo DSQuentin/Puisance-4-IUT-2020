@@ -35,10 +35,11 @@ import java.util.List;
  */
 public class RingProgressIndicator extends ProgressCircleIndicator {
 
-	private boolean isDefeat;
+	private final boolean isDefeat;
+
 	public RingProgressIndicator(boolean isDefeat) {
 		this.isDefeat = isDefeat;
-		if (isDefeat){
+		if (isDefeat) {
 
 			this.getStylesheets().add(Resource.class.getResource("css/circleprogressDefeat.css").toExternalForm());
 		} else {
@@ -51,7 +52,7 @@ public class RingProgressIndicator extends ProgressCircleIndicator {
 	@Override
 	protected Skin<?> createDefaultSkin() {
 
-	return new RingProgressIndicatorSkin(this);
+		return new RingProgressIndicatorSkin(this);
 	}
 
 
