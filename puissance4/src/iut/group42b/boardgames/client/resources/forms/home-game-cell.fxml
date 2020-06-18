@@ -5,47 +5,57 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<HBox id="home-hbox-container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-      minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal"
-      xmlns:fx="http://javafx.com/fxml/1">
+
+<HBox id="home-hbox-container" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ImageView id="home-imageview-game-logo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true"
-                   preserveRatio="true">
+        <ImageView id="home-imageview-game-logo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/connect4cover.png"/>
+                <Image url="@../images/connect4cover.png" />
             </image>
         </ImageView>
         <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
             <children>
                 <Label id="home-label-game-title" text="Connect 4">
                     <font>
-                        <Font name="System Bold" size="13.0"/>
+                        <Font name="System Bold" size="13.0" />
                     </font>
                 </Label>
                 <Label id="home-label-tags" layoutX="10.0" layoutY="10.0" text="Free, Classic, Strategy">
                     <font>
-                        <Font name="System Bold" size="13.0"/>
+                        <Font name="System Bold" size="13.0" />
                     </font>
                 </Label>
             </children>
             <HBox.margin>
-                <Insets left="5.0"/>
+                <Insets left="5.0" />
             </HBox.margin>
         </VBox>
         <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
             <children>
-                <Button id="home-button-action" mnemonicParsing="false" prefWidth="130.0"
-                        style="-fx-background-color: #38B295;" text="Play" textFill="WHITE">
+                <Button id="home-button-action" mnemonicParsing="false" prefWidth="130.0" style="-fx-background-color: #38B295;" text="Play" textFill="WHITE">
                     <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </HBox.margin>
                     <font>
-                        <Font name="System Bold" size="13.0"/>
+                        <Font name="System Bold" size="13.0" />
                     </font>
                 </Button>
+            <Button id="home-button-settings" mnemonicParsing="false" style="-fx-background-color: white;-fx-opacity: 0;">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/6667233_preview.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
         </HBox>
     </children>
 </HBox>

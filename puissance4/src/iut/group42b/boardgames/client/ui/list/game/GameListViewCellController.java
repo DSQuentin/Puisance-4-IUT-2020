@@ -30,6 +30,7 @@ public class GameListViewCellController implements IListViewCellController<IGame
 	public void attachView(AbstractViewCell<IGame> view) {
 		GameListViewCellView cellView = (GameListViewCellView) view;
 
+
 		cellView.getActionButton().setOnAction((event) -> {
 			IGame game = (IGame) ((Parent) event.getSource()).getUserData();
 
@@ -37,6 +38,9 @@ public class GameListViewCellController implements IListViewCellController<IGame
 			UserInterface.get().openDialog(new WaitingView(game));
 			NetworkInterface.get().getSocketHandler().queue(new MatchmakingJoinPacket(GameRegistry.get().getIdFor(game)));
 		});
+		if (NetworkInterface.get().getSocketHandler().getUserProfile().isAdmin()) {
+			cellView.getSettingsButton().setStyle("-fx-opacity: 1");
+		}
 	}
 
 	@Override
