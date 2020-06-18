@@ -53,7 +53,7 @@ public class 	MessagesListViewCellController implements IListViewCellController<
 			gameCellView.getReceiverProfileImageView().setVisible(true);
 			gameCellView.getReceiverProfileImageView().setImage(NetworkInterface.get().getSocketHandler().getUserProfile().picture());
 			gameCellView.getSenderProfileImageView().setImage(null);
-		} else { // TODO
+		} else {
 			//gameCellView.getReceiverDateText().setText(item.getDate());
 			gameCellView.getContentText().setFill(Color.BLACK);
 			gameCellView.getMessageBox().setStyle("-fx-background-color: #eaeaea;-fx-background-radius: 10;"); //grey

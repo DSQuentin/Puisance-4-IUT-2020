@@ -123,8 +123,6 @@ public class Main extends Application {
         } catch (Exception ex) {
             ex.printStackTrace();
         }*/
-
- // TODO demanger pour le matchmaching
         launch(args);
     }
 

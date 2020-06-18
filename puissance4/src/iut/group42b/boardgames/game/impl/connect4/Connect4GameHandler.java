@@ -123,7 +123,6 @@ public class Connect4GameHandler implements IGameHandler, INetworkHandler {
 
 						this.stopArena(arena, winner.getSocketHandler());
 
-						// TODO Send
 					} else {
 						arena.inverseSide();
 					}

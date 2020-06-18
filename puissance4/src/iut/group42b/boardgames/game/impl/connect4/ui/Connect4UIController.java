@@ -98,7 +98,7 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 			this.stopChronometerIfRunning();
 
-			String winReason; // TODO i18n
+			String winReason;
 			if (winPacket.isSurrender()) {
 				winReason = Messages.ALERT_WINREASON_SURRENDER.use();
 			} else if (winPacket.isConnectionLost()) {
