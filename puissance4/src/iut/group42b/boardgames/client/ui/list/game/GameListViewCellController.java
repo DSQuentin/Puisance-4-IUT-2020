@@ -6,7 +6,9 @@ import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.resources.Resource;
 import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
 import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
+import iut.group42b.boardgames.client.ui.page.admin.AdminGameSettingsView;
 import iut.group42b.boardgames.client.ui.page.home.WaitingView;
+import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
 import iut.group42b.boardgames.game.GameAvailability;
 import iut.group42b.boardgames.game.GameRegistry;
 import iut.group42b.boardgames.game.IGame;
@@ -37,6 +39,11 @@ public class GameListViewCellController implements IListViewCellController<IGame
 			// openning the waiting box
 			UserInterface.get().openDialog(new WaitingView(game));
 			NetworkInterface.get().getSocketHandler().queue(new MatchmakingJoinPacket(GameRegistry.get().getIdFor(game)));
+		});
+		cellView.getSettingsButton().setOnAction((event) -> {
+			IGame game = view.getCurrentItem();
+			System.out.println("TEST TEST "+game);
+			UserInterface.get().set(new AdminGameSettingsView(game));
 		});
 		if (NetworkInterface.get().getSocketHandler().getUserProfile().isAdmin()) {
 			cellView.getSettingsButton().setStyle("-fx-opacity: 1");

@@ -6,6 +6,7 @@ import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
 import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.logout.LogoutView;
+import iut.group42b.boardgames.client.ui.page.profile.own.OwnView;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.util.CPU;
 import javafx.application.Platform;
@@ -61,6 +62,9 @@ public class AdminDashBoardController implements IController {
 		this.view.getLogoImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			this.active = false;
 			UserInterface.get().set(new HomeView());
+		});
+		this.view.getProfileImageView().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+			UserInterface.get().set(new OwnView(NetworkInterface.get().getSocketHandler().getUserProfile()));
 		});
 	}
 
