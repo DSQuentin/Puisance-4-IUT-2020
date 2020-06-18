@@ -100,11 +100,11 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 			String winReason; // TODO i18n
 			if (winPacket.isSurrender()) {
-				winReason = "surrender";
+				winReason = " by : surrender";
 			} else if (winPacket.isConnectionLost()) {
-				winReason = "connection lost";
+				winReason = " by : connection lost";
 			} else {
-				winReason = "normal";
+				winReason = "!";
 			}
 
 			Platform.runLater(() -> {
@@ -112,10 +112,9 @@ public class Connect4UIController implements IController, INetworkHandler, Conne
 
 				Alert al = new Alert(Alert.AlertType.INFORMATION);
 				al.setTitle("Victory");
-				al.setHeaderText("Congratulations!\n You won by: " + winReason);
+				al.setHeaderText("Congratulations!\n You won" + winReason);
 
 				Optional<ButtonType> result = al.showAndWait();
-				System.out.println("agegfd");
 				if (result.get() == ButtonType.OK || result.get() == ButtonType.CLOSE) {
 					UserInterface.get().set(new HomeView());
 				}

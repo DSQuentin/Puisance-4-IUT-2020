@@ -21,6 +21,7 @@ import iut.group42b.boardgames.social.model.ExchangedMessage;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.aware.ReadAwareUserProfile;
 import iut.group42b.boardgames.social.packet.friendship.FriendListPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendNotFoundPacket;
 import iut.group42b.boardgames.social.packet.friendship.FriendRequestPacket;
 import iut.group42b.boardgames.social.packet.message.MessageListPacket;
 import iut.group42b.boardgames.social.packet.message.OpenedMessagesPacket;
@@ -31,6 +32,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
@@ -91,9 +94,9 @@ public class SocialController implements IController, INetworkHandler {
 			// TODO : send invitations to user
 			result.ifPresent(s -> System.out.println("Your choice: " + s));
 
-		} //else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null) {
-			//UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));
-		//}
+		} else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null) {
+			UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));
+		}
 	}
 
 	public void addFriendsAlertBox() {
@@ -223,6 +226,15 @@ public class SocialController implements IController, INetworkHandler {
 					target.notReadProperty().set(target.notReadProperty().get() + 1);
 				}
 			}
+		} else if (packet instanceof FriendNotFoundPacket){
+			Platform.runLater(() -> {
+
+
+				Alert al = new Alert(Alert.AlertType.INFORMATION);
+				al.setTitle("Friend not found");
+				al.setHeaderText("Username must be incorrect!");
+				al.showAndWait();
+			});
 		}
 	}
 
