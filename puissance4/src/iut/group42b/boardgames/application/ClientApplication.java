@@ -11,6 +11,7 @@ import iut.group42b.boardgames.util.Logger;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.ConnectException;
@@ -56,6 +57,7 @@ public class ClientApplication extends Application {
 			NetworkInterface.get().initialize(socketHandler);
 			UserInterface.get().initialize(primaryStage);
 
+			primaryStage.getIcons().add(Resource.loadImage("logo.png"));
 			primaryStage.show();
 		}
 		catch (ConnectException e){
