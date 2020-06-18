@@ -31,7 +31,7 @@ public class GameListViewCellController implements IListViewCellController<IGame
 	@Override
 	public void attachView(AbstractViewCell<IGame> view) {
 		GameListViewCellView cellView = (GameListViewCellView) view;
-
+		((GameListViewCellView) view).getSettingsButton().setDisable(true);
 
 		cellView.getActionButton().setOnAction((event) -> {
 			IGame game = (IGame) ((Parent) event.getSource()).getUserData();
@@ -46,6 +46,7 @@ public class GameListViewCellController implements IListViewCellController<IGame
 			UserInterface.get().set(new AdminGameSettingsView(game));
 		});
 		if (NetworkInterface.get().getSocketHandler().getUserProfile().isAdmin()) {
+			((GameListViewCellView) view).getSettingsButton().setDisable(false);
 			cellView.getSettingsButton().setStyle("-fx-opacity: 1");
 		}
 	}
