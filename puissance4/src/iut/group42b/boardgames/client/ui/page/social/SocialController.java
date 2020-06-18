@@ -91,8 +91,8 @@ public class SocialController implements IController, INetworkHandler {
 			dialog.setContentText(Messages.UI_ALERT_CONTENT_FIGHT.use());
 
 			Optional<String> result = dialog.showAndWait();
-			// TODO : send invitations to user
-			result.ifPresent(s -> System.out.println("Your choice: " + s));
+
+			result.ifPresent(s -> System.out.println("Your choice: " + s)); // TODO I18N
 
 		} else if (event.getSource() == this.view.getCheckProfile() && this.currentlyTalkingUserProfile != null) {
 			UserInterface.get().set(new OwnView(this.currentlyTalkingUserProfile));

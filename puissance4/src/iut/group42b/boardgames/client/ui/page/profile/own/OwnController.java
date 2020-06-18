@@ -14,6 +14,8 @@ import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
+import iut.group42b.boardgames.social.packet.friendship.FriendNumberPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendNumberRequestPacket;
 import iut.group42b.boardgames.social.packet.history.GameListHistoryPacket;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -21,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -87,6 +90,7 @@ public class OwnController implements IController, INetworkHandler {
 		this.view.getGameHistory().setSelectionModel(new NoSelectionModel<>());
 
 		NetworkInterface.get().getSocketHandler().queue(new GameListHistoryPacket(this.view.getUserprofile().getId()));
+		NetworkInterface.get().getSocketHandler().queue(new FriendNumberRequestPacket(this.view.getUserprofile().getId()));
 
 	}
 
@@ -105,6 +109,14 @@ public class OwnController implements IController, INetworkHandler {
 
 	@Override
 	public void handlePacket(SocketHandler handler, IPacket packet) {
+
+		if (packet instanceof FriendNumberPacket){
+			FriendNumberPacket numberOfFriend = (FriendNumberPacket) packet;
+
+			this.view.getNumberFriendsText().setText(numberOfFriend.getNumber() +"");
+
+		}
+
 		if (packet instanceof GameListHistoryPacket) {
 			GameListHistoryPacket gameListHistoryPacket = (GameListHistoryPacket) packet;
 

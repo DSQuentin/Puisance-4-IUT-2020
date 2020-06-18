@@ -8,6 +8,8 @@ import iut.group42b.boardgames.network.packet.impl.auth.*;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
 import iut.group42b.boardgames.social.packet.friendship.FriendNotFoundPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendNumberPacket;
+import iut.group42b.boardgames.social.packet.friendship.FriendNumberRequestPacket;
 import iut.group42b.boardgames.social.packet.friendship.FriendRequestPacket;
 import iut.group42b.boardgames.social.packet.history.GameListHistoryPacket;
 import iut.group42b.boardgames.util.Logger;
@@ -84,9 +86,17 @@ public class UserManager implements INetworkHandler {
 			GameListHistoryPacket historyPacket = (GameListHistoryPacket) packet;
 
 			int userId = historyPacket.getUserId();
-			List<GameHistoryItem> history = getGameHistory(userId);
+			List<GameHistoryItem> history = this.getGameHistory(userId);
 
 			handler.queue(new GameListHistoryPacket(userId, history.size(), history.subList(0, Math.min(history.size(), 10))));
+
+
+		}else if (packet instanceof FriendNumberRequestPacket) {
+			FriendNumberRequestPacket friendNumberPacket = (FriendNumberRequestPacket) packet;
+
+			int numberOfFriends = friendNumberPacket.getQuery();
+
+			handler.queue(new FriendNumberPacket(this.getNumberOfFriendsById(numberOfFriends)));
 		}
 	}
 
@@ -361,5 +371,25 @@ public class UserManager implements INetworkHandler {
 
 		return gameHistory;
 	}
+
+	public int getNumberOfFriendsById(int userId) {
+		int numberOfFriends = 0;
+		try (PreparedStatement preparedStatement = DatabaseInterface.get().getConnection().prepareStatement("SELECT count(*) FROM `are_friends` WHERE `id_user_1`= ? OR `id_user_2` = ? ;")) {
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, userId);
+
+			try (ResultSet resultSet = preparedStatement.executeQuery()) {
+				while (resultSet.next()) {
+
+					 numberOfFriends = resultSet.getInt("count(*)");
+				}
+			}
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+
+		return numberOfFriends;
+	}
+
 
 }
