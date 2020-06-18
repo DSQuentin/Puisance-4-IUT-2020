@@ -15,6 +15,7 @@ package iut.group42b.boardgames.client.ui.component.circularprogressbar;/*
  */
 
 import com.sun.javafx.css.converters.SizeConverter;
+import iut.group42b.boardgames.client.resources.Resource;
 import javafx.beans.property.DoubleProperty;
 import javafx.css.CssMetaData;
 import javafx.css.Styleable;
@@ -33,15 +34,26 @@ import java.util.List;
  * @author Andrea Vacondio
  */
 public class RingProgressIndicator extends ProgressCircleIndicator {
-	public RingProgressIndicator() {
-		//this.getStylesheets().add(Resource.class.getResource("circleprogress.css").toExternalForm());
-		//this.getStyleClass().add("ringindicator");
+
+	private boolean isDefeat;
+	public RingProgressIndicator(boolean isDefeat) {
+		this.isDefeat = isDefeat;
+		if (isDefeat){
+
+			this.getStylesheets().add(Resource.class.getResource("css/circleprogressDefeat.css").toExternalForm());
+		} else {
+			this.getStylesheets().add(Resource.class.getResource("css/circleprogress.css").toExternalForm());
+		}
+		this.getStyleClass().add("ringindicator");
 	}
+
 
 	@Override
 	protected Skin<?> createDefaultSkin() {
-		return new RingProgressIndicatorSkin(this);
+
+	return new RingProgressIndicatorSkin(this);
 	}
+
 
 	public final void setRingWidth(int value) {
 		this.ringWidthProperty().set(value);

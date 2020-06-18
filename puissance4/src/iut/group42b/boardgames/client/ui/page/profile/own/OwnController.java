@@ -3,7 +3,6 @@ package iut.group42b.boardgames.client.ui.page.profile.own;
 import iut.group42b.boardgames.client.manager.NetworkInterface;
 import iut.group42b.boardgames.client.manager.UserInterface;
 import iut.group42b.boardgames.client.ui.helper.NoSelectionModel;
-import iut.group42b.boardgames.client.ui.list.game.GameListViewCellController;
 import iut.group42b.boardgames.client.ui.list.gamehistory.GameHistoryListCellController;
 import iut.group42b.boardgames.client.ui.mvc.IController;
 import iut.group42b.boardgames.client.ui.mvc.IView;
@@ -16,13 +15,14 @@ import iut.group42b.boardgames.network.packet.IPacket;
 import iut.group42b.boardgames.social.model.UserProfile;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
 import iut.group42b.boardgames.social.packet.history.GameListHistoryPacket;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
-import java.util.Collections;
+import java.util.List;
 
 public class OwnController implements IController, INetworkHandler {
 
@@ -56,7 +56,6 @@ public class OwnController implements IController, INetworkHandler {
 		UserProfile userProfile = NetworkInterface.get().getSocketHandler().getUserProfile();
 
 		UserProfile targetUserProfile = this.view.getUserprofile();
-		System.out.println(targetUserProfile);
 
 		 this.gameHistoryItemsObservableList = FXCollections.observableArrayList();
 
@@ -81,7 +80,7 @@ public class OwnController implements IController, INetworkHandler {
 		this.view.getDefeatCircle().setRingWidth(10);
 
 		this.view.getGameHistory().setCellFactory(this.gameHistoryListViewCellController.cellFactory());
-		this.view.getGameHistory().setItems(gameHistoryItemsObservableList);
+		this.view.getGameHistory().setItems(this.gameHistoryItemsObservableList);
 		this.view.getGameHistory().setSelectionModel(new NoSelectionModel<>());
 
 		NetworkInterface.get().getSocketHandler().queue(new GameListHistoryPacket(this.view.getUserprofile().getId()));
@@ -112,10 +111,48 @@ public class OwnController implements IController, INetworkHandler {
 				this.gameHistoryItemsObservableList.clear();
 				this.gameHistoryItemsObservableList.addAll(gameListHistoryPacket.getGameListHistory());
 			}
+
+			int win = 0;
+			int defeat = 0;
+			int maxScore = 0;
+			
+			List<GameHistoryItem> games =  gameListHistoryPacket.getGameListHistory();
+			if ( games != null) {
+				for (GameHistoryItem game : games ) {
+					if (game.getIdUserWinner() == NetworkInterface.get().getSocketHandler().getUserProfile().getId()) {
+						defeat++;
+					} else {
+						win++;
+						if (maxScore < game.getWinnerScore()) {
+							maxScore = game.getWinnerScore();
+						}
+
+					}
+
+
+				}
+
+				int winRatio = (win * 100) / games.size();
+				int defeatRatio = (defeat * 100) / games.size();
+
+				Platform.runLater(() -> {
+					this.view.getDefeatCircle().getStyleClass().add("circleindicator-container-defeat");
+					this.view.getDefeatCircle().setProgress(defeatRatio);
+					this.view.getWinCircle().setProgress(winRatio);
+
+				});
+				this.view.getNumberWinText().setText(String.valueOf(win));
+				this.view.getScoreText().setText(String.valueOf(maxScore));
+
+
+			} else {
+				System.out.println("WARNING : empty history");
+			}
+
 		}
 	}
 
 	public UserProfile getUserProfile() {
-		return view.getUserprofile();
+		return this.view.getUserprofile();
 	}
 }

@@ -121,7 +121,7 @@ public class Logger {
 		 */
 		Level(int bashColorCode) {
 			this.bashColorCode = bashColorCode;
-			this.enabled = true;
+			this.enabled = true; // TODO Set to false at the end
 		}
 
 		/**

@@ -86,6 +86,7 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
 		this.container.getChildren().addAll(this.fillerArc, this.outerCircle, this.innerCircle, this.percentLabel);
 	}
 
+
 	private void setProgressLabel(int value) {
 		if (value >= 0) {
 			this.percentLabel.setText(String.format("%d%%", value));

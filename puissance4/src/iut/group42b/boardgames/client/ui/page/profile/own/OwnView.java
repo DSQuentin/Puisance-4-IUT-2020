@@ -48,8 +48,8 @@ public class OwnView extends AbstractView {
 		this.winCircle = this.findById("win-circle");
 		this.defeatCircle = this.findById("defeat-circle");
 		this.gameHistory = this.findById("own-profile-listview-history");
-		this.winCircle.getChildren().add(new RingProgressIndicator());
-		this.defeatCircle.getChildren().add(new RingProgressIndicator());
+		this.winCircle.getChildren().add(new RingProgressIndicator(false));
+		this.defeatCircle.getChildren().add(new RingProgressIndicator(true));
 
 		this.userprofile = up == null ? NetworkInterface.get().getSocketHandler().getUserProfile() : up;
 	}
@@ -64,7 +64,7 @@ public class OwnView extends AbstractView {
 				return (RingProgressIndicator) n;
 			}
 		}
-		return new RingProgressIndicator();
+		return new RingProgressIndicator(false);
 	}
 
 	public AnchorPane getDefeatCircleAnchor() {
@@ -77,7 +77,7 @@ public class OwnView extends AbstractView {
 				return (RingProgressIndicator) n;
 			}
 		}
-		return new RingProgressIndicator();
+		return new RingProgressIndicator(true);
 	}
 
 	public Button getToLogOutButton() {
