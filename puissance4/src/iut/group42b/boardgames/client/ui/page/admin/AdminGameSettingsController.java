@@ -37,7 +37,7 @@ public class AdminGameSettingsController implements IController {
             if(i<this.view.getGame().getTags().size()-1){
                 description.append(",");
             }
-
+        this.view.getDescriptionTextField().setText(description.toString());
         }
         this.view.getLogo().addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             UserInterface.get().set(new HomeView());
