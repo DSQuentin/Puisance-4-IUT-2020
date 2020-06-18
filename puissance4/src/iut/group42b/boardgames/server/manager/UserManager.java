@@ -192,7 +192,7 @@ public class UserManager implements INetworkHandler {
 			preparedStatement.setString(1, registerPacket.getUsername());
 			preparedStatement.setString(2, registerPacket.getEmail());
 			preparedStatement.setString(3, registerPacket.getPassword());
-			preparedStatement.setString(4, "https://imgur.com/download/ljrctP0"); //default image link TODO: change it in the SQL
+			preparedStatement.setString(4, "https://api.adorable.io/avatars/174/" + registerPacket.getEmail() + ".png");
 
 			preparedStatement.execute();
 
@@ -275,7 +275,7 @@ public class UserManager implements INetworkHandler {
 		String email = resultSet.getString("email");
 		String imageUrl = resultSet.getString("image_url");
 		boolean enabled = resultSet.getString("enabled").charAt(0) == 'Y';
-		boolean connected = true; // TODO
+		boolean connected = true;
 		boolean admin = "ADMIN".equalsIgnoreCase(resultSet.getString("role_name"));
 		String creationDate = resultSet.getString("created_at");
 

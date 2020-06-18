@@ -74,8 +74,6 @@ public class GameListViewCellController implements IListViewCellController<IGame
 		gameCellView.getActionButton().setUserData(item);
 	}
 
-	// TODO : https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse/46186195#46186195 fix this shit
-
 	@Override
 	public AbstractViewCell<IGame> createView() {
 		return new GameListViewCellView(this);

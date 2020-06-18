@@ -10,6 +10,10 @@ import iut.group42b.boardgames.network.SocketHandler;
 import iut.group42b.boardgames.network.handler.INetworkHandler;
 import iut.group42b.boardgames.network.packet.IPacket;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 
 
 public class WaitingController implements IController, INetworkHandler {
@@ -18,17 +22,18 @@ public class WaitingController implements IController, INetworkHandler {
 	/* Variables */
 	private WaitingView view;
 
+
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getSource() == this.view.getCancelButton()) {
 			this.onCancel();
 		}
+
+
 	}
 
-	private void onCancel() { // TODO Make it called also when closing the modal
+	private void onCancel() {
 		NetworkInterface.get().getSocketHandler().queue(new MatchmakingLeavePacket());
-
-		// I close the waiting dialog
 
 		UserInterface.get().closeCurrentDialog();
 	}

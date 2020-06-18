@@ -34,7 +34,7 @@ public class Connect4GameArena implements IGameArena {
 		this.sideToPlay = ThreadLocalRandom.current().nextBoolean() ? Connect4Side.YELLOW : Connect4Side.RED;
 		this.grid = new Connect4Side[GRID_HEIGHT][GRID_WIDTH];
 
-		this.state = State.PLAYING; // TODO Move
+		this.state = State.PLAYING;
 
 		for (int y = 0; y < GRID_HEIGHT; y++) {
 			for (int x = 0; x < GRID_WIDTH; x++) {
