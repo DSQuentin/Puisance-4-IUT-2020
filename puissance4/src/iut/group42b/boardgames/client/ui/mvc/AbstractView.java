@@ -20,7 +20,7 @@ public abstract class AbstractView implements IView {
 
 		try {
 			this.root = FXMLLoader.load(Resource.loadForm(this.getViewPath()), I18nMessage.getGlobalResourceBundle());
-			Debug.dump(this.root);
+			//Debug.dump(this.root);
 		} catch (Exception exception) {
 			throw new RuntimeException(exception);
 		}

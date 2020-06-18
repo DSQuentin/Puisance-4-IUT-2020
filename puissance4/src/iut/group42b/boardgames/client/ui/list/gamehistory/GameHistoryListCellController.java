@@ -1,11 +1,8 @@
 package iut.group42b.boardgames.client.ui.list.gamehistory;
 
-import iut.group42b.boardgames.client.ui.list.game.GameListViewCellView;
 import iut.group42b.boardgames.client.ui.mvc.list.AbstractViewCell;
 import iut.group42b.boardgames.client.ui.mvc.list.IListViewCellController;
-import iut.group42b.boardgames.client.ui.page.home.HomeView;
 import iut.group42b.boardgames.client.ui.page.profile.own.OwnController;
-import iut.group42b.boardgames.client.ui.page.social.SocialController;
 import iut.group42b.boardgames.social.model.gamehistory.GameHistoryItem;
 import javafx.event.ActionEvent;
 import javafx.scene.paint.Color;
@@ -39,7 +36,6 @@ public class GameHistoryListCellController implements IListViewCellController<Ga
 		view.getScore().setText(String.valueOf(item.getWinnerScore()));
 		view.getTimeUnit().setText("");
 
-		System.out.println(item.getIdUserWinner());
 
 		if (item.getIdUserWinner() == this.controller.getUserProfile().getId()) {
 			view.getWonState().setStroke(Color.GREEN);

@@ -23,8 +23,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import sun.java2d.pipe.SpanShapeRenderer;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -140,7 +138,6 @@ public class OwnController implements IController, INetworkHandler {
 
 					if (game.getIdUserWinner() == this.view.getUserprofile().getId()) {
 
-						System.out.println(game.getDuration());
 						try {
 							Date date = new SimpleDateFormat("hh:mm:ss").parse(game.getDuration());
 							durations.add(date);
