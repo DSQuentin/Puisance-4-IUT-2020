@@ -58,6 +58,7 @@ public class ClientApplication extends Application {
 			UserInterface.get().initialize(primaryStage);
 
 			primaryStage.getIcons().add(Resource.loadImage("logo.png"));
+			primaryStage.setTitle("Online Board Games");
 			primaryStage.show();
 		}
 		catch (ConnectException e){
